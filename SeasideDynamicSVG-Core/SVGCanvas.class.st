@@ -51,8 +51,8 @@ SVGCanvas >> document [
 { #category : #'initialize-release' }
 SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore [
 	
-	context _ aRenderingContext.
-	callbacks _ aCallbackStore
+	context := aRenderingContext.
+	callbacks := aCallbackStore
 ]
 
 { #category : #tags }

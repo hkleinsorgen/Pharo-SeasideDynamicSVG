@@ -23,7 +23,7 @@ SVGRenderContinuation >> newDocumentOn: aResponse [
 SVGRenderContinuation >> newHtmlRoot [
 	
 	| htmlRoot |
-	htmlRoot _ SVGRoot context: self context.
+	htmlRoot := SVGRoot context: self context.
 	^htmlRoot
 ]
 
@@ -37,7 +37,7 @@ SVGRenderContinuation >> newRenderContinuation [
 SVGRenderContinuation >> newResponse [
 	
 	| response |
-	response _ super newResponse.
+	response := super newResponse.
 	response beSVG.
 	^response
 ]

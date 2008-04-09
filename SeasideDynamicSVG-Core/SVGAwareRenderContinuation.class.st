@@ -11,7 +11,7 @@ SVGAwareRenderContinuation >> handleRequest: aRequest [
 	aRequest isXmlHttpRequest
 		ifTrue: [self session onRespond: [:r | states snapshot]].
 	self withNotificationHandler: [self processCallbacks: aRequest].
-	newContinuation _ (self isSVGRequest: aRequest)
+	newContinuation := (self isSVGRequest: aRequest)
 		ifTrue: [self newSVGRenderContinuation]
 		ifFalse:
 			[(self shouldRedirect: aRequest)

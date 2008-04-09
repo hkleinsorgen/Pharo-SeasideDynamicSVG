@@ -64,7 +64,7 @@ SVGRoot >> docType [
 { #category : #doctype }
 SVGRoot >> docType: aDocType [
 	
-	docType _ aDocType
+	docType := aDocType
 ]
 
 { #category : #'initialize-release' }
@@ -98,13 +98,13 @@ SVGRoot >> open: aDocument [
 { #category : #private }
 SVGRoot >> setContext: aRenderingContext [
 	
-	context _ aRenderingContext
+	context := aRenderingContext
 ]
 
 { #category : #'accessing-attributes' }
 SVGRoot >> svgAttributes [
 	
-	^svgAttributes ifNil: [svgAttributes _ WAHtmlAttributes new]
+	^svgAttributes ifNil: [svgAttributes := WAHtmlAttributes new]
 ]
 
 { #category : #writing }
@@ -115,7 +115,7 @@ SVGRoot >> writeFootOn: aDocument [
 
 { #category : #writing }
 SVGRoot >> writeHeadOn: aDocument [
-	
+	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8"?>'.
 	docType notNil ifTrue: [aDocument nextPutAll: docType].
 	aDocument openTag: 'svg' attributes: svgAttributes
 ]

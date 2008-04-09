@@ -27,8 +27,8 @@ SVGDrawableComponent >> drawContentOn: svg [
 SVGDrawableComponent >> drawWithContext: aRenderingContext [
 	
 	| callbacks svg |
-	callbacks _ aRenderingContext callbacksFor: self.
-	svg _ self svgRendererClass context: aRenderingContext callbacks:
+	callbacks := aRenderingContext callbacksFor: self.
+	svg := self svgRendererClass context: aRenderingContext callbacks:
 			callbacks.
 	self drawContentOn: svg.
 	svg flush
@@ -43,7 +43,7 @@ SVGDrawableComponent >> drawable [
 { #category : #accessing }
 SVGDrawableComponent >> drawable: aDrawable [
 	
-	drawable _ aDrawable
+	drawable := aDrawable
 ]
 
 { #category : #accessing }
@@ -55,7 +55,7 @@ SVGDrawableComponent >> height [
 { #category : #accessing }
 SVGDrawableComponent >> height: aHeight [
 	
-	height _ aHeight
+	height := aHeight
 ]
 
 { #category : #rendering }
@@ -66,7 +66,7 @@ SVGDrawableComponent >> renderExternalSVGOn: canvas [
 	that it should draw the SVG, not render the HTML "
 	
 	| url |
-	url _ canvas context actionUrl copy.
+	url := canvas context actionUrl copy.
 	url addParameter: 'svg'.
 	canvas nextId.
 	(canvas object)
@@ -104,5 +104,5 @@ SVGDrawableComponent >> width [
 { #category : #accessing }
 SVGDrawableComponent >> width: aWidth [
 	
-	width _ aWidth
+	width := aWidth
 ]
