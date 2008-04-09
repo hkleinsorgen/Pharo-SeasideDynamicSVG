@@ -64,19 +64,24 @@ SVGDrawableComponent >> renderExternalSVGOn: canvas [
 	(as opposed to inline the SVG in the HTML code).
 	The parameter 'svg' is added to the URL so that SVGHybridRenderContinuation knows
 	that it should draw the SVG, not render the HTML "
+	"object tag is not working for IE7 ?????"
 	
-	| url |
+	| url embedTag |
 	url := canvas context actionUrl copy.
 	url addParameter: 'svg'.
-	canvas nextId.
-	(canvas object)
+	"canvas nextId."
+	embedTag := canvas brush: WAEmbedTag new.
+	embedTag url: url; width: self width;
+		height: self height;
+		type: WAFileLibrary svgMimetype.
+	"(canvas object)
 		url: url;
 		width: self width;
 		height: self height;
 		type: WAFileLibrary svgMimetype;
 		with:
 				[canvas text:
-							'Bad luck, embedding SVG via <object> ist not supported by your browser']
+							'Bad luck, embedding SVG via <object> ist not supported by your browser']"
 ]
 
 { #category : #rendering }

@@ -22,7 +22,6 @@ SVGAwareRenderContinuation >> handleRequest: aRequest [
 
 { #category : #processing }
 SVGAwareRenderContinuation >> isSVGRequest: aRequest [
-	
 	^aRequest includesKey: 'svg'
 ]
 

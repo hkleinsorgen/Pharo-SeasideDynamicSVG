@@ -42,21 +42,6 @@ SVGRenderContinuation >> newResponse [
 	^response
 ]
 
-{ #category : #processing }
-SVGRenderContinuation >> processRendering: aResponse [
-"ugly hack because we need the correct contentType"
-	| document htmlRoot |
-	document := self newDocumentOn: aResponse.
-	context document: document.
-	htmlRoot := self newHtmlRoot.
-	document open: htmlRoot.
-	aResponse contentType:  htmlRoot contentType.
-	self root decorationChainDo: [ :each |  each renderWithContext: context ].
-	self writeOnLoadOn: document.
-	document close: htmlRoot. 
-	context release
-]
-
 { #category : #testing }
 SVGRenderContinuation >> shouldRedirect: aRequest [
 	
