@@ -11,7 +11,7 @@ Class {
 SVGExternalSVGExample class >> initialize [
 	
 	| app |
-	app _ self registerAsApplication: self path.
+	app := self registerAsApplication: self path.
 	app preferenceAt: #renderContinuationClass put:
 			SVGHybridRenderContinuation
 ]
@@ -36,13 +36,13 @@ SVGExternalSVGExample >> initialize [
 ]
 
 { #category : #rendering }
-SVGExternalSVGExample >> renderContentOn: canvas [
-	
-	canvas
+SVGExternalSVGExample >> renderContentOn: html [
+	"very bad hack, because otherwise html is rendered also for svg"
+	html context isSVGContext ifFalse: [html
 		div:
-			[(canvas heading)
+			[(html heading)
 				level: 2;
-				with: [canvas text: 'SVG + callback example'].
-			canvas text: 'The SVG is a separate document, not inlined.'].
-	canvas render: exampleSVG
+				with: [html text: 'SVG + callback example'].
+			html text: 'The SVG is a separate document, not inlined.']].
+	html render: exampleSVG
 ]

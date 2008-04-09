@@ -215,11 +215,11 @@ SVGExampleSmiley >> hitRightEye [
 SVGExampleSmiley >> initialize [
 	
 	super initialize.
-	fillColor _ WAValueHolder new.
-	leftEyeColor _ WAValueHolder new.
-	rightEyeColor _ WAValueHolder new.
-	message _ WAValueHolder new.
-	happiness _ WAValueHolder with: 1.0.
+	fillColor := WAValueHolder new.
+	leftEyeColor := WAValueHolder new.
+	rightEyeColor := WAValueHolder new.
+	message := WAValueHolder new.
+	happiness := WAValueHolder with: 1.0.
 	self beYellow
 ]
 
@@ -262,7 +262,7 @@ SVGExampleSmiley >> resetEyes [
 SVGExampleSmiley >> states [
 	
 	| states |
-	states _ OrderedCollection new.
+	states := OrderedCollection new.
 	states
 		add: fillColor;
 		add: message;
