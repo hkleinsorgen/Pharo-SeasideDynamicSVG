@@ -32,7 +32,7 @@ SVGExternalSVGExample >> children [
 SVGExternalSVGExample >> initialize [
 	
 	super initialize.
-	exampleSVG _ SVGExampleSmiley new
+	exampleSVG := SVGExampleSmiley new
 ]
 
 { #category : #rendering }
