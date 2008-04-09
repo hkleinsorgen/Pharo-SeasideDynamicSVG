@@ -6,7 +6,6 @@ Class {
 
 { #category : #accessing }
 SVGCircleTag >> center: aPoint [
-	
 	self
 		attributeAt: 'cx'
 		put: aPoint x.

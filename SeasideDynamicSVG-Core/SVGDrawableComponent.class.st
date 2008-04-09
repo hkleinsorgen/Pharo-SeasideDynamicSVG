@@ -82,7 +82,6 @@ SVGDrawableComponent >> renderExternalSVGOn: canvas [
 { #category : #rendering }
 SVGDrawableComponent >> renderWithContext: aRenderingContext [
 	" this is a bad hack to allow drawing of external SVG documents  "
-	
 	^aRenderingContext isSVGContext
 		ifTrue: [self drawWithContext: aRenderingContext]
 		ifFalse: [super renderWithContext: aRenderingContext]

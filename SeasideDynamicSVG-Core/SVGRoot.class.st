@@ -15,6 +15,11 @@ SVGRoot class >> context: aRenderingContext [
 	^self new setContext: aRenderingContext
 ]
 
+{ #category : #accessing }
+SVGRoot class >> defaultContentType [
+	^'image/svg+xml'
+]
+
 { #category : #doctype }
 SVGRoot >> beSVG10 [
 	
@@ -47,6 +52,12 @@ SVGRoot >> beSVG12 [
 SVGRoot >> close: aDocument [
 	
 	self writeFootOn: aDocument
+]
+
+{ #category : #accessing }
+SVGRoot >> contentType [
+	^self class defaultContentType
+	
 ]
 
 { #category : #accessing }
@@ -91,7 +102,7 @@ SVGRoot >> namespace [
 
 { #category : #writing }
 SVGRoot >> open: aDocument [
-	
+
 	self writeHeadOn: aDocument
 ]
 
@@ -115,7 +126,7 @@ SVGRoot >> writeFootOn: aDocument [
 
 { #category : #writing }
 SVGRoot >> writeHeadOn: aDocument [
-	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8"?>'.
+	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'.
 	docType notNil ifTrue: [aDocument nextPutAll: docType].
 	aDocument openTag: 'svg' attributes: svgAttributes
 ]
