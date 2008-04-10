@@ -91,6 +91,13 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 ]
 
 { #category : #rendering }
+SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
+	" inline as <svg> "
+
+	canvas svg: [ : svg | svg render: self ].
+]
+
+{ #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 	" embed as <object> "
 

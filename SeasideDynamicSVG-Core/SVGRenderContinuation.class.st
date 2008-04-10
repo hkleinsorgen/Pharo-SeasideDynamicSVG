@@ -5,15 +5,6 @@ Class {
 }
 
 { #category : #creational }
-SVGRenderContinuation >> newContext [
-	
-	^(SVGRenderingContext new)
-		session: self session;
-		actionUrl: self url;
-		yourself
-]
-
-{ #category : #creational }
 SVGRenderContinuation >> newDocumentOn: aResponse [
 	
 	^WAHtmlStreamDocument new stream: aResponse stream
@@ -52,7 +43,9 @@ SVGRenderContinuation >> processRendering: aResponse [
 	self root decorationChainDo: [ :each |  each drawSVGWithContext: context ].
 	self writeOnLoadOn: document.
 	document close: htmlRoot.
-	context release
+	context release.
+
+
 ]
 
 { #category : #testing }

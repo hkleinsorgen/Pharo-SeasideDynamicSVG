@@ -25,8 +25,28 @@ SVGAwareRenderContinuation >> isSVGRequest: aRequest [
 	^aRequest includesKey: 'svg'
 ]
 
+{ #category : #creational }
+SVGAwareRenderContinuation >> newContext [
+	
+	^(SVGAwareRenderingContext new)
+		session: self session;
+		actionUrl: self url;
+		yourself
+]
+
 { #category : #processing }
 SVGAwareRenderContinuation >> newSVGRenderContinuation [
 	
 	^SVGRenderContinuation root: self root
+]
+
+{ #category : #processing }
+SVGAwareRenderContinuation >> processRendering: aResponse [
+
+	super processRendering: aResponse.
+	context containsInlinedSVG
+		ifTrue: [ 
+			" mozilla requires XML... IE will not like that "
+			aResponse beXML 
+		]
 ]

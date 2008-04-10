@@ -104,7 +104,10 @@ SVGRoot >> initialize [
 { #category : #'initialize-release' }
 SVGRoot >> initializeDefaults [
 	
-	self beSVG12
+	self beSVG12.
+	(self svgAttributes)
+		at: 'xmlns' put: self class defaultNamespace;
+		at: 'xmlns:xlink' put: self class xlinkNamespace.
 ]
 
 { #category : #writing }
@@ -128,7 +131,7 @@ SVGRoot >> svgAttributes [
 { #category : #writing }
 SVGRoot >> writeFootOn: aDocument [
 	
-
+	aDocument closeTag: 'svg'
 ]
 
 { #category : #writing }
@@ -136,5 +139,5 @@ SVGRoot >> writeHeadOn: aDocument [
 	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 '.
 	docType notNil ifTrue: [aDocument nextPutAll: docType].
-
+	aDocument openTag: 'svg' attributes: svgAttributes.
 ]
