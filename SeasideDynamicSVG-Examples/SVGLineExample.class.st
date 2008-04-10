@@ -1,27 +1,26 @@
 Class {
-	#name : #SVGExternalSVGExample,
+	#name : #SVGLineExample,
 	#superclass : #WAComponent,
 	#instVars : [
-		'exampleSVG',
 		'lineExample'
 	],
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
 { #category : #'class initialization' }
-SVGExternalSVGExample class >> initialize [
+SVGLineExample class >> initialize [
 	
 	self register.
 ]
 
 { #category : #'instance creation' }
-SVGExternalSVGExample class >> path [
+SVGLineExample class >> path [
 	
-	^'SVG/example'
+	^'SVG/lines'
 ]
 
 { #category : #'class initialization' }
-SVGExternalSVGExample class >> register [
+SVGLineExample class >> register [
 	
 	| app |
 	app := self registerAsApplication: self path.
@@ -30,28 +29,25 @@ SVGExternalSVGExample class >> register [
 ]
 
 { #category : #accessing }
-SVGExternalSVGExample >> children [
+SVGLineExample >> children [
 	
-	^Array with: exampleSVG with: lineExample
+	^Array with: lineExample
 ]
 
 { #category : #'initialize-release' }
-SVGExternalSVGExample >> initialize [
+SVGLineExample >> initialize [
 	
 	super initialize.
-	exampleSVG := SVGExampleSmiley new.
 	lineExample := SVGLineTest new
 ]
 
 { #category : #rendering }
-SVGExternalSVGExample >> renderContentOn: html [ 
+SVGLineExample >> renderContentOn: html [ 
 
 	html
-		div: [html heading level: 2;
-		with: [html text: 'SVG + callback example'].
-	html text: 'The SVG can be either embedded or inlined'].
-	html render: exampleSVG.
+		div: [html heading: 'SVG line example'].
 	html render: lineExample.
+	
 	"IE annoying click and activate workaround"
 	"it must be an external js file, just put the file on your apache root!"
 	html html: '<script type="text/javascript" src="/iefix.js"></script>'

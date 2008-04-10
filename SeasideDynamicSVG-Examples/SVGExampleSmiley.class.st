@@ -36,13 +36,11 @@ SVGExampleSmiley >> beYellow [
 
 { #category : #drawing }
 SVGExampleSmiley >> drawFaceOn: svg center: center radius: radius [
-	
 	(svg circle)
+		paint: [:attr | attr stroke: Color black; strokeWidth: 3; fill: self fillColor];
+		opacity: [:attr | attr fillOpacity: 0.5; opacity: 0.6];
 		center: center;
-		radius: radius;
-		fill: self fillColor;
-		stroke: Color black;
-		strokeWidth: 3
+		radius: radius
 ]
 
 { #category : #drawing }
@@ -74,10 +72,7 @@ SVGExampleSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius 
 		large: false
 		sweep: true.
 	path closePath.
-	path
-		fill: Color white;
-		stroke: Color black;
-		strokeWidth: 2
+	path paint: [:attr | attr fill: Color white;	stroke: Color black; strokeWidth: 2]
 ]
 
 { #category : #drawing }
@@ -88,9 +83,7 @@ SVGExampleSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radi
 		target: '_top';
 		with: [svg circle center: center - (eyeDistance @ eyeDistance);
 				 radius: eyeRadius;
-				 fill: leftEyeColor contents;
-				 stroke: eyeliner;
-				 strokeWidth: 2]
+				 paint: [:attr | attr fill: leftEyeColor contents; stroke: eyeliner; strokeWidth: 2]]
 ]
 
 { #category : #drawing }
@@ -118,21 +111,19 @@ SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance rad
 		target: '_top';
 		with: [svg circle center: center + (eyeDistance @ eyeDistance negated);
 				 radius: eyeRadius;
-				 fill: rightEyeColor contents;
-				 stroke: eyeliner;
-				 strokeWidth: 2]
+				 paint: [:attr | attr fill: rightEyeColor contents; stroke: eyeliner; strokeWidth: 2];
+				 opacity: [:attr | attr opacity: 0.6]]
 ]
 
 { #category : #drawing }
 SVGExampleSmiley >> drawSVGContentOn: svg [ 
 	| center radius eyeRadius eyeDistance eyeliner |
 	 svg rectangle
+		opacity: [:attr | attr opacity: 0.6];
+		paint: [:attr | attr fill: Color orange ; stroke: Color black; strokeWidth: 3];
 		width: self width ;
-		height: self height ;
-		fill: Color lightOrange ;
-		stroke: Color black ;
-		strokeWidth: 3.
-
+		height: self height.
+		
 	" face "
 	center := (self width / 2) @ (self height / 2).
 	radius := (self width min: self height) / 2.2.
@@ -195,10 +186,8 @@ SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radiu
 		large: false
 		sweep: false.
 	path closePath.
-	path
-		fill: Color white;
-		stroke: Color black;
-		strokeWidth: 2
+	path paint: [:attr | attr fill: Color white;	stroke: Color black; strokeWidth: 2]
+		
 ]
 
 { #category : #rendering }
