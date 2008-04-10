@@ -1,21 +1,3 @@
-"
-SVGEmbeddedDocumentComponent embeds SVGs with <embed>, <object> or <iframe>
-
-Instance Variables
-	drawable:		<Object>
-	height:		<Object>
-	width:		<Object>
-
-drawable
-	- xxxxx
-
-height
-	- xxxxx
-
-width
-	- xxxxx
-
-"
 Class {
 	#name : #SVGEmbeddedDocumentComponent,
 	#superclass : #WAComponent,
@@ -33,6 +15,23 @@ SVGEmbeddedDocumentComponent class >> on: aSVGDrawable [
 	^(self new)
 		drawable: aSVGDrawable;
 		yourself
+]
+
+{ #category : #drawing }
+SVGEmbeddedDocumentComponent >> drawContentOn: svg [
+	
+	
+]
+
+{ #category : #drawing }
+SVGEmbeddedDocumentComponent >> drawWithContext: aRenderingContext [
+	
+	| callbacks svg |
+	callbacks := aRenderingContext callbacksFor: self.
+	svg := self svgRendererClass context: aRenderingContext callbacks:
+			callbacks.
+	self drawContentOn: svg.
+	svg flush
 ]
 
 { #category : #accessing }
@@ -103,34 +102,12 @@ SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 		type: SVGRoot defaultContentType.
 ]
 
-{ #category : #private }
-SVGEmbeddedDocumentComponent >> renderSVGDocumentOn: aCanvas [
-
-	| innerContext docRoot session document response renderer svgCanvas |
-	innerContext := aCanvas context copy.
-	svgCanvas := SVGCanvas context: innerContext callbacks: aCanvas callbacks.
-	docRoot := SVGRoot context: innerContext.
-	session := WACurrentSession value.
-	document := session outputDocumentClass new.
-	response := WAResponse new.
-	response beSVG.
-	response headerAt: 'Cache-Control' put: 'No-cache'.
-	document stream: response stream.
-	innerContext document: document.
-	docRoot open: document.
-	renderer := self svgRendererClass context: svgCanvas context callbacks: svgCanvas callbacks.
-	renderer render: self;
-		 flush.
-	docRoot close: document.
-	session returnResponse: response
-]
-
 { #category : #rendering }
-SVGEmbeddedDocumentComponent >> renderWithContext: aRenderingContext [ 
+SVGEmbeddedDocumentComponent >> renderWithContext: aRenderingContext [
 	" this is a bad hack to allow drawing of external SVG documents  "
-	^ aRenderingContext isSVGContext 
-		ifTrue: [ self drawSVGWithContext: aRenderingContext ]
-		ifFalse: [ super renderWithContext: aRenderingContext ]
+	^aRenderingContext isSVGContext
+		ifTrue: [self drawWithContext: aRenderingContext]
+		ifFalse: [super renderWithContext: aRenderingContext]
 ]
 
 { #category : #rendering }
