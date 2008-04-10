@@ -34,26 +34,45 @@ SVGExampleSmiley >> beYellow [
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawContentOn: svg [
-	
+SVGExampleSmiley >> drawContentOn: svg [ 
 	| center radius eyeRadius eyeDistance eyeliner |
-	(svg rect)
-		width: self width;
-		height: self height;
-		fill: 'rgb(220,220,220)';
-		stroke: 'rgb(0,0,0)';
-		strokeWidth: 3.	" face "
-	center _ self width @ self height // 2.
-	radius _ ((self width min: self height) / 2.2) rounded.
-	self drawFaceOn: svg center: center radius: radius.	" eyes "
-	eyeRadius _ (radius / 6) rounded.
-	eyeDistance _ (radius / 3) rounded.
-	eyeliner _ 'rgb(0,0,0)'.
-	self drawLeftEyeOn: svg center: center distance: eyeDistance radius:
-			eyeRadius eyeliner: eyeliner.
-	self drawRightEyeOn: svg center: center distance: eyeDistance radius:
-			eyeRadius eyeliner: eyeliner.	" mouth "
-	self drawMouthOn: svg faceCenter: center faceRadius: radius
+	svg rectangle
+		width: self width ;
+		height: self height ;
+		fill: Color lightOrange ;
+		stroke: Color black ;
+		strokeWidth: 3.	
+		
+	" face "
+	center := self width @ self height / 2.
+	radius := (self width min: self height) / 2.2.
+	self 
+		drawFaceOn: svg
+		center: center
+		radius: radius.
+
+	" eyes "
+	eyeRadius := radius / 6.
+	eyeDistance := radius / 3.
+	eyeliner := Color black.
+	self 
+		drawLeftEyeOn: svg
+		center: center
+		distance: eyeDistance
+		radius: eyeRadius
+		eyeliner: eyeliner.
+	self 
+		drawRightEyeOn: svg
+		center: center
+		distance: eyeDistance
+		radius: eyeRadius
+		eyeliner: eyeliner.	
+			
+	" mouth "
+	self 
+		drawMouthOn: svg
+		faceCenter: center
+		faceRadius: radius
 ]
 
 { #category : #drawing }
@@ -63,7 +82,7 @@ SVGExampleSmiley >> drawFaceOn: svg center: center radius: radius [
 		center: center;
 		radius: radius;
 		fill: self fillColor;
-		stroke: 'rgb(0,0,0)';
+		stroke: Color black;
 		strokeWidth: 3
 ]
 
@@ -71,13 +90,13 @@ SVGExampleSmiley >> drawFaceOn: svg center: center radius: radius [
 SVGExampleSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
 	
 	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop |
-	mouthXRadius _ (radius * 0.8) rounded.
-	mouthWidth _ (radius * 0.2) rounded.
-	path _ svg path.
-	outerStart _ center - (mouthXRadius @ 0).
-	outerStop _ center + (mouthXRadius @ 0).
-	innerStart _ outerStart + (mouthWidth @ 0).
-	innerStop _ outerStop - (mouthWidth @ 0).
+	mouthXRadius := radius * 0.8.
+	mouthWidth := radius * 0.2.
+	path := svg path.
+	outerStart := center - (mouthXRadius @ 0).
+	outerStop := center + (mouthXRadius @ 0).
+	innerStart := outerStart + (mouthWidth @ 0).
+	innerStop := outerStop - (mouthWidth @ 0).
 	path moveTo: outerStart.
 	path lineTo: innerStart.
 	path
@@ -97,72 +116,71 @@ SVGExampleSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius 
 		sweep: true.
 	path closePath.
 	path
-		fill: 'rgb(255,255,255)';
-		stroke: 'rgb(0,0,0)';
+		fill: Color white;
+		stroke: Color black;
 		strokeWidth: 2
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [
-	
-	(svg anchor)
+SVGExampleSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
+
+	svg anchor
 		callback: [self hitLeftEye];
 		target: '_top';
-		with:
-				[(svg circle)
-						center: center - (eyeDistance @ eyeDistance);
-						radius: eyeRadius;
-						fill: leftEyeColor contents;
-						stroke: eyeliner;
-						strokeWidth: 2]
+		with: [svg circle center: center - (eyeDistance @ eyeDistance);
+				 radius: eyeRadius;
+				 fill: leftEyeColor contents;
+				 stroke: eyeliner;
+				 strokeWidth: 2]
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [
-	
-	(svg anchor)
+SVGExampleSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [ 
+
+	svg anchor
 		callback: [self hitMouth];
 		target: '_top';
-		with:
-				[happiness contents > 0.5
-						ifTrue:
-							[self drawHappyMouthOn: svg faceCenter: center faceRadius: radius]
-						ifFalse:
-							[self drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius]]
+		with: [happiness contents > 0.5
+				ifTrue: [self
+						drawHappyMouthOn: svg
+						faceCenter: center
+						faceRadius: radius]
+				ifFalse: [self
+						drawUnhappyMouthOn: svg
+						faceCenter: center
+						faceRadius: radius]]
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [
-	
-	(svg anchor)
+SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
+
+	svg anchor
 		callback: [self hitRightEye];
 		target: '_top';
-		with:
-				[(svg circle)
-						center: center + (eyeDistance @ eyeDistance negated);
-						radius: eyeRadius;
-						fill: rightEyeColor contents;
-						stroke: eyeliner;
-						strokeWidth: 2]
+		with: [svg circle center: center + (eyeDistance @ eyeDistance negated);
+				 radius: eyeRadius;
+				 fill: rightEyeColor contents;
+				 stroke: eyeliner;
+				 strokeWidth: 2]
 ]
 
 { #category : #drawing }
 SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 	
 	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop yOffset |
-	mouthXRadius _ (radius * 0.5) rounded.
-	mouthWidth _ (radius * 0.05) rounded.
-	yOffset _ mouthXRadius.
-	path _ svg path.
-	outerStart _ center - (mouthXRadius @ 0) + (0 @ yOffset).
-	outerStop _ center + (mouthXRadius @ 0) + (0 @ yOffset).
-	innerStart _ outerStart + (mouthWidth @ mouthWidth).
-	innerStop _ outerStop + (mouthWidth negated @ mouthWidth).
+	mouthXRadius := radius * 0.5.
+	mouthWidth := radius * 0.05.
+	yOffset := mouthXRadius.
+	path := svg path.
+	outerStart := center - (mouthXRadius @ 0) + (0 @ yOffset).
+	outerStop := center + (mouthXRadius @ 0) + (0 @ yOffset).
+	innerStart := outerStart + (mouthWidth @ mouthWidth).
+	innerStop := outerStop + (mouthWidth negated @ mouthWidth).
 	path moveTo: outerStart.
 	path lineTo: innerStart.
 	path
 		arcTo: innerStop
-		radiusX: (innerStop x - innerStart x) // 2
+		radiusX: (innerStop x - innerStart x) / 2
 		radiusY: radius - innerStart x
 		rotation: 0
 		large: false
@@ -170,15 +188,15 @@ SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radiu
 	path lineTo: outerStop.
 	path
 		arcTo: outerStart
-		radiusX: (outerStop x - outerStart x) // 2
+		radiusX: (outerStop x - outerStart x) / 2
 		radiusY: radius - outerStart x
 		rotation: 0
 		large: false
 		sweep: false.
 	path closePath.
 	path
-		fill: 'rgb(255,255,255)';
-		stroke: 'rgb(0,0,0)';
+		fill: Color white;
+		stroke: Color black;
 		strokeWidth: 2
 ]
 
