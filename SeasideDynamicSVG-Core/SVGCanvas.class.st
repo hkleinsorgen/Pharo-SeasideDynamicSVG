@@ -64,3 +64,10 @@ SVGCanvas >> path [
 SVGCanvas >> rectangle [
 	^ self brush: SVGRectangleTag new
 ]
+
+{ #category : #accessing }
+SVGCanvas >> render: anObject [
+
+	self flush.
+	anObject drawSVGOn: self
+]
