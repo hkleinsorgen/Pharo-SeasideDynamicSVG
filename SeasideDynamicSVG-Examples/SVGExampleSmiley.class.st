@@ -44,7 +44,7 @@ SVGExampleSmiley >> drawContentOn: svg [
 		strokeWidth: 3.	
 		
 	" face "
-	center := self width @ self height / 2.
+	center := (self width / 2) @ (self height / 2).
 	radius := (self width min: self height) / 2.2.
 	self 
 		drawFaceOn: svg
