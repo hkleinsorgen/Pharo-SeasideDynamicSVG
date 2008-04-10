@@ -73,8 +73,12 @@ SVGCanvas >> path [
 ]
 
 { #category : #tags }
+SVGCanvas >> polygone [
+	^self brush: SVGPolygonTag new
+]
+
+{ #category : #tags }
 SVGCanvas >> polyline [
-	
 	^self brush: SVGPolylineTag new
 ]
 

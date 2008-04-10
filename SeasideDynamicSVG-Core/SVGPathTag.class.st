@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGPathTag,
-	#superclass : #SVGTag,
+	#superclass : #SVGShapeTag,
 	#instVars : [
 		'defaultRelative'
 	],
