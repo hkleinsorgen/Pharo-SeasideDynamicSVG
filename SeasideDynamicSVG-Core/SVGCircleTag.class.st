@@ -8,16 +8,16 @@ Class {
 SVGCircleTag >> center: aPoint [
 	self
 		attributeAt: 'cx'
-		put: aPoint x.
+		put: aPoint x svgAttributeValue.
 	self
 		attributeAt: 'cy'
-		put: aPoint y
+		put: aPoint y svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGCircleTag >> radius: aNumber [
 	
-	self attributeAt: 'r' put: aNumber
+	self attributeAt: 'r' put: aNumber svgAttributeValue
 ]
 
 { #category : #private }

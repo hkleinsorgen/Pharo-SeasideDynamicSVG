@@ -5,21 +5,21 @@ Class {
 }
 
 { #category : #accessing }
-SVGTag >> fill: aColorString [
+SVGTag >> fill: aColorOrString [
 	
-	self attributeAt: 'fill' put: aColorString
+	self attributeAt: 'fill' put: aColorOrString svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGTag >> stroke: aColorString [
+SVGTag >> stroke: aColorOrString [
 	
-	self attributeAt: 'stroke' put: aColorString
+	self attributeAt: 'stroke' put: aColorOrString svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGTag >> strokeWidth: aNumber [
 	
-	self attributeAt: 'stroke-width' put: aNumber
+	self attributeAt: 'stroke-width' put: aNumber svgAttributeValue
 ]
 
 { #category : #styles }

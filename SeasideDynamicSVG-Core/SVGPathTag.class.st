@@ -8,22 +8,16 @@ Class {
 }
 
 { #category : #accessing }
-SVGPathTag >> absolute [
-	
-	defaultRelative _ false
-]
-
-{ #category : #accessing }
 SVGPathTag >> addPointToPath: aPoint [
 	
 	self attributes
 		at: 'd'
-		append: aPoint x displayString
+		append: aPoint x svgAttributeValue
 		separator: ' '.
 	self attributes
 		at: 'd'
-		append: aPoint y displayString
-		separator: ' '
+		append: aPoint y svgAttributeValue
+		separator: ','
 ]
 
 { #category : #accessing }
@@ -84,14 +78,28 @@ SVGPathTag >> curveWithAll: points [
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> curveWithAll: points relative: relative [
-	
+SVGPathTag >> curveWithAll: points relative: relative [ 
+
 	self
-		addToPath:
-			(relative
+		addToPath: (relative
 				ifTrue: ['c']
 				ifFalse: ['C']).
-	points do: [:point | self addPointToPath: point]
+	points
+		do: [:point | self addPointToPath: point]
+]
+
+{ #category : #defaults }
+SVGPathTag >> defaultIsAbsolute [
+	" this default value is used when adding primitives without specifying ...relative: <aBoolean> "
+
+	defaultRelative := false
+]
+
+{ #category : #defaults }
+SVGPathTag >> defaultIsRelative [
+	" this default value is used when adding primitives without specifying ...relative: <aBoolean> "
+
+	defaultRelative := true
 ]
 
 { #category : #private }
@@ -109,11 +117,10 @@ SVGPathTag >> lineTo: aPoint [
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> lineTo: aPoint relative: relative [
-	
+SVGPathTag >> lineTo: aPoint relative: relative [ 
+
 	self
-		addToPath:
-			(relative
+		addToPath: (relative
 				ifTrue: ['l']
 				ifFalse: ['L']).
 	self addPointToPath: aPoint
@@ -128,20 +135,13 @@ SVGPathTag >> moveTo: aPoint [
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> moveTo: aPoint relative: relative [
-	
+SVGPathTag >> moveTo: aPoint relative: relative [ 
+
 	self
-		addToPath:
-			(relative
+		addToPath: (relative
 				ifTrue: ['m']
 				ifFalse: ['M']).
 	self addPointToPath: aPoint
-]
-
-{ #category : #accessing }
-SVGPathTag >> relative [
-	
-	defaultRelative _ true
 ]
 
 { #category : #accessing }

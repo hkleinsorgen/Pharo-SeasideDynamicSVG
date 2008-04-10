@@ -62,7 +62,6 @@ SVGCanvas >> path [
 ]
 
 { #category : #tags }
-SVGCanvas >> rect [
-	
-	^self brush: SVGRectTag new
+SVGCanvas >> rectangle [
+	^ self brush: SVGRectTag new
 ]

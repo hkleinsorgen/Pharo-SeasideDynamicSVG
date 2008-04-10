@@ -1,23 +1,23 @@
 Class {
-	#name : #SVGRectTag,
+	#name : #SVGRectangleTag,
 	#superclass : #SVGTag,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #attributes }
-SVGRectTag >> height: aNumber [
+SVGRectangleTag >> height: aNumber [
 	
 	self attributeAt: 'height' put: aNumber
 ]
 
 { #category : #private }
-SVGRectTag >> tag [
+SVGRectangleTag >> tag [
 	
 	^'rect'
 ]
 
 { #category : #attributes }
-SVGRectTag >> width: aNumber [
+SVGRectangleTag >> width: aNumber [
 	
 	self attributeAt: 'width' put: aNumber
 ]

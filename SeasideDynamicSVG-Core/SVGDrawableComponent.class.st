@@ -66,19 +66,19 @@ SVGDrawableComponent >> renderExternalSVGOn: canvas [
 	that it should draw the SVG, not render the HTML "
 	"object tag is not working for IE7 ?????"
 	
+	
 	| url embedTag |
 	url := canvas context actionUrl copy.
 	url addParameter: 'svg'.
-	"canvas nextId."
 	embedTag := canvas brush: WAEmbedTag new.
 	embedTag url: url; width: self width;
 		height: self height;
-		type: WAFileLibrary svgMimetype.
+		type: SVGRoot defaultContentType.
 	"(canvas object)
 		url: url;
 		width: self width;
 		height: self height;
-		type: WAFileLibrary svgMimetype;
+		type: SVGRoot defaultContentType;
 		with:
 				[canvas text:
 							'Bad luck, embedding SVG via <object> ist not supported by your browser']"
