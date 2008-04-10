@@ -48,6 +48,12 @@ SVGCanvas >> document [
 	^self context document
 ]
 
+{ #category : #tags }
+SVGCanvas >> ellipse [
+	
+	^self brush: SVGEllipseTag new
+]
+
 { #category : #'initialize-release' }
 SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore [
 	
@@ -56,8 +62,20 @@ SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore 
 ]
 
 { #category : #tags }
+SVGCanvas >> line [
+	
+	^self brush: SVGLineTag new
+]
+
+{ #category : #tags }
 SVGCanvas >> path [
 	^self brush: SVGPathTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> polyline [
+	
+	^self brush: SVGPolylineTag new
 ]
 
 { #category : #'initialize-release' }

@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGRectangleTag,
-	#superclass : #SVGTag,
+	#superclass : #SVGShapeTag,
 	#category : #'SeasideDynamicSVG-Core'
 }
 

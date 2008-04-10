@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGCircleTag,
-	#superclass : #SVGTag,
+	#superclass : #SVGShapeTag,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
@@ -22,6 +22,5 @@ SVGCircleTag >> radius: aNumber [
 
 { #category : #private }
 SVGCircleTag >> tag [
-	
 	^'circle'
 ]

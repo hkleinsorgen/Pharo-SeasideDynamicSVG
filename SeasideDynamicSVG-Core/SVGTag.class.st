@@ -11,6 +11,11 @@ SVGTag >> fill: aColorOrString [
 ]
 
 { #category : #accessing }
+SVGTag >> paint [
+	^self attributeAt: 'paint' ifAbsentPut: SVGPaintAttribute new
+]
+
+{ #category : #accessing }
 SVGTag >> stroke: aColorOrString [
 	
 	self attributeAt: 'stroke' put: aColorOrString svgAttributeValue
