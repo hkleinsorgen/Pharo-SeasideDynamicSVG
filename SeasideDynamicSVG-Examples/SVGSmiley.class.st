@@ -1,5 +1,5 @@
 Class {
-	#name : #SVGExampleSmiley,
+	#name : #SVGSmiley,
 	#superclass : #SVGEmbeddedDocumentComponent,
 	#instVars : [
 		'fillColor',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #actions }
-SVGExampleSmiley >> beGreen [
+SVGSmiley >> beGreen [
 	
 	fillColor contents: 'rgb(64,255,64)'.
 	self resetEyes.
@@ -21,21 +21,21 @@ SVGExampleSmiley >> beGreen [
 ]
 
 { #category : #actions }
-SVGExampleSmiley >> beRed [
+SVGSmiley >> beRed [
 	
 	fillColor contents: 'rgb(255,64,64)'.
 	self resetEyes
 ]
 
 { #category : #actions }
-SVGExampleSmiley >> beYellow [
+SVGSmiley >> beYellow [
 	
 	fillColor contents: 'rgb(255,255,0)'.
 	self resetEyes
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawFaceOn: svg center: center radius: radius [
+SVGSmiley >> drawFaceOn: svg center: center radius: radius [
 	(svg circle)
 		paint: [:attr | attr stroke: Color black; strokeWidth: 3; fill: self fillColor];
 		opacity: [:attr | attr fillOpacity: 0.5; opacity: 0.6];
@@ -44,7 +44,7 @@ SVGExampleSmiley >> drawFaceOn: svg center: center radius: radius [
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
+SVGSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
 	
 	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop |
 	mouthXRadius := radius * 0.8.
@@ -76,7 +76,7 @@ SVGExampleSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius 
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
+SVGSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
 
 	svg anchor
 		callback: [self hitLeftEye];
@@ -87,7 +87,7 @@ SVGExampleSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radi
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [ 
+SVGSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [ 
 
 	svg anchor
 		callback: [self hitMouth];
@@ -104,7 +104,7 @@ SVGExampleSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
+SVGSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
 
 	svg anchor
 		callback: [self hitRightEye];
@@ -116,7 +116,7 @@ SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance rad
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawSVGContentOn: svg [ 
+SVGSmiley >> drawSVGContentOn: svg [ 
 	| center radius eyeRadius eyeDistance eyeliner |
 	 svg rectangle
 		opacity: [:attr | attr opacity: 0.6];
@@ -157,7 +157,7 @@ SVGExampleSmiley >> drawSVGContentOn: svg [
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
+SVGSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 	
 	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop yOffset |
 	mouthXRadius := radius * 0.5.
@@ -191,19 +191,19 @@ SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radiu
 ]
 
 { #category : #rendering }
-SVGExampleSmiley >> embedSVGIn: canvas [
+SVGSmiley >> embedSVGIn: canvas [
 	
 	self perform: embedSelector with: canvas	
 ]
 
 { #category : #accessing }
-SVGExampleSmiley >> fillColor [
+SVGSmiley >> fillColor [
 	
 	^fillColor contents
 ]
 
 { #category : #actions }
-SVGExampleSmiley >> hitLeftEye [
+SVGSmiley >> hitLeftEye [
 	
 	message contents: 'Ouch, you hit my left eye!'.
 	leftEyeColor contents: 'rgb(64,0,255)'.
@@ -211,14 +211,14 @@ SVGExampleSmiley >> hitLeftEye [
 ]
 
 { #category : #actions }
-SVGExampleSmiley >> hitMouth [
+SVGSmiley >> hitMouth [
 	
 	self resetEyes.
 	message contents: 'thanks for feeding me!'
 ]
 
 { #category : #actions }
-SVGExampleSmiley >> hitRightEye [
+SVGSmiley >> hitRightEye [
 	
 	message contents: 'Ouch, you hit my right eye!'.
 	rightEyeColor contents: 'rgb(80,20,255)'.
@@ -226,7 +226,7 @@ SVGExampleSmiley >> hitRightEye [
 ]
 
 { #category : #initialization }
-SVGExampleSmiley >> initialize [
+SVGSmiley >> initialize [
 	
 	super initialize.
 	fillColor := WAValueHolder new.
@@ -239,7 +239,7 @@ SVGExampleSmiley >> initialize [
 ]
 
 { #category : #rendering }
-SVGExampleSmiley >> renderActionsOn: canvas [
+SVGSmiley >> renderActionsOn: canvas [
 	
 	(canvas anchor)
 		callback: [self beYellow];
@@ -257,7 +257,7 @@ SVGExampleSmiley >> renderActionsOn: canvas [
 ]
 
 { #category : #rendering }
-SVGExampleSmiley >> renderContentOn: canvas [ 
+SVGSmiley >> renderContentOn: canvas [ 
 
 	self renderSelectorsOn: canvas.
 	canvas div 
@@ -274,7 +274,7 @@ SVGExampleSmiley >> renderContentOn: canvas [
 ]
 
 { #category : #rendering }
-SVGExampleSmiley >> renderEmbedSelector: aSelector text: text on: canvas [ 
+SVGSmiley >> renderEmbedSelector: aSelector text: text on: canvas [ 
 
 	canvas anchor
 		callback: [embedSelector := aSelector];
@@ -285,7 +285,7 @@ SVGExampleSmiley >> renderEmbedSelector: aSelector text: text on: canvas [
 ]
 
 { #category : #rendering }
-SVGExampleSmiley >> renderSelectorsOn: canvas [
+SVGSmiley >> renderSelectorsOn: canvas [
 	
 	self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: canvas .
 	canvas space.
@@ -298,7 +298,7 @@ SVGExampleSmiley >> renderSelectorsOn: canvas [
 ]
 
 { #category : #actions }
-SVGExampleSmiley >> resetEyes [
+SVGSmiley >> resetEyes [
 	
 	message contents: 'Everything''s shiny'.
 	leftEyeColor contents: 'rgb(255,255,255)'.
@@ -307,7 +307,7 @@ SVGExampleSmiley >> resetEyes [
 ]
 
 { #category : #accessing }
-SVGExampleSmiley >> states [
+SVGSmiley >> states [
 	
 	| states |
 	states := OrderedCollection new.

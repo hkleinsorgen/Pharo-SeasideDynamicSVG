@@ -1,38 +1,37 @@
 Class {
-	#name : #SVGLineExample,
+	#name : #SVGSmileyExample,
 	#superclass : #SVGExample,
 	#instVars : [
-		'lineExample'
+		'smiley'
 	],
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
 { #category : #'instance creation' }
-SVGLineExample class >> path [
+SVGSmileyExample class >> path [
 	
-	^'SVG/lines'
+	^'SVG/smiley'
 ]
 
 { #category : #accessing }
-SVGLineExample >> children [
-	
-	^Array with: lineExample
+SVGSmileyExample >> children [
+	^ Array with: smiley
 ]
 
 { #category : #'initialize-release' }
-SVGLineExample >> initialize [
-	
+SVGSmileyExample >> initialize [
 	super initialize.
-	lineExample := SVGLineTest new
+	smiley := SVGSmiley new
 ]
 
 { #category : #rendering }
-SVGLineExample >> renderContentOn: html [ 
-
-	html
-		div: [html heading: 'SVG line example'].
-	html render: lineExample.
-	
+SVGSmileyExample >> renderContentOn: html [ 
+	html div: 
+		[ html heading
+			level: 2 ;
+			with: [ html text: 'SVG + callback example' ].
+		html text: 'The SVG can be either embedded or inlined' ].
+	html render: smiley.
 	"IE annoying click and activate workaround"
 	"it must be an external js file, just put the file on your apache root!"
 	html html: '<script type="text/javascript" src="/iefix.js"></script>'

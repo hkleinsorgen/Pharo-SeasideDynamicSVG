@@ -1,6 +1,6 @@
 Class {
-	#name : #SVGExternalSVGExample,
-	#superclass : #WAComponent,
+	#name : #SVGMultiSVGExample,
+	#superclass : #SVGExample,
 	#instVars : [
 		'exampleSVG',
 		'lineExample'
@@ -9,47 +9,32 @@ Class {
 }
 
 { #category : #'class initialization' }
-SVGExternalSVGExample class >> initialize [
-	
-	self register.
-]
+SVGMultiSVGExample class >> path [
 
-{ #category : #'instance creation' }
-SVGExternalSVGExample class >> path [
-	
-	^'SVG/example'
-]
-
-{ #category : #'class initialization' }
-SVGExternalSVGExample class >> register [
-	
-	| app |
-	app := self registerAsApplication: self path.
-	app preferenceAt: #renderContinuationClass put:
-			SVGHybridRenderContinuation
+	^ 'SVG/MultiSVG'
 ]
 
 { #category : #accessing }
-SVGExternalSVGExample >> children [
+SVGMultiSVGExample >> children [
 	
 	^Array with: exampleSVG with: lineExample
 ]
 
 { #category : #'initialize-release' }
-SVGExternalSVGExample >> initialize [
+SVGMultiSVGExample >> initialize [
 	
 	super initialize.
-	exampleSVG := SVGExampleSmiley new.
+	exampleSVG := SVGSmiley new.
 	lineExample := SVGLineTest new
 ]
 
 { #category : #rendering }
-SVGExternalSVGExample >> renderContentOn: html [ 
+SVGMultiSVGExample >> renderContentOn: html [ 
 
 	html
 		div: [html heading level: 2;
 		with: [html text: 'SVG + callback example'].
-	html text: 'The SVG can be either embedded or inlined'].
+	html text: 'Multiple SVG components (currently broken!)'].
 	html render: exampleSVG.
 	html render: lineExample.
 	"IE annoying click and activate workaround"
