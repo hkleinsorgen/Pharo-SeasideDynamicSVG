@@ -57,11 +57,10 @@ SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore 
 
 { #category : #tags }
 SVGCanvas >> path [
-	
 	^self brush: SVGPathTag new
 ]
 
-{ #category : #tags }
+{ #category : #'initialize-release' }
 SVGCanvas >> rectangle [
-	^ self brush: SVGRectTag new
+	^ self brush: SVGRectangleTag new
 ]
