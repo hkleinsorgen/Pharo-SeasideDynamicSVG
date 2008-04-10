@@ -47,7 +47,7 @@ SVGExternalSVGExample >> renderContentOn: html [
 	html
 		div: [html heading level: 2;
 		with: [html text: 'SVG + callback example'].
-	html text: 'The SVG is a separate document, not inlined.'].
+	html text: 'The SVG can be either embedded or inlined'].
 	html render: exampleSVG.
 	"IE annoying click and activate workaround"
 	"it must be an external js file, just put the file on your apache root!"
