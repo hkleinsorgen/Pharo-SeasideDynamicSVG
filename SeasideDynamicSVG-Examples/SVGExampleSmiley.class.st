@@ -35,48 +35,6 @@ SVGExampleSmiley >> beYellow [
 ]
 
 { #category : #drawing }
-SVGExampleSmiley >> drawContentOn: svg [ 
-	| center radius eyeRadius eyeDistance eyeliner |
-	svg rectangle
-		width: self width ;
-		height: self height ;
-		fill: Color lightOrange ;
-		stroke: Color black ;
-		strokeWidth: 3.	
-		
-	" face "
-	center := (self width / 2) @ (self height / 2).
-	radius := (self width min: self height) / 2.2.
-	self 
-		drawFaceOn: svg
-		center: center
-		radius: radius.
-
-	" eyes "
-	eyeRadius := radius / 6.
-	eyeDistance := radius / 3.
-	eyeliner := Color black.
-	self 
-		drawLeftEyeOn: svg
-		center: center
-		distance: eyeDistance
-		radius: eyeRadius
-		eyeliner: eyeliner.
-	self 
-		drawRightEyeOn: svg
-		center: center
-		distance: eyeDistance
-		radius: eyeRadius
-		eyeliner: eyeliner.	
-			
-	" mouth "
-	self 
-		drawMouthOn: svg
-		faceCenter: center
-		faceRadius: radius
-]
-
-{ #category : #drawing }
 SVGExampleSmiley >> drawFaceOn: svg center: center radius: radius [
 	
 	(svg circle)
@@ -168,43 +126,44 @@ SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance rad
 { #category : #drawing }
 SVGExampleSmiley >> drawSVGContentOn: svg [ 
 	| center radius eyeRadius eyeDistance eyeliner |
-	svg rectangle
-		width: self width ;
-		height: self height ;
-		fill: Color lightOrange ;
-		stroke: Color black ;
-		strokeWidth: 3.
+	svg svg: 
+		[ svg rectangle
+			width: self width ;
+			height: self height ;
+			fill: Color lightOrange ;
+			stroke: Color black ;
+			strokeWidth: 3.
 
-	" face "
-	center := self width @ self height / 2.
-	radius := (self width min: self height) / 2.2.
-	self 
-		drawFaceOn: svg
-		center: center
-		radius: radius.
+		" face "
+		center := (self width / 2) @ (self height / 2).
+		radius := (self width min: self height) / 2.2.
+		self 
+			drawFaceOn: svg
+			center: center
+			radius: radius.
 
-	" eyes "
-	eyeRadius := radius / 6.
-	eyeDistance := radius / 3.
-	eyeliner := Color black.
-	self 
-		drawLeftEyeOn: svg
-		center: center
-		distance: eyeDistance
-		radius: eyeRadius
-		eyeliner: eyeliner.
-	self 
-		drawRightEyeOn: svg
-		center: center
-		distance: eyeDistance
-		radius: eyeRadius
-		eyeliner: eyeliner.
+		" eyes "
+		eyeRadius := radius / 6.
+		eyeDistance := radius / 3.
+		eyeliner := Color black.
+		self 
+			drawLeftEyeOn: svg
+			center: center
+			distance: eyeDistance
+			radius: eyeRadius
+			eyeliner: eyeliner.
+		self 
+			drawRightEyeOn: svg
+			center: center
+			distance: eyeDistance
+			radius: eyeRadius
+			eyeliner: eyeliner.
 
-	" mouth "
-	self 
-		drawMouthOn: svg
-		faceCenter: center
-		faceRadius: radius
+		" mouth "
+		self 
+			drawMouthOn: svg
+			faceCenter: center
+			faceRadius: radius ]
 ]
 
 { #category : #drawing }
