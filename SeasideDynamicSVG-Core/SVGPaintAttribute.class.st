@@ -1,139 +1,65 @@
 Class {
 	#name : #SVGPaintAttribute,
 	#superclass : #SVGAttribute,
-	#instVars : [
-		'color',
-		'fill',
-		'fillRule',
-		'stroke',
-		'strokeDasharray',
-		'strokeDashoffset',
-		'strokeLinecap',
-		'strokeLinejoin',
-		'strokeMiterlimit',
-		'strokeWidth',
-		'colorInterpolation',
-		'colorRendering'
-	],
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGPaintAttribute >> color [
-	^ color
-]
-
-{ #category : #accessing }
 SVGPaintAttribute >> color: anObject [
-	color := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> colorInterpolation [
-	^ colorInterpolation
+	^ self attributeAt: 'color' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> colorInterpolation: anObject [
-	colorInterpolation := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> colorRendering [
-	^ colorRendering
+	^ self attributeAt: 'color-interpolation' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> colorRendering: anObject [
-	colorRendering := anObject
+	^ self attributeAt: 'color-rendering' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> fill [
-	^ fill
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> fill: anObject [
-	fill := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> fillRule [
-	^ fillRule
+SVGPaintAttribute >> fill: aPaint [
+	^ self attributeAt: 'fill' put: aPaint svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> fillRule: anObject [
-	fillRule := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> stroke [
-	^ stroke
+	^ self attributeAt: 'fill-rule' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> stroke: anObject [
-	stroke := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> strokeDasharray [
-	^ strokeDasharray
+	^ self attributeAt: 'stroke' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> strokeDasharray: anObject [
-	strokeDasharray := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> strokeDashoffset [
-	^ strokeDashoffset
+	^ self attributeAt: 'stroke-dasharray' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> strokeDashoffset: anObject [
-	strokeDashoffset := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> strokeLinecap [
-	^ strokeLinecap
+	^ self attributeAt: 'stroke-dashoffset' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> strokeLinecap: anObject [
-	strokeLinecap := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> strokeLinejoin [
-	^ strokeLinejoin
+	^ self attributeAt: 'stroke-linecap' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> strokeLinejoin: anObject [
-	strokeLinejoin := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> strokeMiterlimit [
-	^ strokeMiterlimit
+	^ self attributeAt: 'stroke-linejoin' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> strokeMiterlimit: anObject [
-	strokeMiterlimit := anObject
-]
-
-{ #category : #accessing }
-SVGPaintAttribute >> strokeWidth [
-	^ strokeWidth
+	^ self attributeAt: 'stroke-miterlimit' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
 SVGPaintAttribute >> strokeWidth: anObject [
-	strokeWidth := anObject
+	^ self attributeAt: 'stroke-width' put: anObject svgAttributeValue
 ]

@@ -1,34 +1,44 @@
 Class {
 	#name : #SVGTag,
 	#superclass : #WATagBrush,
+	#instVars : [
+		'paint',
+		'opacity'
+	],
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGTag >> fill: aColorOrString [
-	
-	self attributeAt: 'fill' put: aColorOrString svgAttributeValue
+SVGTag >> opacity [
+	opacity ifNil: [opacity := SVGOpacityAttribute new].
+	^opacity
+]
+
+{ #category : #accessing }
+SVGTag >> opacity: aBlock [
+	aBlock value: self opacity
 ]
 
 { #category : #accessing }
 SVGTag >> paint [
-	^self attributeAt: 'paint' ifAbsentPut: SVGPaintAttribute new
+	paint ifNil: [paint := SVGPaintAttribute new].
+	^paint
 ]
 
 { #category : #accessing }
-SVGTag >> stroke: aColorOrString [
-	
-	self attributeAt: 'stroke' put: aColorOrString svgAttributeValue
-]
-
-{ #category : #accessing }
-SVGTag >> strokeWidth: aNumber [
-	
-	self attributeAt: 'stroke-width' put: aNumber svgAttributeValue
+SVGTag >> paint: aBlock [
+	aBlock value: self paint
 ]
 
 { #category : #styles }
 SVGTag >> style: aString value: value [
 	
 	self attributes addStyle: aString , ':' , value displayString
+]
+
+{ #category : #public }
+SVGTag >> with: aBlock [
+	paint isNil ifFalse: [paint attributesOn: self attributes].
+	opacity isNil ifFalse: [opacity attributesOn: self attributes].
+	super with: aBlock
 ]
