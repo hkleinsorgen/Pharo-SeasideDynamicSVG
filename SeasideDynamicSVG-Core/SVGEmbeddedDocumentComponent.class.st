@@ -18,19 +18,18 @@ SVGEmbeddedDocumentComponent class >> on: aSVGDrawable [
 ]
 
 { #category : #drawing }
-SVGEmbeddedDocumentComponent >> drawContentOn: svg [
-	
+SVGEmbeddedDocumentComponent >> drawSVGContentOn: svg [ 
 	
 ]
 
 { #category : #drawing }
-SVGEmbeddedDocumentComponent >> drawWithContext: aRenderingContext [
-	
+SVGEmbeddedDocumentComponent >> drawSVGWithContext: aRenderingContext [ 
 	| callbacks svg |
 	callbacks := aRenderingContext callbacksFor: self.
-	svg := self svgRendererClass context: aRenderingContext callbacks:
-			callbacks.
-	self drawContentOn: svg.
+	svg := self svgRendererClass 
+		context: aRenderingContext
+		callbacks: callbacks.
+	self drawSVGContentOn: svg.
 	svg flush
 ]
 
@@ -100,21 +99,6 @@ SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 		width: self width;
 		height: self height;
 		type: SVGRoot defaultContentType.
-]
-
-{ #category : #rendering }
-SVGEmbeddedDocumentComponent >> renderWithContext: aRenderingContext [
-	" this is a bad hack to allow drawing of external SVG documents  "
-	^aRenderingContext isSVGContext
-		ifTrue: [self drawWithContext: aRenderingContext]
-		ifFalse: [super renderWithContext: aRenderingContext]
-]
-
-{ #category : #rendering }
-SVGEmbeddedDocumentComponent >> svgRendererClass [
-	"Override this method if you want a custom SVG renderer."
-	
-	^SVGCanvas
 ]
 
 { #category : #accessing }

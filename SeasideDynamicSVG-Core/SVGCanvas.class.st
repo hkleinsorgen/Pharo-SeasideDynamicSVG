@@ -64,3 +64,19 @@ SVGCanvas >> path [
 SVGCanvas >> rectangle [
 	^ self brush: SVGRectangleTag new
 ]
+
+{ #category : #public }
+SVGCanvas >> render: anObject [
+	self flush.
+	anObject drawSVGOn: self
+]
+
+{ #category : #tags }
+SVGCanvas >> svg [
+	^self brush: SVGRootTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> svg: aBlock [
+	^self svg with: aBlock
+]

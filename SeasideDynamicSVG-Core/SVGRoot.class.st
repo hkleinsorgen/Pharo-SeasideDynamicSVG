@@ -20,6 +20,18 @@ SVGRoot class >> defaultContentType [
 	^'image/svg+xml'
 ]
 
+{ #category : #accessing }
+SVGRoot class >> defaultNamespace [
+	
+	^'http://www.w3.org/2000/svg'
+]
+
+{ #category : #accessing }
+SVGRoot class >> xlinkNamespace [
+	
+	^ 'http://www.w3.org/1999/xlink'.
+]
+
 { #category : #doctype }
 SVGRoot >> beSVG10 [
 	
@@ -35,10 +47,15 @@ SVGRoot >> beSVG11 [
 ]
 
 { #category : #doctype }
-SVGRoot >> beSVG11Tiny [
-	"There is no DTD for SVG 1.1 Tiny "
+SVGRoot >> beSVG11Basic [
 	
-	self docType: nil
+	self docType: '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">'
+]
+
+{ #category : #doctype }
+SVGRoot >> beSVG11Tiny [
+	
+	self docType: '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">'
 ]
 
 { #category : #doctype }
@@ -87,17 +104,7 @@ SVGRoot >> initialize [
 { #category : #'initialize-release' }
 SVGRoot >> initializeDefaults [
 	
-	(self svgAttributes)
-		at: 'xmlns'
-			put: self namespace;
-		at: 'xmlns:xlink' put: 'http://www.w3.org/1999/xlink'.
-	self beSVG11
-]
-
-{ #category : #accessing }
-SVGRoot >> namespace [
-	
-	^'http://www.w3.org/2000/svg'
+	self beSVG12
 ]
 
 { #category : #writing }
@@ -121,12 +128,13 @@ SVGRoot >> svgAttributes [
 { #category : #writing }
 SVGRoot >> writeFootOn: aDocument [
 	
-	aDocument closeTag: 'svg'
+
 ]
 
 { #category : #writing }
 SVGRoot >> writeHeadOn: aDocument [
-	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'.
+	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+'.
 	docType notNil ifTrue: [aDocument nextPutAll: docType].
-	aDocument openTag: 'svg' attributes: svgAttributes
+
 ]
