@@ -22,10 +22,10 @@ SVGExternalSVGExample class >> path [
 { #category : #'class initialization' }
 SVGExternalSVGExample class >> register [
 	
-	
-	self registerAsApplication: self path.
-	
-
+	| app |
+	app := self registerAsApplication: self path.
+	app preferenceAt: #renderContinuationClass put:
+			SVGHybridRenderContinuation
 ]
 
 { #category : #accessing }
