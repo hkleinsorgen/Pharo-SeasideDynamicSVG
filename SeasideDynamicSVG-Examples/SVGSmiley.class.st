@@ -1,13 +1,12 @@
 Class {
 	#name : #SVGSmiley,
-	#superclass : #SVGEmbeddedDocumentComponent,
+	#superclass : #SVGEmbeddedDocumentExampleComponent,
 	#instVars : [
 		'fillColor',
 		'message',
 		'leftEyeColor',
 		'rightEyeColor',
-		'happiness',
-		'embedSelector'
+		'happiness'
 	],
 	#category : #'SeasideDynamicSVG-Examples'
 }
@@ -190,12 +189,6 @@ SVGSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 		
 ]
 
-{ #category : #rendering }
-SVGSmiley >> embedSVGIn: canvas [
-	
-	self perform: embedSelector with: canvas	
-]
-
 { #category : #accessing }
 SVGSmiley >> fillColor [
 	
@@ -259,7 +252,6 @@ SVGSmiley >> renderActionsOn: canvas [
 { #category : #rendering }
 SVGSmiley >> renderContentOn: canvas [ 
 
-	self renderSelectorsOn: canvas.
 	canvas div 
 		style: 'padding: 1em';
 		with: [self embedSVGIn: canvas].
@@ -271,30 +263,6 @@ SVGSmiley >> renderContentOn: canvas [
 			canvas break
 		].
 	self renderActionsOn: canvas
-]
-
-{ #category : #rendering }
-SVGSmiley >> renderEmbedSelector: aSelector text: text on: canvas [ 
-
-	canvas anchor
-		callback: [embedSelector := aSelector];
-		with: [aSelector = embedSelector
-				ifTrue: [canvas
-						emphasis: [canvas text: text]]
-				ifFalse: [canvas text: text]]
-]
-
-{ #category : #rendering }
-SVGSmiley >> renderSelectorsOn: canvas [
-	
-	self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: canvas .
-	canvas space.
-	self renderEmbedSelector: #renderObjectOn: text: '<object>' on: canvas .
-	canvas space.
-	self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: canvas .
-	canvas space.
-	self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: canvas .
-
 ]
 
 { #category : #actions }

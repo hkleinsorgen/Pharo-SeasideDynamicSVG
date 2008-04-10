@@ -31,6 +31,7 @@ SVGSmileyExample >> renderContentOn: html [
 			level: 2 ;
 			with: [ html text: 'SVG + callback example' ].
 		html text: 'The SVG can be either embedded or inlined' ].
+	self renderEmbedSelectorsOn: html.
 	html render: smiley.
 	"IE annoying click and activate workaround"
 	"it must be an external js file, just put the file on your apache root!"

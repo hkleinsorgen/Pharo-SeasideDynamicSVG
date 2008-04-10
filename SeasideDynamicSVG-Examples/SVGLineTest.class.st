@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGLineTest,
-	#superclass : #SVGEmbeddedDocumentComponent,
+	#superclass : #SVGEmbeddedDocumentExampleComponent,
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
@@ -23,5 +23,5 @@ SVGLineTest >> drawSVGContentOn: svg [
 SVGLineTest >> renderContentOn: html [
 	html div 
 		style: 'padding: 1em;border:1px solid #ccc';
-		with: [self renderEmbedOn: html].
+		with: [self embedSVGIn: html].
 ]
