@@ -3,7 +3,7 @@ Extension { #name : #WARenderCanvas }
 { #category : #'*SeasideDynamicSVG-Core' }
 WARenderCanvas >> svg [
 	" Allows drawing inlined SVG.
-	A bit nonstandard, since returns a SVG canvas, not the brush "
+	A bit nonstandard, since returns the with: block receives a SVG canvas"
 
 	| brush svg |
 	brush := SVGRootTag new.
@@ -11,7 +11,9 @@ WARenderCanvas >> svg [
 	svg := SVGCanvas
 		context: self context
 		callbacks: self callbacks.
-	^ svg.
+	brush svgCanvas: svg.
+	self context containsInlinedSVG: true.
+	^ brush.
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
@@ -19,15 +21,7 @@ WARenderCanvas >> svg: aBlock [
 	" Allows drawing inlined SVG.
 	A bit nonstandard, since the block receives a SVG canvas. "
 
-	| brush svg |
-	brush := SVGRootTag new. 
-	self brush: brush.
-	brush width: 300; height: 300.
-	svg := SVGCanvas
-		context: self context
-		callbacks: self callbacks.
-	self context containsInlinedSVG: true.
-	brush with: [ aBlock value: svg ].
+	self svg drawWith: [ : svgCanvas | aBlock value: svgCanvas ].
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }

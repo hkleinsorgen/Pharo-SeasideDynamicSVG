@@ -94,7 +94,10 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
 	" inline as <svg> "
 
-	canvas svg: [ : svg | svg render: self ].
+	canvas svg
+		width: self width; 
+		height: self height; 
+		drawWith: [ : svg | svg render: self ].
 ]
 
 { #category : #rendering }
