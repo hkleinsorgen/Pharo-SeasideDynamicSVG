@@ -1,12 +1,13 @@
 Class {
 	#name : #SVGExampleSmiley,
-	#superclass : #SVGDrawableComponent,
+	#superclass : #SVGEmbeddedDocumentComponent,
 	#instVars : [
 		'fillColor',
 		'message',
 		'leftEyeColor',
 		'rightEyeColor',
-		'happiness'
+		'happiness',
+		'embedSelector'
 	],
 	#category : #'SeasideDynamicSVG-Examples'
 }
@@ -165,6 +166,48 @@ SVGExampleSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance rad
 ]
 
 { #category : #drawing }
+SVGExampleSmiley >> drawSVGContentOn: svg [ 
+	| center radius eyeRadius eyeDistance eyeliner |
+	svg rectangle
+		width: self width ;
+		height: self height ;
+		fill: Color lightOrange ;
+		stroke: Color black ;
+		strokeWidth: 3.
+
+	" face "
+	center := self width @ self height / 2.
+	radius := (self width min: self height) / 2.2.
+	self 
+		drawFaceOn: svg
+		center: center
+		radius: radius.
+
+	" eyes "
+	eyeRadius := radius / 6.
+	eyeDistance := radius / 3.
+	eyeliner := Color black.
+	self 
+		drawLeftEyeOn: svg
+		center: center
+		distance: eyeDistance
+		radius: eyeRadius
+		eyeliner: eyeliner.
+	self 
+		drawRightEyeOn: svg
+		center: center
+		distance: eyeDistance
+		radius: eyeRadius
+		eyeliner: eyeliner.
+
+	" mouth "
+	self 
+		drawMouthOn: svg
+		faceCenter: center
+		faceRadius: radius
+]
+
+{ #category : #drawing }
 SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 	
 	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop yOffset |
@@ -198,6 +241,12 @@ SVGExampleSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radiu
 		fill: Color white;
 		stroke: Color black;
 		strokeWidth: 2
+]
+
+{ #category : #rendering }
+SVGExampleSmiley >> embedSVGIn: canvas [
+	
+	self perform: embedSelector with: canvas	
 ]
 
 { #category : #accessing }
@@ -238,15 +287,22 @@ SVGExampleSmiley >> initialize [
 	rightEyeColor := WAValueHolder new.
 	message := WAValueHolder new.
 	happiness := WAValueHolder with: 1.0.
+	embedSelector := #renderEmbedOn:.
 	self beYellow
 ]
 
 { #category : #rendering }
 SVGExampleSmiley >> renderContentOn: canvas [
 	
+	canvas text: 'Embed method: '.
+	self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: canvas .
+	canvas space.
+	self renderEmbedSelector: #renderObjectOn: text: '<object>' on: canvas .
+	canvas space.
+	self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: canvas .
 	(canvas div)
 		style: 'padding: 1em';
-		with: [self renderExternalSVGOn: canvas].
+		with: [self embedSVGIn: canvas].
 	message contents notNil
 		ifTrue:
 			[canvas text: 'Happiness level: '.
@@ -265,6 +321,17 @@ SVGExampleSmiley >> renderContentOn: canvas [
 		with: [canvas text: 'Be red'].
 	canvas break.
 	canvas text: '...or click on an eye or on the mouth'
+]
+
+{ #category : #rendering }
+SVGExampleSmiley >> renderEmbedSelector: aSelector text: text on: canvas [ 
+
+	canvas anchor
+		callback: [embedSelector := aSelector];
+		with: [aSelector = embedSelector
+				ifTrue: [canvas
+						emphasis: [canvas text: text]]
+				ifFalse: [canvas text: text]]
 ]
 
 { #category : #actions }
