@@ -3,15 +3,35 @@ Class {
 	#superclass : #WATagBrush,
 	#instVars : [
 		'paint',
-		'opacity'
+		'opacity',
+		'attributeSets'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
 
+{ #category : #'accessing-attributes' }
+SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [
+
+	^ super attributeAt: aKey ifAbsentPut: [ aBlock value svgAttributeValue ]
+
+]
+
+{ #category : #'accessing-attributes' }
+SVGTag >> attributeAt: aKey put: aValue [
+
+	^ super attributeAt: aKey put: aValue svgAttributeValue
+]
+
+{ #category : #'accessing-attribute sets' }
+SVGTag >> attributeSetAt: attributeSetClass [ 
+
+	attributeSets isNil ifTrue: [ attributeSets := Dictionary new].
+	^ attributeSets at: attributeSetClass ifAbsentPut: [ attributeSetClass brush: self ]
+]
+
 { #category : #accessing }
 SVGTag >> opacity [
-	opacity ifNil: [opacity := SVGOpacityAttribute new].
-	^opacity
+	^ self attributeSetAt: SVGOpacityAttributeSet
 ]
 
 { #category : #accessing }
@@ -31,8 +51,7 @@ SVGTag >> openTagTest [
 
 { #category : #accessing }
 SVGTag >> paint [
-	paint ifNil: [paint := SVGPaintAttribute new].
-	^paint
+	^ self attributeSetAt: SVGPaintAttributeSet
 ]
 
 { #category : #accessing }
@@ -44,11 +63,4 @@ SVGTag >> paint: aBlock [
 SVGTag >> style: aString value: value [
 	
 	self attributes addStyle: aString , ':' , value displayString
-]
-
-{ #category : #public }
-SVGTag >> with: aBlock [
-	paint isNil ifFalse: [paint attributesOn: self attributes].
-	opacity isNil ifFalse: [opacity attributesOn: self attributes].
-	super with: aBlock
 ]

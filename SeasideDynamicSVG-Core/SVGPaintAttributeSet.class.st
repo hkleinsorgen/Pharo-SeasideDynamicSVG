@@ -1,65 +1,65 @@
 Class {
-	#name : #SVGPaintAttribute,
-	#superclass : #SVGAttribute,
+	#name : #SVGPaintAttributeSet,
+	#superclass : #SVGAttributeSet,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGPaintAttribute >> color: anObject [
+SVGPaintAttributeSet >> color: anObject [
 	^ self attributeAt: 'color' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> colorInterpolation: anObject [
+SVGPaintAttributeSet >> colorInterpolation: anObject [
 	^ self attributeAt: 'color-interpolation' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> colorRendering: anObject [
+SVGPaintAttributeSet >> colorRendering: anObject [
 	^ self attributeAt: 'color-rendering' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> fill: aPaint [
+SVGPaintAttributeSet >> fill: aPaint [
 	^ self attributeAt: 'fill' put: aPaint svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> fillRule: anObject [
+SVGPaintAttributeSet >> fillRule: anObject [
 	^ self attributeAt: 'fill-rule' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> stroke: anObject [
+SVGPaintAttributeSet >> stroke: anObject [
 	^ self attributeAt: 'stroke' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> strokeDasharray: anObject [
+SVGPaintAttributeSet >> strokeDasharray: anObject [
 	^ self attributeAt: 'stroke-dasharray' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> strokeDashoffset: anObject [
+SVGPaintAttributeSet >> strokeDashoffset: anObject [
 	^ self attributeAt: 'stroke-dashoffset' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> strokeLinecap: anObject [
+SVGPaintAttributeSet >> strokeLinecap: anObject [
 	^ self attributeAt: 'stroke-linecap' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> strokeLinejoin: anObject [
+SVGPaintAttributeSet >> strokeLinejoin: anObject [
 	^ self attributeAt: 'stroke-linejoin' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> strokeMiterlimit: anObject [
+SVGPaintAttributeSet >> strokeMiterlimit: anObject [
 	^ self attributeAt: 'stroke-miterlimit' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGPaintAttribute >> strokeWidth: anObject [
+SVGPaintAttributeSet >> strokeWidth: anObject [
 	^ self attributeAt: 'stroke-width' put: anObject svgAttributeValue
 ]

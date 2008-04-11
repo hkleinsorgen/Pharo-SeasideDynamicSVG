@@ -1,20 +1,20 @@
 Class {
-	#name : #SVGOpacityAttribute,
-	#superclass : #SVGAttribute,
+	#name : #SVGOpacityAttributeSet,
+	#superclass : #SVGAttributeSet,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGOpacityAttribute >> fillOpacity: anObject [
+SVGOpacityAttributeSet >> fillOpacity: anObject [
 	^ self attributeAt: 'fill-opacity' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGOpacityAttribute >> opacity: anObject [
+SVGOpacityAttributeSet >> opacity: anObject [
 	^ self attributeAt: 'opacity' put: anObject svgAttributeValue
 ]
 
 { #category : #accessing }
-SVGOpacityAttribute >> strokeOpacity: anObject [
+SVGOpacityAttributeSet >> strokeOpacity: anObject [
 	^ self attributeAt: 'stroke-opacity' put: anObject svgAttributeValue
 ]
