@@ -19,6 +19,16 @@ SVGTag >> opacity: aBlock [
 	aBlock value: self opacity
 ]
 
+{ #category : #public }
+SVGTag >> openTagTest [
+	"mabye try in the future to use an extra namespace e.g. svg:tag to make inline svg possible for IE"
+	"doesnt work with xhtml doctype"
+	canvas context containsInlinedSVG
+		ifTrue: [self document openTag: 'svg:', self tag attributes: attributes closed: self isClosed]
+		ifFalse: [self document openTag: self tag attributes: attributes closed: self isClosed]
+	
+]
+
 { #category : #accessing }
 SVGTag >> paint [
 	paint ifNil: [paint := SVGPaintAttribute new].

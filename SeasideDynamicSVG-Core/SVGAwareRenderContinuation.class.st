@@ -47,6 +47,6 @@ SVGAwareRenderContinuation >> processRendering: aResponse [
 	context containsInlinedSVG
 		ifTrue: [ 
 			" mozilla requires XML... IE will not like that "
-			aResponse beXML 
+			aResponse beXML
 		]
 ]

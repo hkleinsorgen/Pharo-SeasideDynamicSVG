@@ -93,7 +93,8 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
 	" inline as <svg> "
-
+	canvas html: '<object id="AdobeSVG" classid="clsid:78156a80-c6a1-4bbf-8e6a-3cd390eeb4e2"></object>
+			<?import namespace="svg" implementation="#AdobeSVG"?>'.
 	canvas svg
 		width: self width; 
 		height: self height; 
