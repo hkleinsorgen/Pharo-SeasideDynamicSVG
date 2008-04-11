@@ -42,7 +42,7 @@ SVGChooserExample >> renderActionsOn: html [
 { #category : #rendering }
 SVGChooserExample >> renderChooserOn: html [ 
 
-	html div: [
+	html div style: 'padding-bottom: 1em'; with: [
 		html form: [
 			html select 
 				list: SVGExampleDocument allSubclasses;

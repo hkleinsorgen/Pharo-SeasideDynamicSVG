@@ -104,16 +104,69 @@ SVGExample >> renderEmbedSelector: aSelector text: text on: canvas [
 ]
 
 { #category : #rendering }
-SVGExample >> renderEmbedSelectorsOn: canvas [
+SVGExample >> renderEmbedSelectorsOn: html [
 
-	canvas text: 'Embed/inline method: '.
-	self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: canvas .
-	canvas space.
-	self renderEmbedSelector: #renderObjectOn: text: '<object>' on: canvas .
-	canvas space.
-	self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: canvas .
-	canvas space.
-	self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: canvas .
+	html div class: 'toolbar';
+		with: [
+			html text: 'Embed/inline method: '.
+			self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: html .
+			html space.
+			self renderEmbedSelector: #renderObjectOn: text: '<object>' on: html .
+			html space.
+			self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: html .
+			html space.
+			self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: html .
+		].
+
+]
+
+{ #category : #rendering }
+SVGExample >> style [ 
+
+^ '
+body {
+  padding: 0;
+  font-size: small;
+  font-family: Verdana, sans-serif;
+  text-align: left;
+  color: #333333;
+  background: #FFFFFF;
+}
+
+a:link {
+  color: #3366FF;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #666699;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  color: #5B73FF;
+  text-decoration: none;
+}
+
+em {
+   font-style: normal;
+   font-weight: bold;
+}
+
+div.toolbar { 
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	margin-top: 1em; 
+	margin-bottom: 1em; 
+	background-color: #EEEEEE; 
+	border-width: 1px; 
+	border-top-style: solid; 
+	border-bottom-style:solid; 
+	border-color: #AAAAAA
+}'
 
 ]
 

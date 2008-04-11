@@ -36,5 +36,5 @@ SVGMultiSVGExample >> initializeChildren [
 
 { #category : #rendering }
 SVGMultiSVGExample >> title [
-	^ 'SVG + callback example'
+	^ 'Multiple SVGs'
 ]
