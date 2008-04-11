@@ -88,6 +88,6 @@ SVGTag >> transform: aBlock [
 
 { #category : #accessing }
 SVGTag >> transformList [
-	transformList ifNil: [transformList := OrderedCollection new].
+	transformList ifNil: [transformList := SVGTransformList new].
 	^transformList
 ]
