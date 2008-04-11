@@ -7,6 +7,12 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
+{ #category : #accessing }
+SVGLineExample class >> description [
+
+	^ 'Shows some graphics primitives'
+]
+
 { #category : #'instance creation' }
 SVGLineExample class >> path [
 	
@@ -17,12 +23,6 @@ SVGLineExample class >> path [
 SVGLineExample >> children [
 	
 	^Array with: lineExample
-]
-
-{ #category : #rendering }
-SVGLineExample >> description [
-
-	^ ''
 ]
 
 { #category : #'initialize-release' }

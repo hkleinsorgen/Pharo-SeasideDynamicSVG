@@ -41,7 +41,7 @@ SVGExample class >> registerAll [
 { #category : #rendering }
 SVGExample >> description [
 
-	self subclassResponsibility 
+	^ self class description
 ]
 
 { #category : #accessing }
@@ -72,13 +72,20 @@ SVGExample >> initializeChildren [
 ]
 
 { #category : #rendering }
+SVGExample >> renderActionsOn: html [ 
+
+	self renderEmbedSelectorsOn: html.
+
+]
+
+{ #category : #rendering }
 SVGExample >> renderContentOn: html [ 
 	html div: 
 		[ html heading
 			level: 2 ;
 			with: [ html text: self title ].
 		html text: self description ].
-	self renderEmbedSelectorsOn: html.
+	self renderActionsOn: html.
 	self children do: [ : child | html render: child ].
 	"IE annoying click and activate workaround"
 	"it must be an external js file, just put the file on your apache root!"
@@ -98,7 +105,8 @@ SVGExample >> renderEmbedSelector: aSelector text: text on: canvas [
 
 { #category : #rendering }
 SVGExample >> renderEmbedSelectorsOn: canvas [
-	
+
+	canvas text: 'Embed/inline method: '.
 	self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: canvas .
 	canvas space.
 	self renderEmbedSelector: #renderObjectOn: text: '<object>' on: canvas .

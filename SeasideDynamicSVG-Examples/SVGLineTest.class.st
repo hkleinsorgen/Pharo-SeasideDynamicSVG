@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGLineTest,
-	#superclass : #SVGEmbeddedDocumentExampleComponent,
+	#superclass : #SVGExampleDocument,
 	#category : #'SeasideDynamicSVG-Examples'
 }
 

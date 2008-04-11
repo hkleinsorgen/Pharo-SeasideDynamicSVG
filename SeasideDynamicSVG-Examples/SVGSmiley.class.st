@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGSmiley,
-	#superclass : #SVGEmbeddedDocumentExampleComponent,
+	#superclass : #SVGExampleDocument,
 	#instVars : [
 		'fillColor',
 		'message',
@@ -270,9 +270,7 @@ SVGSmiley >> renderActionsOn: canvas [
 { #category : #rendering }
 SVGSmiley >> renderContentOn: canvas [ 
 
-	canvas div 
-		style: 'padding: 1em';
-		with: [self embedSVGIn: canvas].
+	super renderContentOn: canvas .
 	message contents notNil
 		ifTrue: [
 			canvas text: 'Happiness level: '.
@@ -287,8 +285,8 @@ SVGSmiley >> renderContentOn: canvas [
 SVGSmiley >> resetEyes [
 	
 	message contents: 'Everything''s shiny'.
-	leftEyeColor contents: 'rgb(255,255,255)'.
-	rightEyeColor contents: 'rgb(255,255,255)'.
+	leftEyeColor contents: Color white.
+	rightEyeColor contents: Color white.
 	happiness contents: 1.0
 ]
 

@@ -7,6 +7,12 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
+{ #category : #accessing }
+SVGSmileyExample class >> description [
+
+	^ 'Demonstrates callbacks and various embedding/inlining methods' 
+]
+
 { #category : #'instance creation' }
 SVGSmileyExample class >> path [
 	
@@ -16,12 +22,6 @@ SVGSmileyExample class >> path [
 { #category : #accessing }
 SVGSmileyExample >> children [
 	^ Array with: smiley
-]
-
-{ #category : #rendering }
-SVGSmileyExample >> description [
-
-	^ 'The SVG can be either embedded or inlined' 
 ]
 
 { #category : #'initialize-release' }

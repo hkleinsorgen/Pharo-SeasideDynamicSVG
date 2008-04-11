@@ -8,6 +8,12 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
+{ #category : #accessing }
+SVGMultiSVGExample class >> description [ 
+	
+	^ 'Multiple SVG components on a single page' 
+]
+
 { #category : #'class initialization' }
 SVGMultiSVGExample class >> path [
 
@@ -19,12 +25,6 @@ SVGMultiSVGExample >> children [
 	^ Array 
 		with: smiley
 		with: lineExample
-]
-
-{ #category : #rendering }
-SVGMultiSVGExample >> description [ 
-	
-	^ 'Multiple SVG components' 
 ]
 
 { #category : #'initialize-release' }
