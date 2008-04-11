@@ -43,9 +43,9 @@ SVGTextTag >> position: aPoint [
 ]
 
 { #category : #accessing }
-SVGTextTag >> rotate: aNumber [
+SVGTextTag >> rotate: aString [
 
-	self attributeAt: 'rotate' put: aNumber
+	self attributeAt: 'rotate' put: aString
 ]
 
 { #category : #accessing }
@@ -65,6 +65,12 @@ SVGTextTag >> shiftX: aNumber [
 SVGTextTag >> shiftY: aNumber [
 
 	self attributeAt: 'dy' put: aNumber
+]
+
+{ #category : #accessing }
+SVGTextTag >> tag [
+
+	^ 'text'
 ]
 
 { #category : #accessing }

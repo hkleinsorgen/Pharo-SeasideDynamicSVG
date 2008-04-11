@@ -17,6 +17,18 @@ SVGEmbeddedDocumentComponent class >> on: aSVGDrawable [
 		yourself
 ]
 
+{ #category : #accessing }
+SVGEmbeddedDocumentComponent >> defaultHeight [
+	
+	^ 300
+]
+
+{ #category : #accessing }
+SVGEmbeddedDocumentComponent >> defaultWidth [
+	
+	^ 300
+]
+
 { #category : #drawing }
 SVGEmbeddedDocumentComponent >> drawSVGContentOn: svg [ 
 	
@@ -48,7 +60,7 @@ SVGEmbeddedDocumentComponent >> drawable: aDrawable [
 { #category : #accessing }
 SVGEmbeddedDocumentComponent >> height [
 	
-	^height ifNil: [300]
+	^height ifNil: [self defaultHeight]
 ]
 
 { #category : #accessing }
@@ -93,12 +105,14 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
 	" inline as <svg> "
+	| brush |
 	canvas html: '<object id="AdobeSVG" classid="clsid:78156a80-c6a1-4bbf-8e6a-3cd390eeb4e2"></object>
 			<?import namespace="svg" implementation="#AdobeSVG"?>'.
-	canvas svg
-		width: self width; 
-		height: self height; 
-		drawWith: [ : svg | svg render: self ].
+	
+	brush := canvas svg.
+	self width notNil ifTrue: [ brush width: self width ].
+	self height notNil ifTrue: [ brush height: self height ].
+	brush drawWith: [ : svg | svg render: self ].
 ]
 
 { #category : #rendering }
@@ -115,7 +129,7 @@ SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 { #category : #accessing }
 SVGEmbeddedDocumentComponent >> width [
 	
-	^width ifNil: [300]
+	^width ifNil: [self defaultWidth]
 ]
 
 { #category : #accessing }

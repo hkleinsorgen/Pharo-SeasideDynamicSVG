@@ -5,39 +5,40 @@ Class {
 }
 
 { #category : #'convenience-weight' }
-SVGFontAttributeSet >> bold [ 
-
-	self fontWeight: 'bold '
+SVGFontAttributeSet >> bold [
+	self weight: 'bold '
 ]
 
 { #category : #'convenience-weight' }
-SVGFontAttributeSet >> bolder [ 
-
-	self fontWeight: 'bolder'
+SVGFontAttributeSet >> bolder [
+	self weight: 'bolder'
 ]
 
 { #category : #'convenience-stretch' }
-SVGFontAttributeSet >> condensed [ 
-
-	self fontStretch: 'condensed '
+SVGFontAttributeSet >> condensed [
+	self stretch: 'condensed '
 ]
 
 { #category : #'convenience-stretch' }
-SVGFontAttributeSet >> expanded [ 
-
-	self fontStretch: 'expanded'
+SVGFontAttributeSet >> expanded [
+	self stretch: 'expanded'
 ]
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> extraCondensed [
-
-	self fontStretch: 'extra-condensed'
+	self stretch: 'extra-condensed'
 ]
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> extraExpanded [
+	self stretch: 'extra-expanded'
+]
 
-	self fontStretch: 'extra-expanded'
+{ #category : #accessing }
+SVGFontAttributeSet >> family: aString [ 
+	self 
+		attributeAt: 'font-family'
+		put: aString svgAttributeValue
 ]
 
 { #category : #accessing }
@@ -46,66 +47,9 @@ SVGFontAttributeSet >> font: aString [
 	self attributeAt: 'font' put: aString svgAttributeValue
 ]
 
-{ #category : #accessing }
-SVGFontAttributeSet >> fontFamily: aString [
-
-	self attributeAt: 'font-family' put: aString svgAttributeValue
-
-
-]
-
-{ #category : #accessing }
-SVGFontAttributeSet >> fontSize: aNumberOrString [
-
-	self attributeAt: 'font-size' put: aNumberOrString svgAttributeValue
-
-
-]
-
-{ #category : #accessing }
-SVGFontAttributeSet >> fontSizeAdjust: aNumberOrString [
-
-	self attributeAt: 'font-size-adjust' put: aNumberOrString svgAttributeValue
-
-
-]
-
-{ #category : #accessing }
-SVGFontAttributeSet >> fontStretch: aString [
-
-	self attributeAt: 'font-stretch' put: aString svgAttributeValue
-
-
-]
-
-{ #category : #accessing }
-SVGFontAttributeSet >> fontStyle: aString [
-
-	self attributeAt: 'font-style' put: aString svgAttributeValue
-
-
-]
-
-{ #category : #accessing }
-SVGFontAttributeSet >> fontVariant: aString [
-
-	self attributeAt: 'font-variant' put: aString svgAttributeValue
-
-
-]
-
-{ #category : #accessing }
-SVGFontAttributeSet >> fontWeight: aString [
-
-	self attributeAt: 'font-weight' put: aString svgAttributeValue
-
-
-]
-
 { #category : #'convenience-style' }
 SVGFontAttributeSet >> italic [
-
-	self fontStyle: 'italic'
+	self style: 'italic'
 ]
 
 { #category : #accessing }
@@ -122,8 +66,7 @@ SVGFontAttributeSet >> letterSpacing: aStringOrNumber [
 
 { #category : #'convenience-weight' }
 SVGFontAttributeSet >> lighter [
-
-	self fontWeight: 'lighter'
+	self weight: 'lighter'
 ]
 
 { #category : #'convenience-decoration' }
@@ -134,14 +77,12 @@ SVGFontAttributeSet >> lineThrough [
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> narrower [
-
-	self fontStretch: 'narrower'
+	self stretch: 'narrower'
 ]
 
 { #category : #'convenience-style' }
 SVGFontAttributeSet >> oblique [
-
-	self fontStyle: 'oblique'
+	self style: 'oblique'
 ]
 
 { #category : #'convenience-decoration' }
@@ -152,20 +93,46 @@ SVGFontAttributeSet >> overline [
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> semiCondensed [
-
-	self fontStretch: 'semi-condensed'
+	self stretch: 'semi-condensed'
 ]
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> semiExpanded [
+	self stretch: 'semi-expanded'
+]
 
-	self fontStretch: 'semi-expanded'
+{ #category : #accessing }
+SVGFontAttributeSet >> size: aNumberOrString [
+
+	self attributeAt: 'font-size' put: aNumberOrString svgAttributeValue
+
+
+]
+
+{ #category : #accessing }
+SVGFontAttributeSet >> sizeAdjust: aNumberOrString [ 
+	self 
+		attributeAt: 'font-size-adjust'
+		put: aNumberOrString svgAttributeValue
 ]
 
 { #category : #'convenience-variant' }
 SVGFontAttributeSet >> smallCaps [
+	self variant: 'small-caps'
+]
 
-	self fontVariant: 'small-caps'
+{ #category : #accessing }
+SVGFontAttributeSet >> stretch: aString [ 
+	self 
+		attributeAt: 'font-stretch'
+		put: aString svgAttributeValue
+]
+
+{ #category : #accessing }
+SVGFontAttributeSet >> style: aString [ 
+	self 
+		attributeAt: 'font-style'
+		put: aString svgAttributeValue
 ]
 
 { #category : #accessing }
@@ -176,14 +143,12 @@ SVGFontAttributeSet >> textDecoration: aString [
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> ultraCondensed [
-
-	self fontStretch: 'ultra-condensed'
+	self stretch: 'ultra-condensed'
 ]
 
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> ultraExpanded [
-
-	self fontStretch: 'ultra-expanded'
+	self stretch: 'ultra-expanded'
 ]
 
 { #category : #'convenience-decoration' }
@@ -192,10 +157,23 @@ SVGFontAttributeSet >> underline [
 	self textDecoration: 'underline'
 ]
 
+{ #category : #accessing }
+SVGFontAttributeSet >> variant: aString [ 
+	self 
+		attributeAt: 'font-variant'
+		put: aString svgAttributeValue
+]
+
+{ #category : #accessing }
+SVGFontAttributeSet >> weight: aString [ 
+	self 
+		attributeAt: 'font-weight'
+		put: aString svgAttributeValue
+]
+
 { #category : #'convenience-font stretch' }
 SVGFontAttributeSet >> wider [
-
-	self fontStretch: 'wider'
+	self stretch: 'wider'
 ]
 
 { #category : #accessing }

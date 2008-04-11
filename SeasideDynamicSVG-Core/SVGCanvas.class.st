@@ -117,10 +117,24 @@ SVGCanvas >> render: anObject [
 	anObject drawSVGOn: self
 ]
 
-{ #category : #public }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> text: anObject [
-	"Emit anObject onto the target document."
+	"Emit anObject onto the target document.
+
+	If you were looking for <text>, see #textShape. 
+	Due to the way String implements renderOn:, this name conflict resolution was necessary"
 
 	self flush.
 	self document print: anObject
+]
+
+{ #category : #'tags-graphics primitives' }
+SVGCanvas >> textShape [
+
+	^self brush: SVGTextTag new
+]
+
+{ #category : #'tags-graphics primitives' }
+SVGCanvas >> textShape: aBlock [
+	^self textShape with: aBlock
 ]
