@@ -73,3 +73,9 @@ SVGExample >> renderEmbedSelectorsOn: canvas [
 	self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: canvas .
 
 ]
+
+{ #category : #rendering }
+SVGExample >> updateRoot: aRoot [
+	super updateRoot: aRoot.
+	aRoot htmlAttributes at: 'xmlns:svg' put: 'http://www.w3.org/2000/svg'
+]

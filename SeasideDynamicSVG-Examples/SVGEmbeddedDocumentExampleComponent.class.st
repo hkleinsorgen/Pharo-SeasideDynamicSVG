@@ -24,3 +24,10 @@ SVGEmbeddedDocumentExampleComponent >> embedSelector: aSymbol [
 
 	embedSelector := aSymbol
 ]
+
+{ #category : #'initialize-release' }
+SVGEmbeddedDocumentExampleComponent >> initialize [
+	
+	super initialize.
+	embedSelector := #renderEmbedOn:
+]
