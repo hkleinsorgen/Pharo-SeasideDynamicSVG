@@ -27,28 +27,26 @@ SVGPathTag >> addToPath: aString [
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> arcTo: aPoint radiusX: radiusX radiusY: radiusY rotation: rotation large: large sweep: sweep [
-	
-	self
+SVGPathTag >> arcTo: aPoint radius: radiusXAndY rotation: rotation large: large sweep: sweep [ 
+	self 
 		arcTo: aPoint
-		radiusX: radiusX
-		radiusY: radiusY
+		radius: radiusXAndY
 		rotation: rotation
 		large: large
 		sweep: sweep
-		relative: self defaultRelative
+		relative: defaultRelative
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> arcTo: aPoint radiusX: radiusX radiusY: radiusY rotation: rotation large: large sweep: sweep relative: relative [
+SVGPathTag >> arcTo: aPoint radius: radiusXAndY rotation: rotation large: large sweep: sweep relative: relative [
 	
 	self
 		addToPath:
 			(relative
 				ifTrue: ['a']
 				ifFalse: ['A']).
-	self addToPath: radiusX.
-	self addToPath: radiusY.
+	self addToPath: radiusXAndY x.
+	self addToPath: radiusXAndY y.
 	self addToPath: rotation.
 	self
 		addToPath:
@@ -70,11 +68,10 @@ SVGPathTag >> closePath [
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> curveWithAll: points [
-	
-	self
+SVGPathTag >> curveWithAll: points [ 
+	self 
 		curveWithAll: points
-		relative: self defaultRelative
+		relative: defaultRelative
 ]
 
 { #category : #'accessing-path primitives' }
@@ -102,18 +99,18 @@ SVGPathTag >> defaultIsRelative [
 	defaultRelative := true
 ]
 
-{ #category : #private }
-SVGPathTag >> defaultRelative [
-	
-	^defaultRelative ifNil: [false]
+{ #category : #initialization }
+SVGPathTag >> initialize [
+
+	super initialize.
+	defaultRelative := false.
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> lineTo: aPoint [
-	
-	self
+SVGPathTag >> lineTo: aPoint [ 
+	self 
 		lineTo: aPoint
-		relative: self defaultRelative
+		relative: defaultRelative
 ]
 
 { #category : #'accessing-path primitives' }
@@ -127,11 +124,10 @@ SVGPathTag >> lineTo: aPoint relative: relative [
 ]
 
 { #category : #'accessing-path primitives' }
-SVGPathTag >> moveTo: aPoint [
-	
-	self
+SVGPathTag >> moveTo: aPoint [ 
+	self 
 		moveTo: aPoint
-		relative: self defaultRelative
+		relative: defaultRelative
 ]
 
 { #category : #'accessing-path primitives' }

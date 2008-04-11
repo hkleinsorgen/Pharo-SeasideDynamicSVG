@@ -2,7 +2,8 @@ Class {
 	#name : #SVGAwareRenderingContext,
 	#superclass : #WARenderingContext,
 	#instVars : [
-		'containsInlinedSVG'
+		'containsInlinedSVG',
+		'registeredHandlers'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
@@ -23,5 +24,17 @@ SVGAwareRenderingContext >> containsInlinedSVG: aBoolean [
 SVGAwareRenderingContext >> initialize [
 
 	super initialize.
-	containsInlinedSVG := false
+	containsInlinedSVG := false.
+	registeredHandlers := Set new.
+]
+
+{ #category : #accessing }
+SVGAwareRenderingContext >> registerSVGDocumentHandler: aSVGDocmentHandler [ 
+	registeredHandlers add: aSVGDocmentHandler
+]
+
+{ #category : #accessing }
+SVGAwareRenderingContext >> registeredHandlers [
+	
+		^ registeredHandlers 
 ]

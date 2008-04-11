@@ -63,27 +63,13 @@ WARenderCanvas >> svg: aBlock [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
-WARenderCanvas >> urlForEmbeddingSVGIn: aComponent [
-	" this is a bad hack to allow drawing of external SVG documents 
-	(as opposed to inline the SVG in the HTML code).
-	The parameter 'svg' is added to the URL so that SVGHybridRenderContinuation knows
-	that it should draw the SVG, not render the HTML "
-
-" solution 1 - add parameter, so the render machinery knows that it has to render SVG.
-Drawback: all components are drawn, which only allows one SVG per page "
-	| url |
-	url := self context actionUrl copy.
-	url addParameter: 'svg'.
-	^ url
-
-"solution 2 - register rendering block. Supports multiple SVG components.
-But when the continuation is flushed, the render machinery doesn know anymore
-that it has to draw the SVG, and instead happily renders the entire page - in the embedded tag "
-"	^ self urlForAction: [ self renderEmbedded: aComponent ] "
-
-" solution 3 - prerender the SVG and store it. bulletproof, but the stored documents are never flushed "
-"	^ self context
-		urlForDocument: (self renderDocumentFor: aComponent)
+WARenderCanvas >> urlForEmbeddingSVGIn: aComponent [ 
+	| document handler |
+	document := self renderDocumentFor: aComponent.
+	handler := SVGDocumentHandler 
+		document: document
 		mimeType: SVGRoot defaultContentType
-		fileName: nil "
+		fileName: nil.
+	context registerSVGDocumentHandler: handler.
+	^ (WACurrentSession value application urlForRequestHandler: handler) displayString
 ]
