@@ -41,12 +41,6 @@ SVGFontAttributeSet >> family: aString [
 		put: aString svgAttributeValue
 ]
 
-{ #category : #accessing }
-SVGFontAttributeSet >> font: aString [
-
-	self attributeAt: 'font' put: aString svgAttributeValue
-]
-
 { #category : #'convenience-style' }
 SVGFontAttributeSet >> italic [
 	self style: 'italic'
