@@ -5,9 +5,23 @@ Class {
 }
 
 { #category : #attributes }
+SVGRectangleTag >> extent: aPoint [
+	
+	self width: aPoint x.
+	self height: aPoint y.
+]
+
+{ #category : #attributes }
 SVGRectangleTag >> height: aNumber [
 	
 	self attributeAt: 'height' put: aNumber
+]
+
+{ #category : #attributes }
+SVGRectangleTag >> origin: aPoint [
+	
+	self x: aPoint x.
+	self y: aPoint y.
 ]
 
 { #category : #private }
@@ -20,4 +34,18 @@ SVGRectangleTag >> tag [
 SVGRectangleTag >> width: aNumber [
 	
 	self attributeAt: 'width' put: aNumber
+]
+
+{ #category : #attributes }
+SVGRectangleTag >> x: aNumber [
+	
+	self attributeAt: 'x' put: aNumber svgAttributeValue.
+
+]
+
+{ #category : #attributes }
+SVGRectangleTag >> y: aNumber [
+	
+	self attributeAt: 'y' put: aNumber svgAttributeValue.
+
 ]

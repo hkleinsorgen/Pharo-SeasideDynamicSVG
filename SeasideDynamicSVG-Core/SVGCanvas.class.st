@@ -28,7 +28,7 @@ SVGCanvas >> callbacks [
 	^callbacks
 ]
 
-{ #category : #tags }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> circle [
 	
 	^self brush: SVGCircleTag new
@@ -41,6 +41,18 @@ SVGCanvas >> context [
 	^context
 ]
 
+{ #category : #tags }
+SVGCanvas >> description [
+
+	^ self brush: SVGDescriptionTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> description: aBlock [
+
+	^ self description with: aBlock
+]
+
 { #category : #accessing }
 SVGCanvas >> document [
 	"Answer the SVG document."
@@ -48,10 +60,22 @@ SVGCanvas >> document [
 	^self context document
 ]
 
-{ #category : #tags }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> ellipse [
 	
 	^self brush: SVGEllipseTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> group [
+	
+	^self brush: SVGGroupTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> group: aBlock [
+	
+	^self group with: aBlock
 ]
 
 { #category : #'initialize-release' }
@@ -61,23 +85,23 @@ SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore 
 	callbacks := aCallbackStore
 ]
 
-{ #category : #tags }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> line [
 	
 	^self brush: SVGLineTag new
 ]
 
-{ #category : #tags }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> path [
 	^self brush: SVGPathTag new
 ]
 
-{ #category : #tags }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> polygone [
 	^self brush: SVGPolygonTag new
 ]
 
-{ #category : #tags }
+{ #category : #'tags-graphics primitives' }
 SVGCanvas >> polyline [
 	^self brush: SVGPolylineTag new
 ]
@@ -91,4 +115,12 @@ SVGCanvas >> rectangle [
 SVGCanvas >> render: anObject [
 	self flush.
 	anObject drawSVGOn: self
+]
+
+{ #category : #public }
+SVGCanvas >> text: anObject [
+	"Emit anObject onto the target document."
+
+	self flush.
+	self document print: anObject
 ]
