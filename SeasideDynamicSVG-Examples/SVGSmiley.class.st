@@ -57,16 +57,14 @@ SVGSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
 	path lineTo: innerStart.
 	path
 		arcTo: innerStop
-		radiusX: (innerStop x - innerStart x) // 2
-		radiusY: radius - innerStart x
+		radius: ((innerStop x - innerStart x) // 2) @ (radius - innerStart x)
 		rotation: 0
 		large: false
 		sweep: false.
 	path lineTo: outerStop.
 	path
 		arcTo: outerStart
-		radiusX: (outerStop x - outerStart x) // 2
-		radiusY: radius - outerStart x
+		radius: ((outerStop x - outerStart x) // 2) @ (radius - outerStart x)
 		rotation: 0
 		large: false
 		sweep: true.
@@ -171,16 +169,14 @@ SVGSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 	path lineTo: innerStart.
 	path
 		arcTo: innerStop
-		radiusX: (innerStop x - innerStart x) / 2
-		radiusY: radius - innerStart x
+		radius: ((innerStop x - innerStart x) / 2) @ (radius - innerStart x)
 		rotation: 0
 		large: false
 		sweep: true.
 	path lineTo: outerStop.
 	path
 		arcTo: outerStart
-		radiusX: (outerStop x - outerStart x) / 2
-		radiusY: radius - outerStart x
+		radius: ((outerStop x - outerStart x) / 2) @ (radius - outerStart x)
 		rotation: 0
 		large: false
 		sweep: false.

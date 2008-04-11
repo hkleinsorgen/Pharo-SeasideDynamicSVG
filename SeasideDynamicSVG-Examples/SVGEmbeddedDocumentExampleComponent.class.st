@@ -10,13 +10,14 @@ Class {
 { #category : #rendering }
 SVGEmbeddedDocumentExampleComponent >> embedSVGIn: canvas [
 	
-	self perform: embedSelector with: canvas	
+	self perform: self embedSelector with: canvas	
 ]
 
 { #category : #accessing }
 SVGEmbeddedDocumentExampleComponent >> embedSelector [
 
-	^ embedSelector
+	embedSelector isNil ifTrue: [ embedSelector := #renderEmbedOn: ].
+	^ embedSelector 
 ]
 
 { #category : #accessing }

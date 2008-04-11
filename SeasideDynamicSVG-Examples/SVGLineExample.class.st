@@ -19,21 +19,20 @@ SVGLineExample >> children [
 	^Array with: lineExample
 ]
 
+{ #category : #rendering }
+SVGLineExample >> description [
+
+	^ ''
+]
+
 { #category : #'initialize-release' }
-SVGLineExample >> initialize [
+SVGLineExample >> initializeChildren [
 	
-	super initialize.
 	lineExample := SVGLineTest new
 ]
 
 { #category : #rendering }
-SVGLineExample >> renderContentOn: html [ 
+SVGLineExample >> title [
 
-	html
-		div: [html heading: 'SVG line example'].
-	html render: lineExample.
-	
-	"IE annoying click and activate workaround"
-	"it must be an external js file, just put the file on your apache root!"
-	html html: '<script type="text/javascript" src="/iefix.js"></script>'
+	^ 'SVG line example'
 ]
