@@ -1,6 +1,6 @@
 Class {
-	#name : #SVGLineExample,
-	#superclass : #SVGExample,
+	#name : #SVGXLineApplication,
+	#superclass : #SVGXApplication,
 	#instVars : [
 		'lineExample'
 	],
@@ -8,31 +8,30 @@ Class {
 }
 
 { #category : #accessing }
-SVGLineExample class >> description [
+SVGXLineApplication class >> description [
 
 	^ 'Shows some graphics primitives'
 ]
 
 { #category : #'instance creation' }
-SVGLineExample class >> path [
+SVGXLineApplication class >> path [
 	
 	^'SVG/lines'
 ]
 
 { #category : #accessing }
-SVGLineExample >> children [
+SVGXLineApplication >> children [
 	
 	^Array with: lineExample
 ]
 
 { #category : #'initialize-release' }
-SVGLineExample >> initializeChildren [
-	
-	lineExample := SVGLineTest new
+SVGXLineApplication >> initializeChildren [
+	lineExample := SVGXLineTest new
 ]
 
 { #category : #rendering }
-SVGLineExample >> title [
+SVGXLineApplication >> title [
 
 	^ 'SVG line example'
 ]

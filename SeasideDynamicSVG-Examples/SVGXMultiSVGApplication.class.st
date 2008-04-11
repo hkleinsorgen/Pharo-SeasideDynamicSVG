@@ -1,6 +1,6 @@
 Class {
-	#name : #SVGMultiSVGExample,
-	#superclass : #SVGExample,
+	#name : #SVGXMultiSVGApplication,
+	#superclass : #SVGXApplication,
 	#instVars : [
 		'lineExample',
 		'smiley'
@@ -9,32 +9,31 @@ Class {
 }
 
 { #category : #accessing }
-SVGMultiSVGExample class >> description [ 
+SVGXMultiSVGApplication class >> description [ 
 	
 	^ 'Multiple SVG components on a single page' 
 ]
 
 { #category : #'class initialization' }
-SVGMultiSVGExample class >> path [
+SVGXMultiSVGApplication class >> path [
 
 	^ 'SVG/MultiSVG'
 ]
 
 { #category : #accessing }
-SVGMultiSVGExample >> children [
+SVGXMultiSVGApplication >> children [
 	^ Array 
 		with: smiley
 		with: lineExample
 ]
 
 { #category : #'initialize-release' }
-SVGMultiSVGExample >> initializeChildren [
-
-	smiley := SVGSmiley new.
-	lineExample := SVGLineTest new
+SVGXMultiSVGApplication >> initializeChildren [
+	smiley := SVGXSmiley new.
+	lineExample := SVGXLineTest new
 ]
 
 { #category : #rendering }
-SVGMultiSVGExample >> title [
+SVGXMultiSVGApplication >> title [
 	^ 'Multiple SVGs'
 ]

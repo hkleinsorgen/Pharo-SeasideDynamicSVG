@@ -1,6 +1,6 @@
 Class {
-	#name : #SVGSmileyExample,
-	#superclass : #SVGExample,
+	#name : #SVGXSmileyApplication,
+	#superclass : #SVGXApplication,
 	#instVars : [
 		'smiley'
 	],
@@ -8,30 +8,29 @@ Class {
 }
 
 { #category : #accessing }
-SVGSmileyExample class >> description [
+SVGXSmileyApplication class >> description [
 
 	^ 'Demonstrates callbacks and various embedding/inlining methods' 
 ]
 
 { #category : #'instance creation' }
-SVGSmileyExample class >> path [
+SVGXSmileyApplication class >> path [
 	
 	^'SVG/smiley'
 ]
 
 { #category : #accessing }
-SVGSmileyExample >> children [
+SVGXSmileyApplication >> children [
 	^ Array with: smiley
 ]
 
 { #category : #'initialize-release' }
-SVGSmileyExample >> initializeChildren [
-
-	smiley := SVGSmiley new
+SVGXSmileyApplication >> initializeChildren [
+	smiley := SVGXSmiley new
 ]
 
 { #category : #rendering }
-SVGSmileyExample >> title [
+SVGXSmileyApplication >> title [
 
 	^ 'SVG + callback example' 
 ]

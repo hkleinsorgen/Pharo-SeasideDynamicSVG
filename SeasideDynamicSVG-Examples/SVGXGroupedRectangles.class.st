@@ -1,11 +1,11 @@
 Class {
-	#name : #SVGGroupedRectangles,
-	#superclass : #SVGExampleDocument,
+	#name : #SVGXGroupedRectangles,
+	#superclass : #SVGXExample,
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
 { #category : #drawing }
-SVGGroupedRectangles >> drawSVGContentOn: svg [ 
+SVGXGroupedRectangles >> drawSVGContentOn: svg [ 
 
 	| extent mid |
 	mid := (self width / 2) @ (self height / 2).

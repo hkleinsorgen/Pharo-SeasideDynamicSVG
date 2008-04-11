@@ -1,5 +1,5 @@
 Class {
-	#name : #SVGExample,
+	#name : #SVGXApplication,
 	#superclass : #WAComponent,
 	#instVars : [
 		'embedSelector'
@@ -8,19 +8,19 @@ Class {
 }
 
 { #category : #'class initialization' }
-SVGExample class >> initialize [
+SVGXApplication class >> initialize [
 	
 	self register
 ]
 
 { #category : #'class initialization' }
-SVGExample class >> path [
+SVGXApplication class >> path [
 
 	^ nil
 ]
 
 { #category : #'class initialization' }
-SVGExample class >> register [
+SVGXApplication class >> register [
 	
 	| app |
 	self path notNil
@@ -32,33 +32,33 @@ SVGExample class >> register [
 ]
 
 { #category : #'class initialization' }
-SVGExample class >> registerAll [
+SVGXApplication class >> registerAll [
 	"self registerAll"	
 
 	self allSubclasses do: [ : sc | sc register ]
 ]
 
 { #category : #rendering }
-SVGExample >> description [
+SVGXApplication >> description [
 
 	^ self class description
 ]
 
 { #category : #accessing }
-SVGExample >> embedSelector [
+SVGXApplication >> embedSelector [
 
 	^ embedSelector
 ]
 
 { #category : #accessing }
-SVGExample >> embedSelector: aSelector [
+SVGXApplication >> embedSelector: aSelector [
 
 	embedSelector := aSelector.
 	self children do: [ : child | child embedSelector: aSelector ]
 ]
 
 { #category : #initialization }
-SVGExample >> initialize [
+SVGXApplication >> initialize [
 
 	super initialize.
 	self initializeChildren.
@@ -66,20 +66,20 @@ SVGExample >> initialize [
 ]
 
 { #category : #initialization }
-SVGExample >> initializeChildren [
+SVGXApplication >> initializeChildren [
 
 	self subclassResponsibility 
 ]
 
 { #category : #rendering }
-SVGExample >> renderActionsOn: html [ 
+SVGXApplication >> renderActionsOn: html [ 
 
 	self renderEmbedSelectorsOn: html.
 
 ]
 
 { #category : #rendering }
-SVGExample >> renderContentOn: html [ 
+SVGXApplication >> renderContentOn: html [ 
 	html div: 
 		[ html heading
 			level: 2 ;
@@ -93,7 +93,7 @@ SVGExample >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-SVGExample >> renderEmbedSelector: aSelector text: text on: canvas [ 
+SVGXApplication >> renderEmbedSelector: aSelector text: text on: canvas [ 
 
 	canvas anchor
 		callback: [ self embedSelector: aSelector];
@@ -104,7 +104,7 @@ SVGExample >> renderEmbedSelector: aSelector text: text on: canvas [
 ]
 
 { #category : #rendering }
-SVGExample >> renderEmbedSelectorsOn: html [
+SVGXApplication >> renderEmbedSelectorsOn: html [
 
 	html div class: 'toolbar';
 		with: [
@@ -121,7 +121,7 @@ SVGExample >> renderEmbedSelectorsOn: html [
 ]
 
 { #category : #rendering }
-SVGExample >> style [ 
+SVGXApplication >> style [ 
 
 ^ '
 body {
@@ -171,13 +171,13 @@ div.toolbar {
 ]
 
 { #category : #rendering }
-SVGExample >> title [
+SVGXApplication >> title [
 
 	self subclassResponsibility 
 ]
 
 { #category : #rendering }
-SVGExample >> updateRoot: aRoot [
+SVGXApplication >> updateRoot: aRoot [
 	super updateRoot: aRoot.
 	aRoot htmlAttributes at: 'xmlns:svg' put: 'http://www.w3.org/2000/svg'
 ]

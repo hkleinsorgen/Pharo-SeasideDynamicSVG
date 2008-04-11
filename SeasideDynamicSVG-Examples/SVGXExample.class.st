@@ -1,5 +1,5 @@
 Class {
-	#name : #SVGExampleDocument,
+	#name : #SVGXExample,
 	#superclass : #SVGEmbeddedDocumentComponent,
 	#instVars : [
 		'embedSelector'
@@ -7,34 +7,46 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
+{ #category : #accessing }
+SVGXExample >> defaultHeight [
+	
+	^ 300
+]
+
+{ #category : #accessing }
+SVGXExample >> defaultWidth [
+	
+	^ 500
+]
+
 { #category : #rendering }
-SVGExampleDocument >> embedSVGIn: canvas [
+SVGXExample >> embedSVGIn: canvas [
 	
 	self perform: self embedSelector with: canvas	
 ]
 
 { #category : #accessing }
-SVGExampleDocument >> embedSelector [
+SVGXExample >> embedSelector [
 
 	embedSelector isNil ifTrue: [ embedSelector := #renderEmbedOn: ].
 	^ embedSelector 
 ]
 
 { #category : #accessing }
-SVGExampleDocument >> embedSelector: aSymbol [
+SVGXExample >> embedSelector: aSymbol [
 
 	embedSelector := aSymbol
 ]
 
 { #category : #'initialize-release' }
-SVGExampleDocument >> initialize [
+SVGXExample >> initialize [
 	
 	super initialize.
 	embedSelector := #renderEmbedOn:
 ]
 
 { #category : #rendering }
-SVGExampleDocument >> renderContentOn: canvas [ 
+SVGXExample >> renderContentOn: canvas [ 
 
 	canvas div 
 		style: 'padding: 1em';

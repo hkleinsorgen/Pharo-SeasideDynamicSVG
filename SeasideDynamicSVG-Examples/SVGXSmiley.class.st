@@ -1,6 +1,6 @@
 Class {
-	#name : #SVGSmiley,
-	#superclass : #SVGExampleDocument,
+	#name : #SVGXSmiley,
+	#superclass : #SVGXExample,
 	#instVars : [
 		'fillColor',
 		'message',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #actions }
-SVGSmiley >> beGreen [
+SVGXSmiley >> beGreen [
 	
 	fillColor contents: Color green.
 	self resetEyes.
@@ -20,21 +20,26 @@ SVGSmiley >> beGreen [
 ]
 
 { #category : #actions }
-SVGSmiley >> beRed [
+SVGXSmiley >> beRed [
 	
 	fillColor contents: Color red.
 	self resetEyes
 ]
 
 { #category : #actions }
-SVGSmiley >> beYellow [
+SVGXSmiley >> beYellow [
 	
 	fillColor contents: Color yellow.
 	self resetEyes
 ]
 
+{ #category : #accessing }
+SVGXSmiley >> center [
+	^ (self width / 2) @ (self height / 2)
+]
+
 { #category : #drawing }
-SVGSmiley >> drawBackgroundOn: svg [ 
+SVGXSmiley >> drawBackgroundOn: svg [ 
 
 	 svg rectangle
 		opacity: [:attr | attr opacity: 0.6];
@@ -45,18 +50,28 @@ SVGSmiley >> drawBackgroundOn: svg [
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawFaceOn: svg center: center radius: radius [
-	(svg circle)
-		paint: [:attr | attr stroke: Color black; strokeWidth: 3; fill: self fillColor];
-		opacity: [:attr | attr fillOpacity: 0.8; opacity: 0.6];
-		center: center;
-		radius: radius
+SVGXSmiley >> drawFaceOn: svg [ 
+	svg circle
+		paint: 
+			[ : attr | 
+			attr
+				stroke: Color black ;
+				strokeWidth: 3 ;
+				fill: self fillColor ] ;
+		opacity: 
+			[ : attr | 
+			attr
+				fillOpacity: 0.8 ;
+				opacity: 0.6 ] ;
+		center: self center ;
+		radius: self radius
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
-	
-	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop |
+SVGXSmiley >> drawHappyMouthOn: svg [ 
+	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop radius center |
+	radius := self radius.
+	center := self center.
 	mouthXRadius := radius * 0.8.
 	mouthWidth := radius * 0.2.
 	path := svg path.
@@ -66,27 +81,36 @@ SVGSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
 	innerStop := outerStop - (mouthWidth @ 0).
 	path moveTo: outerStart.
 	path lineTo: innerStart.
-	path
+	path 
 		arcTo: innerStop
-		radius: ((innerStop x - innerStart x) // 2) @ (radius - innerStart x)
+		radius: ((innerStop x - innerStart x) // 2) @ (mouthXRadius - mouthWidth)
 		rotation: 0
 		large: false
 		sweep: false.
 	path lineTo: outerStop.
-	path
+	path 
 		arcTo: outerStart
-		radius: ((outerStop x - outerStart x) // 2) @ (radius - outerStart x)
+		radius: ((outerStop x - outerStart x) // 2) @ mouthXRadius 
 		rotation: 0
 		large: false
 		sweep: true.
 	path closePath.
-	path 
-		paint: [:attr | attr fill: Color white;	stroke: self strokeColor; strokeWidth: 2];
-		opacity: [:attr | attr fillOpacity: 0.8; strokeOpacity: 1].
+	path
+		paint: 
+			[ : attr | 
+			attr
+				fill: Color white ;
+				stroke: self strokeColor ;
+				strokeWidth: 2 ] ;
+		opacity: 
+			[ : attr | 
+			attr
+				fillOpacity: 0.8 ;
+				strokeOpacity: 1 ]
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius [ 
+SVGXSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius [ 
 	svg anchor
 		callback: [ self hitLeftEye ] ;
 		target: '_top' ;
@@ -103,24 +127,18 @@ SVGSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eye
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [ 
-
+SVGXSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [ 
 	svg anchor
-		callback: [self hitMouth];
-		target: '_top';
-		with: [happiness contents > 0.5
-				ifTrue: [self
-						drawHappyMouthOn: svg
-						faceCenter: center
-						faceRadius: radius]
-				ifFalse: [self
-						drawUnhappyMouthOn: svg
-						faceCenter: center
-						faceRadius: radius]]
+		callback: [ self hitMouth ] ;
+		target: '_top' ;
+		with: 
+			[ happiness contents > 0.5 
+				ifTrue: [ self drawHappyMouthOn: svg ]
+				ifFalse: [ self drawUnhappyMouthOn: svg ] ]
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius [ 
+SVGXSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius [ 
 	svg anchor
 		callback: [ self hitRightEye ] ;
 		target: '_top' ;
@@ -137,49 +155,41 @@ SVGSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: ey
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawSVGContentOn: svg [ 
-	| center radius eyeRadius eyeDistance eyeliner |
+SVGXSmiley >> drawSVGContentOn: svg [ 
+	| eyeRadius eyeDistance |
 	self drawBackgroundOn: svg.
-
-	" face "
-	center := (self width / 2) @ (self height / 2).
-	radius := (self width min: self height) / 2.2.
-	self 
-		drawFaceOn: svg
-		center: center
-		radius: radius.
+	self drawFaceOn: svg.
 
 	" eyes "
-	eyeRadius := radius / 6.
-	eyeDistance := radius / 3.
-	eyeliner := self fillColor 
-		alphaMixed: 0.3
-		with: Color black.
+	eyeRadius := self radius / 6.
+	eyeDistance := self radius / 3.
 	self 
 		drawLeftEyeOn: svg
-		center: center
+		center: self center
 		distance: eyeDistance
 		radius: eyeRadius.
 	self 
 		drawRightEyeOn: svg
-		center: center
+		center: self center
 		distance: eyeDistance
 		radius: eyeRadius.
 
 	" mouth "
 	self 
 		drawMouthOn: svg
-		faceCenter: center
-		faceRadius: radius
+		faceCenter: self center
+		faceRadius: self radius
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
-	
-	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop yOffset |
+SVGXSmiley >> drawUnhappyMouthOn: svg [ 
+	| mouthXRadius path mouthWidth outerStart outerStop innerStart innerStop yOffset center radius sadness |
+	center := self center.
+	radius := self radius.
 	mouthXRadius := radius * 0.5.
-	mouthWidth := radius * 0.05.
+	mouthWidth := radius * 0.10.
 	yOffset := mouthXRadius.
+	sadness := 0.5.
 	path := svg path.
 	outerStart := center - (mouthXRadius @ 0) + (0 @ yOffset).
 	outerStop := center + (mouthXRadius @ 0) + (0 @ yOffset).
@@ -187,34 +197,42 @@ SVGSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 	innerStop := outerStop + (mouthWidth negated @ mouthWidth).
 	path moveTo: outerStart.
 	path lineTo: innerStart.
-	path
+	path 
 		arcTo: innerStop
-		radius: ((innerStop x - innerStart x) / 2) @ (radius - innerStart x)
+		radius: ((innerStop x - innerStart x) / 2) @ ((mouthXRadius - mouthWidth) * sadness)
 		rotation: 0
 		large: false
 		sweep: true.
 	path lineTo: outerStop.
-	path
+	path 
 		arcTo: outerStart
-		radius: ((outerStop x - outerStart x) / 2) @ (radius - outerStart x)
+		radius: ((outerStop x - outerStart x) / 2) @ (mouthXRadius * sadness)
 		rotation: 0
 		large: false
 		sweep: false.
 	path closePath.
-	path 
-		paint: [: paint | paint fill: Color white; stroke: self strokeColor; strokeWidth: 2];
-		opacity: [: opacity | opacity fillOpacity: 0.7; strokeOpacity: 1].
-		
+	path
+		paint: 
+			[ : paint | 
+			paint
+				fill: Color white ;
+				stroke: self strokeColor ;
+				strokeWidth: 2 ] ;
+		opacity: 
+			[ : opacity | 
+			opacity
+				fillOpacity: 0.7 ;
+				strokeOpacity: 1 ]
 ]
 
 { #category : #accessing }
-SVGSmiley >> fillColor [
+SVGXSmiley >> fillColor [
 	
 	^fillColor contents
 ]
 
 { #category : #actions }
-SVGSmiley >> hitLeftEye [
+SVGXSmiley >> hitLeftEye [
 	
 	message contents: 'Ouch, you hit my left eye!'.
 	leftEyeColor contents: 'rgb(64,0,255)'.
@@ -222,14 +240,14 @@ SVGSmiley >> hitLeftEye [
 ]
 
 { #category : #actions }
-SVGSmiley >> hitMouth [
+SVGXSmiley >> hitMouth [
 	
 	self resetEyes.
 	message contents: 'thanks for feeding me!'
 ]
 
 { #category : #actions }
-SVGSmiley >> hitRightEye [
+SVGXSmiley >> hitRightEye [
 	
 	message contents: 'Ouch, you hit my right eye!'.
 	rightEyeColor contents: 'rgb(80,20,255)'.
@@ -237,7 +255,7 @@ SVGSmiley >> hitRightEye [
 ]
 
 { #category : #initialization }
-SVGSmiley >> initialize [
+SVGXSmiley >> initialize [
 	
 	super initialize.
 	fillColor := WAValueHolder new.
@@ -249,8 +267,15 @@ SVGSmiley >> initialize [
 	self beYellow
 ]
 
+{ #category : #accessing }
+SVGXSmiley >> radius [
+
+	^ (self width min: self height) / 2.2.
+
+]
+
 { #category : #rendering }
-SVGSmiley >> renderActionsOn: canvas [
+SVGXSmiley >> renderActionsOn: canvas [
 	
 	(canvas anchor)
 		callback: [self beYellow];
@@ -268,7 +293,7 @@ SVGSmiley >> renderActionsOn: canvas [
 ]
 
 { #category : #rendering }
-SVGSmiley >> renderContentOn: canvas [ 
+SVGXSmiley >> renderContentOn: canvas [ 
 
 	super renderContentOn: canvas .
 	message contents notNil
@@ -282,7 +307,7 @@ SVGSmiley >> renderContentOn: canvas [
 ]
 
 { #category : #actions }
-SVGSmiley >> resetEyes [
+SVGXSmiley >> resetEyes [
 	
 	message contents: 'Everything''s shiny'.
 	leftEyeColor contents: Color white.
@@ -291,7 +316,7 @@ SVGSmiley >> resetEyes [
 ]
 
 { #category : #accessing }
-SVGSmiley >> states [
+SVGXSmiley >> states [
 	
 	| states |
 	states := OrderedCollection new.
@@ -305,7 +330,7 @@ SVGSmiley >> states [
 ]
 
 { #category : #accessing }
-SVGSmiley >> strokeColor [
+SVGXSmiley >> strokeColor [
 
 	^self fillColor alphaMixed: 0.3 with: Color black
 ]
