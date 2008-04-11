@@ -14,7 +14,7 @@ Class {
 { #category : #actions }
 SVGSmiley >> beGreen [
 	
-	fillColor contents: 'rgb(64,255,64)'.
+	fillColor contents: Color green.
 	self resetEyes.
 	message contents: 'It''s not easy to be green'
 ]
@@ -22,22 +22,33 @@ SVGSmiley >> beGreen [
 { #category : #actions }
 SVGSmiley >> beRed [
 	
-	fillColor contents: 'rgb(255,64,64)'.
+	fillColor contents: Color red.
 	self resetEyes
 ]
 
 { #category : #actions }
 SVGSmiley >> beYellow [
 	
-	fillColor contents: 'rgb(255,255,0)'.
+	fillColor contents: Color yellow.
 	self resetEyes
+]
+
+{ #category : #drawing }
+SVGSmiley >> drawBackgroundOn: svg [ 
+
+	 svg rectangle
+		opacity: [:attr | attr opacity: 0.6];
+		paint: [:attr | attr fill: (self fillColor alphaMixed: 0.5 with: Color lightBlue) ; stroke: Color black; strokeWidth: 3];
+		width: self width ;
+		height: self height.
+
 ]
 
 { #category : #drawing }
 SVGSmiley >> drawFaceOn: svg center: center radius: radius [
 	(svg circle)
 		paint: [:attr | attr stroke: Color black; strokeWidth: 3; fill: self fillColor];
-		opacity: [:attr | attr fillOpacity: 0.5; opacity: 0.6];
+		opacity: [:attr | attr fillOpacity: 0.8; opacity: 0.6];
 		center: center;
 		radius: radius
 ]
@@ -69,18 +80,26 @@ SVGSmiley >> drawHappyMouthOn: svg faceCenter: center faceRadius: radius [
 		large: false
 		sweep: true.
 	path closePath.
-	path paint: [:attr | attr fill: Color white;	stroke: Color black; strokeWidth: 2]
+	path 
+		paint: [:attr | attr fill: Color white;	stroke: self strokeColor; strokeWidth: 2];
+		opacity: [:attr | attr fillOpacity: 0.8; strokeOpacity: 1].
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
-
+SVGSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: eyeRadius [ 
 	svg anchor
-		callback: [self hitLeftEye];
-		target: '_top';
-		with: [svg circle center: center - (eyeDistance @ eyeDistance);
-				 radius: eyeRadius;
-				 paint: [:attr | attr fill: leftEyeColor contents; stroke: eyeliner; strokeWidth: 2]]
+		callback: [ self hitLeftEye ] ;
+		target: '_top' ;
+		with: 
+			[ svg circle
+				center: center - (eyeDistance @ eyeDistance) ;
+				radius: eyeRadius ;
+				paint: 
+					[ : attr | 
+					attr
+						fill: leftEyeColor contents ;
+						stroke: self strokeColor ;
+						strokeWidth: 2 ] ]
 ]
 
 { #category : #drawing }
@@ -101,26 +120,27 @@ SVGSmiley >> drawMouthOn: svg faceCenter: center faceRadius: radius [
 ]
 
 { #category : #drawing }
-SVGSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius eyeliner: eyeliner [ 
-
+SVGSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: eyeRadius [ 
 	svg anchor
-		callback: [self hitRightEye];
-		target: '_top';
-		with: [svg circle center: center + (eyeDistance @ eyeDistance negated);
-				 radius: eyeRadius;
-				 paint: [:attr | attr fill: rightEyeColor contents; stroke: eyeliner; strokeWidth: 2];
-				 opacity: [:attr | attr opacity: 0.6]]
+		callback: [ self hitRightEye ] ;
+		target: '_top' ;
+		with: 
+			[ svg circle
+				center: center + (eyeDistance @ eyeDistance negated) ;
+				radius: eyeRadius ;
+				paint: 
+					[ : attr | 
+					attr
+						fill: rightEyeColor contents ;
+						stroke: self strokeColor ;
+						strokeWidth: 2 ] ]
 ]
 
 { #category : #drawing }
 SVGSmiley >> drawSVGContentOn: svg [ 
 	| center radius eyeRadius eyeDistance eyeliner |
-	 svg rectangle
-		opacity: [:attr | attr opacity: 0.6];
-		paint: [:attr | attr fill: Color orange ; stroke: Color black; strokeWidth: 3];
-		width: self width ;
-		height: self height.
-		
+	self drawBackgroundOn: svg.
+
 	" face "
 	center := (self width / 2) @ (self height / 2).
 	radius := (self width min: self height) / 2.2.
@@ -132,25 +152,25 @@ SVGSmiley >> drawSVGContentOn: svg [
 	" eyes "
 	eyeRadius := radius / 6.
 	eyeDistance := radius / 3.
-	eyeliner := Color black.
+	eyeliner := self fillColor 
+		alphaMixed: 0.3
+		with: Color black.
 	self 
 		drawLeftEyeOn: svg
 		center: center
 		distance: eyeDistance
-		radius: eyeRadius
-		eyeliner: eyeliner.
+		radius: eyeRadius.
 	self 
 		drawRightEyeOn: svg
 		center: center
 		distance: eyeDistance
-		radius: eyeRadius
-		eyeliner: eyeliner.
+		radius: eyeRadius.
 
 	" mouth "
 	self 
 		drawMouthOn: svg
 		faceCenter: center
-		faceRadius: radius 
+		faceRadius: radius
 ]
 
 { #category : #drawing }
@@ -181,7 +201,9 @@ SVGSmiley >> drawUnhappyMouthOn: svg faceCenter: center faceRadius: radius [
 		large: false
 		sweep: false.
 	path closePath.
-	path paint: [:attr | attr fill: Color white;	stroke: Color black; strokeWidth: 2]
+	path 
+		paint: [: paint | paint fill: Color white; stroke: self strokeColor; strokeWidth: 2];
+		opacity: [: opacity | opacity fillOpacity: 0.7; strokeOpacity: 1].
 		
 ]
 
@@ -282,4 +304,10 @@ SVGSmiley >> states [
 		add: rightEyeColor;
 		add: happiness.
 	^states
+]
+
+{ #category : #accessing }
+SVGSmiley >> strokeColor [
+
+	^self fillColor alphaMixed: 0.3 with: Color black
 ]
