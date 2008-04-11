@@ -1,5 +1,5 @@
 Class {
 	#name : #SVGType,
-	#superclass : #Object,
+	#superclass : #WAValueHolder,
 	#category : #'SeasideDynamicSVG-Core'
 }

@@ -12,17 +12,17 @@ Class {
 
 { #category : #'accessing-transform' }
 SVGTag >> addRotation: aNumber [
-	self transformList add: (SVGRotationType on: aNumber)
+	self transformList add: (SVGRotationType with: aNumber)
 ]
 
 { #category : #'accessing-transform' }
 SVGTag >> addScale: aPointOrNumber [
-	self transformList add: (SVGScaleType on: aPointOrNumber)
+	self transformList add: (SVGScaleType with: aPointOrNumber)
 ]
 
 { #category : #'accessing-transform' }
 SVGTag >> addTranslation: aPointOrNumber [
-	self transformList add: (SVGTranslationType on: aPointOrNumber)
+	self transformList add: (SVGTranslationType with: aPointOrNumber)
 ]
 
 { #category : #'accessing-attributes' }
