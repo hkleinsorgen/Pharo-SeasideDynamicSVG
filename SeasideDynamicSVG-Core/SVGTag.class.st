@@ -4,10 +4,26 @@ Class {
 	#instVars : [
 		'paint',
 		'opacity',
-		'attributeSets'
+		'attributeSets',
+		'transformList'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
+
+{ #category : #'accessing-transform' }
+SVGTag >> addRotation: aNumber [
+	self transformList add: (SVGRotationType on: aNumber)
+]
+
+{ #category : #'accessing-transform' }
+SVGTag >> addScale: aPointOrNumber [
+	self transformList add: (SVGScaleType on: aPointOrNumber)
+]
+
+{ #category : #'accessing-transform' }
+SVGTag >> addTranslation: aPointOrNumber [
+	self transformList add: (SVGTranslationType on: aPointOrNumber)
+]
 
 { #category : #'accessing-attributes' }
 SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [
@@ -63,4 +79,10 @@ SVGTag >> paint: aBlock [
 SVGTag >> style: aString value: value [
 	
 	self attributes addStyle: aString , ':' , value displayString
+]
+
+{ #category : #accessing }
+SVGTag >> transformList [
+	transformList ifNil: [transformList := OrderedCollection new].
+	^transformList
 ]
