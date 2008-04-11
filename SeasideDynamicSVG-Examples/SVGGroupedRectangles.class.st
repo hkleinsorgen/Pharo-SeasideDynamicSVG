@@ -24,7 +24,8 @@ SVGGroupedRectangles >> drawSVGContentOn: svg [
 				extent: extent.
 			 svg rectangle
 				origin: (mid x + 10)@10;
-				extent: extent.
+				extent: extent;
+				cornerRadius: 20@20.
 		].
 	svg group 
 		paint: [ : paint | paint fill: Color orange; stroke: Color red ]; 
@@ -34,7 +35,8 @@ SVGGroupedRectangles >> drawSVGContentOn: svg [
 				extent: extent.
 			 svg rectangle
 				origin: mid + (10@10);
-				extent: extent.
+				extent: extent;
+				cornerRadius: 20@20.
 		].
 
 ]
