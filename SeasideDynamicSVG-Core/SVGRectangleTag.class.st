@@ -5,6 +5,28 @@ Class {
 }
 
 { #category : #attributes }
+SVGRectangleTag >> cornerRadius: aPoint [
+
+	self cornerRadiusX: aPoint x.
+	self cornerRadiusY: aPoint y.
+
+]
+
+{ #category : #attributes }
+SVGRectangleTag >> cornerRadiusX: aNumber [
+	
+	self attributeAt: 'rx' put: aNumber svgAttributeValue.
+
+]
+
+{ #category : #attributes }
+SVGRectangleTag >> cornerRadiusY: aNumber [
+	
+	self attributeAt: 'ry' put: aNumber svgAttributeValue.
+
+]
+
+{ #category : #attributes }
 SVGRectangleTag >> extent: aPoint [
 	
 	self width: aPoint x.

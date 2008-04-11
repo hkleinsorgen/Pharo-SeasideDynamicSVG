@@ -6,12 +6,25 @@ Class {
 
 { #category : #accessing }
 SVGCircleTag >> center: aPoint [
+
+	self centerX: aPoint x.
+	self centerY: aPoint y.
+]
+
+{ #category : #accessing }
+SVGCircleTag >> centerX: aNumber [
 	self
 		attributeAt: 'cx'
-		put: aPoint x svgAttributeValue.
+		put: aNumber svgAttributeValue.
+
+]
+
+{ #category : #accessing }
+SVGCircleTag >> centerY: aNumber [
 	self
 		attributeAt: 'cy'
-		put: aPoint y svgAttributeValue
+		put: aNumber svgAttributeValue.
+
 ]
 
 { #category : #accessing }
