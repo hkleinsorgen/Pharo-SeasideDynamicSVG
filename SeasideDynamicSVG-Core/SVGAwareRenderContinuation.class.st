@@ -1,29 +1,11 @@
 Class {
 	#name : #SVGAwareRenderContinuation,
 	#superclass : #WARenderContinuation,
+	#instVars : [
+		'registeredHandlers'
+	],
 	#category : #'SeasideDynamicSVG-Core'
 }
-
-{ #category : #processing }
-SVGAwareRenderContinuation >> handleRequest: aRequest [
-	
-	| newContinuation |
-	aRequest isXmlHttpRequest
-		ifTrue: [self session onRespond: [:r | states snapshot]].
-	self withNotificationHandler: [self processCallbacks: aRequest].
-	newContinuation := (self isSVGRequest: aRequest)
-		ifTrue: [self newSVGRenderContinuation]
-		ifFalse:
-			[(self shouldRedirect: aRequest)
-				ifTrue: [self newRedirectContinuation]
-				ifFalse: [self newRenderContinuation]].
-	newContinuation run
-]
-
-{ #category : #processing }
-SVGAwareRenderContinuation >> isSVGRequest: aRequest [
-	^aRequest includesKey: 'svg'
-]
 
 { #category : #creational }
 SVGAwareRenderContinuation >> newContext [
@@ -35,18 +17,24 @@ SVGAwareRenderContinuation >> newContext [
 ]
 
 { #category : #processing }
-SVGAwareRenderContinuation >> newSVGRenderContinuation [
-	
-	^SVGRenderContinuation root: self root
-]
-
-{ #category : #processing }
 SVGAwareRenderContinuation >> processRendering: aResponse [
 
 	super processRendering: aResponse.
+	" remember document handlers, so that they can be expired later when this contination expires "
+	registeredHandlers isNil
+		ifTrue: [registeredHandlers := context registeredHandlers]
+		ifFalse: [registeredHandlers addAll: context registeredHandlers].
 	context containsInlinedSVG
 		ifTrue: [ 
 			" mozilla requires XML... IE will not like that "
 			aResponse beXML
 		]
+]
+
+{ #category : #processing }
+SVGAwareRenderContinuation >> svgExpired [
+	" this continuation has been remove from the contination store.
+	time to release the documents "
+	
+	registeredHandlers notNil ifTrue: [ registeredHandlers do: [ : handler | handler expire ] ]
 ]
