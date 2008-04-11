@@ -82,6 +82,11 @@ SVGTag >> style: aString value: value [
 ]
 
 { #category : #accessing }
+SVGTag >> transform: aBlock [
+	aBlock value: self transformList
+]
+
+{ #category : #accessing }
 SVGTag >> transformList [
 	transformList ifNil: [transformList := OrderedCollection new].
 	^transformList
