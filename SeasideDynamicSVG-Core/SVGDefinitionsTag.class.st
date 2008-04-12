@@ -1,11 +1,11 @@
 Class {
-	#name : #SVGReferencedElementsTag,
+	#name : #SVGDefinitionsTag,
 	#superclass : #SVGTag,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGReferencedElementsTag >> tag [
+SVGDefinitionsTag >> tag [
 
 	^ 'defs'
 ]

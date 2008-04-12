@@ -1,11 +1,24 @@
 Class {
-	#name : #SVGWorldTransformedTextBrush,
-	#superclass : #SVGTextBrush,
+	#name : #SVGGlyphBrush,
+	#superclass : #SVGTag,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> glyphPositions: somePoints [
+SVGGlyphBrush >> format: aString [
+
+	self attributeAt: 'format' put: aString
+]
+
+{ #category : #'convenience-glyph reference' }
+SVGGlyphBrush >> glyphID: anID [ 
+	" ID of the a referenced glyph "
+
+	self url: '#' , anID toSVGString
+]
+
+{ #category : #accessing }
+SVGGlyphBrush >> glyphPositions: somePoints [
 
 	| xstr ystr |
 	xstr := String new writeStream.
@@ -21,27 +34,31 @@ SVGWorldTransformedTextBrush >> glyphPositions: somePoints [
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> position: aPoint [
+SVGGlyphBrush >> glyphRef: aString [ 
+	" hkl: from the w3c spec 
+		'The glyph identifier, the format of which is dependent on the format of the given font.' 
+	so is it an 'identifier', a 'reference' or a 'format' ? "
+	self 
+		attributeAt: 'glyph-ref'
+		put: aString
+]
+
+{ #category : #accessing }
+SVGGlyphBrush >> position: aPoint [
 
 	self x: aPoint x.
 	self y: aPoint y.
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> rotate: aString [
-
-	self attributeAt: 'rotate' put: aString
-]
-
-{ #category : #accessing }
-SVGWorldTransformedTextBrush >> shift: aPoint [
+SVGGlyphBrush >> shift: aPoint [
 
 	self shiftX: aPoint x.
 	self shiftY: aPoint y.
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> shiftGlyphsBy: somePoints [ 
+SVGGlyphBrush >> shiftGlyphsBy: somePoints [ 
 	| xstr ystr |
 	xstr := String new writeStream.
 	ystr := String new writeStream.
@@ -58,25 +75,32 @@ SVGWorldTransformedTextBrush >> shiftGlyphsBy: somePoints [
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> shiftX: aNumberOrString [
+SVGGlyphBrush >> shiftX: aNumberOrString [
 
 	self attributeAt: 'dx' put: aNumberOrString
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> shiftY: aNumberOrString [
+SVGGlyphBrush >> shiftY: aNumberOrString [
 
 	self attributeAt: 'dy' put: aNumberOrString
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> x: aNumberOrString [
+SVGGlyphBrush >> url: anURIOrString [
+	" URI of a glyph or alternative glyph definition "
+
+	self attributes at: 'xlink:href' put: anURIOrString
+]
+
+{ #category : #accessing }
+SVGGlyphBrush >> x: aNumberOrString [
 
 	self attributeAt: 'x' put: aNumberOrString
 ]
 
 { #category : #accessing }
-SVGWorldTransformedTextBrush >> y: aNumberOrString [
+SVGGlyphBrush >> y: aNumberOrString [
 
 	self attributeAt: 'y' put: aNumberOrString
 ]

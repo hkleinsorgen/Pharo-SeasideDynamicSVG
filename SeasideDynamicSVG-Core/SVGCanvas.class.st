@@ -15,6 +15,35 @@ SVGCanvas class >> context: aRenderingContext callbacks: aCallbackStore [
 			aCallbackStore
 ]
 
+{ #category : #'tags-text' }
+SVGCanvas >> alternativeGlyph [
+	^ self brush: SVGAlternativeGlyphTag new
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> alternativeGlyphDefinition [
+
+	^ self brush: (WAGenericTag tag: 'altGlyphDef')
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> alternativeGlyphDefinition: aBlock [
+
+	^ self alternativeGlyphDefinition with: aBlock
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> alternativeGlyphItem [
+
+	^ self brush: (WAGenericTag tag: 'altGlyphItem')
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> alternativeGlyphItem: aBlock [
+
+	^ self alternativeGlyphItem with: aBlock
+]
+
 { #category : #tags }
 SVGCanvas >> anchor [
 	
@@ -42,6 +71,16 @@ SVGCanvas >> context [
 ]
 
 { #category : #tags }
+SVGCanvas >> definitions [
+	^ self brush: SVGDefinitionsTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> definitions: aBlock [ 
+	^ self definitions with: aBlock
+]
+
+{ #category : #tags }
 SVGCanvas >> description [
 
 	^ self brush: SVGDescriptionTag new
@@ -64,6 +103,12 @@ SVGCanvas >> document [
 SVGCanvas >> ellipse [
 	
 	^self brush: SVGEllipseTag new
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> glyphReference [
+
+	^self brush: SVGGlyphReferenceTag new
 ]
 
 { #category : #tags }
@@ -114,18 +159,6 @@ SVGCanvas >> polyline [
 { #category : #'initialize-release' }
 SVGCanvas >> rectangle [
 	^ self brush: SVGRectangleTag new
-]
-
-{ #category : #tags }
-SVGCanvas >> referencedElements [
-	
-	^self brush: SVGReferencedElementsTag new
-]
-
-{ #category : #tags }
-SVGCanvas >> referencedElements: aBlock [
-	
-	^self referencedElements with: aBlock
 ]
 
 { #category : #public }

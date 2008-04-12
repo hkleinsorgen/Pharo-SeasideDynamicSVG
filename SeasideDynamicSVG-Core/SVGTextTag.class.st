@@ -16,6 +16,12 @@ SVGTextTag >> leftToRightTopToBottom [
 	self writingMode: 'lr-tb'
 ]
 
+{ #category : #'conveience-whitespace' }
+SVGTextTag >> preserveWhitespace [
+
+	self whitespace: 'preserve'
+]
+
 { #category : #'convenience-writing mode' }
 SVGTextTag >> rightToLeft [
 
@@ -44,6 +50,12 @@ SVGTextTag >> topToBottom [
 SVGTextTag >> topToBottomRightToLeft [
 
 	self writingMode: 'tb-rl'
+]
+
+{ #category : #accessing }
+SVGTextTag >> whitespace: aString [
+
+	self attributeAt: 'xml:space' put: aString
 ]
 
 { #category : #accessing }
