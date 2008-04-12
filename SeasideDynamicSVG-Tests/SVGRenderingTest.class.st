@@ -73,7 +73,6 @@ SVGRenderingTest >> testSmileyRendering [
 
 { #category : #testing }
 SVGRenderingTest >> testTransformRendering [
-| aTag |
-aTag := SVGRectangleTag new transform: [:t | t rotate: 90].
-aTag with: nil
+	"should be rendered on a real SVGCanvas"
+	(SVGRectangleTag new transform: [:t | t rotate: 90; scale: 2]) transformList toSVGString = 'rotate(90) scale(2)'
 ]
