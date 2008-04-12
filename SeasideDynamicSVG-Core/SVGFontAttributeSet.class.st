@@ -63,12 +63,6 @@ SVGFontAttributeSet >> lighter [
 	self weight: 'lighter'
 ]
 
-{ #category : #'convenience-decoration' }
-SVGFontAttributeSet >> lineThrough [ 
-
-	self textDecoration: 'line-through'
-]
-
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> narrower [
 	self stretch: 'narrower'
@@ -77,12 +71,6 @@ SVGFontAttributeSet >> narrower [
 { #category : #'convenience-style' }
 SVGFontAttributeSet >> oblique [
 	self style: 'oblique'
-]
-
-{ #category : #'convenience-decoration' }
-SVGFontAttributeSet >> overline [ 
-
-	self textDecoration: 'overline'
 ]
 
 { #category : #'convenience-stretch' }
@@ -129,12 +117,6 @@ SVGFontAttributeSet >> style: aString [
 		put: aString svgAttributeValue
 ]
 
-{ #category : #accessing }
-SVGFontAttributeSet >> textDecoration: aString [
-
-	self attributeAt: 'text-decoration' put: aString svgAttributeValue
-]
-
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> ultraCondensed [
 	self stretch: 'ultra-condensed'
@@ -143,12 +125,6 @@ SVGFontAttributeSet >> ultraCondensed [
 { #category : #'convenience-stretch' }
 SVGFontAttributeSet >> ultraExpanded [
 	self stretch: 'ultra-expanded'
-]
-
-{ #category : #'convenience-decoration' }
-SVGFontAttributeSet >> underline [ 
-
-	self textDecoration: 'underline'
 ]
 
 { #category : #accessing }

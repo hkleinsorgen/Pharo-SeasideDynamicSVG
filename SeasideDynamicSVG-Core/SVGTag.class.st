@@ -2,8 +2,6 @@ Class {
 	#name : #SVGTag,
 	#superclass : #WATagBrush,
 	#instVars : [
-		'paint',
-		'opacity',
 		'attributeSets',
 		'transformList'
 	],

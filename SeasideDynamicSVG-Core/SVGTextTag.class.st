@@ -1,9 +1,6 @@
 Class {
 	#name : #SVGTextTag,
 	#superclass : #SVGTag,
-	#instVars : [
-		'font'
-	],
 	#category : #'SeasideDynamicSVG-Core'
 }
 
