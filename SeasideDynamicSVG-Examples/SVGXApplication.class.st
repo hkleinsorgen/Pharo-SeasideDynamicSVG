@@ -87,9 +87,7 @@ SVGXApplication >> renderContentOn: html [
 		html text: self description ].
 	self renderActionsOn: html.
 	self children do: [ : child | html render: child ].
-	"IE annoying click and activate workaround"
-	"it must be an external js file, just put the file on your apache root!"
-	html html: '<script type="text/javascript" src="/iefix.js"></script>'
+
 ]
 
 { #category : #rendering }

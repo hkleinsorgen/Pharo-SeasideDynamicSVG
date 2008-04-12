@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SVGXExample >> defaultHeight [
 	
-	^ 400
+	^ 300
 ]
 
 { #category : #accessing }
