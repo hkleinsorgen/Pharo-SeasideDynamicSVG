@@ -31,6 +31,20 @@ SVGTag >> attributeSetAt: attributeSetClass [
 	^ attributeSets at: attributeSetClass ifAbsentPut: [ attributeSetClass brush: self ]
 ]
 
+{ #category : #'as yet unclassified' }
+SVGTag >> closeTag [
+	"Close the receiving tag onto the document."
+
+	| fullTag |
+	self isClosed
+		ifFalse: [
+			fullTag := canvas context containsInlinedSVG
+				ifTrue: [canvas context userAgentAdaptor fullTagForInlinedSVGTag: self tag]
+				ifFalse: [self tag].
+			self document closeTag: fullTag
+		]
+]
+
 { #category : #'accessing-attribute sets' }
 SVGTag >> opacity [
 	^ self attributeSetAt: SVGOpacityAttributeSet
@@ -42,12 +56,13 @@ SVGTag >> opacity: aBlock [
 ]
 
 { #category : #public }
-SVGTag >> openTagTest [
-	"mabye try in the future to use an extra namespace e.g. svg:tag to make inline svg possible for IE"
-	"doesnt work with xhtml doctype"
-	canvas context containsInlinedSVG
-		ifTrue: [self document openTag: 'svg:', self tag attributes: attributes closed: self isClosed]
-		ifFalse: [self document openTag: self tag attributes: attributes closed: self isClosed]
+SVGTag >> openTag [
+
+	| fullTag |
+	fullTag := canvas context containsInlinedSVG
+		ifTrue: [ canvas context userAgentAdaptor fullTagForInlinedSVGTag: self tag ]
+		ifFalse: [ self tag ].
+	self document openTag: fullTag attributes: attributes closed: self isClosed.
 	
 ]
 
