@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGXTextPath,
-	#superclass : #SVGXExample,
+	#superclass : #SVGXText,
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
@@ -31,12 +31,23 @@ SVGXTextPath >> drawSVGContentOn: svg [
 			curveWithAll: (Array with: 800@100  with: 900@100 with: 900@100).
 	].
 	svg use elementID: pathID; paint: [ : paint | paint stroke: Color red; fill: nil ].
-	svg textShape
-		font: [ : font | font family: 'Verdana, sans-serif'; size: 36 ];
-		paint: [ : paint | paint fill: Color cyan; stroke: Color blue];
+	svg anchor 
+		target: '_top';
+		callback: [ self nextMessage ];
 		with: [ 
-			svg textPath
-				pathID: pathID;
-				with: [ svg text: 'Row, row, row your boat, gently down the stream'].
+			svg textShape
+				font: [ : font | font family: 'Verdana, sans-serif'; size: 36 ];
+				paint: [ : paint | paint fill: Color cyan; stroke: Color blue];
+				with: [ 
+					svg textPath
+						pathID: pathID;
+						with: [ svg text: self currentMessage].
+				].
 		].
+]
+
+{ #category : #accessing }
+SVGXTextPath >> messages [
+
+	^ #('Row, row, row your boat, gently down the stream' 'Merrily, merrily, merrily, merrily, life is but a dream')
 ]

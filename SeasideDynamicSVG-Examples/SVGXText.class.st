@@ -1,8 +1,17 @@
 Class {
 	#name : #SVGXText,
 	#superclass : #SVGXExample,
+	#instVars : [
+		'messageIndex'
+	],
 	#category : #'SeasideDynamicSVG-Examples'
 }
+
+{ #category : #accessing }
+SVGXText >> currentMessage [
+
+	^ self messages at: messageIndex contents
+]
 
 { #category : #accessing }
 SVGXText >> defaultWidth [
@@ -13,14 +22,44 @@ SVGXText >> defaultWidth [
 { #category : #drawing }
 SVGXText >> drawSVGContentOn: svg [ 
 
-	svg textShape
-		font: [ : font | font family: 'Verdana, sans-serif'; size: 48 ];
-		paint: [ : paint | paint fill: Color red; stroke: Color blue];
-		position: 10@70;
-		with: [ 
-			svg textSpan
-				paint: [ : paint | paint fill: Color cyan ];
-				with: [ svg text: 'Space'].
-			svg text: ' for rent'
+	svg anchor 
+		target: '_top';
+		callback: [ self nextMessage ];
+		with: [ 	
+			svg textShape
+				font: [ : font | font family: 'Verdana, sans-serif'; size: 48 ];
+				paint: [ : paint | paint fill: Color red; stroke: Color blue];
+				position: 10@70;
+					with: [ 
+						svg textSpan
+							paint: [ : paint | paint fill: Color cyan ];
+							with: [ svg text: 'Space'].
+						svg text: (self currentMessage).
+					].
 		].
+]
+
+{ #category : #initialization }
+SVGXText >> initialize [
+
+	super initialize.
+	messageIndex := WAValueHolder with: 1.
+]
+
+{ #category : #accessing }
+SVGXText >> messages [
+
+	^ #(' for rent' ' - the final frontier' ' Invaders')
+]
+
+{ #category : #actions }
+SVGXText >> nextMessage [
+
+	messageIndex contents: (messageIndex contents \\ self messages size) + 1.
+]
+
+{ #category : #initialization }
+SVGXText >> states [
+
+	^ Array with: messageIndex
 ]
