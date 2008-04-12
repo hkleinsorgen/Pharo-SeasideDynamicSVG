@@ -9,26 +9,37 @@ Class {
 
 { #category : #creational }
 SVGAwareRenderContinuation >> newContext [
-	
-	^(SVGAwareRenderingContext new)
-		session: self session;
-		actionUrl: self url;
+	| adaptor |
+	adaptor := self request svgRequiresIEWorkarounds 
+		ifTrue: [ SVGAdobeIEPluginAdaptor new ]
+		ifFalse: [ SVGStandardsCompliantBrowserAdaptor new ].
+	^ SVGAwareRenderingContext new
+		userAgentAdaptor: adaptor;
+		session: self session ;
+		actionUrl: self url ;
 		yourself
 ]
 
 { #category : #processing }
-SVGAwareRenderContinuation >> processRendering: aResponse [
-
-	super processRendering: aResponse.
-	" remember document handlers, so that they can be expired later when this contination expires "
-	registeredHandlers isNil
-		ifTrue: [registeredHandlers := context registeredHandlers]
-		ifFalse: [registeredHandlers addAll: context registeredHandlers].
-	context containsInlinedSVG
+SVGAwareRenderContinuation >> processRendering: aResponse [ 
+	| document htmlRoot |
+	document := self newDocumentOn: aResponse.
+	context document: document.
+	htmlRoot := self newHtmlRoot.
+	document open: htmlRoot.
+	self root decorationChainDo: [ : each | each renderWithContext: context ].
+	context userAgentAdaptor writeFooterOn: document.
+	self writeOnLoadOn: document.
+	document close: htmlRoot.
+	context release.
+	registeredHandlers isNil 
 		ifTrue: [ 
-			" mozilla requires XML... IE will not like that "
-			aResponse beXML
+			" remember document handlers, so that they can be expired later when this contination expires "
+			registeredHandlers := context registeredHandlers
 		]
+		ifFalse: [ registeredHandlers addAll: context registeredHandlers ].
+	context containsInlinedSVG 
+		ifTrue: [ context userAgentAdaptor prepareResponseForInlinedSVG: aResponse ]
 ]
 
 { #category : #processing }
@@ -37,4 +48,11 @@ SVGAwareRenderContinuation >> svgExpired [
 	time to release the documents "
 	
 	registeredHandlers notNil ifTrue: [ registeredHandlers do: [ : handler | handler expire ] ]
+]
+
+{ #category : #updating }
+SVGAwareRenderContinuation >> updateRoot: aHtmlRoot [
+
+	super updateRoot: aHtmlRoot.
+	self context userAgentAdaptor updateHTMLRoot: aHtmlRoot
 ]
