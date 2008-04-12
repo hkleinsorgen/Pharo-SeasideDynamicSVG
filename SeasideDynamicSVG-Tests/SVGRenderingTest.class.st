@@ -70,3 +70,10 @@ SVGRenderingTest >> testLineRendering [
 SVGRenderingTest >> testSmileyRendering [
 	self renderComponent: (SVGXSmiley new).
 ]
+
+{ #category : #testing }
+SVGRenderingTest >> testTransformRendering [
+| aTag |
+aTag := SVGRectangleTag new transform: [:t | t rotate: 90].
+aTag with: nil
+]
