@@ -138,3 +138,14 @@ SVGCanvas >> textShape [
 SVGCanvas >> textShape: aBlock [
 	^self textShape with: aBlock
 ]
+
+{ #category : #'tags-graphics primitives' }
+SVGCanvas >> textSpan [
+
+	^self brush: SVGTextSpanTag new
+]
+
+{ #category : #'tags-graphics primitives' }
+SVGCanvas >> textSpan: aBlock [
+	^self textSpan with: aBlock
+]
