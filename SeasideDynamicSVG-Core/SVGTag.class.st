@@ -8,21 +8,6 @@ Class {
 	#category : #'SeasideDynamicSVG-Core'
 }
 
-{ #category : #'accessing-transform' }
-SVGTag >> addRotation: aNumber [
-	self transformList add: (SVGRotationType with: aNumber)
-]
-
-{ #category : #'accessing-transform' }
-SVGTag >> addScale: aPointOrNumber [
-	self transformList add: (SVGScaleType with: aPointOrNumber)
-]
-
-{ #category : #'accessing-transform' }
-SVGTag >> addTranslation: aPointOrNumber [
-	self transformList add: (SVGTranslationType with: aPointOrNumber)
-]
-
 { #category : #'accessing-attributes' }
 SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [ 
 	^ super 
@@ -91,4 +76,13 @@ SVGTag >> transform: aBlock [
 SVGTag >> transformList [
 	transformList ifNil: [transformList := SVGTransformList new].
 	^transformList
+]
+
+{ #category : #public }
+SVGTag >> with: aBlock [ 
+	transformList isNil
+		ifFalse: [self attributes 
+					at: 'transform'
+					put: transformList toSVGString].
+	super with: aBlock
 ]
