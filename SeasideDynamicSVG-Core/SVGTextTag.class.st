@@ -16,14 +16,26 @@ SVGTextTag >> adjustSpacingAndGlyphs [
 	self lengthAdjust: 'spacingAndGlyphs'
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-attribute sets' }
 SVGTextTag >> font [
 	^ self attributeSetAt: SVGFontAttributeSet
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-attribute sets' }
 SVGTextTag >> font: aBlock [
 	aBlock value: self font
+]
+
+{ #category : #'convenience-writing mode' }
+SVGTextTag >> leftToRight [
+
+	self writingMode: 'lr'
+]
+
+{ #category : #'convenience-writing mode' }
+SVGTextTag >> leftToRightTopToBottom [
+
+	self writingMode: 'lr-tb'
 ]
 
 { #category : #accessing }
@@ -37,6 +49,18 @@ SVGTextTag >> position: aPoint [
 
 	self x: aPoint x.
 	self y: aPoint y.
+]
+
+{ #category : #'convenience-writing mode' }
+SVGTextTag >> rightToLeft [
+
+	self writingMode: 'rl'
+]
+
+{ #category : #'convenience-writing mode' }
+SVGTextTag >> rightToLeftTopToBottom [
+
+	self writingMode: 'rl-tb'
 ]
 
 { #category : #accessing }
@@ -70,10 +94,41 @@ SVGTextTag >> tag [
 	^ 'text'
 ]
 
+{ #category : #'accessing-attribute sets' }
+SVGTextTag >> textContent [
+
+	^ self attributeSetAt: SVGTextContentAttributeSet
+]
+
+{ #category : #'accessing-attribute sets' }
+SVGTextTag >> textContent: aBlock [
+
+	^ aBlock value: self textContent
+]
+
 { #category : #accessing }
 SVGTextTag >> textLength: aNumber [
 
 	self attributeAt: 'textLength' put: aNumber
+]
+
+{ #category : #'convenience-writing mode' }
+SVGTextTag >> topToBottom [
+
+	self writingMode: 'tb'
+]
+
+{ #category : #'convenience-writing mode' }
+SVGTextTag >> topToBottomRightToLeft [
+
+	self writingMode: 'tb-rl'
+]
+
+{ #category : #accessing }
+SVGTextTag >> writingMode: aString [
+	" also see SVGTextContentAttributeSet, #unicodeBidirectional: and #direction:"
+	
+	self attributeAt: 'writing-mode' put: aString
 ]
 
 { #category : #accessing }

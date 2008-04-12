@@ -1,3 +1,15 @@
+"
+A set of related attributes of a tag.
+
+Currently, the attribute set wraps a brush. Maybe this could be done with traits, but this would have a serious impact on portability. 
+
+Instance Variables
+	brush:		<SVGTag>
+
+brush
+	- the wrapped tag brush. all attributes will be added to this brush.
+
+"
 Class {
 	#name : #SVGAttributeSet,
 	#superclass : #Object,

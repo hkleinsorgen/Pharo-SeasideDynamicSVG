@@ -36,19 +36,21 @@ SVGTag >> attributeAt: aKey put: aValue [
 	^ super attributeAt: aKey put: aValue svgAttributeValue
 ]
 
-{ #category : #'accessing-attribute sets' }
+{ #category : #private }
 SVGTag >> attributeSetAt: attributeSetClass [ 
 
+	" hkl: maybe this could be done with traits. however, this would have a serious impact on portability. "
+	
 	attributeSets isNil ifTrue: [ attributeSets := Dictionary new].
 	^ attributeSets at: attributeSetClass ifAbsentPut: [ attributeSetClass brush: self ]
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-attribute sets' }
 SVGTag >> opacity [
 	^ self attributeSetAt: SVGOpacityAttributeSet
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-attribute sets' }
 SVGTag >> opacity: aBlock [
 	aBlock value: self opacity
 ]
@@ -63,12 +65,12 @@ SVGTag >> openTagTest [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-attribute sets' }
 SVGTag >> paint [
 	^ self attributeSetAt: SVGPaintAttributeSet
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing-attribute sets' }
 SVGTag >> paint: aBlock [
 	aBlock value: self paint
 ]

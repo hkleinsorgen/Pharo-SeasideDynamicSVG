@@ -106,6 +106,13 @@ SVGTextContentAttributeSet >> bidirectionalOverride [
 ]
 
 { #category : #accessing }
+SVGTextContentAttributeSet >> decoration: aString [ 
+	self 
+		attributeAt: 'text-decoration'
+		put: aString
+]
+
+{ #category : #accessing }
 SVGTextContentAttributeSet >> direction: aString [
 	" note: For the 'direction' property to have any effect, the 'unicode-bidi' property's value must be 'embed' or 'bidi-override'. "
 	
@@ -268,15 +275,13 @@ SVGTextContentAttributeSet >> letterSpacing: aNumberWithOptionalUnit [
 ]
 
 { #category : #'convenience-decoration' }
-SVGTextContentAttributeSet >> lineThrough [ 
-
-	self textDecoration: 'line-through'
+SVGTextContentAttributeSet >> lineThrough [
+	self decoration: 'line-through'
 ]
 
 { #category : #'convenience-decoration' }
-SVGTextContentAttributeSet >> overline [ 
-
-	self textDecoration: 'overline'
+SVGTextContentAttributeSet >> overline [
+	self decoration: 'overline'
 ]
 
 { #category : #'convenience-direction' }
@@ -310,16 +315,9 @@ SVGTextContentAttributeSet >> textAnchorStart [
 	self textAnchor: 'start'
 ]
 
-{ #category : #accessing }
-SVGTextContentAttributeSet >> textDecoration: aString [
-
-	self attributeAt: 'text-decoration' put: aString
-]
-
 { #category : #'convenience-decoration' }
-SVGTextContentAttributeSet >> underline [ 
-
-	self textDecoration: 'underline'
+SVGTextContentAttributeSet >> underline [
+	self decoration: 'underline'
 ]
 
 { #category : #accessing }
