@@ -85,13 +85,12 @@ SVGRootTag >> version: aString [
 ]
 
 { #category : #accessing }
-SVGRootTag >> viewbox: aRectangleOrString [
-
+SVGRootTag >> viewBox: aRectangleOrString [ 
 	| str viewport |
-	viewport := aRectangleOrString isString
+	viewport := aRectangleOrString isString 
 		ifTrue: [ aRectangleOrString ]
-		ifFalse: [
-			str := String new writeStream.
+		ifFalse: 
+			[ str := String new writeStream.
 			str nextPutAll: aRectangleOrString left toSVGString.
 			str nextPut: $,.
 			str nextPutAll: aRectangleOrString top toSVGString.
@@ -99,9 +98,10 @@ SVGRootTag >> viewbox: aRectangleOrString [
 			str nextPutAll: aRectangleOrString width toSVGString.
 			str nextPut: $,.
 			str nextPutAll: aRectangleOrString height toSVGString.
-			str contents
-		].
-	self attributeAt: 'viewbox' put: viewport .
+			str contents ].
+	self 
+		attributeAt: 'viewBox'
+		put: viewport
 ]
 
 { #category : #accessing }

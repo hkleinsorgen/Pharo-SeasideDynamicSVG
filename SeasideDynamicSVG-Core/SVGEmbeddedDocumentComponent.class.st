@@ -27,7 +27,7 @@ Class {
 		'drawable',
 		'width',
 		'height',
-		'viewbox'
+		'viewBox'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
@@ -47,9 +47,8 @@ SVGEmbeddedDocumentComponent >> defaultHeight [
 ]
 
 { #category : #accessing }
-SVGEmbeddedDocumentComponent >> defaultViewbox [
+SVGEmbeddedDocumentComponent >> defaultViewBox [
 	" rectangle or SVG compatible viewbox string "
-
 	^ nil
 ]
 
@@ -104,7 +103,7 @@ SVGEmbeddedDocumentComponent >> initialize [
 	super initialize.
 	width := self defaultWidth.
 	height := self defaultHeight.
-	viewbox := self defaultViewbox
+	viewBox := self defaultViewBox
 ]
 
 { #category : #rendering }
@@ -166,7 +165,7 @@ SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> setAttributesOfRootTag: svgTag [ 
-	self viewbox notNil ifTrue: [ svgTag viewbox: self viewbox ]
+	self viewBox notNil ifTrue: [ svgTag viewBox: self viewBox ]
 ]
 
 { #category : #rendering }
@@ -176,17 +175,15 @@ SVGEmbeddedDocumentComponent >> updateSVGRoot: aSVGRoot [
 ]
 
 { #category : #accessing }
-SVGEmbeddedDocumentComponent >> viewbox [
+SVGEmbeddedDocumentComponent >> viewBox [
 	" rectangle or SVG compatible viewbox string "
-	
-	^ viewbox
+	^ viewBox
 ]
 
 { #category : #accessing }
-SVGEmbeddedDocumentComponent >> viewbox: aViewbox [
+SVGEmbeddedDocumentComponent >> viewBox: aViewbox [ 
 	" rectangle or SVG compatible viewbox string "
-
-	viewbox := aViewbox
+	viewBox := aViewbox
 ]
 
 { #category : #accessing }
