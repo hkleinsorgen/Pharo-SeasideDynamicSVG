@@ -23,7 +23,7 @@ SVGRootTag >> drawWith: aBlock [
 { #category : #attributes }
 SVGRootTag >> height: aHeight [
 
-	self attributeAt: 'height' put: aHeight svgAttributeValue.
+	self attributeAt: 'height' put: aHeight .
 ]
 
 { #category : #initialization }
@@ -57,7 +57,7 @@ SVGRootTag >> tag [
 { #category : #attributes }
 SVGRootTag >> width: aWidth [
 
-	self attributeAt: 'width' put: aWidth svgAttributeValue.
+	self attributeAt: 'width' put: aWidth .
 ]
 
 { #category : #public }

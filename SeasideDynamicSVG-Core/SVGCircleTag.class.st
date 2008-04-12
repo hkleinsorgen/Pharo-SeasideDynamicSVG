@@ -15,7 +15,7 @@ SVGCircleTag >> center: aPoint [
 SVGCircleTag >> centerX: aNumber [
 	self
 		attributeAt: 'cx'
-		put: aNumber svgAttributeValue.
+		put: aNumber .
 
 ]
 
@@ -23,14 +23,14 @@ SVGCircleTag >> centerX: aNumber [
 SVGCircleTag >> centerY: aNumber [
 	self
 		attributeAt: 'cy'
-		put: aNumber svgAttributeValue.
+		put: aNumber .
 
 ]
 
 { #category : #accessing }
 SVGCircleTag >> radius: aNumber [
 	
-	self attributeAt: 'r' put: aNumber svgAttributeValue
+	self attributeAt: 'r' put: aNumber 
 ]
 
 { #category : #private }

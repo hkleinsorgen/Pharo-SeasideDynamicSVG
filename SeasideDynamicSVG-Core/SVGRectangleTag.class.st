@@ -15,14 +15,14 @@ SVGRectangleTag >> cornerRadius: aPoint [
 { #category : #attributes }
 SVGRectangleTag >> cornerRadiusX: aNumber [
 	
-	self attributeAt: 'rx' put: aNumber svgAttributeValue.
+	self attributeAt: 'rx' put: aNumber .
 
 ]
 
 { #category : #attributes }
 SVGRectangleTag >> cornerRadiusY: aNumber [
 	
-	self attributeAt: 'ry' put: aNumber svgAttributeValue.
+	self attributeAt: 'ry' put: aNumber .
 
 ]
 
@@ -61,13 +61,13 @@ SVGRectangleTag >> width: aNumber [
 { #category : #attributes }
 SVGRectangleTag >> x: aNumber [
 	
-	self attributeAt: 'x' put: aNumber svgAttributeValue.
+	self attributeAt: 'x' put: aNumber .
 
 ]
 
 { #category : #attributes }
 SVGRectangleTag >> y: aNumber [
 	
-	self attributeAt: 'y' put: aNumber svgAttributeValue.
+	self attributeAt: 'y' put: aNumber .
 
 ]

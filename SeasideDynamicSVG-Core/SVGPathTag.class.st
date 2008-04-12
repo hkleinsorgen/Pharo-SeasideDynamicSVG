@@ -12,11 +12,11 @@ SVGPathTag >> addPointToPath: aPoint [
 	
 	self attributes
 		at: 'd'
-		append: aPoint x svgAttributeValue
+		append: aPoint x 
 		separator: ' '.
 	self attributes
 		at: 'd'
-		append: aPoint y svgAttributeValue
+		append: aPoint y 
 		separator: ','
 ]
 

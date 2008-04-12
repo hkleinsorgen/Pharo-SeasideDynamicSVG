@@ -1,9 +1,8 @@
 Extension { #name : #Color }
 
 { #category : #'*SeasideDynamicSVG-Core' }
-Color >> svgAttributeValue [
+Color >> toSVGString [
 	"Color paleOrange svgAttributeValue"
-
 	| str |
 	str := String new writeStream.
 	str nextPutAll: 'rgb('.

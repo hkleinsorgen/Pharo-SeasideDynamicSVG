@@ -15,21 +15,21 @@ SVGLineTag >> tag [
 ]
 
 { #category : #accessing }
-SVGLineTag >> x1: aValue [
-	self attributeAt: 'x1'	put: aValue svgAttributeValue.
+SVGLineTag >> x1: aValue [ 
+	self attributeAt: 'x1' put: aValue
 ]
 
 { #category : #accessing }
-SVGLineTag >> x2: aValue [
-	self attributeAt: 'x2'	put: aValue svgAttributeValue.
+SVGLineTag >> x2: aValue [ 
+	self attributeAt: 'x2' put: aValue
 ]
 
 { #category : #accessing }
-SVGLineTag >> y1: aValue [
-	self attributeAt: 'y1'	put: aValue svgAttributeValue.
+SVGLineTag >> y1: aValue [ 
+	self attributeAt: 'y1' put: aValue
 ]
 
 { #category : #accessing }
-SVGLineTag >> y2: aValue [
-	self attributeAt: 'y2'	put: aValue svgAttributeValue.
+SVGLineTag >> y2: aValue [ 
+	self attributeAt: 'y2' put: aValue
 ]

@@ -24,16 +24,17 @@ SVGTag >> addTranslation: aPointOrNumber [
 ]
 
 { #category : #'accessing-attributes' }
-SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [
-
-	^ super attributeAt: aKey ifAbsentPut: [ aBlock value svgAttributeValue ]
-
+SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [ 
+	^ super 
+		attributeAt: aKey
+		ifAbsentPut: [ aBlock value toSVGString ]
 ]
 
 { #category : #'accessing-attributes' }
-SVGTag >> attributeAt: aKey put: aValue [
-
-	^ super attributeAt: aKey put: aValue svgAttributeValue
+SVGTag >> attributeAt: aKey put: aValue [ 
+	^ super 
+		attributeAt: aKey
+		put: aValue toSVGString
 ]
 
 { #category : #private }

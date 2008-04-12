@@ -6,15 +6,15 @@ Class {
 
 { #category : #accessing }
 SVGOpacityAttributeSet >> fillOpacity: anObject [
-	^ self attributeAt: 'fill-opacity' put: anObject svgAttributeValue
+	^ self attributeAt: 'fill-opacity' put: anObject 
 ]
 
 { #category : #accessing }
 SVGOpacityAttributeSet >> opacity: anObject [
-	^ self attributeAt: 'opacity' put: anObject svgAttributeValue
+	^ self attributeAt: 'opacity' put: anObject 
 ]
 
 { #category : #accessing }
 SVGOpacityAttributeSet >> strokeOpacity: anObject [
-	^ self attributeAt: 'stroke-opacity' put: anObject svgAttributeValue
+	^ self attributeAt: 'stroke-opacity' put: anObject 
 ]

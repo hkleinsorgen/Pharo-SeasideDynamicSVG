@@ -38,7 +38,7 @@ SVGFontAttributeSet >> extraExpanded [
 SVGFontAttributeSet >> family: aString [ 
 	self 
 		attributeAt: 'font-family'
-		put: aString svgAttributeValue
+		put: aString 
 ]
 
 { #category : #'convenience-style' }
@@ -49,13 +49,13 @@ SVGFontAttributeSet >> italic [
 { #category : #accessing }
 SVGFontAttributeSet >> kerning: aStringOrNumber [
 
-	self attributeAt: 'kerning' put: aStringOrNumber svgAttributeValue
+	self attributeAt: 'kerning' put: aStringOrNumber 
 ]
 
 { #category : #accessing }
 SVGFontAttributeSet >> letterSpacing: aStringOrNumber [
 
-	self attributeAt: 'letter-spacing' put: aStringOrNumber svgAttributeValue
+	self attributeAt: 'letter-spacing' put: aStringOrNumber 
 ]
 
 { #category : #'convenience-weight' }
@@ -86,7 +86,7 @@ SVGFontAttributeSet >> semiExpanded [
 { #category : #accessing }
 SVGFontAttributeSet >> size: aNumberOrString [
 
-	self attributeAt: 'font-size' put: aNumberOrString svgAttributeValue
+	self attributeAt: 'font-size' put: aNumberOrString 
 
 
 ]
@@ -95,7 +95,7 @@ SVGFontAttributeSet >> size: aNumberOrString [
 SVGFontAttributeSet >> sizeAdjust: aNumberOrString [ 
 	self 
 		attributeAt: 'font-size-adjust'
-		put: aNumberOrString svgAttributeValue
+		put: aNumberOrString 
 ]
 
 { #category : #'convenience-variant' }
@@ -107,14 +107,14 @@ SVGFontAttributeSet >> smallCaps [
 SVGFontAttributeSet >> stretch: aString [ 
 	self 
 		attributeAt: 'font-stretch'
-		put: aString svgAttributeValue
+		put: aString 
 ]
 
 { #category : #accessing }
 SVGFontAttributeSet >> style: aString [ 
 	self 
 		attributeAt: 'font-style'
-		put: aString svgAttributeValue
+		put: aString 
 ]
 
 { #category : #'convenience-stretch' }
@@ -131,14 +131,14 @@ SVGFontAttributeSet >> ultraExpanded [
 SVGFontAttributeSet >> variant: aString [ 
 	self 
 		attributeAt: 'font-variant'
-		put: aString svgAttributeValue
+		put: aString 
 ]
 
 { #category : #accessing }
 SVGFontAttributeSet >> weight: aString [ 
 	self 
 		attributeAt: 'font-weight'
-		put: aString svgAttributeValue
+		put: aString 
 ]
 
 { #category : #'convenience-font stretch' }
@@ -149,5 +149,5 @@ SVGFontAttributeSet >> wider [
 { #category : #accessing }
 SVGFontAttributeSet >> wordSpacing: aStringOrNumber [
 
-	self attributeAt: 'word-spacing' put: aStringOrNumber svgAttributeValue
+	self attributeAt: 'word-spacing' put: aStringOrNumber 
 ]

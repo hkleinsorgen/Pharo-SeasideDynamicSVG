@@ -15,7 +15,7 @@ SVGEllipseTag >> center: aPoint [
 SVGEllipseTag >> centerX: aNumber [
 	self
 		attributeAt: 'cx'
-		put: aNumber svgAttributeValue.
+		put: aNumber .
 
 ]
 
@@ -23,7 +23,7 @@ SVGEllipseTag >> centerX: aNumber [
 SVGEllipseTag >> centerY: aNumber [
 	self
 		attributeAt: 'cy'
-		put: aNumber svgAttributeValue.
+		put: aNumber .
 
 ]
 
@@ -39,7 +39,7 @@ SVGEllipseTag >> radiusX: aNumber [
 
 	self
 		attributeAt: 'rx'
-		put: aNumber svgAttributeValue.
+		put: aNumber .
 
 ]
 
@@ -48,7 +48,7 @@ SVGEllipseTag >> radiusY: aNumber [
 
 	self
 		attributeAt: 'ry'
-		put: aNumber svgAttributeValue.
+		put: aNumber .
 
 ]
 
