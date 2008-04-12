@@ -14,8 +14,13 @@ SVGXText >> defaultWidth [
 SVGXText >> drawSVGContentOn: svg [ 
 
 	svg textShape
-		font: [ : font | font family: 'Verdana, sans-serif'; size: 36 ];
+		font: [ : font | font family: 'Verdana, sans-serif'; size: 48 ];
 		paint: [ : paint | paint fill: Color red; stroke: Color blue];
 		position: 10@70;
-		with: [ svg text: 'Advertisement space for rent']
+		with: [ 
+			svg textSpan
+				paint: [ : paint | paint fill: Color cyan ];
+				with: [ svg text: 'Space'].
+			svg text: ' for rent'
+		].
 ]
