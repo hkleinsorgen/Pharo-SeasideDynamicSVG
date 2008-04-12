@@ -62,11 +62,11 @@ SVGRenderingTest >> sessionClass [
 
 { #category : #testing }
 SVGRenderingTest >> testLineRendering [
-	self renderComponent: (SVGLineTest new).
+	self renderComponent: (SVGXLineTest new).
 
 ]
 
 { #category : #testing }
 SVGRenderingTest >> testSmileyRendering [
-	self renderComponent: (SVGSmiley new).
+	self renderComponent: (SVGXSmiley new).
 ]
