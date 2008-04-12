@@ -4,8 +4,11 @@ Class {
 	#category : #'SeasideDynamicSVG-Core'
 }
 
-{ #category : #accessing }
+{ #category : #printing }
 SVGTransformList >> toSVGString [
 	"tbd"
-	^self printString
+	| resultStream |
+	resultStream := WriteStream on: String new.
+	self do: [:aType | resultStream nextPutAll: aType toSVGString] separatedBy: [resultStream nextPut: $ ].
+	^resultStream contents
 ]

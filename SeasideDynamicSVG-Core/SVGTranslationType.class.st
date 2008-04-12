@@ -3,3 +3,8 @@ Class {
 	#superclass : #SVGTransformType,
 	#category : #'SeasideDynamicSVG-Core'
 }
+
+{ #category : #accessing }
+SVGTranslationType >> attribute [
+	^'translate'
+]
