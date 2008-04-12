@@ -3,8 +3,7 @@ Class {
 	#superclass : #WARenderingContext,
 	#instVars : [
 		'containsInlinedSVG',
-		'registeredHandlers',
-		'userAgentAdaptor'
+		'registeredHandlers'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
@@ -27,7 +26,6 @@ SVGAwareRenderingContext >> initialize [
 	super initialize.
 	containsInlinedSVG := false.
 	registeredHandlers := Set new.
-
 ]
 
 { #category : #accessing }
@@ -39,16 +37,4 @@ SVGAwareRenderingContext >> registerSVGDocumentHandler: aSVGDocmentHandler [
 SVGAwareRenderingContext >> registeredHandlers [
 	
 		^ registeredHandlers 
-]
-
-{ #category : #accessing }
-SVGAwareRenderingContext >> userAgentAdaptor [
-
-	^ userAgentAdaptor
-]
-
-{ #category : #accessing }
-SVGAwareRenderingContext >> userAgentAdaptor: aUserAgentAdaptor [
-
-	userAgentAdaptor := aUserAgentAdaptor
 ]

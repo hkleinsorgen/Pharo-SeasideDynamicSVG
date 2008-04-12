@@ -21,7 +21,7 @@ WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
 	document stream: aStream.
 	docRoot open: document.
 	innerContext document: document.
-	renderer := self svgRendererClass context: innerContext callbacks: self callbacks.
+	renderer := SVGCanvas context: innerContext callbacks: self callbacks.
 	renderer render: aComponent;
 		 flush.
 	docRoot close: document.
@@ -29,13 +29,25 @@ WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
+WARenderCanvas >> renderEmbedded: aComponent [
+
+	| response |
+	response := WAResponse new.
+	response headerAt: 'Cache-Control' put: 'No-cache'.
+	self renderDocumentFor: aComponent on: response stream.
+	response beXML.
+	WACurrentSession value returnResponse: response
+]
+
+{ #category : #'*SeasideDynamicSVG-Core' }
 WARenderCanvas >> svg [
-	" Allows drawing inlined SVG "
+	" Allows drawing inlined SVG.
+	A bit nonstandard, since returns the with: block receives a SVG canvas"
 
 	| brush svg |
 	brush := SVGRootTag new.
 	self brush: brush.
-	svg := self svgRendererClass
+	svg := SVGCanvas
 		context: self context
 		callbacks: self callbacks.
 	brush svgCanvas: svg.
@@ -49,12 +61,6 @@ WARenderCanvas >> svg: aBlock [
 	A bit nonstandard, since the block receives a SVG canvas. "
 
 	self svg drawWith: [ : svgCanvas | aBlock value: svgCanvas ].
-]
-
-{ #category : #'*SeasideDynamicSVG-Core' }
-WARenderCanvas >> svgRendererClass [
-
-	^ SVGCanvas
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }

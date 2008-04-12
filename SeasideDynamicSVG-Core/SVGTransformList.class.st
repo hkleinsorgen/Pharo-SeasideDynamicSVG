@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #public }
+SVGTransformList >> matrix: aNumberList [
+	self add: (SVGMatrixType with: aNumberList)
+]
+
+{ #category : #public }
 SVGTransformList >> rotate: aNumber [
 	self add: (SVGRotationType with: aNumber)
 ]
@@ -26,7 +31,6 @@ SVGTransformList >> skewY: aNumber [
 
 { #category : #printing }
 SVGTransformList >> toSVGString [
-	"tbd"
 	| resultStream |
 	resultStream := WriteStream on: String new.
 	self do: [:aType | resultStream nextPutAll: aType toSVGString] separatedBy: [resultStream nextPut: $ ].
