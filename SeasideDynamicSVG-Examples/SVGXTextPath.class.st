@@ -5,16 +5,16 @@ Class {
 }
 
 { #category : #accessing }
-SVGXTextPath >> defaultViewbox [
+SVGXTextPath >> defaultViewBox [
 	^ Rectangle 
-		origin: 0 @ 0
+		origin: 50 @ 0
 		extent: 1000 @ 300
 ]
 
 { #category : #accessing }
 SVGXTextPath >> defaultWidth [
 	
-	^ 600
+	^ 800
 ]
 
 { #category : #drawing }
@@ -32,7 +32,7 @@ SVGXTextPath >> drawSVGContentOn: svg [
 	].
 	svg use elementID: pathID; paint: [ : paint | paint stroke: Color red; fill: nil ].
 	svg textShape
-		font: [ : font | font family: 'Verdana, sans-serif'; size: 28 ];
+		font: [ : font | font family: 'Verdana, sans-serif'; size: 36 ];
 		paint: [ : paint | paint fill: Color cyan; stroke: Color blue];
 		with: [ 
 			svg textPath

@@ -20,9 +20,22 @@ SVGXChooserApplication class >> path [
 ]
 
 { #category : #accessing }
+SVGXChooserApplication >> availableExamples [
+
+	^ SVGXExample allSubclasses asSortedCollection: [ : cl1 : cl2 | cl1 displayString <= cl2 displayString ]
+]
+
+{ #category : #accessing }
 SVGXChooserApplication >> children [
 
 	^ Set with: svgComponent
+]
+
+{ #category : #actions }
+SVGXChooserApplication >> choose: svgComponentClass [
+
+	svgComponent := svgComponentClass new.
+	svgComponent embedSelector: self embedSelector
 ]
 
 { #category : #initialization }
@@ -45,13 +58,12 @@ SVGXChooserApplication >> renderChooserOn: html [
 		with: 
 			[ html form: 
 				[ html select
-					list: SVGXExample allSubclasses ;
+					list: self availableExamples;
 					selected: svgComponent class ;
 					beSubmitOnChange ;
-					callback: 
-						[ : svgComponentClass | 
-						svgComponent := svgComponentClass new.
-						svgComponent embedSelector: self embedSelector ] ] ]
+					callback: [ : svgComponentClass | self choose: svgComponentClass ] 
+				]
+			]
 ]
 
 { #category : #accessing }
