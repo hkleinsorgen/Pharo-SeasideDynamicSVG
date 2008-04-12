@@ -256,9 +256,9 @@ SVGTextContentAttributeSet >> glyphOrientationVertical: angleString [
 ]
 
 { #category : #accessing }
-SVGTextContentAttributeSet >> kerning: aNumberWithOptionalUnit [
+SVGTextContentAttributeSet >> kerning: aLengthValue [
 
-	self attributeAt: 'kerning' put: aNumberWithOptionalUnit
+	self attributeAt: 'kerning' put: aLengthValue
 ]
 
 { #category : #'convenience-direction' }
@@ -269,9 +269,9 @@ SVGTextContentAttributeSet >> leftToRight [
 ]
 
 { #category : #accessing }
-SVGTextContentAttributeSet >> letterSpacing: aNumberWithOptionalUnit [
+SVGTextContentAttributeSet >> letterSpacing: aLengthValue [
 
-	self attributeAt: 'letter-spacing' put: aNumberWithOptionalUnit
+	self attributeAt: 'letter-spacing' put: aLengthValue
 ]
 
 { #category : #'convenience-decoration' }
@@ -328,7 +328,7 @@ SVGTextContentAttributeSet >> unicodeBidirectional: aString [
 ]
 
 { #category : #accessing }
-SVGTextContentAttributeSet >> wordWpacing: aNumberWithOptionalUnit [
+SVGTextContentAttributeSet >> wordWpacing: aLengthValue [
 
-	self attributeAt: 'word-spacing' put: aNumberWithOptionalUnit
+	self attributeAt: 'word-spacing' put: aLengthValue
 ]

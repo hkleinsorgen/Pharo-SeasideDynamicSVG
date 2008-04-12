@@ -1,10 +1,33 @@
+"
+SVGEmbeddedDocumentComponent adds some common functionality that is useful when rendering SVG, in particular with regard to switching between embedding and inlining.
+
+Instance Variables
+	drawable:		<Object>
+	height:		<Object>
+	viewport:		<Object>
+	width:		<Object>
+
+drawable
+	- xxxxx
+
+height
+	- xxxxx
+
+viewport
+	- xxxxx
+
+width
+	- xxxxx
+
+"
 Class {
 	#name : #SVGEmbeddedDocumentComponent,
 	#superclass : #WAComponent,
 	#instVars : [
 		'drawable',
 		'width',
-		'height'
+		'height',
+		'viewbox'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
@@ -21,6 +44,13 @@ SVGEmbeddedDocumentComponent class >> on: aSVGDrawable [
 SVGEmbeddedDocumentComponent >> defaultHeight [
 	
 	^ 300
+]
+
+{ #category : #accessing }
+SVGEmbeddedDocumentComponent >> defaultViewbox [
+	" rectangle or SVG compatible viewbox string "
+
+	^ nil
 ]
 
 { #category : #accessing }
@@ -60,13 +90,21 @@ SVGEmbeddedDocumentComponent >> drawable: aDrawable [
 { #category : #accessing }
 SVGEmbeddedDocumentComponent >> height [
 	
-	^height ifNil: [self defaultHeight]
+	^height 
 ]
 
 { #category : #accessing }
 SVGEmbeddedDocumentComponent >> height: aHeight [
 	
 	height := aHeight
+]
+
+{ #category : #'initialize-release' }
+SVGEmbeddedDocumentComponent >> initialize [
+	super initialize.
+	width := self defaultWidth.
+	height := self defaultHeight.
+	viewbox := self defaultViewbox
 ]
 
 { #category : #rendering }
@@ -103,16 +141,16 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 ]
 
 { #category : #rendering }
-SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
+SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [ 
 	" inline as <svg> "
-	| brush |
+	| svgTag |
 	canvas html: '<object id="AdobeSVG" classid="clsid:78156a80-c6a1-4bbf-8e6a-3cd390eeb4e2"></object>
 			<?import namespace="svg" implementation="#AdobeSVG"?>'.
-	
-	brush := canvas svg.
-	self width notNil ifTrue: [ brush width: self width ].
-	self height notNil ifTrue: [ brush height: self height ].
-	brush drawWith: [ : svg | svg render: self ].
+	svgTag := canvas svg.
+	self width notNil ifTrue: [ svgTag width: self width ].
+	self height notNil ifTrue: [ svgTag height: self height ].
+	self setAttributesOfRootTag: svgTag.
+	svgTag drawWith: [ : svg | svg render: self ]
 ]
 
 { #category : #rendering }
@@ -126,10 +164,35 @@ SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 		type: SVGRoot defaultContentType.
 ]
 
+{ #category : #rendering }
+SVGEmbeddedDocumentComponent >> setAttributesOfRootTag: svgTag [ 
+	self viewbox notNil ifTrue: [ svgTag viewbox: self viewbox ]
+]
+
+{ #category : #rendering }
+SVGEmbeddedDocumentComponent >> updateSVGRoot: aSVGRoot [ 
+	super updateSVGRoot: aSVGRoot.
+	self setAttributesOfRootTag: aSVGRoot svgTag
+]
+
+{ #category : #accessing }
+SVGEmbeddedDocumentComponent >> viewbox [
+	" rectangle or SVG compatible viewbox string "
+	
+	^ viewbox
+]
+
+{ #category : #accessing }
+SVGEmbeddedDocumentComponent >> viewbox: aViewbox [
+	" rectangle or SVG compatible viewbox string "
+
+	viewbox := aViewbox
+]
+
 { #category : #accessing }
 SVGEmbeddedDocumentComponent >> width [
 	
-	^width ifNil: [self defaultWidth]
+	^width 
 ]
 
 { #category : #accessing }

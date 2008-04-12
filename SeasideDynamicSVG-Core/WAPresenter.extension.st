@@ -22,3 +22,8 @@ WAPresenter >> svgRendererClass [
 	
 	^SVGCanvas
 ]
+
+{ #category : #'*SeasideDynamicSVG-Core' }
+WAPresenter >> updateSVGRoot: aSVGRoot [
+	"This method allows you customize the <svg> section of an SVG document. "
+]

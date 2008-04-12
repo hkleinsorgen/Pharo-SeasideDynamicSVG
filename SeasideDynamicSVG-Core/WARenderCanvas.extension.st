@@ -16,6 +16,7 @@ WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
 	innerContext := self context copy.
 	docRoot := SVGRoot context: innerContext.
 	session := WACurrentSession value.
+	aComponent updateSVGRoot: docRoot.
 	document := session outputDocumentClass new.
 	document stream: aStream.
 	docRoot open: document.

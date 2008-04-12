@@ -45,51 +45,7 @@ SVGTextBrush >> lengthAdjust: aString [
 ]
 
 { #category : #accessing }
-SVGTextBrush >> position: aPoint [
-
-	self x: aPoint x.
-	self y: aPoint y.
-]
-
-{ #category : #accessing }
-SVGTextBrush >> rotate: aString [
-
-	self attributeAt: 'rotate' put: aString
-]
-
-{ #category : #accessing }
-SVGTextBrush >> shift: aPoint [
-
-	self shiftX: aPoint x.
-	self shiftY: aPoint y.
-]
-
-{ #category : #accessing }
-SVGTextBrush >> shiftX: aNumber [
-
-	self attributeAt: 'dx' put: aNumber
-]
-
-{ #category : #accessing }
-SVGTextBrush >> shiftY: aNumber [
-
-	self attributeAt: 'dy' put: aNumber
-]
-
-{ #category : #accessing }
 SVGTextBrush >> textLength: aNumber [
 
 	self attributeAt: 'textLength' put: aNumber
-]
-
-{ #category : #accessing }
-SVGTextBrush >> x: aNumber [
-
-	self attributeAt: 'x' put: aNumber
-]
-
-{ #category : #accessing }
-SVGTextBrush >> y: aNumber [
-
-	self attributeAt: 'y' put: aNumber
 ]

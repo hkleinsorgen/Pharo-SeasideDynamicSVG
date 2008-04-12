@@ -87,14 +87,14 @@ SVGPathTag >> curveWithAll: points relative: relative [
 
 { #category : #defaults }
 SVGPathTag >> defaultIsAbsolute [
-	" this default value is used when adding primitives without specifying ...relative: <aBoolean> "
+	" sets the default value used when adding primitives without specifying ...relative: <aBoolean> "
 
 	defaultRelative := false
 ]
 
 { #category : #defaults }
 SVGPathTag >> defaultIsRelative [
-	" this default value is used when adding primitives without specifying ...relative: <aBoolean> "
+	" sets the default value used when adding primitives without specifying ...relative: <aBoolean> "
 
 	defaultRelative := true
 ]

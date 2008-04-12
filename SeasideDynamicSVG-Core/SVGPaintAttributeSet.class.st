@@ -5,8 +5,9 @@ Class {
 }
 
 { #category : #accessing }
-SVGPaintAttributeSet >> color: anObject [
-	^ self attributeAt: 'color' put: anObject 
+SVGPaintAttributeSet >> color: aPaint [
+
+	^ self attributeAt: 'color' put: aPaint toSVGSPaint 
 ]
 
 { #category : #accessing }
@@ -21,7 +22,8 @@ SVGPaintAttributeSet >> colorRendering: anObject [
 
 { #category : #accessing }
 SVGPaintAttributeSet >> fill: aPaint [
-	^ self attributeAt: 'fill' put: aPaint 
+
+	^ self attributeAt: 'fill' put: aPaint toSVGSPaint
 ]
 
 { #category : #accessing }
@@ -30,8 +32,9 @@ SVGPaintAttributeSet >> fillRule: anObject [
 ]
 
 { #category : #accessing }
-SVGPaintAttributeSet >> stroke: anObject [
-	^ self attributeAt: 'stroke' put: anObject 
+SVGPaintAttributeSet >> stroke: aPaint [
+
+	^ self attributeAt: 'stroke' put: aPaint toSVGSPaint
 ]
 
 { #category : #accessing }

@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'context',
 		'docType',
-		'svgAttributes'
+		'svgAttributes',
+		'svgTag'
 	],
 	#category : #'SeasideDynamicSVG-Core'
 }
@@ -98,6 +99,7 @@ SVGRoot >> docType: aDocType [
 { #category : #'initialize-release' }
 SVGRoot >> initialize [
 	
+	svgTag := SVGRootTag new.
 	self initializeDefaults
 ]
 
@@ -105,9 +107,7 @@ SVGRoot >> initialize [
 SVGRoot >> initializeDefaults [
 	
 	self beSVG12.
-	(self svgAttributes)
-		at: 'xmlns' put: self class defaultNamespace;
-		at: 'xmlns:xlink' put: self class xlinkNamespace.
+
 ]
 
 { #category : #writing }
@@ -122,16 +122,16 @@ SVGRoot >> setContext: aRenderingContext [
 	context := aRenderingContext
 ]
 
-{ #category : #'accessing-attributes' }
-SVGRoot >> svgAttributes [
+{ #category : #accessing }
+SVGRoot >> svgTag [
 	
-	^svgAttributes ifNil: [svgAttributes := WAHtmlAttributes new]
+	^svgTag
 ]
 
 { #category : #writing }
 SVGRoot >> writeFootOn: aDocument [
 	
-	aDocument closeTag: 'svg'
+	aDocument closeTag: svgTag tag
 ]
 
 { #category : #writing }
@@ -139,5 +139,5 @@ SVGRoot >> writeHeadOn: aDocument [
 	aDocument nextPutAll: '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 '.
 	docType notNil ifTrue: [aDocument nextPutAll: docType].
-	aDocument openTag: 'svg' attributes: svgAttributes.
+	aDocument openTag: svgTag tag attributes: svgTag attributes.
 ]

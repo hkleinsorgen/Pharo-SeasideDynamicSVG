@@ -91,6 +91,11 @@ SVGCanvas >> line [
 	^self brush: SVGLineTag new
 ]
 
+{ #category : #accessing }
+SVGCanvas >> nextId [
+	^ 'id' , context advanceKey
+]
+
 { #category : #'tags-graphics primitives' }
 SVGCanvas >> path [
 	^self brush: SVGPathTag new
@@ -111,13 +116,25 @@ SVGCanvas >> rectangle [
 	^ self brush: SVGRectangleTag new
 ]
 
+{ #category : #tags }
+SVGCanvas >> referencedElements [
+	
+	^self brush: SVGReferencedElementsTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> referencedElements: aBlock [
+	
+	^self referencedElements with: aBlock
+]
+
 { #category : #public }
 SVGCanvas >> render: anObject [
 	self flush.
 	anObject drawSVGOn: self
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #public }
 SVGCanvas >> text: anObject [
 	"Emit anObject onto the target document.
 
@@ -128,24 +145,42 @@ SVGCanvas >> text: anObject [
 	self document print: anObject
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-text' }
+SVGCanvas >> textPath [
+
+	^self brush: SVGTextPathTag new
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> textReference [
+
+	^self brush: SVGTextReferenceTag new
+]
+
+{ #category : #'tags-text' }
 SVGCanvas >> textShape [
 
 	^self brush: SVGTextTag new
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-text' }
 SVGCanvas >> textShape: aBlock [
 	^self textShape with: aBlock
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-text' }
 SVGCanvas >> textSpan [
 
 	^self brush: SVGTextSpanTag new
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-text' }
 SVGCanvas >> textSpan: aBlock [
 	^self textSpan with: aBlock
+]
+
+{ #category : #tags }
+SVGCanvas >> use [
+	
+	^self brush: SVGUseTag new
 ]
