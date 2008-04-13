@@ -4,6 +4,12 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
+{ #category : #accessing }
+SVGXGradient >> defaultHeight [
+
+	^ 280
+]
+
 { #category : #drawing }
 SVGXGradient >> drawSVGContentOn: svg [ 
 

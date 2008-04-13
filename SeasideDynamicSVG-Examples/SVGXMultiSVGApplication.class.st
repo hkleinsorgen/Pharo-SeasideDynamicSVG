@@ -2,8 +2,8 @@ Class {
 	#name : #SVGXMultiSVGApplication,
 	#superclass : #SVGXApplication,
 	#instVars : [
-		'lineExample',
-		'smiley'
+		'example1',
+		'example2'
 	],
 	#category : #'SeasideDynamicSVG-Examples'
 }
@@ -11,7 +11,7 @@ Class {
 { #category : #accessing }
 SVGXMultiSVGApplication class >> description [ 
 	
-	^ 'Multiple SVG components on a single page' 
+	^ 'Two SVG components on a single page' 
 ]
 
 { #category : #'class initialization' }
@@ -23,14 +23,14 @@ SVGXMultiSVGApplication class >> path [
 { #category : #accessing }
 SVGXMultiSVGApplication >> children [
 	^ Array 
-		with: smiley
-		with: lineExample
+		with: example2
+		with: example1
 ]
 
 { #category : #'initialize-release' }
 SVGXMultiSVGApplication >> initializeChildren [
-	smiley := SVGXSmiley new.
-	lineExample := SVGXLineTest new
+	example2 := SVGXGradient new.
+	example1 := SVGXLineTest new
 ]
 
 { #category : #rendering }
