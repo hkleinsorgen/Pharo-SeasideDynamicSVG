@@ -5,6 +5,19 @@ Class {
 }
 
 { #category : #drawing }
+SVGXGroupedRectangles >> drawRectanglesOn: svg extent: extent mid: mid [
+
+	 svg rectangle
+		origin: 0@0;
+		extent: extent.
+	 svg rectangle
+		origin: mid x@0;
+		extent: extent;
+		cornerRadius: 20@20.
+
+]
+
+{ #category : #drawing }
 SVGXGroupedRectangles >> drawSVGContentOn: svg [ 
 
 	| extent mid |
@@ -18,25 +31,15 @@ SVGXGroupedRectangles >> drawSVGContentOn: svg [
 		extent: self width@self height.
 	svg group 
 		paint: [ : paint | paint fill: Color yellow; stroke: Color blue ]; 
+		transform: [ : transform | transform translate: 10.5@10.5];
 		with: [
-			 svg rectangle
-				origin: 10@10;
-				extent: extent.
-			 svg rectangle
-				origin: (mid x + 10)@10;
-				extent: extent;
-				cornerRadius: 20@20.
+			 self drawRectanglesOn: svg extent: extent mid: mid
 		].
 	svg group 
 		paint: [ : paint | paint fill: Color orange; stroke: Color red ]; 
+		transform: [ : transform | transform translate: 10.5@(mid y + 10.5)];
 		with: [
-			 svg rectangle
-				origin: 10@(mid y + 10);
-				extent: extent.
-			 svg rectangle
-				origin: mid + (10@10);
-				extent: extent;
-				cornerRadius: 20@20.
+			 self drawRectanglesOn: svg extent: extent mid: mid
 		].
 
 ]

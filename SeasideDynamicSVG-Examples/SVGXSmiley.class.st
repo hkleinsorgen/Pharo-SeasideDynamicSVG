@@ -39,9 +39,15 @@ SVGXSmiley >> center [
 ]
 
 { #category : #accessing }
+SVGXSmiley >> defaultHeight [
+	
+	^ 300
+]
+
+{ #category : #accessing }
 SVGXSmiley >> defaultWidth [
 	
-	^ 600
+	^ 400
 ]
 
 { #category : #drawing }
