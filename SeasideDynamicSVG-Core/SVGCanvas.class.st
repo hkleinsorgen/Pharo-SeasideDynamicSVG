@@ -142,6 +142,12 @@ SVGCanvas >> group: aBlock [
 	^self group with: aBlock
 ]
 
+{ #category : #tags }
+SVGCanvas >> image [
+	
+	^self brush: SVGImageTag new
+]
+
 { #category : #'initialize-release' }
 SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore [
 	
