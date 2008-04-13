@@ -4,7 +4,7 @@ Class {
 	#category : #'SeasideDynamicSVG-Core'
 }
 
-{ #category : #attributes }
+{ #category : #'convencience-coordinates' }
 SVGRectangleTag >> cornerRadius: aPoint [
 
 	self cornerRadiusX: aPoint x.
@@ -26,7 +26,7 @@ SVGRectangleTag >> cornerRadiusY: aNumber [
 
 ]
 
-{ #category : #attributes }
+{ #category : #'convencience-coordinates' }
 SVGRectangleTag >> extent: aPoint [
 	
 	self width: aPoint x.
@@ -39,11 +39,18 @@ SVGRectangleTag >> height: aNumber [
 	self attributeAt: 'height' put: aNumber
 ]
 
-{ #category : #attributes }
+{ #category : #'convencience-coordinates' }
 SVGRectangleTag >> origin: aPoint [
 	
 	self x: aPoint x.
 	self y: aPoint y.
+]
+
+{ #category : #'convencience-coordinates' }
+SVGRectangleTag >> rectangle: aRectangle [
+
+	self origin: aRectangle origin.
+	self extent: aRectangle extent.
 ]
 
 { #category : #private }

@@ -8,6 +8,13 @@ Class {
 	#category : #'SeasideDynamicSVG-Core'
 }
 
+{ #category : #'convenience-referencing' }
+SVGTag >> assignNextId [
+	" an ID is required to reference this tag "
+	
+	self id isNil ifTrue: [ self id: canvas nextId ]
+]
+
 { #category : #'accessing-attributes' }
 SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [ 
 	^ super 
@@ -45,6 +52,23 @@ SVGTag >> closeTag [
 		]
 ]
 
+{ #category : #'convenience-referencing' }
+SVGTag >> generateURL [
+	" convenience method for referencing this tag "
+	
+	self id isNil ifTrue: [ self error: 'Cannot reference tag without id attribute' ].
+	^ 'url(#', self id, ')'
+]
+
+{ #category : #'convenience-referencing' }
+SVGTag >> needsId [
+	" true if this tag should always have an ID.
+	for instance, gradients can only be referenced, and referencing requires an id,
+	so gradients always need an id "
+
+	^ false
+]
+
 { #category : #'accessing-attribute sets' }
 SVGTag >> opacity [
 	^ self attributeSetAt: SVGOpacityAttributeSet
@@ -62,6 +86,7 @@ SVGTag >> openTag [
 	fullTag := canvas context containsInlinedSVG
 		ifTrue: [ canvas context userAgentAdaptor fullTagForInlinedSVGTag: self tag ]
 		ifFalse: [ self tag ].
+	self needsId ifTrue: [ self assignNextId ].
 	self document openTag: fullTag attributes: attributes closed: self isClosed.
 	
 ]

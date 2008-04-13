@@ -5,14 +5,27 @@ Class {
 }
 
 { #category : #accessing }
-SVGPaintAttributeSet >> color: aPaint [
-
-	^ self attributeAt: 'color' put: aPaint toSVGSPaint 
+SVGPaintAttributeSet >> color: aPaint [ 
+	^ self 
+		attributeAt: 'color'
+		put: aPaint toSVGPaint
 ]
 
 { #category : #accessing }
 SVGPaintAttributeSet >> colorInterpolation: anObject [
 	^ self attributeAt: 'color-interpolation' put: anObject 
+]
+
+{ #category : #'convenience-rendering' }
+SVGPaintAttributeSet >> colorOptimizeQuality [
+
+	self colorRendering: 'optimizeQuality'
+]
+
+{ #category : #'convenience-rendering' }
+SVGPaintAttributeSet >> colorOptimizeSpeed [
+
+	self colorRendering: 'optimizeSpeed'
 ]
 
 { #category : #accessing }
@@ -21,9 +34,10 @@ SVGPaintAttributeSet >> colorRendering: anObject [
 ]
 
 { #category : #accessing }
-SVGPaintAttributeSet >> fill: aPaint [
-
-	^ self attributeAt: 'fill' put: aPaint toSVGSPaint
+SVGPaintAttributeSet >> fill: aPaint [ 
+	^ self 
+		attributeAt: 'fill'
+		put: aPaint toSVGPaint
 ]
 
 { #category : #accessing }
@@ -31,10 +45,23 @@ SVGPaintAttributeSet >> fillRule: anObject [
 	^ self attributeAt: 'fill-rule' put: anObject 
 ]
 
-{ #category : #accessing }
-SVGPaintAttributeSet >> stroke: aPaint [
+{ #category : #'convenience-full rule' }
+SVGPaintAttributeSet >> fillRuleEvenOdd [
 
-	^ self attributeAt: 'stroke' put: aPaint toSVGSPaint
+	self fillRule: 'evenodd'
+]
+
+{ #category : #'convenience-full rule' }
+SVGPaintAttributeSet >> fillRuleNonZero [
+
+	self fillRule: 'nonzero'
+]
+
+{ #category : #accessing }
+SVGPaintAttributeSet >> stroke: aPaint [ 
+	^ self 
+		attributeAt: 'stroke'
+		put: aPaint toSVGPaint
 ]
 
 { #category : #accessing }

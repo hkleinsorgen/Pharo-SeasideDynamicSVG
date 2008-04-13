@@ -116,6 +116,21 @@ SVGCanvas >> glyphReference [
 	^self brush: SVGGlyphReferenceTag new
 ]
 
+{ #category : #'tags-paint' }
+SVGCanvas >> gradientStop [
+
+	^ self brush: SVGGradientStop new
+]
+
+{ #category : #'tags-paint' }
+SVGCanvas >> gradientStopAt: stopOffset color: aColorOrString [
+
+	^ self gradientStop 
+		offset: stopOffset; 
+		color: aColorOrString; 
+		yourself
+]
+
 { #category : #tags }
 SVGCanvas >> group [
 	
@@ -141,6 +156,12 @@ SVGCanvas >> line [
 	^self brush: SVGLineTag new
 ]
 
+{ #category : #'tags-paint' }
+SVGCanvas >> linearGradient [
+
+	^ self brush: SVGLinearGradientTag new
+]
+
 { #category : #accessing }
 SVGCanvas >> nextId [
 	^ 'id' , context advanceKey
@@ -159,6 +180,12 @@ SVGCanvas >> polygone [
 { #category : #'tags-graphics primitives' }
 SVGCanvas >> polyline [
 	^self brush: SVGPolylineTag new
+]
+
+{ #category : #'tags-paint' }
+SVGCanvas >> radialGradient [
+
+	^ self brush: SVGRadialGradientTag new
 ]
 
 { #category : #'initialize-release' }

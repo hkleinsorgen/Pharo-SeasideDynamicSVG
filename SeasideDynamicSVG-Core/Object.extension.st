@@ -1,8 +1,7 @@
 Extension { #name : #Object }
 
 { #category : #'*SeasideDynamicSVG-Core' }
-Object >> toSVGSPaint [
-	
+Object >> toSVGPaint [
 	^ self toSVGString
 ]
 
