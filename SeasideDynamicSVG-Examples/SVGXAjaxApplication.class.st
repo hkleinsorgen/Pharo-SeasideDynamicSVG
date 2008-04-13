@@ -24,8 +24,15 @@ SVGXAjaxApplication class >> register [
 
 	| app |
 	app := super register.
-	app addLibrary: SULibrary.
+	SVGStaticSULibrary default.
+	app addLibrary: SVGStaticSULibrary.
 	^ app
+]
+
+{ #category : #accessing }
+SVGXAjaxApplication >> children [
+
+	^ Set with: svg
 ]
 
 { #category : #initialization }
@@ -35,25 +42,12 @@ SVGXAjaxApplication >> initializeChildren [
 
 { #category : #rendering }
 SVGXAjaxApplication >> renderContentOn: html [ 
-	 html heading: 'Ajax Test'.
-	html anchor onClick: (html updater id: 'svg';
-				callback: [:r | self svg enlarge. self renderSVGOn: r]); with: '+'.
-	html space.
-	html anchor onClick: (html updater id: 'svg';
-				callback: [:r | self svg shrink. self renderSVGOn: r]); with: '-'.
-	html div id: 'svg';
-		style: 'border:1px solid #ccc;background:#ffffe0';
-		with: [self renderSVGOn: html]
 
+	 html heading: 'Ajax Test'.
+	self children do: [ : child | html render: child ]
 ]
 
 { #category : #rendering }
 SVGXAjaxApplication >> renderSVGOn: html [ 
 	html render: self svg
-]
-
-{ #category : #accessing }
-SVGXAjaxApplication >> svg [
-	svg ifNil: [svg := SVGXAjaxTest new].
-	^svg
 ]
