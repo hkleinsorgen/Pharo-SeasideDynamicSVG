@@ -16,7 +16,7 @@ SVGTextTag >> leftToRightTopToBottom [
 	self writingMode: 'lr-tb'
 ]
 
-{ #category : #'conveience-whitespace' }
+{ #category : #'convenience-whitespace' }
 SVGTextTag >> preserveWhitespace [
 
 	self whitespace: 'preserve'

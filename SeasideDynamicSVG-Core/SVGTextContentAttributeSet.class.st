@@ -4,66 +4,10 @@ Class {
 	#category : #'SeasideDynamicSVG-Core'
 }
 
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaseline [
-
-	self alignmentBaseline: 'baseline'
-]
-
 { #category : #accessing }
 SVGTextContentAttributeSet >> alignmentBaseline: aString [
 
 	self attributeAt: 'alignment-baseline' put: aString
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineAfterEdge [
-	self alignmentBaseline: 'after-edge'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineAlphabetic [
-	self alignmentBaseline: 'alphabetic'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineBeforeEdge [
-	self alignmentBaseline: 'before-edge'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineCentral [
-	self alignmentBaseline: 'central'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineHanging [
-	self alignmentBaseline: 'hanging'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineMathematical [
-	self alignmentBaseline: 'mathematical'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineMiddle [
-	self alignmentBaseline: 'middle'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineTextAfterEdge [
-	self alignmentBaseline: 'text-after-edge'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaselineTextBeforeEdge [
-	self alignmentBaseline: 'text-before-edge'
-]
-
-{ #category : #'convenience-alignment baseline' }
-SVGTextContentAttributeSet >> alignmentBaslineIdeographic [
-	self alignmentBaseline: 'ideographic'
 ]
 
 { #category : #accessing }
@@ -123,72 +67,6 @@ SVGTextContentAttributeSet >> direction: aString [
 SVGTextContentAttributeSet >> dominantBaseline: aString [ 
 
 	self attributeAt: 'dominant-baseline' put: aString
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineAlphabetic [ 
-
-	self dominantBaseline: 'alphabetic'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineCentral [ 
-
-	self dominantBaseline: 'central'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineHanging [ 
-
-	self dominantBaseline: 'hanging'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineIdeographic [ 
-
-	self dominantBaseline: 'ideographic'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineMathematical [ 
-
-	self dominantBaseline: 'mathematical'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineMiddle [ 
-
-	self dominantBaseline: 'middle'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineNoChange [
-
-	self dominantBaseline: 'no-change'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineResetSize [
-
-	self dominantBaseline: 'reset-size'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineTextAfterEdge [
-
-	self dominantBaseline: 'text-after-edge'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineTextBeforeEdge [
-
-	self dominantBaseline: 'text-before-edge'
-]
-
-{ #category : #'convenience-dominant baseline' }
-SVGTextContentAttributeSet >> dominantBaselineUseScript [
-
-	self dominantBaseline: 'use-script'
 ]
 
 { #category : #'convenience-glyph orientation' }
