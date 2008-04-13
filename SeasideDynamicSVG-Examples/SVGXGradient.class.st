@@ -38,32 +38,21 @@ SVGXGradient >> drawSVGContentOn: svg [
 		with: [
 			svg rectangle
 				paint: [ : paint | 
-					paint fill: nil;
-					stroke: Color black
-				];
-				rectangle: rectangle.
-			svg rectangle
-				paint: [ : paint | 
 					paint 
+						strokeWidth: 0.5;
 						fill: radialGradient;
-						stroke: nil.
+						stroke:  Color black.
 				];
 				rectangle: rectangle.
 		].
 	svg group
-		transform: [ : transform | transform translate: 10@150];
+		transform: [ : transform | transform translate: 10.5@150.5];
 		with: [
-			svg rectangle
-				paint: [ : paint | 
-					paint fill: nil;
-					stroke: Color black
-				];
-				rectangle: rectangle.
 			svg rectangle
 				paint: [ : paint | 
 					paint 
 						fill: diagonalGradient;
-						stroke: nil.
+						stroke: Color black.
 				];
 				rectangle: rectangle.
 		].
