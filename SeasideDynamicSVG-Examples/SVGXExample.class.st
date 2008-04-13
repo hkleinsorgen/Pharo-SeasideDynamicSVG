@@ -16,7 +16,7 @@ SVGXExample >> defaultHeight [
 { #category : #accessing }
 SVGXExample >> defaultWidth [
 	
-	^ 500
+	^ 800
 ]
 
 { #category : #rendering }

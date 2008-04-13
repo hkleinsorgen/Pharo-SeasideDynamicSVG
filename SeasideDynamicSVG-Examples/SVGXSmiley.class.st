@@ -38,6 +38,12 @@ SVGXSmiley >> center [
 	^ (self width / 2) @ (self height / 2)
 ]
 
+{ #category : #accessing }
+SVGXSmiley >> defaultWidth [
+	
+	^ 600
+]
+
 { #category : #drawing }
 SVGXSmiley >> drawBackgroundOn: svg [ 
 
