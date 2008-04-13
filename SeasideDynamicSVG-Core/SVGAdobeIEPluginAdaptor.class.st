@@ -30,13 +30,3 @@ SVGAdobeIEPluginAdaptor >> updateHTMLRoot: aHtmlRoot [
 	aHtmlRoot svgBeTransitional.
 	SVGFixActiveXActivationLibrary default updateRoot: aHtmlRoot
 ]
-
-{ #category : #'browser specific' }
-SVGAdobeIEPluginAdaptor >> xwriteFooterOn: aDocument [ 
-	"IE annoying click and activate workaround"
-	"it must be an external js file, just put the file on your apache root!"
-
-	aDocument nextPutAll: '
-	<script type="text/javascript" src="/iefix.js"></script>
-	'
-]

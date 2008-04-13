@@ -8,5 +8,7 @@ Class {
 SVGStandardsCompliantBrowserAdaptor >> prepareResponseForInlinedSVG: aResponse [
 
 	aResponse beSVGXHTML
+	
+
 
 ]

@@ -105,11 +105,6 @@ SVGCanvas >> ellipse [
 	^self brush: SVGEllipseTag new
 ]
 
-{ #category : #accessing }
-SVGCanvas >> evaluator [
-	^ SUEvaluator on: self
-]
-
 { #category : #'tags-text' }
 SVGCanvas >> glyphReference [
 
