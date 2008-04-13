@@ -112,6 +112,12 @@ SVGTag >> style: aString value: value [
 	self attributes addStyle: aString , ':' , value displayString
 ]
 
+{ #category : #'convenience-referencing' }
+SVGTag >> toSVGString [
+
+	^ self generateURL
+]
+
 { #category : #accessing }
 SVGTag >> transform: aBlock [
 	aBlock value: self transformList

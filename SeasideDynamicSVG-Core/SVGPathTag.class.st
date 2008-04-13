@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGPathTag,
-	#superclass : #SVGShapeTag,
+	#superclass : #SVGStrokesBrush,
 	#instVars : [
 		'defaultRelative'
 	],
@@ -64,7 +64,7 @@ SVGPathTag >> arcTo: aPoint radius: radiusXAndY rotation: rotation large: large 
 { #category : #'accessing-path primitives' }
 SVGPathTag >> closePath [
 	
-	self addToPath: 'z'
+	self addToPath: 'z'.
 ]
 
 { #category : #'accessing-path primitives' }
@@ -104,6 +104,7 @@ SVGPathTag >> initialize [
 
 	super initialize.
 	defaultRelative := false.
+
 ]
 
 { #category : #'accessing-path primitives' }

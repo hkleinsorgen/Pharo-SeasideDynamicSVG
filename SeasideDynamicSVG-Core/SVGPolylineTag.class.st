@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGPolylineTag,
-	#superclass : #SVGShapeTag,
+	#superclass : #SVGStrokesBrush,
 	#instVars : [
 		'points'
 	],

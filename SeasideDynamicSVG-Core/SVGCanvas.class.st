@@ -57,7 +57,7 @@ SVGCanvas >> callbacks [
 	^callbacks
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> circle [
 	
 	^self brush: SVGCircleTag new
@@ -99,7 +99,7 @@ SVGCanvas >> document [
 	^self context document
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> ellipse [
 	
 	^self brush: SVGEllipseTag new
@@ -155,7 +155,7 @@ SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore 
 	callbacks := aCallbackStore
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> line [
 	
 	^self brush: SVGLineTag new
@@ -167,12 +167,18 @@ SVGCanvas >> linearGradient [
 	^ self brush: SVGLinearGradientTag new
 ]
 
+{ #category : #'tags-shapes' }
+SVGCanvas >> marker [
+
+	^ self brush: SVGMarkerTag new
+]
+
 { #category : #accessing }
 SVGCanvas >> nextId [
 	^ 'id' , context advanceKey
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> path [
 	^self brush: SVGPathTag new
 ]
@@ -183,12 +189,12 @@ SVGCanvas >> pattern [
 	^ self brush: SVGPatternTag new
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> polygone [
 	^self brush: SVGPolygonTag new
 ]
 
-{ #category : #'tags-graphics primitives' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> polyline [
 	^self brush: SVGPolylineTag new
 ]

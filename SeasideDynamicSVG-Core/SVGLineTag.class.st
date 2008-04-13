@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGLineTag,
-	#superclass : #SVGShapeTag,
+	#superclass : #SVGStrokesBrush,
 	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
