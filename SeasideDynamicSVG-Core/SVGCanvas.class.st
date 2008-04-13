@@ -185,6 +185,11 @@ SVGCanvas >> pattern [
 ]
 
 { #category : #'tags-shapes' }
+SVGCanvas >> polygon [
+	^self brush: SVGPolygonTag new
+]
+
+{ #category : #'tags-shapes' }
 SVGCanvas >> polygone [
 	^self brush: SVGPolygonTag new
 ]
