@@ -118,8 +118,7 @@ SVGCanvas >> glyphReference [
 
 { #category : #'tags-paint' }
 SVGCanvas >> gradientStop [
-
-	^ self brush: SVGGradientStop new
+	^ self brush: SVGGradientStopTag new
 ]
 
 { #category : #'tags-paint' }
@@ -170,6 +169,12 @@ SVGCanvas >> nextId [
 { #category : #'tags-graphics primitives' }
 SVGCanvas >> path [
 	^self brush: SVGPathTag new
+]
+
+{ #category : #'tags-paint' }
+SVGCanvas >> pattern [
+
+	^ self brush: SVGPatternTag new
 ]
 
 { #category : #'tags-graphics primitives' }

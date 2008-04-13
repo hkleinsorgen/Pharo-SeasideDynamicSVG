@@ -1,29 +1,29 @@
 Class {
-	#name : #SVGGradientStop,
+	#name : #SVGGradientStopTag,
 	#superclass : #SVGTag,
 	#category : #'SeasideDynamicSVG-Core'
 }
 
 { #category : #accessing }
-SVGGradientStop >> color: aColorOrString [
+SVGGradientStopTag >> color: aColorOrString [
 
 	self attributeAt: 'stop-color' put: aColorOrString
 ]
 
 { #category : #accessing }
-SVGGradientStop >> offset: numberOrPercentage [
+SVGGradientStopTag >> offset: numberOrPercentage [
 
 	self attributeAt: 'offset' put: numberOrPercentage
 ]
 
 { #category : #accessing }
-SVGGradientStop >> opacity: aNumber [
+SVGGradientStopTag >> opacity: aNumber [
 
 	self attributeAt: 'stop-opacity' put: aNumber
 ]
 
 { #category : #accessing }
-SVGGradientStop >> tag [
+SVGGradientStopTag >> tag [
 
 	^ 'stop'
 ]
