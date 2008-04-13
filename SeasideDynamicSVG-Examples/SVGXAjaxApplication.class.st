@@ -19,6 +19,15 @@ SVGXAjaxApplication class >> path [
 	^'SVG/ajax'
 ]
 
+{ #category : #accessing }
+SVGXAjaxApplication class >> register [
+
+	| app |
+	app := super register.
+	app addLibrary: SULibrary.
+	^ app
+]
+
 { #category : #initialization }
 SVGXAjaxApplication >> initializeChildren [
 	svg := SVGXAjaxTest new

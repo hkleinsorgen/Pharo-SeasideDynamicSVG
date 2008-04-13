@@ -23,12 +23,14 @@ SVGXApplication class >> path [
 SVGXApplication class >> register [
 	
 	| app |
-	self path notNil
+	^ self path notNil
 		ifTrue: [
 			app := self registerAsApplication: self path.
 			app preferenceAt: #renderContinuationClass put: SVGAwareRenderContinuation.
 			app preferenceAt: #sessionClass put: SVGSession.
-		].
+			app
+		]
+		ifFalse: [ nil ]
 ]
 
 { #category : #'class initialization' }
