@@ -28,21 +28,45 @@ SVGXAjaxTest >> drawBarOn: svg [
 ]
 
 { #category : #drawing }
+SVGXAjaxTest >> drawBarOn: svg id: aId [
+
+	svg rectangle id: 'rect-', aId;
+		paint: [:paint | paint fill: self color; stroke: Color black ]; 
+		opacity: [:opacity | opacity opacity: 0.5 ];
+		origin: 0@0;
+		width: self rectangleWidth; 
+		height:20.
+	svg textShape
+		font: [ : font | font family: 'Arial'; size: 14 ];
+		position: 6@15;
+		with: self rectangleWidth
+]
+
+{ #category : #drawing }
 SVGXAjaxTest >> drawSVGContentOn: svg [ 
 
-	| groupId |
+	| groupId myId|
 	groupId := svg nextId.
 	svg group
 		onClick: (svg updater 
 			id: groupId;
 			callback: [: updateSvg | 
 				self enlarge. 
-				self drawBarOn: updateSvg.  
+				self drawBarOn: updateSvg id: groupId.  
 			]);
 		with: [ 
 			svg group
 				id: groupId;
-				with: [ self drawBarOn: svg ]
+				with: [ self drawBarOn: svg id: groupId]
+		].
+	myId := 'a123'.
+	svg group
+		transform: [:t | t translate: 0@200];
+		onClick: '$("rect-a123").setAttribute("width",300)';
+		with: [ 
+			svg group
+				id: myId;
+				with: [ self drawBarOn: svg id: myId]
 		].
 		
 
@@ -88,6 +112,9 @@ SVGXAjaxTest >> renderContentOn: html [
 				self shrink.
 				self renderInlinedOn: r]);
 		 with: '-'.
+	html space.
+	html anchor onClick: (html evaluator callback: [:script | script element id: 'svg'; remove]);
+		 with: 'Remove Test'.
 	html div id: 'svg';
 		style: 'border:1px solid #ccc;background:#ffffe0; padding: 0.5em';
 		with: [self renderInlinedOn: html]
