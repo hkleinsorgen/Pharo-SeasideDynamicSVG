@@ -33,6 +33,16 @@ SVGPaintAttributeSet >> colorRendering: anObject [
 	^ self attributeAt: 'color-rendering' put: anObject 
 ]
 
+{ #category : #'convenience-rendering' }
+SVGPaintAttributeSet >> dashed [
+	self strokeDasharray: '10,3'
+]
+
+{ #category : #'convenience-rendering' }
+SVGPaintAttributeSet >> dotted [
+	self strokeDasharray: '2,2'
+]
+
 { #category : #accessing }
 SVGPaintAttributeSet >> fill: aPaint [ 
 	^ self 
