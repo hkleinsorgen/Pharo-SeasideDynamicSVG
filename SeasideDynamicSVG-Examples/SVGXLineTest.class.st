@@ -18,7 +18,7 @@ SVGXLineTest >> drawSVGContentOn: svg [
 	
 	svg polyline add: 0@80; add: 10@150; add: 20@85;
 			paint: [:a | a stroke: Color orange; strokeWidth: 2; fill: 'none'].
-	svg polygone add: 150@75; add: 179@161;
+	svg polygon add: 150@75; add: 179@161;
 				add: 269@161; add: 197@215; add: 223@301;
 				add: 150@250; add: 77@301; add: 103@215;
 				add: 31@161; add: 121@161;
