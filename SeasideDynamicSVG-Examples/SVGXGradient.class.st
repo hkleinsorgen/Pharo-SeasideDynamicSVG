@@ -13,37 +13,45 @@ SVGXGradient >> defaultHeight [
 { #category : #drawing }
 SVGXGradient >> drawSVGContentOn: svg [ 
 
-	| horizontalGradient diagonalGradient rectangle  |
+	| radialGradient diagonalGradient rectangle  |
 	svg definitions: [
-		(horizontalGradient := svg linearGradient) with: [
-			svg gradientStopAt: '5%' color: Color orange.
-			svg gradientStopAt: '95%' color: Color yellow.
-		].
+		(radialGradient := svg radialGradient)
+			center: (150@25);
+			focal: (250@75);
+			radius: 200; 
+			gradientUnits: SVGCoordinateSystem userSpaceOnUse;
+			with: [
+				svg gradientStopAt: '0%' color: Color yellow.
+				svg gradientStopAt: '50%' color: Color cyan.
+				svg gradientStopAt: '100%' color: Color blue.
+			].
 		(diagonalGradient := svg linearGradient) 
-			x1: '0%'; y1: '0%'; x2: '100%'; y2: '100%';
+			startX: '0%'; startY: '0%'; stopX: '100%'; stopY: '100%';
 			with: [
 				svg gradientStopAt: '5%' color: Color blue.
 				svg gradientStopAt: '95%' color: Color green.
 			]	
 	].
-	rectangle := Rectangle origin: 10@10 extent: 400@100.
-	svg group: [
-		svg rectangle
-			paint: [ : paint | 
-				paint fill: nil;
-				stroke: Color black
-			];
-			rectangle: rectangle.
-		svg rectangle
-			paint: [ : paint | 
-				paint 
-					fill: horizontalGradient;
-					stroke: nil.
-			];
-			rectangle: rectangle.
-	].
+	rectangle := Rectangle origin: 0@0 extent: 400@100.
 	svg group
-		transform: [ : transform | transform translate: 0@150];
+		transform: [ : transform | transform translate: 10@10];
+		with: [
+			svg rectangle
+				paint: [ : paint | 
+					paint fill: nil;
+					stroke: Color black
+				];
+				rectangle: rectangle.
+			svg rectangle
+				paint: [ : paint | 
+					paint 
+						fill: radialGradient;
+						stroke: nil.
+				];
+				rectangle: rectangle.
+		].
+	svg group
+		transform: [ : transform | transform translate: 10@150];
 		with: [
 			svg rectangle
 				paint: [ : paint | 
