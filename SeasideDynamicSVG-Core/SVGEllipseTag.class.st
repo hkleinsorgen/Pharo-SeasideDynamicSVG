@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGEllipseTag,
 	#superclass : #SVGShapeTag,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
 { #category : #accessing }

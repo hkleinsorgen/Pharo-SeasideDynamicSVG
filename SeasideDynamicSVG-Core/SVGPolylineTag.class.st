@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'points'
 	],
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
 { #category : #accessing }

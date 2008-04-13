@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGRectangleTag,
 	#superclass : #SVGShapeTag,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
 { #category : #'convencience-coordinates' }

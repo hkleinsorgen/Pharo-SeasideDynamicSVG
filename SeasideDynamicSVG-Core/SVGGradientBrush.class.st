@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'gradientTransformList'
 	],
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Paint'
 }
 
 { #category : #accessing }
@@ -50,14 +50,12 @@ SVGGradientBrush >> spreadMethod: aString [
 	self attributeAt: 'spreadMethod' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #public }
 SVGGradientBrush >> with: aBlock [ 
 
 	gradientTransformList isNil
 		ifFalse: [
-			self attributes 
-				at: 'gradientTransform'
-				put: transformList toSVGString
+			self attributeAt: 'gradientTransform' put: gradientTransformList.
 		].
 	super with: aBlock
 ]

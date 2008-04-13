@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGTextContentAttributeSet,
 	#superclass : #SVGAttributeSet,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
 { #category : #accessing }

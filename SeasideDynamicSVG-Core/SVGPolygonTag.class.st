@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGPolygonTag,
 	#superclass : #SVGPolylineTag,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
 { #category : #accessing }

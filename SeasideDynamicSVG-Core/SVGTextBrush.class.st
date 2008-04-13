@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGTextBrush,
 	#superclass : #SVGTag,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
 { #category : #'convencience-length adjust' }

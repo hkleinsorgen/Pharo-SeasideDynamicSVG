@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGTranslationType,
 	#superclass : #SVGTransformType,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Transform'
 }
 
 { #category : #accessing }

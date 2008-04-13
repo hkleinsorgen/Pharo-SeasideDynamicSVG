@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGGlyphBrush,
 	#superclass : #SVGTag,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
 { #category : #accessing }

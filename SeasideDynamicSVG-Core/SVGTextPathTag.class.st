@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGTextPathTag,
 	#superclass : #SVGTextBrush,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
 { #category : #'convenience-method' }

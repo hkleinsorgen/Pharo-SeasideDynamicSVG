@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGFontAttributeSet,
 	#superclass : #SVGAttributeSet,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
 { #category : #'convenience-weight' }

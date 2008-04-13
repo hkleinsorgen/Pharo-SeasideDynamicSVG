@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'defaultRelative'
 	],
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
 { #category : #accessing }

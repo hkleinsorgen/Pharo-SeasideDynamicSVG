@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGLineTag,
 	#superclass : #SVGShapeTag,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
 { #category : #convenience }

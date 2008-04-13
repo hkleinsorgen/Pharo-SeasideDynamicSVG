@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGTextTag,
 	#superclass : #SVGWorldTransformedTextBrush,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
 { #category : #'convenience-writing mode' }

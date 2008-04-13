@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGTransformList,
 	#superclass : #OrderedCollection,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Transform'
 }
 
 { #category : #public }

@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGAspectRatio,
-	#superclass : #SVGEnumerationType,
-	#category : #'SeasideDynamicSVG-Core'
+	#superclass : #SVGEnumeration,
+	#category : #'SeasideDynamicSVG-Core-Enumerations'
 }
 
 { #category : #accessing }

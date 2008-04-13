@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGPaintAttributeSet,
 	#superclass : #SVGAttributeSet,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Paint'
 }
 
 { #category : #accessing }

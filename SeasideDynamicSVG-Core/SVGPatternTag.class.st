@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'patternTransformList'
 	],
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Paint'
 }
 
 { #category : #accessing }
@@ -85,6 +85,16 @@ SVGPatternTag >> viewBox: aRectangleOrString [
 SVGPatternTag >> width: aLength [
 
 	self attributeAt: 'width' put: aLength
+]
+
+{ #category : #public }
+SVGPatternTag >> with: aBlock [ 
+
+	patternTransformList isNil
+		ifFalse: [
+			self attributeAt: 'patternTransform' put: patternTransformList.
+		].
+	super with: aBlock
 ]
 
 { #category : #accessing }

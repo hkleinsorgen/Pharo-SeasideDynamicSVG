@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGLinearGradientTag,
 	#superclass : #SVGGradientBrush,
-	#category : #'SeasideDynamicSVG-Core'
+	#category : #'SeasideDynamicSVG-Core-Paint'
 }
 
 { #category : #'convenience-coordinates' }
