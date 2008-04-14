@@ -8,6 +8,13 @@ Class {
 }
 
 { #category : #accessing }
+SVGXAjaxTest class >> availableForChooser [
+
+	" requires SULibrary, chooser doesnt include it "
+	^ false
+]
+
+{ #category : #accessing }
 SVGXAjaxTest >> color [
 	^ self rectangleWidth > 100 ifTrue: ['red'] ifFalse: ['green']
 ]

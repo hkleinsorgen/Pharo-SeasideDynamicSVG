@@ -31,13 +31,6 @@ SVGXTransformTest >> drawSVGContentOn: svg [
 	
 ]
 
-{ #category : #rendering }
-SVGXTransformTest >> renderContentOn: html [
-	html div 
-		style: 'padding: 1em;border:1px solid #ccc';
-		with: [self embedSVGIn: html].
-]
-
 { #category : #private }
 SVGXTransformTest >> renderExampleOn: svg text: aText [
 	svg rectangle x: 0; y:0; width: 100; height:100; paint: [:p | p fill: '#6699cc'; stroke: Color red]; setOpacity: 0.6.

@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #accessing }
+SVGXExample class >> availableForChooser [
+
+	^ self ~= SVGXExample
+]
+
+{ #category : #accessing }
 SVGXExample >> defaultHeight [
 	
 	^ 400
@@ -49,7 +55,7 @@ SVGXExample >> initialize [
 SVGXExample >> renderContentOn: canvas [ 
 
 	canvas div 
-		style: 'padding: 1em';
+		class: 'SVGContainer';
 		with: [self embedSVGIn: canvas].
 
 ]

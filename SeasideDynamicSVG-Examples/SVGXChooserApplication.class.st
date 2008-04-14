@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SVGXChooserApplication class >> description [
 
-	^ 'Choose a SVG component to display'
+	^ 'Displays a SVG component'
 ]
 
 { #category : #'class initialization' }
@@ -22,7 +22,11 @@ SVGXChooserApplication class >> path [
 { #category : #accessing }
 SVGXChooserApplication >> availableExamples [
 
-	^ SVGXExample allSubclasses asSortedCollection: [ : cl1 : cl2 | cl1 displayString <= cl2 displayString ]
+	| labelBlock |
+	labelBlock := self labelBlock.
+	^ (SVGXExample allSubclasses 
+		select: [ : cl | cl availableForChooser ]) 
+		asSortedCollection: [ : cl1 : cl2 | (labelBlock value: cl1)  <= (labelBlock value: cl2) ]
 ]
 
 { #category : #accessing }
@@ -38,32 +42,83 @@ SVGXChooserApplication >> choose: svgComponentClass [
 	svgComponent embedSelector: self embedSelector
 ]
 
+{ #category : #rendering }
+SVGXChooserApplication >> containerStyle [  
+
+^ super containerStyle" ,
+'
+	float: right;
+	width: auto;
+'
+"
+
+]
+
 { #category : #initialization }
 SVGXChooserApplication >> initializeChildren [
-	svgComponent := SVGXSmiley new
+	svgComponent := self availableExamples first new
+]
+
+{ #category : #private }
+SVGXChooserApplication >> labelBlock [
+
+	^ [ : cl |
+		cl name asString copyReplaceAll: 'SVGX' with: ''
+	]
 ]
 
 { #category : #rendering }
-SVGXChooserApplication >> renderActionsOn: html [ 
+SVGXChooserApplication >> renderChooserOn: html [ 
 
-	super renderActionsOn: html .
+	| examples |
+	html div class: 'ToolbarRow'; with: [
+		html form: 
+			[	
+				html text: 'Show '.
+				examples := self availableExamples.
+				html select
+					list: examples;
+					labels: self labelBlock;
+					selected: svgComponent class ;
+					beSubmitOnChange ;
+					"size: examples size;"
+					callback: [ : svgComponentClass | self choose: svgComponentClass ] 
+			].
+		].
+
+]
+
+{ #category : #rendering }
+SVGXChooserApplication >> renderOwnContentOn: html [ 
+
+	super renderOwnContentOn: html.
+"	html div 
+		class: 'Chooser'; 
+		with: [ self renderChooserOn: html ]."
+	
+]
+
+{ #category : #rendering }
+SVGXChooserApplication >> renderToolbarContentOn: html [ 
+
+	super renderToolbarContentOn: html .
 	self renderChooserOn: html.
 	
 ]
 
 { #category : #rendering }
-SVGXChooserApplication >> renderChooserOn: html [ 
-	html div
-		style: 'padding-bottom: 1em' ;
-		with: 
-			[ html form: 
-				[ html select
-					list: self availableExamples;
-					selected: svgComponent class ;
-					beSubmitOnChange ;
-					callback: [ : svgComponentClass | self choose: svgComponentClass ] 
-				]
-			]
+SVGXChooserApplication >> style [ 
+
+^ super style
+",
+'
+
+div.Chooser {
+	width: 150px;
+	float: left;
+}
+'
+"
 ]
 
 { #category : #accessing }

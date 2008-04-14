@@ -17,7 +17,7 @@ SVGXMultiSVGApplication class >> description [
 { #category : #'class initialization' }
 SVGXMultiSVGApplication class >> path [
 
-	^ 'SVG/MultiSVG'
+	^ 'SVG/multi'
 ]
 
 { #category : #accessing }
@@ -29,7 +29,7 @@ SVGXMultiSVGApplication >> children [
 
 { #category : #'initialize-release' }
 SVGXMultiSVGApplication >> initializeChildren [
-	example2 := SVGXGradient new.
+	example2 := SVGXBarChartTest new.
 	example1 := SVGXLineTest new
 ]
 

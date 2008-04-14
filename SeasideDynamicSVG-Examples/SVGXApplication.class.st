@@ -37,10 +37,25 @@ SVGXApplication class >> register [
 SVGXApplication class >> registerAll [
 	"self registerAll"	
 
+	| dispatcher old |
+	dispatcher := WADispatcher default.
+	old := dispatcher entryPoints at: 'SVG' ifAbsent: [ nil ].
+	old notNil ifTrue: [ dispatcher unregister: old ].
 	self allSubclasses do: [ : sc | sc register ]
 ]
 
 { #category : #rendering }
+SVGXApplication >> containerStyle [ 
+
+^
+'
+	padding: 1em;
+	border: 1px dashed #ccc ;
+'
+
+]
+
+{ #category : #accessing }
 SVGXApplication >> description [
 
 	^ self class description
@@ -74,21 +89,11 @@ SVGXApplication >> initializeChildren [
 ]
 
 { #category : #rendering }
-SVGXApplication >> renderActionsOn: html [ 
-
-	self renderEmbedSelectorsOn: html.
-
-]
-
-{ #category : #rendering }
 SVGXApplication >> renderContentOn: html [ 
-	html div: 
-		[ html heading
-			level: 2 ;
-			with: [ html text: self title ].
-		html text: self description ].
-	self renderActionsOn: html.
-	self children do: [ : child | html render: child ].
+
+	self renderHeaderOn: html.
+	self renderOwnContentOn: html.
+	self children do: [ : child | html render: child ] separatedBy: [ html paragraph ].
 
 ]
 
@@ -106,18 +111,44 @@ SVGXApplication >> renderEmbedSelector: aSelector text: text on: canvas [
 { #category : #rendering }
 SVGXApplication >> renderEmbedSelectorsOn: html [
 
-	html div class: 'toolbar';
+	html div class: 'ToolbarRow'; with: [
+		html text: 'Embed/inline method: '.
+		self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: html .
+		html space.
+		self renderEmbedSelector: #renderObjectOn: text: '<object>' on: html .
+		html space.
+		self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: html .
+		html space.
+		self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: html .
+	].
+
+]
+
+{ #category : #rendering }
+SVGXApplication >> renderHeaderOn: html [ 
+
+	html div: 
+		[ html heading
+			level: 2 ;
+			with: [ html text: self title ].
+		html text: self description ].
+
+]
+
+{ #category : #rendering }
+SVGXApplication >> renderOwnContentOn: html [ 
+
+	html div class: 'Toolbar';
 		with: [
-			html text: 'Embed/inline method: '.
-			self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: html .
-			html space.
-			self renderEmbedSelector: #renderObjectOn: text: '<object>' on: html .
-			html space.
-			self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: html .
-			html space.
-			self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: html .
+			self renderToolbarContentOn: html
 		].
 
+]
+
+{ #category : #rendering }
+SVGXApplication >> renderToolbarContentOn: html [
+
+	self renderEmbedSelectorsOn: html
 ]
 
 { #category : #rendering }
@@ -156,7 +187,7 @@ em {
    font-weight: bold;
 }
 
-div.toolbar { 
+div.Toolbar { 
 	padding-top: 0.25em;
 	padding-bottom: 0.25em;
 	margin-top: 1em; 
@@ -166,18 +197,22 @@ div.toolbar {
 	border-top-style: solid; 
 	border-bottom-style:solid; 
 	border-color: #AAAAAA
-}'
+}
+
+div.ToolbarRow {
+	padding: 0.25em;
+}
+
+div.SVGContainer {
+', self containerStyle, 
+'
+}
+'
 
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 SVGXApplication >> title [
 
 	self subclassResponsibility 
-]
-
-{ #category : #rendering }
-SVGXApplication >> updateRoot: aRoot [
-	super updateRoot: aRoot.
-	aRoot htmlAttributes at: 'xmlns:svg' put: 'http://www.w3.org/2000/svg'
 ]

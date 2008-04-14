@@ -4,6 +4,12 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples'
 }
 
+{ #category : #accessing }
+SVGXBarChartTest >> defaultHeight [
+
+	^ 220
+]
+
 { #category : #drawing }
 SVGXBarChartTest >> drawBarOn: svg color: barColor height: barHeight width: barWidth startY: yStart x: currentX [
 	
@@ -59,11 +65,4 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 			
 			
 
-]
-
-{ #category : #rendering }
-SVGXBarChartTest >> renderContentOn: html [
-	html div 
-		style: 'padding: 1em;border:1px solid #ccc';
-		with: [self embedSVGIn: html].
 ]
