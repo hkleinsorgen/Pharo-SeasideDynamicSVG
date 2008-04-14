@@ -61,8 +61,24 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 	self drawBarOn: svg color: 'yellow' height: 114 width: barWidth startY: 200 x: nextX.
 	svg line
 		paint: [:a | a strokeWidth: 1; stroke: '#ccc'];
-		from: 0@200 to: 400@200
-			
+		from: 0@200 to: 400@200.
+	svg group transform: [:t | t translate: 470@110];
+		with: [self drawSegmentOn: svg from: 0 to: 30 color: '#6699cc'.
+			self drawSegmentOn: svg from: 30 to: 120 color: 'red'.
+			self drawSegmentOn: svg from: 120 to: 175 color: 'green'.
+			self drawSegmentOn: svg from: 175 to: 240 color: 'pink'.
+			self drawSegmentOn: svg from: 240 to: 360 color: 'yellow'.
+			].
+		
+
 			
 
+]
+
+{ #category : #drawing }
+SVGXBarChartTest >> drawSegmentOn: svg from: startAngle to: endAngle color: aColor [
+	svg path
+		paint: [:p | p fill: aColor; stroke: '#444'];
+		opacity: [:a | a fillOpacity: 0.6];
+		drawPieSegmentFrom: startAngle to: endAngle length: 100.
 ]
