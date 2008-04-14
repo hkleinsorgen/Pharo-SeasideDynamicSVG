@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGUtilitiesTest,
 	#superclass : #TestCase,
-	#category : #'SeasideDynamicSVG-Tests'
+	#category : #'SeasideDynamicSVG-Tests-All'
 }
 
 { #category : #'testing - attribute values' }

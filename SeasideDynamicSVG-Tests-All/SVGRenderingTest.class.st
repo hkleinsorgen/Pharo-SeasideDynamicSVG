@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'session'
 	],
-	#category : #'SeasideDynamicSVG-Tests'
+	#category : #'SeasideDynamicSVG-Tests-All'
 }
 
 { #category : #asserting }
