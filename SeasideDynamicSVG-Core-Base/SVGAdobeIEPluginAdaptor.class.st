@@ -28,5 +28,7 @@ SVGAdobeIEPluginAdaptor >> updateHTMLRoot: aHtmlRoot [
 	It is HIGHLY recommended to use embedded SVGs instead of this awful workaround "
 
 	aHtmlRoot svgBeTransitional.
-	SVGFixActiveXActivationLibrary default updateRoot: aHtmlRoot
+	SVGFixActiveXActivationLibrary default updateRoot: aHtmlRoot.
+	aHtmlRoot htmlAttributes at: 'xmlns:svg' put: 'http://www.w3.org/2000/svg'.
+
 ]
