@@ -41,13 +41,13 @@ SVGXAjaxApplication >> initializeChildren [
 ]
 
 { #category : #rendering }
-SVGXAjaxApplication >> renderContentOn: html [ 
+SVGXAjaxApplication >> renderOwnContentOn: html [ 
 
-	 html heading: 'Ajax Test'.
-	self children do: [ : child | html render: child ]
+	html paragraph.
 ]
 
-{ #category : #rendering }
-SVGXAjaxApplication >> renderSVGOn: html [ 
-	html render: self svg
+{ #category : #accessing }
+SVGXAjaxApplication >> title [
+
+	^ 'Ajax'
 ]
