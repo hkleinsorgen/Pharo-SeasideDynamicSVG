@@ -16,5 +16,12 @@ SVGAnchorTag >> with: aBlock [
 			[((self attributes includesKey: 'xlink:href')
 				or: [self attributes includesKey: 'name'])
 				ifFalse: [self attributes at: 'xlink:href' put: 'javascript:void(0)']].
-	super with: aBlock
+
+	self openTag.
+	canvas nest: [
+		self before.
+		aBlock renderOn: canvas.
+		self after ].
+	self closeTag.
+	closed := true
 ]
