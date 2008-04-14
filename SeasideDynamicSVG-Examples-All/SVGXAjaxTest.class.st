@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'rectangleWidth'
 	],
-	#category : #'SeasideDynamicSVG-Examples'
+	#category : #'SeasideDynamicSVG-Examples-All'
 }
 
 { #category : #accessing }

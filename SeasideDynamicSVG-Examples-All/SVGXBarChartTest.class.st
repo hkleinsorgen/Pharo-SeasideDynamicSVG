@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGXBarChartTest,
 	#superclass : #SVGXExample,
-	#category : #'SeasideDynamicSVG-Examples'
+	#category : #'SeasideDynamicSVG-Examples-All'
 }
 
 { #category : #accessing }

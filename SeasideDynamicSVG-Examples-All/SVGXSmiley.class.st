@@ -8,7 +8,7 @@ Class {
 		'rightEyeColor',
 		'happiness'
 	],
-	#category : #'SeasideDynamicSVG-Examples'
+	#category : #'SeasideDynamicSVG-Examples-All'
 }
 
 { #category : #actions }

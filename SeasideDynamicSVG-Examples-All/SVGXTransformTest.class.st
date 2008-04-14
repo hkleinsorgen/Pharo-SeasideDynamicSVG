@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGXTransformTest,
 	#superclass : #SVGXExample,
-	#category : #'SeasideDynamicSVG-Examples'
+	#category : #'SeasideDynamicSVG-Examples-All'
 }
 
 { #category : #drawing }

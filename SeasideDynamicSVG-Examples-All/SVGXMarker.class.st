@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGXMarker,
 	#superclass : #SVGXExample,
-	#category : #'SeasideDynamicSVG-Examples'
+	#category : #'SeasideDynamicSVG-Examples-All'
 }
 
 { #category : #'as yet unclassified' }
