@@ -29,7 +29,7 @@ SVGXPattern >> drawSVGContentOn: svg [
 					paint fill: radialGradient;
 					stroke: Color black
 				];
-				rectangle: (patternRect insetBy: 10).
+				rectangle: (patternRect insetBy: 10@10).
 			]	
 	].
 	svg group
