@@ -19,6 +19,12 @@ SVGXAjaxTest >> color [
 	^ self rectangleWidth > 100 ifTrue: ['red'] ifFalse: ['green']
 ]
 
+{ #category : #accessing }
+SVGXAjaxTest >> defaultHeight [
+
+	^ 200
+]
+
 { #category : #drawing }
 SVGXAjaxTest >> drawBarOn: svg id: aId [
 
@@ -41,6 +47,7 @@ SVGXAjaxTest >> drawLowerBarOn: svg [
 	| id |
 	id := 'lowerBar'.
 	svg group
+		id: 'lowerBarGroup';
 		transform: [:t | t translate: 0@100];
 		onClick: 'insertRect()';
 		with: [ 
@@ -125,6 +132,19 @@ SVGXAjaxTest >> rectangleWidth: anInteger [
 
 { #category : #rendering }
 SVGXAjaxTest >> renderContentOn: html [ 
+
+	html div class: 'Toolbar';
+		with: [
+			html div class: 'ToolbarRow'; with: [ self renderToolbarContentOn: html ].
+		].
+
+	html div id: 'svg';
+		style: 'border:1px solid #ccc;background:#ffffe0; padding: 0.5em';
+		with: [self renderInlinedOn: html]
+]
+
+{ #category : #rendering }
+SVGXAjaxTest >> renderToolbarContentOn: html [
 	html anchor onClick: (
 		html updater id: 'svg';
 			callback: [:r | 
@@ -147,9 +167,7 @@ SVGXAjaxTest >> renderContentOn: html [
 	html space.
 	html anchor onClick: (html evaluator callback: [:script | script element id: 'middleBar'; remove]);
 		 with: 'Remove middle bar (Ajax)'.
-	html div id: 'svg';
-		style: 'border:1px solid #ccc;background:#ffffe0; padding: 0.5em';
-		with: [self renderInlinedOn: html]
+
 ]
 
 { #category : #accessing }
@@ -158,15 +176,15 @@ SVGXAjaxTest >> script [
 	^ '
 function insertRect()
 {
-	var newRect = document.createElement("rect");
+	var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 	newRect.setAttribute("x", "0");
 	newRect.setAttribute("y", "0");
 	newRect.setAttribute("width", "50");
-	newRect.setAttribute("width", "20");
+	newRect.setAttribute("height", "20");
 	newRect.setAttribute("stroke", "black");
 	newRect.setAttribute("fill", "blue");
 	newRect.setAttribute("opacity", "1");
-	$("lowerBar").appendChild(newRect)	;
+	$("lowerBar").appendChild(newRect);
 }
 '
 ]
