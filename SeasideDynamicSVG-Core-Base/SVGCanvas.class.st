@@ -105,6 +105,23 @@ SVGCanvas >> ellipse [
 	^self brush: SVGEllipseTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> filter [
+	
+	^self brush: SVGFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> filter: aBlock [
+	
+	^self filter with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> gaussianBlurFilter [
+	^self brush: SVGGaussianBlurTag new
+]
+
 { #category : #'tags-text' }
 SVGCanvas >> glyphReference [
 

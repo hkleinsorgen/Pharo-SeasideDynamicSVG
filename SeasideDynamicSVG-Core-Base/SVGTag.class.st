@@ -52,6 +52,13 @@ SVGTag >> closeTag [
 		]
 ]
 
+{ #category : #accessing }
+SVGTag >> filter: filterId [
+"use predefined filters with the given id from the defs sections"
+
+	self useFilter: filterId
+]
+
 { #category : #'convenience-referencing' }
 SVGTag >> generateURL [
 	" convenience method for referencing this tag "
@@ -127,6 +134,13 @@ SVGTag >> transform: aBlock [
 SVGTag >> transformList [
 	transformList ifNil: [transformList := SVGTransformList new].
 	^transformList
+]
+
+{ #category : #accessing }
+SVGTag >> useFilter: filterId [
+"use predefined filters with the given id from the defs sections"
+
+	self attributes at: 'filter' put: 'url(#',filterId ,')'
 ]
 
 { #category : #public }
