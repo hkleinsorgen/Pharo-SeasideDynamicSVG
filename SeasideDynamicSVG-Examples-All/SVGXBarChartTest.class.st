@@ -63,7 +63,9 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 		paint: [:a | a strokeWidth: 1; stroke: '#ccc'];
 		from: 0@200 to: 400@200.
 	svg group transform: [:t | t translate: 470@110];
-		with: [self drawSegmentOn: svg from: 0 to: 30 color: '#6699cc'.
+		with: [svg circle radius: 96; paint: [:p | p fill: '#ccc']; setOpacity: 0.6.
+			svg circle radius: 90; paint: [:p | p fill: '#ccc']; setOpacity: 0.4.
+			self drawSegmentOn: svg from: 0 to: 30 color: '#6699cc'.
 			self drawSegmentOn: svg from: 30 to: 120 color: 'red'.
 			self drawSegmentOn: svg from: 120 to: 175 color: 'green'.
 			self drawSegmentOn: svg from: 175 to: 240 color: 'pink'.
