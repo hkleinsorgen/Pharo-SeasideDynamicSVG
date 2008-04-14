@@ -99,6 +99,26 @@ SVGPathTag >> defaultIsRelative [
 	defaultRelative := true
 ]
 
+{ #category : #convenience }
+SVGPathTag >> drawPieSegmentFrom:  startAngle angle: angle length: length [
+	self drawPieSegmentFrom: startAngle to: startAngle + angle length: length
+]
+
+{ #category : #convenience }
+SVGPathTag >> drawPieSegmentFrom:  startAngle to: angle length: length [
+"always start from 0@0, because you should use translate to set the origin"
+	self moveTo: 0@0.
+	self lineTo: (Point r: length degrees: startAngle).
+	self 
+		arcTo: (Point r: length degrees: angle)
+		radius: length@length
+		rotation: 0
+		large: false
+		sweep: true.
+	self lineTo: 0@0.
+	self closePath.
+]
+
 { #category : #initialization }
 SVGPathTag >> initialize [
 
