@@ -58,22 +58,6 @@ SVGEmbeddedDocumentComponent >> defaultWidth [
 	^ 300
 ]
 
-{ #category : #drawing }
-SVGEmbeddedDocumentComponent >> drawSVGContentOn: svg [ 
-	
-]
-
-{ #category : #drawing }
-SVGEmbeddedDocumentComponent >> drawSVGWithContext: aRenderingContext [ 
-	| callbacks svg |
-	callbacks := aRenderingContext callbacksFor: self.
-	svg := self svgRendererClass 
-		context: aRenderingContext
-		callbacks: callbacks.
-	self drawSVGContentOn: svg.
-	svg flush
-]
-
 { #category : #accessing }
 SVGEmbeddedDocumentComponent >> drawable [
 	
@@ -122,14 +106,6 @@ SVGEmbeddedDocumentComponent >> renderEmbedOn: canvas [
 ]
 
 { #category : #rendering }
-SVGEmbeddedDocumentComponent >> renderExternalSVGOn: canvas [
-
-	self renderEmbedOn: canvas
-
-
-]
-
-{ #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 	" embed as <iframe> "
 
@@ -141,7 +117,8 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [ 
-	" inline as <svg> "
+	" inline as <svg> tag "
+
 	| svgTag |
 	canvas context userAgentAdaptor renderPreambleForInlinedSVGOn: canvas.
 	svgTag := canvas svg.
