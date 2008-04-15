@@ -12,6 +12,7 @@ WAPresenter >> drawSVGWithContext: aRenderingContext [
 	svg := self svgRendererClass 
 		context: aRenderingContext
 		callbacks: callbacks.
+	svg svgTagsNeedNamespace: false.
 	self drawSVGContentOn: svg.
 	svg flush
 ]

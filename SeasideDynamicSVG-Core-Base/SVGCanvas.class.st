@@ -3,7 +3,8 @@ Class {
 	#superclass : #WACanvas,
 	#instVars : [
 		'context',
-		'callbacks'
+		'callbacks',
+		'tagsNeedNamespace'
 	],
 	#category : #'SeasideDynamicSVG-Core-Base'
 }
@@ -119,7 +120,7 @@ SVGCanvas >> filter: aBlock [
 
 { #category : #'tags-filter' }
 SVGCanvas >> gaussianBlurFilter [
-	^self brush: SVGGaussianBlurFilterTag new
+	^self brush: SVGGaussianBlurTag new
 ]
 
 { #category : #'tags-text' }
@@ -164,7 +165,8 @@ SVGCanvas >> image [
 SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore [
 	
 	context := aRenderingContext.
-	callbacks := aCallbackStore
+	callbacks := aCallbackStore.
+	tagsNeedNamespace := true.
 ]
 
 { #category : #'tags-shapes' }
@@ -231,6 +233,16 @@ SVGCanvas >> rectangle [
 SVGCanvas >> render: anObject [
 	self flush.
 	anObject drawSVGOn: self
+]
+
+{ #category : #accessing }
+SVGCanvas >> svgTagsNeedNamespace [
+	^ tagsNeedNamespace
+]
+
+{ #category : #accessing }
+SVGCanvas >> svgTagsNeedNamespace: aBoolean [ 
+	tagsNeedNamespace := aBoolean
 ]
 
 { #category : #public }

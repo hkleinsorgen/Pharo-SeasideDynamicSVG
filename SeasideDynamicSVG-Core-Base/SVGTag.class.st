@@ -81,16 +81,19 @@ SVGTag >> opacity: aBlock [
 
 { #category : #public }
 SVGTag >> openTag [
-
 	| fullTag |
-	fullTag := canvas context containsInlinedSVG
+	fullTag := canvas context containsInlinedSVG 
 		ifTrue: [ canvas context userAgentAdaptor fullTagForInlinedSVGTag: self tag ]
 		ifFalse: [ self tag ].
 	self needsId ifTrue: [ self ensureId ].
-	canvas context document allTagsRequireSVGNameSpace
-		ifTrue:  [ self attributeAt: 'xmlns' put: SVGRoot defaultNamespace. ].
-	self document openTag: fullTag attributes: attributes closed: self isClosed.
-	
+	canvas svgTagsNeedNamespace ifTrue: 
+		[ self 
+			attributeAt: 'xmlns'
+			put: SVGRoot defaultNamespace ].
+	self document 
+		openTag: fullTag
+		attributes: attributes
+		closed: self isClosed
 ]
 
 { #category : #'accessing-attribute sets' }

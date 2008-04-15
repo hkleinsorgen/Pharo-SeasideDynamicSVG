@@ -10,8 +10,7 @@ WARenderCanvas >> renderDocumentFor: aComponent [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
-WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
-
+WARenderCanvas >> renderDocumentFor: aComponent on: aStream [ 
 	| innerContext docRoot session document renderer |
 	innerContext := self context copy.
 	docRoot := SVGRoot context: innerContext.
@@ -21,9 +20,13 @@ WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
 	document stream: aStream.
 	docRoot open: document.
 	innerContext document: document.
-	renderer := self svgRendererClass context: innerContext callbacks: self callbacks.
-	renderer render: aComponent;
-		 flush.
+	renderer := self svgRendererClass 
+		context: innerContext
+		callbacks: self callbacks.
+	renderer svgTagsNeedNamespace: false.
+	renderer
+		render: aComponent ;
+		flush.
 	docRoot close: document.
 	^ document
 ]
@@ -31,16 +34,16 @@ WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
 { #category : #'*SeasideDynamicSVG-Core-Base' }
 WARenderCanvas >> svg [
 	" Allows drawing inlined SVG "
-
 	| brush svg |
 	brush := SVGRootTag new.
 	self brush: brush.
-	svg := self svgRendererClass
+	svg := self svgRendererClass 
 		context: self context
 		callbacks: self callbacks.
 	brush svgCanvas: svg.
+	svg svgTagsNeedNamespace: false.
 	self context containsInlinedSVG: true.
-	^ brush.
+	^ brush
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
