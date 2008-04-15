@@ -1,17 +1,17 @@
 Class {
-	#name : #SVGStaticSULibrary,
+	#name : #SVGPatchedSULibrary,
 	#superclass : #SULibrary,
 	#category : #'SeasideDynamicSVG-Scriptaculous'
 }
 
 { #category : #accessing }
-SVGStaticSULibrary >> fileSelectors [
+SVGPatchedSULibrary >> fileSelectors [
 
 	^ SULibrary default fileSelectors
 ]
 
 { #category : #accessing }
-SVGStaticSULibrary >> prototypeJs [
+SVGPatchedSULibrary >> prototypeJs [
 
 	^ '/*  Prototype JavaScript framework, version 1.6.0.1 + SVG-Patch-1
  *  (c) 2005-2007 Sam Stephenson
@@ -4216,7 +4216,7 @@ Element.addMethods();'
 ]
 
 { #category : #accessing }
-SVGStaticSULibrary >> selectorsToInclude [
+SVGPatchedSULibrary >> selectorsToInclude [
 	" Firefox + XHTML dont allow dynamic insertion of scripts, scriptaculous.js will cause errors "
 
 	^ #( prototypeJs )
