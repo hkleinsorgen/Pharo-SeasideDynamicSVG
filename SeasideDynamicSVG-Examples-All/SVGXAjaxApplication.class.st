@@ -14,40 +14,13 @@ SVGXAjaxApplication class >> description [
 ]
 
 { #category : #accessing }
-SVGXAjaxApplication class >> path [
-	
-	^'SVG/ajax'
-]
-
-{ #category : #accessing }
-SVGXAjaxApplication class >> register [
-
-	| app |
-	app := super register.
-	SVGStaticSULibrary default.
-	app addLibrary: SVGStaticSULibrary.
-	^ app
-]
-
-{ #category : #accessing }
 SVGXAjaxApplication >> children [
 
 	^ Set with: svg
-]
-
-{ #category : #initialization }
-SVGXAjaxApplication >> initializeChildren [
-	svg := SVGXAjaxTest new
 ]
 
 { #category : #rendering }
 SVGXAjaxApplication >> renderOwnContentOn: html [ 
 
 	html paragraph.
-]
-
-{ #category : #accessing }
-SVGXAjaxApplication >> title [
-
-	^ 'Ajax'
 ]

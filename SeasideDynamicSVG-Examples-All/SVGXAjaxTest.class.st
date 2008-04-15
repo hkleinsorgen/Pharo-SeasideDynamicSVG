@@ -14,6 +14,11 @@ SVGXAjaxTest class >> availableForChooser [
 	^ false
 ]
 
+{ #category : #ajax }
+SVGXAjaxTest >> ajaxActionFor: elementId on: html callback: aBlock [ 
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 SVGXAjaxTest >> color [
 	^ self rectangleWidth > 100 ifTrue: ['red'] ifFalse: ['green']
@@ -89,15 +94,17 @@ SVGXAjaxTest >> drawSVGContentOn: svg [
 { #category : #drawing }
 SVGXAjaxTest >> drawUpperBarOn: svg [ 
 
-	| id |
+	| id updater |
 	id := 'upperBar'.
+	updater := self 
+				ajaxActionFor: id 
+				on: svg 
+				callback: [ : r |
+					self enlarge. 
+					self drawBarOn: r id: id.  
+				].
 	svg group
-		onClick: (svg updater 
-			id: id;
-			callback: [: updateSvg | 
-				self enlarge. 
-				self drawBarOn: updateSvg id: id.  
-			]);
+		onClick: updater;
 		with: [ 
 			svg group
 				id: id;
@@ -144,29 +151,43 @@ SVGXAjaxTest >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-SVGXAjaxTest >> renderToolbarContentOn: html [
-	html anchor onClick: (
-		html updater id: 'svg';
-			callback: [:r | 
+SVGXAjaxTest >> renderMinusOn: html [ 
+	| updater |
+	updater := self 
+		ajaxActionFor: 'svg'
+		on: html
+		callback: 
+			[ : r | 
+			self shrink.
+			self renderInlinedOn: r ].
+	html anchor
+		onClick: updater ;
+		with: '-'
+]
+
+{ #category : #rendering }
+SVGXAjaxTest >> renderPlusOn: html [ 
+
+	html anchor
+		onClick: (self 
+			ajaxActionFor: 'svg'
+			on: html
+			callback:  [ : r | 
 				self enlarge.
-				self renderInlinedOn: r]);
-		 with: '+'.
+				self renderInlinedOn: r ]) ;
+		with: '+'
+]
+
+{ #category : #rendering }
+SVGXAjaxTest >> renderToolbarContentOn: html [
+
+	self renderPlusOn: html.
 	html space.
-	html anchor onClick: (
-		html updater id: 'svg';
-			callback: [:r | 
-				self shrink.
-				self renderInlinedOn: r]);
-		 with: '-'.
+	self renderMinusOn: html.
 	html space.
 	html anchor onClick: 'insertRect()';
-		 with: 'Add Rect (Javascript)'.
-	html space.
-	html anchor onClick: (html evaluator callback: [:script | script element id: 'svg'; remove]);
-		 with: 'Remove SVG (Ajax)'.
-	html space.
-	html anchor onClick: (html evaluator callback: [:script | script element id: 'middleBar'; remove]);
-		 with: 'Remove middle bar (Ajax)'.
+	 with: 'Add Rect (Javascript)'.
+
 
 ]
 
