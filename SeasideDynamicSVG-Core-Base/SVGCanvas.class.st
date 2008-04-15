@@ -51,6 +51,11 @@ SVGCanvas >> anchor [
 	^self brush: SVGAnchorTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> blendFilter [
+	^self brush: SVGBlendFilterTag new
+]
+
 { #category : #accessing }
 SVGCanvas >> callbacks [
 	"Answer the callback registry."
@@ -64,11 +69,37 @@ SVGCanvas >> circle [
 	^self brush: SVGCircleTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> colorMatrixFilter [
+	^self brush: SVGColorMatrixFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> componentTransferFilter [
+	^self brush: SVGComponentTransferFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> componentTransferFilter: aBlock [
+
+	^ self componentTransferFilter with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> compositeFilter [
+	^self brush: SVGCompositeFilterTag new
+]
+
 { #category : #accessing }
 SVGCanvas >> context [
 	"Answer the rendering context."
 	
 	^context
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> convolveMatrixFilter [
+	^self brush: SVGConvolveMatrixFilterTag new
 ]
 
 { #category : #tags }
@@ -81,6 +112,11 @@ SVGCanvas >> definitions: aBlock [
 	^ self definitions with: aBlock
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> defuseLightingFilter [
+	^self brush: SVGDefuseLightingFilterTag new
+]
+
 { #category : #tags }
 SVGCanvas >> description [
 
@@ -91,6 +127,11 @@ SVGCanvas >> description [
 SVGCanvas >> description: aBlock [
 
 	^ self description with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> displacementMapFilter [
+	^self brush: SVGDisplacementMapFilterTag new
 ]
 
 { #category : #accessing }
@@ -116,6 +157,31 @@ SVGCanvas >> filter [
 SVGCanvas >> filter: aBlock [
 	
 	^self filter with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> floodFilter [
+	^self brush: SVGFloodFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> funcAlphaFilter [
+	^self brush: SVGFuncAlphaFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> funcBlueFilter [
+	^self brush: SVGFuncBlueFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> funcGreenFilter [
+	^self brush: SVGFuncGreenFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> funcRedFilter [
+	^self brush: SVGFuncRedFilterTag new
 ]
 
 { #category : #'tags-filter' }
@@ -161,6 +227,11 @@ SVGCanvas >> image [
 	^self brush: SVGImageTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> imageFilter [
+	^self brush: SVGImageFilterTag new
+]
+
 { #category : #'initialize-release' }
 SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore [
 	
@@ -187,9 +258,35 @@ SVGCanvas >> marker [
 	^ self brush: SVGMarkerTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> mergeFilter [
+	^self brush: SVGMergeFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> mergeFilter: aBlock [
+
+	^ self mergeFilter with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> mergeNode [
+	^self brush: SVGMergeNodeTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> morphologyFilter [
+	^self brush: SVGMorphologyFilterTag new
+]
+
 { #category : #accessing }
 SVGCanvas >> nextId [
 	^ 'id' , context advanceKey
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> offsetFilter [
+	^self brush: SVGOffsetFilterTag new
 ]
 
 { #category : #'tags-shapes' }
@@ -233,6 +330,11 @@ SVGCanvas >> rectangle [
 SVGCanvas >> render: anObject [
 	self flush.
 	anObject drawSVGOn: self
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> specularLightingFilter [
+	^self brush: SVGSpecularLightingFilterTag new
 ]
 
 { #category : #accessing }
@@ -288,6 +390,16 @@ SVGCanvas >> textSpan [
 { #category : #'tags-text' }
 SVGCanvas >> textSpan: aBlock [
 	^self textSpan with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> tileFilter [
+	^self brush: SVGTileFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> turbulenceFilter [
+	^self brush: SVGTurbulenceFilterTag new
 ]
 
 { #category : #tags }
