@@ -46,7 +46,7 @@ SVGXBarChartTest >> drawBarOn: svg color: barColor height: barHeight width: barW
 SVGXBarChartTest >> drawSVGContentOn: svg [
 	| barWidth barGap nextX |
 	svg definitions: [
-		svg filter: [svg gaussianBlurFilter id: 'blur'; stdDeviation: 4]].
+		svg filter id: 'blur'; with: [svg gaussianBlurFilter input: 'SourceAlpha'; stdDeviation: 4]].
 	barWidth := 25.
 	nextX := 0.
 	barGap := barWidth + 16.
@@ -65,9 +65,9 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 		paint: [:a | a strokeWidth: 1; stroke: '#ccc'];
 		from: 0@200 to: 400@200.
 	svg group transform: [:t | t translate: 470@110];
-		with: [svg circle radius: 96; paint: [:p | p fill: '#ccc']; setOpacity: 0.6.
-			svg circle radius: 90; paint: [:p | p fill: '#ccc']; setOpacity: 0.4.
-			"svg circle radius: 95; paint: [:p | p fill: 'black']; setOpacity: 0.3; useFilter: 'blur'."
+		with: ["svg circle radius: 96; paint: [:p | p fill: '#ccc']; setOpacity: 0.6.
+			svg circle radius: 90; paint: [:p | p fill: '#ccc']; setOpacity: 0.4."
+			svg circle radius: 95; paint: [:p | p fill: 'black']; setOpacity: 0.3; useFilter: 'blur'.
 			self drawSegmentOn: svg from: 0 to: 30 color: '#6699cc'.
 			self drawSegmentOn: svg from: 30 to: 120 color: 'red'.
 			self drawSegmentOn: svg from: 120 to: 175 color: 'green'.
