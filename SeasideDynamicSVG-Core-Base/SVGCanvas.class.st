@@ -119,7 +119,7 @@ SVGCanvas >> filter: aBlock [
 
 { #category : #'tags-filter' }
 SVGCanvas >> gaussianBlurFilter [
-	^self brush: SVGGaussianBlurTag new
+	^self brush: SVGGaussianBlurFilterTag new
 ]
 
 { #category : #'tags-text' }
