@@ -34,7 +34,7 @@ var Prototype = {
 
   BrowserFeatures: {
     XPath: !!document.evaluate,
-    ElementExtensions: !!window.SVGElement,
+    ElementExtensions: !!window.HTMLElement,
     SpecificElementExtensions:
       document.createElement(''div'').__proto__ &&
       document.createElement(''div'').__proto__ !==
@@ -1599,11 +1599,14 @@ Element.Methods = {
     if (Object.isElement(content)) 
 		return element.update().insert(content);
     content = Object.toHTML(content);
+	// SVG-Patch --> 
 	var html = content.stripScripts();
 	if (element.innerHTML == null)
 	{
 		// SVG patch: innerHTML is not a property of SVGElement.
 		// use a dummy element as SVG Parser...
+		// the new nodes will have the wrong (HTML) namespace,
+		// so the xmlns attribute must always be used (sorry)
 		var dummy = document.createElement("div");
 		dummy.innerHTML = html;
 		for (i=element.childNodes.length-1; i>=0; i--)
@@ -1616,6 +1619,7 @@ Element.Methods = {
 	}
 	else
 		element.innerHTML = html;
+	// <-- SVG-Patch
 	content.evalScripts.bind(content).defer();
     return element;
   },
@@ -2531,8 +2535,10 @@ if (!Prototype.BrowserFeatures.ElementExtensions &&
     document.createElement(''div'').__proto__) {
   window.HTMLElement = { };
   window.HTMLElement.prototype = document.createElement(''div'').__proto__;
+  // SVG-Patch -->
   window.SVGElement = { };
   window.SVGElement.prototype = document.createElement(''div'').__proto__;
+  // <-- SVG-Patch
   Prototype.BrowserFeatures.ElementExtensions = true;
 }
 
@@ -2648,10 +2654,12 @@ Element.addMethods = function(methods) {
   }
 
   if (F.ElementExtensions) {
-    copy(Element.Methods, SVGElement.prototype);
-    copy(Element.Methods.Simulated, SVGElement.prototype, true);
     copy(Element.Methods, HTMLElement.prototype);
     copy(Element.Methods.Simulated, HTMLElement.prototype, true);
+    // SVG-Patch -->
+    copy(Element.Methods, SVGElement.prototype);
+    copy(Element.Methods.Simulated, SVGElement.prototype, true);
+	// <-- SVG-Patch
   }
 
   if (F.SpecificElementExtensions) {
@@ -2695,7 +2703,7 @@ document.viewport = {
       window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop);
   }
 };
-/* Portions of the Selector class are derived from Jack SlocumÄôs DomQuery,
+/* Portions of the Selector class are derived from Jack SlocumÄö¦Ñ¦¥s DomQuery,
  * part of YUI-Ext version 0.40, distributed under the terms of an MIT-style
  * license.  Please see http://www.yui-ext.com/ for more information. */
 
