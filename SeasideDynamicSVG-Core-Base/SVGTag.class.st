@@ -94,6 +94,8 @@ SVGTag >> openTag [
 		ifTrue: [ canvas context userAgentAdaptor fullTagForInlinedSVGTag: self tag ]
 		ifFalse: [ self tag ].
 	self needsId ifTrue: [ self assignNextId ].
+	canvas context document allTagsRequireSVGNameSpace
+		ifTrue:  [ self attributeAt: 'xmlns' put: SVGRoot defaultNamespace. ].
 	self document openTag: fullTag attributes: attributes closed: self isClosed.
 	
 ]
