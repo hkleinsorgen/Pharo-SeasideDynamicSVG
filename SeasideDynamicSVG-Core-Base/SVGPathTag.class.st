@@ -113,7 +113,7 @@ SVGPathTag >> drawPieSegmentFrom:  startAngle to: angle length: length [
 		arcTo: (Point r: length degrees: angle)
 		radius: length@length
 		rotation: 0
-		large: false
+		large: (startAngle - angle) abs > 180
 		sweep: true.
 	self lineTo: 0@0.
 	self closePath.
