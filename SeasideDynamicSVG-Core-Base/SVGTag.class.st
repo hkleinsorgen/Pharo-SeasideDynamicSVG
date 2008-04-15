@@ -8,13 +8,6 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Base'
 }
 
-{ #category : #'convenience-referencing' }
-SVGTag >> assignNextId [
-	" an ID is required to reference this tag "
-	
-	self id isNil ifTrue: [ self id: canvas nextId ]
-]
-
 { #category : #'accessing-attributes' }
 SVGTag >> attributeAt: aKey ifAbsentPut: aBlock [ 
 	^ super 
@@ -93,7 +86,7 @@ SVGTag >> openTag [
 	fullTag := canvas context containsInlinedSVG
 		ifTrue: [ canvas context userAgentAdaptor fullTagForInlinedSVGTag: self tag ]
 		ifFalse: [ self tag ].
-	self needsId ifTrue: [ self assignNextId ].
+	self needsId ifTrue: [ self ensureId ].
 	canvas context document allTagsRequireSVGNameSpace
 		ifTrue:  [ self attributeAt: 'xmlns' put: SVGRoot defaultNamespace. ].
 	self document openTag: fullTag attributes: attributes closed: self isClosed.
