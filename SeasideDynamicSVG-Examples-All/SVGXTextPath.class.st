@@ -38,7 +38,7 @@ SVGXTextPath >> drawSVGContentOn: svg [
 					with: 900 @ 100
 					with: 900 @ 100) ].
 	svg use
-		elementID: pathID ;
+		element: pathID ;
 		paint: 
 			[ : paint | 
 			paint
@@ -52,7 +52,7 @@ SVGXTextPath >> drawSVGContentOn: svg [
 				font: 
 					[ : font | 
 					font
-						family: self fontFamily;
+						family: self fontFamily ;
 						size: 36 ] ;
 				paint: 
 					[ : paint | 
@@ -61,7 +61,7 @@ SVGXTextPath >> drawSVGContentOn: svg [
 						stroke: Color blue ] ;
 				with: 
 					[ svg textPath
-						pathID: pathID ;
+						path: pathID ;
 						with: [ svg text: self currentMessage ] ] ]
 ]
 
