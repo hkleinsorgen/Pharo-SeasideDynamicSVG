@@ -103,6 +103,15 @@ SVGFontAttributeSet >> smallCaps [
 	self variant: 'small-caps'
 ]
 
+{ #category : #convenience }
+SVGFontAttributeSet >> squeakFont: aFont [
+
+	self 
+"		family: aFont familyName;  "
+		family: 'sans serif, sans';  
+		size: aFont pointSize.
+]
+
 { #category : #accessing }
 SVGFontAttributeSet >> stretch: aString [ 
 	self 

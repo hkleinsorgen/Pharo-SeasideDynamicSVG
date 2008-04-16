@@ -4,7 +4,7 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
-{ #category : #accessing }
+{ #category : #convenience }
 SVGEllipseTag >> center: aPoint [
 
 	self centerX: aPoint x.
@@ -27,7 +27,7 @@ SVGEllipseTag >> centerY: aNumber [
 
 ]
 
-{ #category : #accessing }
+{ #category : #convenience }
 SVGEllipseTag >> radius: aPoint [
 
 	self radiusX: aPoint x.
@@ -50,6 +50,13 @@ SVGEllipseTag >> radiusY: aNumber [
 		attributeAt: 'ry'
 		put: aNumber .
 
+]
+
+{ #category : #convenience }
+SVGEllipseTag >> rectangle: aRectangle [
+
+	self center: aRectangle center.
+	self radius: (aRectangle extent / 2).
 ]
 
 { #category : #accessing }

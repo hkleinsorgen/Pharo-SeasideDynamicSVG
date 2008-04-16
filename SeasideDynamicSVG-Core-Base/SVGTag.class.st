@@ -45,6 +45,12 @@ SVGTag >> closeTag [
 		]
 ]
 
+{ #category : #convenience }
+SVGTag >> fill: fillColor [
+
+	self paint fill: fillColor
+]
+
 { #category : #accessing }
 SVGTag >> filter: filterId [
 "use predefined filters with the given id from the defs sections"
@@ -109,6 +115,18 @@ SVGTag >> paint: aBlock [
 { #category : #convenience }
 SVGTag >> setOpacity: aNumber [
 	self opacity: [:o | o opacity: aNumber]
+]
+
+{ #category : #convenience }
+SVGTag >> stroke: strokeColor [
+
+	self paint fill: strokeColor
+]
+
+{ #category : #convenience }
+SVGTag >> strokeWidth: aLengthValue [
+
+	self paint strokeWidth: aLengthValue
 ]
 
 { #category : #styles }

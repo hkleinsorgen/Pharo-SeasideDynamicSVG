@@ -306,11 +306,6 @@ SVGCanvas >> polygon [
 ]
 
 { #category : #'tags-shapes' }
-SVGCanvas >> polygone [
-	^self brush: SVGPolygonTag new
-]
-
-{ #category : #'tags-shapes' }
 SVGCanvas >> polyline [
 	^self brush: SVGPolylineTag new
 ]
@@ -321,7 +316,7 @@ SVGCanvas >> radialGradient [
 	^ self brush: SVGRadialGradientTag new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #'tags-shapes' }
 SVGCanvas >> rectangle [
 	^ self brush: SVGRectangleTag new
 ]
