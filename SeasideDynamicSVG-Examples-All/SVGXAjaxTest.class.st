@@ -140,11 +140,7 @@ SVGXAjaxTest >> rectangleWidth: anInteger [
 { #category : #rendering }
 SVGXAjaxTest >> renderContentOn: html [ 
 
-	html div class: 'Toolbar';
-		with: [
-			html div class: 'ToolbarRow'; with: [ self renderToolbarContentOn: html ].
-		].
-
+	self renderToolbarOn: html.
 	html div id: 'svg';
 		style: 'border:1px solid #ccc;background:#ffffe0; padding: 0.5em';
 		with: [self renderInlinedOn: html]
@@ -187,6 +183,17 @@ SVGXAjaxTest >> renderToolbarContentOn: html [
 	html space.
 	html anchor onClick: 'insertRect()';
 	 with: 'Add Rect (Javascript)'.
+
+
+]
+
+{ #category : #rendering }
+SVGXAjaxTest >> renderToolbarOn: html [ 
+
+	html div class: 'Toolbar';
+		with: [
+			html div class: 'ToolbarRow'; with: [ self renderToolbarContentOn: html ].
+		].
 
 
 ]
