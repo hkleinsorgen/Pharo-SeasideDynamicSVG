@@ -44,6 +44,12 @@ SVGXExample >> embedSelector: aSymbol [
 	embedSelector := aSymbol
 ]
 
+{ #category : #accessing }
+SVGXExample >> fontFamily [
+
+	^ 'Verdana, sans-serif'
+]
+
 { #category : #'initialize-release' }
 SVGXExample >> initialize [
 	

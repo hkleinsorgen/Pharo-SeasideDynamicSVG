@@ -52,7 +52,7 @@ SVGXTextPath >> drawSVGContentOn: svg [
 				font: 
 					[ : font | 
 					font
-						family: 'Verdana, sans-serif' ;
+						family: self fontFamily;
 						size: 36 ] ;
 				paint: 
 					[ : paint | 
