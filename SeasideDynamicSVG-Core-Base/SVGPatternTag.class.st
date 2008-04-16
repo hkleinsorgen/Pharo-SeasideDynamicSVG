@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #accessing }
+SVGPatternTag >> clip: aShape [
+
+	self attributeAt: 'clip' put: aShape
+]
+
+{ #category : #accessing }
 SVGPatternTag >> contentUnits: aCoordinateSystemString [
 
 	self attributeAt: 'patternContentUnits' put: aCoordinateSystemString

@@ -31,26 +31,26 @@ SVGTag >> attributeSetAt: attributeSetClass [
 	^ attributeSets at: attributeSetClass ifAbsentPut: [ attributeSetClass brush: self ]
 ]
 
-{ #category : #accessing }
+{ #category : #clipping }
 SVGTag >> clipPath: aPathReference [ 
 	self 
 		attributeAt: 'clip-path'
 		put: aPathReference toSVGURIReference
 ]
 
-{ #category : #accessing }
+{ #category : #clipping }
 SVGTag >> clipRule: aString [
 
 	self attributeAt: 'clip-rule' put: aString
 ]
 
-{ #category : #convenience }
+{ #category : #clipping }
 SVGTag >> clipRuleEvenOdd [ 
 
 	self clipRule: 'evenodd'
 ]
 
-{ #category : #convenience }
+{ #category : #clipping }
 SVGTag >> clipRuleNonZero [
 
 	self clipRule: 'ruleNonZero'
@@ -90,7 +90,7 @@ SVGTag >> generateURL [
 	^ self id toSVGURIReference
 ]
 
-{ #category : #accessing }
+{ #category : #clipping }
 SVGTag >> mask: aMaskReference [ 
 	self 
 		attributeAt: 'mask'

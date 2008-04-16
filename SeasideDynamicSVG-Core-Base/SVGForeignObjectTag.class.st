@@ -11,6 +11,12 @@ SVGForeignObjectTag >> bounds: aRectangle [
 	self extent: aRectangle extent.
 ]
 
+{ #category : #accessing }
+SVGForeignObjectTag >> clip: aShape [
+
+	self attributeAt: 'clip' put: aShape
+]
+
 { #category : #convenience }
 SVGForeignObjectTag >> extent: aPoint [
 
@@ -31,7 +37,7 @@ SVGForeignObjectTag >> origin: aPoint [
 	self y: aPoint y.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SVGForeignObjectTag >> tag [
 
 	^ 'foreignObject'

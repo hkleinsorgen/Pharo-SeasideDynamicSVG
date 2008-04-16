@@ -10,6 +10,12 @@ SVGMarkerTag >> autoOrientation [
 	self orientation: 'auto'
 ]
 
+{ #category : #accessing }
+SVGMarkerTag >> clip: aShape [
+
+	self attributeAt: 'clip' put: aShape
+]
+
 { #category : #convenience }
 SVGMarkerTag >> extent: aPoint [
 
