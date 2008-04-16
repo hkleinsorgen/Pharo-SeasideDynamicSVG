@@ -345,6 +345,13 @@ SVGCanvas >> render: anObject [
 	anObject drawSVGOn: self
 ]
 
+{ #category : #tags }
+SVGCanvas >> script [
+	"Defines a script."
+
+	^ self brush: WAScriptTag new
+]
+
 { #category : #'tags-filter' }
 SVGCanvas >> specularLightingFilter [
 	^self brush: SVGSpecularLightingFilterTag new
