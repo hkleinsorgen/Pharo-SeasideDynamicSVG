@@ -4,7 +4,7 @@ Class {
 	#category : #'SeasideDynamicSVG-Examples-All'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #drawing }
 SVGXMarker >> drawSVGContentOn: svg [ 
 
 	| arrowhead |
