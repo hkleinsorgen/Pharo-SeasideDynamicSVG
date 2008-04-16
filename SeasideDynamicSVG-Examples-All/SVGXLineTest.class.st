@@ -16,7 +16,7 @@ SVGXLineTest >> drawSVGContentOn: svg [
 	svg line paint: [:a | a strokeWidth: 2; stroke: Color red]; from: 10@20 to: 250@20.
 	svg line
 		paint: [:a | a strokeWidth: 4; stroke: Color blue];
-		setOpacity: 0.6;
+		opacity: 0.6;
 		from: 10@30 to: 300@30.
 	svg line paint: [:a | a strokeWidth: 2; stroke: Color blue; dashed]; from: 10@40 to: 300@40.
 	svg line paint: [:a | a strokeWidth: 2; stroke: Color blue; dotted]; from: 10@50 to: 300@50.

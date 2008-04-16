@@ -25,13 +25,13 @@ SVGXBarChartTest >> drawBarOn: svg color: barColor height: barHeight width: barW
 	
 	svg polygon add: p1; add: p2; add: p4; add: p3;
 			paint: [:a | a fill: barColor; stroke: 'none'];
-			setOpacity: 0.6.
+			opacity: 0.6.
 	svg polygon add: p2; add: p6; add: p7; add: p4;
 			paint: [:a | a fill: barColor; stroke: 'none'];
-			setOpacity: 0.4.
+			opacity: 0.4.
 	svg polygon add: p1; add: p5; add: p6; add: p2;
 			paint: [:a | a fill: barColor; stroke: 'none'];
-			setOpacity: 0.8.
+			opacity: 0.8.
 	svg textShape
 			transform: [:t | t translate: p5 + (10@-2); rotate: -90];
 			font: [:font | font family: 'Verdana'; size: 10 ];
@@ -67,7 +67,7 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 	svg group transform: [:t | t translate: 470@110];
 		with: ["svg circle radius: 96; paint: [:p | p fill: '#ccc']; setOpacity: 0.6.
 			svg circle radius: 90; paint: [:p | p fill: '#ccc']; setOpacity: 0.4."
-			svg circle radius: 95; paint: [:p | p fill: 'black']; setOpacity: 0.3; useFilter: 'blur'.
+			svg circle radius: 95; paint: [:p | p fill: 'black']; opacity: 0.3; useFilter: 'blur'.
 			self drawSegmentOn: svg from: 0 to: 30 color: '#6699cc'.
 			self drawSegmentOn: svg from: 30 to: 120 color: 'red'.
 			self drawSegmentOn: svg from: 120 to: 150 color: 'green'.

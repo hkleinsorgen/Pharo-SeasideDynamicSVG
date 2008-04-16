@@ -17,11 +17,11 @@ SVGXImage >> drawSVGContentOn: svg [
 			width: 72; height: 48;
 			x:0; y:0;
 			url: 'http://www.w3.org/Icons/w3c_home'.
-	svg image setOpacity: 0.5;
+	svg image opacity: 0.5;
 			width: 72; height: 48;
 			x:100; y:0;
 			url: 'http://www.w3.org/Icons/w3c_home'.
-	svg image setOpacity: 0.5;
+	svg image opacity: 0.5;
 			transform: [:t | t skewX: -40];
 			width: 72; height: 48;
 			x:250; y:0;
@@ -30,7 +30,7 @@ SVGXImage >> drawSVGContentOn: svg [
 			width: 72; height: 48;
 			x:0; y:0;
 			url: 'http://www.w3.org/Icons/w3c_home'.
-	svg image setOpacity: 0.8;
+	svg image opacity: 0.8;
 			width: 400; height: 80;
 			x:0; y:140;
 			url: 'http://www.w3.org/Icons/w3c_home';
