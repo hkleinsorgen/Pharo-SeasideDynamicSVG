@@ -14,6 +14,12 @@ SVGRootTag >> baseProfile: aString [
 ]
 
 { #category : #accessing }
+SVGRootTag >> clip: aShape [
+
+	self attributeAt: 'clip' put: aShape
+]
+
+{ #category : #accessing }
 SVGRootTag >> contentScriptType: aString [
 
 	self attributeAt: 'contentScriptType' put: aString .

@@ -32,9 +32,10 @@ SVGTag >> attributeSetAt: attributeSetClass [
 ]
 
 { #category : #accessing }
-SVGTag >> clipPath: anURIOrTag [
-
-	self attributeAt: 'clip-path' put: anURIOrTag
+SVGTag >> clipPath: aPathReference [ 
+	self 
+		attributeAt: 'clip-path'
+		put: aPathReference toSVGURIReference
 ]
 
 { #category : #accessing }
@@ -85,9 +86,15 @@ SVGTag >> filter: filterId [
 { #category : #'convenience-referencing' }
 SVGTag >> generateURL [
 	" convenience method for referencing this tag "
-	
 	self id isNil ifTrue: [ self error: 'Cannot reference tag without id attribute' ].
-	^ 'url(#', self id, ')'
+	^ self id toSVGURIReference
+]
+
+{ #category : #accessing }
+SVGTag >> mask: aMaskReference [ 
+	self 
+		attributeAt: 'mask'
+		put: aMaskReference toSVGURIReference
 ]
 
 { #category : #'convenience-referencing' }
@@ -157,8 +164,20 @@ SVGTag >> style: aString value: value [
 ]
 
 { #category : #'convenience-referencing' }
+SVGTag >> toSVGIDReference [
+	" convenience method for referencing this tag "
+	self id isNil ifTrue: [ self error: 'Cannot reference tag without id attribute' ].
+	^ '#', self id
+]
+
+{ #category : #'convenience-referencing' }
 SVGTag >> toSVGString [
 
+	^ self generateURL
+]
+
+{ #category : #'convenience-referencing' }
+SVGTag >> toSVGURIReference [
 	^ self generateURL
 ]
 
@@ -174,10 +193,10 @@ SVGTag >> transformList [
 ]
 
 { #category : #accessing }
-SVGTag >> useFilter: filterId [
+SVGTag >> useFilter: aFilterReference [
 "use predefined filters with the given id from the defs sections"
 
-	self attributes at: 'filter' put: 'url(#',filterId ,')'
+	self attributes at: 'filter' put: aFilterReference toSVGURIReference
 ]
 
 { #category : #public }

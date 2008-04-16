@@ -5,21 +5,14 @@ Class {
 }
 
 { #category : #'convenience-reference' }
-SVGUseTag >> elementID: anID [ 
-	" ID of the referenced element "
-
-	self url: '#' , anID toSVGString
+SVGUseTag >> element: anElementReference [ 
+	self attributes 
+		at: 'xlink:href'
+		put: anElementReference toSVGIDReference
 ]
 
 { #category : #accessing }
 SVGUseTag >> tag [
 
 	^ 'use'
-]
-
-{ #category : #accessing }
-SVGUseTag >> url: anURIOrString [
-	" URI of the used element  "
-
-	self attributes at: 'xlink:href' put: anURIOrString
 ]

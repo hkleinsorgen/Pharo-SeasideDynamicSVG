@@ -87,10 +87,11 @@ SVGGlyphBrush >> shiftY: aNumberOrString [
 ]
 
 { #category : #accessing }
-SVGGlyphBrush >> url: anURIOrString [
+SVGGlyphBrush >> url: aGlyphReference [ 
 	" URI of a glyph or alternative glyph definition "
-
-	self attributes at: 'xlink:href' put: anURIOrString
+	self attributes 
+		at: 'xlink:href'
+		put: aGlyphReference toSVGURIReference
 ]
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Paint'
 }
 
-{ #category : #'convenience-referencing' }
+{ #category : #private }
 SVGPaintBrush >> needsId [
 
 	^ true
@@ -16,14 +16,15 @@ SVGPaintBrush >> overflow: aString [
 	self attributeAt: 'overflow' put: aString
 ]
 
-{ #category : #'convenience-referencing' }
+{ #category : #accessing }
 SVGPaintBrush >> toSVGPaint [
 	^ self generateURL
 ]
 
 { #category : #accessing }
-SVGPaintBrush >> url: anURIOrString [
+SVGPaintBrush >> url: aPaintReference [ 
 	" A URI reference to a different 'linearGradient' or 'radialGradient' element within the current SVG document fragment "
-
-	self attributes at: 'xlink:href' put: anURIOrString
+	self attributes 
+		at: 'xlink:href'
+		put: aPaintReference toSVGURIReference
 ]

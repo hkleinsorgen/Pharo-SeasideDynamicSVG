@@ -22,11 +22,11 @@ SVGTextPathTag >> method: aString [
 	self attributeAt: 'method' put: aString
 ]
 
-{ #category : #'convenience-reference' }
-SVGTextPathTag >> pathID: anID [ 
-	" ID of the referenced path "
-
-	self url: '#' , anID toSVGString
+{ #category : #accessing }
+SVGTextPathTag >> path: aPathReference [ 
+	self attributes 
+		at: 'xlink:href'
+		put: aPathReference toSVGIDReference
 ]
 
 { #category : #accessing }
@@ -51,11 +51,4 @@ SVGTextPathTag >> stretch [
 SVGTextPathTag >> tag [
 
 	^ 'textPath'
-]
-
-{ #category : #accessing }
-SVGTextPathTag >> url: anURIOrString [
-	" URI of the referenced path "
-
-	self attributes at: 'xlink:href' put: anURIOrString
 ]

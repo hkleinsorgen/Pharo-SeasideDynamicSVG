@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #attributes }
+SVGImageTag >> clip: aShape [
+
+	self attributeAt: 'clip' put: aShape
+]
+
+{ #category : #attributes }
 SVGImageTag >> height: aNumber [
 	
 	self attributeAt: 'height' put: aNumber

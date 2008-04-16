@@ -69,6 +69,12 @@ SVGCanvas >> circle [
 	^self brush: SVGCircleTag new
 ]
 
+{ #category : #tags }
+SVGCanvas >> clippingPath [
+
+	^ self brush: SVGClippingPathTag new
+]
+
 { #category : #'tags-filter' }
 SVGCanvas >> colorMatrixFilter [
 	^self brush: SVGColorMatrixFilterTag new
@@ -164,6 +170,12 @@ SVGCanvas >> floodFilter [
 	^self brush: SVGFloodFilterTag new
 ]
 
+{ #category : #tags }
+SVGCanvas >> foreignTag [
+
+	^ self brush: SVGForeignObjectTag new
+]
+
 { #category : #'tags-filter' }
 SVGCanvas >> funcAlphaFilter [
 	^self brush: SVGFuncAlphaFilterTag new
@@ -250,6 +262,12 @@ SVGCanvas >> line [
 SVGCanvas >> linearGradient [
 
 	^ self brush: SVGLinearGradientTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> mark [
+
+	^ self brush: SVGMaskTag new
 ]
 
 { #category : #'tags-shapes' }
@@ -340,6 +358,18 @@ SVGCanvas >> svgTagsNeedNamespace [
 { #category : #accessing }
 SVGCanvas >> svgTagsNeedNamespace: aBoolean [ 
 	tagsNeedNamespace := aBoolean
+]
+
+{ #category : #tags }
+SVGCanvas >> symbol [
+
+	^ self brush: SVGSymbolTag new
+]
+
+{ #category : #tags }
+SVGCanvas >> symbol: aBlock [
+
+	^ self symbol with: aBlock
 ]
 
 { #category : #public }
