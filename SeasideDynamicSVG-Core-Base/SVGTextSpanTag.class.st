@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGTextSpanTag,
-	#superclass : #SVGWorldTransformedTextBrush,
+	#superclass : #SVGTextPositioningBrush,
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 

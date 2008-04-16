@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGOffsetFilterTag,
 	#superclass : #SVGFilterPrimitive,
-	#category : #'SeasideDynamicSVG-Core-Shapes'
+	#category : #'SeasideDynamicSVG-Core-Filter'
 }
 
 { #category : #accessing }

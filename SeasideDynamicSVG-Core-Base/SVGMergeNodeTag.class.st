@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGMergeNodeTag,
 	#superclass : #SVGFilterSubElement,
-	#category : #'SeasideDynamicSVG-Core-Shapes'
+	#category : #'SeasideDynamicSVG-Core-Filter'
 }
 
 { #category : #accessing }

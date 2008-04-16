@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGColorMatrixFilterTag,
 	#superclass : #SVGFilterPrimitive,
-	#category : #'SeasideDynamicSVG-Core-Shapes'
+	#category : #'SeasideDynamicSVG-Core-Filter'
 }
 
 { #category : #private }

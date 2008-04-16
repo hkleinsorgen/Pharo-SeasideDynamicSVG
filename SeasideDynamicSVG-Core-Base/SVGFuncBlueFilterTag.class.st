@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGFuncBlueFilterTag,
 	#superclass : #SVGComponentTransferSubElement,
-	#category : #'SeasideDynamicSVG-Core-Shapes'
+	#category : #'SeasideDynamicSVG-Core-Filter'
 }
 
 { #category : #private }
