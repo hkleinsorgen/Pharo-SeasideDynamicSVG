@@ -25,6 +25,15 @@ SVGAttributeSet class >> brush: aSVGTag [
 	^ self new brush: aSVGTag; yourself
 ]
 
+{ #category : #private }
+SVGAttributeSet >> apply: aValueOrBlock [
+
+	^ aValueOrBlock isBlock
+		ifTrue: [ aValueOrBlock value: self ]
+		ifFalse: [ self setValue:  aValueOrBlock ]
+		
+]
+
 { #category : #'accessing-attributes' }
 SVGAttributeSet >> attributeAt: aKey [
 	^ self brush attributeAt: aKey
@@ -64,4 +73,15 @@ SVGAttributeSet >> brush [
 SVGAttributeSet >> brush: aSVGTag [
 
 	brush := aSVGTag
+]
+
+{ #category : #private }
+SVGAttributeSet >> setValue: aValue [
+	" some attributes allow to pass values, e.g.
+		svg opacity: 0.5
+	instead of 
+		svg opacity: [ : o | o pacity: 0.5 ]
+	" 
+	
+	self error: 'Value ', aValue printString, ' cannot be applied to attribute set ', self class name
 ]

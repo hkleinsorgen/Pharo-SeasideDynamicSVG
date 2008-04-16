@@ -4,6 +4,12 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Enumerations'
 }
 
+{ #category : #accessing }
+SVGEnumeration class >> auto [ 
+
+	^ 'auto'
+]
+
 { #category : #developers }
 SVGEnumeration class >> compileSelectors [
 
@@ -64,6 +70,12 @@ SVGEnumeration class >> enumString [
 
 	"self compileSelectors"
 	^ ''
+]
+
+{ #category : #accessing }
+SVGEnumeration class >> inherit [
+
+	^ 'inherit'
 ]
 
 { #category : #developers }

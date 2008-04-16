@@ -31,6 +31,30 @@ SVGTag >> attributeSetAt: attributeSetClass [
 	^ attributeSets at: attributeSetClass ifAbsentPut: [ attributeSetClass brush: self ]
 ]
 
+{ #category : #accessing }
+SVGTag >> clipPath: anURIOrTag [
+
+	self attributeAt: 'clip-path' put: anURIOrTag
+]
+
+{ #category : #accessing }
+SVGTag >> clipRule: aString [
+
+	self attributeAt: 'clip-rule' put: aString
+]
+
+{ #category : #convenience }
+SVGTag >> clipRuleEvenOdd [ 
+
+	self clipRule: 'evenodd'
+]
+
+{ #category : #convenience }
+SVGTag >> clipRuleNonZero [
+
+	self clipRule: 'ruleNonZero'
+]
+
 { #category : #private }
 SVGTag >> closeTag [
 	"Close the receiving tag onto the document."
@@ -81,8 +105,9 @@ SVGTag >> opacity [
 ]
 
 { #category : #'accessing-attribute sets' }
-SVGTag >> opacity: aBlock [
-	aBlock value: self opacity
+SVGTag >> opacity: aValueOrBlock [
+
+	self opacity apply: aValueOrBlock
 ]
 
 { #category : #public }
@@ -108,13 +133,9 @@ SVGTag >> paint [
 ]
 
 { #category : #'accessing-attribute sets' }
-SVGTag >> paint: aBlock [
-	aBlock value: self paint
-]
+SVGTag >> paint: aValueOrBlock [
 
-{ #category : #convenience }
-SVGTag >> setOpacity: aNumber [
-	self opacity: [:o | o opacity: aNumber]
+	self paint apply: aValueOrBlock
 ]
 
 { #category : #convenience }

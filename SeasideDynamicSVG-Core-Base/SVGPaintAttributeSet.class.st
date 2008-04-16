@@ -55,16 +55,23 @@ SVGPaintAttributeSet >> fillRule: anObject [
 	^ self attributeAt: 'fill-rule' put: anObject 
 ]
 
-{ #category : #'convenience-full rule' }
+{ #category : #'convenience-fill rule' }
 SVGPaintAttributeSet >> fillRuleEvenOdd [
 
 	self fillRule: 'evenodd'
 ]
 
-{ #category : #'convenience-full rule' }
+{ #category : #'convenience-fill rule' }
 SVGPaintAttributeSet >> fillRuleNonZero [
 
 	self fillRule: 'nonzero'
+]
+
+{ #category : #private }
+SVGPaintAttributeSet >> setValue: aValue [
+
+	self color: aValue.
+	self fillColor: aValue.
 ]
 
 { #category : #accessing }

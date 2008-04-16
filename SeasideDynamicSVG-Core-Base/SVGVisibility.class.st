@@ -22,11 +22,6 @@ SVGVisibility class >> hidden [
 ]
 
 { #category : #accessing }
-SVGVisibility class >> inherit [
-	^ 'inherit'
-]
-
-{ #category : #accessing }
 SVGVisibility class >> visible [
 	^ 'visible'
 ]

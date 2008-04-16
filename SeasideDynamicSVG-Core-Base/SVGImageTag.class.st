@@ -11,6 +11,12 @@ SVGImageTag >> height: aNumber [
 ]
 
 { #category : #attributes }
+SVGImageTag >> overflow: aString [
+
+	self attributeAt: 'overflow' put: aString
+]
+
+{ #category : #attributes }
 SVGImageTag >> preserveAspectRatio: aString [
 	"e.g. xMinYMin meet"
 	self attributes at: 'preserveAspectRatio' put: aString

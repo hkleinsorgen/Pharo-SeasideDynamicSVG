@@ -26,11 +26,6 @@ table-cell | table-caption | none | inherit'
 ]
 
 { #category : #accessing }
-SVGDisplay class >> inherit [
-	^ 'inherit'
-]
-
-{ #category : #accessing }
 SVGDisplay class >> inline [
 	^ 'inline'
 ]

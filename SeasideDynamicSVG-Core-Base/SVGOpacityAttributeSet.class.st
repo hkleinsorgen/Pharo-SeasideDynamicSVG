@@ -14,6 +14,12 @@ SVGOpacityAttributeSet >> opacity: anObject [
 	^ self attributeAt: 'opacity' put: anObject 
 ]
 
+{ #category : #private }
+SVGOpacityAttributeSet >> setValue: aValue [
+
+	self opacity: aValue
+]
+
 { #category : #accessing }
 SVGOpacityAttributeSet >> strokeOpacity: anObject [
 	^ self attributeAt: 'stroke-opacity' put: anObject 

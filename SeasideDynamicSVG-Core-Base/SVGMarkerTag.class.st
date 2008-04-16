@@ -41,6 +41,12 @@ SVGMarkerTag >> orientation: anAngle [
 	self attributeAt: 'orient' put: anAngle
 ]
 
+{ #category : #accessing }
+SVGMarkerTag >> overflow: aString [
+
+	self attributeAt: 'overflow' put: aString
+]
+
 { #category : #convenience }
 SVGMarkerTag >> referencePoint: aPoint [
 

@@ -10,6 +10,12 @@ SVGPaintBrush >> needsId [
 	^ true
 ]
 
+{ #category : #accessing }
+SVGPaintBrush >> overflow: aString [
+
+	self attributeAt: 'overflow' put: aString
+]
+
 { #category : #'convenience-referencing' }
 SVGPaintBrush >> toSVGPaint [
 	^ self generateURL

@@ -53,6 +53,12 @@ SVGRootTag >> initialize [
 ]
 
 { #category : #accessing }
+SVGRootTag >> overflow: aString [
+
+	self attributeAt: 'overflow' put: aString
+]
+
+{ #category : #accessing }
 SVGRootTag >> preserveAspectRatio: aString [
 
 	self attributeAt: 'preserveAspectRatio' put: aString .
