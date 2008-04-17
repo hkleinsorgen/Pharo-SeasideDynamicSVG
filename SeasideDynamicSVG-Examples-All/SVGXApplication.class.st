@@ -94,6 +94,7 @@ SVGXApplication >> renderContentOn: html [
 	self renderHeaderOn: html.
 	self renderOwnContentOn: html.
 	self children do: [ : child | html render: child ] separatedBy: [ html paragraph ].
+	self renderFooterOn: html .
 
 ]
 
@@ -125,13 +126,24 @@ SVGXApplication >> renderEmbedSelectorsOn: html [
 ]
 
 { #category : #rendering }
+SVGXApplication >> renderFooterOn: html [ 
+
+	html div
+		class: 'Footer';
+		with: [ html text: 'Browser adaptor: ', html context userAgentAdaptor class name ].
+
+]
+
+{ #category : #rendering }
 SVGXApplication >> renderHeaderOn: html [ 
 
-	html div: 
-		[ html heading
+	html div: [ 
+		html heading
 			level: 2 ;
 			with: [ html text: self title ].
-		html text: self description ].
+		html text: self description.
+		html paragraph.
+	 ].
 
 ]
 
@@ -201,6 +213,11 @@ div.Toolbar {
 
 div.ToolbarRow {
 	padding: 0.25em;
+}
+
+div.Footer {
+	padding-top: 1em;
+	font-size: smaller;
 }
 
 div.SVGContainer {
