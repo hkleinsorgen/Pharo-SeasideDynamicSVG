@@ -148,7 +148,7 @@ SVGTag >> paint: aValueOrBlock [
 { #category : #convenience }
 SVGTag >> stroke: strokeColor [
 
-	self paint fill: strokeColor
+	self paint stroke: strokeColor
 ]
 
 { #category : #convenience }

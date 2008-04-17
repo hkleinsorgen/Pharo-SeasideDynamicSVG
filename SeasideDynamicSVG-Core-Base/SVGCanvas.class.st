@@ -51,6 +51,11 @@ SVGCanvas >> anchor [
 	^self brush: SVGAnchorTag new
 ]
 
+{ #category : #'tags-animation' }
+SVGCanvas >> animation [
+	^ self brush: SVGAnimationTag new
+]
+
 { #category : #'tags-filter' }
 SVGCanvas >> blendFilter [
 	^self brush: SVGBlendFilterTag new
@@ -297,6 +302,17 @@ SVGCanvas >> morphologyFilter [
 	^self brush: SVGMorphologyFilterTag new
 ]
 
+{ #category : #'tags-animation' }
+SVGCanvas >> motion [
+	^ self brush: SVGAnimationMotionTag new
+]
+
+{ #category : #'tags-animation' }
+SVGCanvas >> motionPath [
+
+	^ self brush: SVGMotionPathTag new
+]
+
 { #category : #accessing }
 SVGCanvas >> nextId [
 	^ 'id' , context advanceKey
@@ -352,6 +368,12 @@ SVGCanvas >> script [
 	^ self brush: WAScriptTag new
 ]
 
+{ #category : #'tags-animation' }
+SVGCanvas >> setAnimationAttribute [
+
+	^ self brush: SVGSetAnimationAttributeTag new
+]
+
 { #category : #'tags-filter' }
 SVGCanvas >> specularLightingFilter [
 	^self brush: SVGSpecularLightingFilterTag new
@@ -364,7 +386,9 @@ SVGCanvas >> svgTagsNeedNamespace [
 
 { #category : #accessing }
 SVGCanvas >> svgTagsNeedNamespace: aBoolean [ 
-	tagsNeedNamespace := aBoolean
+
+	tagsNeedNamespace := aBoolean.
+
 ]
 
 { #category : #tags }
@@ -427,6 +451,11 @@ SVGCanvas >> textSpan: aBlock [
 { #category : #'tags-filter' }
 SVGCanvas >> tileFilter [
 	^self brush: SVGTileFilterTag new
+]
+
+{ #category : #'tags-animation' }
+SVGCanvas >> transformAnimation [
+	^ self brush: SVGAnimationTransformTag new
 ]
 
 { #category : #'tags-filter' }

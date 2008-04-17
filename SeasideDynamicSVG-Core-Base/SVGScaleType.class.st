@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-SVGScaleType >> attribute [
+SVGScaleType class >> attribute [
 	^'scale'
 ]

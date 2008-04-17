@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-SVGSkewYType >> attribute [
+SVGSkewYType class >> attribute [
 	^'skewY'
 ]

@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-SVGTranslationType >> attribute [
+SVGTranslationType class >> attribute [
 	^'translate'
 ]

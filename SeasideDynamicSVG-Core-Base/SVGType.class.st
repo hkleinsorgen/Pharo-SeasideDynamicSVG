@@ -5,8 +5,14 @@ Class {
 }
 
 { #category : #accessing }
-SVGType >> attribute [
+SVGType class >> attribute [
 	^self subclassResponsibility 
+]
+
+{ #category : #accessing }
+SVGType >> attribute [
+
+	^ self class attribute
 ]
 
 { #category : #printing }

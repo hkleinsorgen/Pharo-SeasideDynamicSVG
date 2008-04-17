@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-SVGRotationType >> attribute [
+SVGRotationType class >> attribute [
 	^'rotate'
 ]

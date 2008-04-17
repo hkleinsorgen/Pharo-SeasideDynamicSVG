@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessing }
-SVGMatrixType >> attribute [
+SVGMatrixType class >> attribute [
 	^'matrix'
 ]
 
