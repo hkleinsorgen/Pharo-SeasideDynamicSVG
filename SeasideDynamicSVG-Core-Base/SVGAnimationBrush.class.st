@@ -13,19 +13,19 @@ SVGAnimationBrush >> accumulate: aString [
 { #category : #accessing }
 SVGAnimationBrush >> addAnimationValue: aValue [
 
-	self attribute at: 'values' append: aValue toSVGString separator: ';'
+	self attributes at: 'values' append: aValue toSVGString separator: ';'
 ]
 
 { #category : #accessing }
 SVGAnimationBrush >> addKeySpline: aValue [
 
-	self attribute at: 'keySplines' append: aValue toSVGString separator: ';'
+	self attributes at: 'keySplines' append: aValue toSVGString separator: ';'
 ]
 
 { #category : #accessing }
 SVGAnimationBrush >> addKeyTime: aValue [
 
-	self attribute at: 'keyTimes' append: aValue toSVGString separator: ';'
+	self attributes at: 'keyTimes' append: aValue toSVGString separator: ';'
 ]
 
 { #category : #accessing }

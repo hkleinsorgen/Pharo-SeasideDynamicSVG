@@ -8,7 +8,7 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 SVGPath class >> new [
 
 	" VW compatibility "
@@ -129,7 +129,6 @@ SVGPath >> drawPieSegmentFrom:  startAngle to: angle length: length [
 { #category : #'initialize-release' }
 SVGPath >> initialize [
 
-	super initialize.
 	defaultRelative := false.
 	pathStream := String new writeStream.
 ]

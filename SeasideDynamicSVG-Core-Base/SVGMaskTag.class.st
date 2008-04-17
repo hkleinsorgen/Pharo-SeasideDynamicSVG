@@ -43,6 +43,12 @@ SVGMaskTag >> origin: aPoint [
 	self y: aPoint y.
 ]
 
+{ #category : #private }
+SVGMaskTag >> tag [
+
+	^ 'mask'
+]
+
 { #category : #accessing }
 SVGMaskTag >> width: aCoordinate [
 

@@ -71,7 +71,7 @@ SVGPaintAttributeSet >> fillRuleNonZero [
 SVGPaintAttributeSet >> setValue: aValue [
 
 	self color: aValue.
-	self fillColor: aValue.
+	self fill: aValue.
 ]
 
 { #category : #accessing }

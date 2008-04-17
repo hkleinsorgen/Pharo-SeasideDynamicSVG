@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SVGAnimationMotionTag >> addKeyPoint: aValue [
 
-	self attribute at: 'keyPoints' append: aValue toSVGString separator: ';'
+	self attributes at: 'keyPoints' append: aValue toSVGString separator: ';'
 ]
 
 { #category : #accessing }
