@@ -1,6 +1,6 @@
 Extension { #name : #MOBounds }
 
-{ #category : #'*SeasideDynamicSVG-Mondrian-All' }
+{ #category : #'*SeasideDynamicSVG-Mondrian' }
 MOBounds >> toSVGStrokeCoordinates [
 
 	^ Rectangle
