@@ -38,7 +38,7 @@ SVGTextPathTag >> spacing: aString [
 { #category : #accessing }
 SVGTextPathTag >> startOffset: aLengthValue [
 
-	self attributeAt: 'start-offset' put: aLengthValue
+	self attributeAt: 'startOffset' put: aLengthValue
 ]
 
 { #category : #'convenience-method' }
