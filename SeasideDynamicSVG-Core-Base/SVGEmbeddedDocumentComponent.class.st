@@ -120,7 +120,6 @@ SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
 	" inline as <svg> tag "
 
 	| svgTag |
-	canvas context userAgentAdaptor renderPreambleForInlinedSVGOn: canvas.
 	svgTag := canvas svg.
 	self width notNil ifTrue: [ svgTag width: self width ].
 	self height notNil ifTrue: [ svgTag height: self height ].

@@ -34,7 +34,9 @@ WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
 { #category : #'*SeasideDynamicSVG-Core-Base' }
 WARenderCanvas >> svg [
 	" Allows drawing inlined SVG "
+
 	| brush svg |
+	self context userAgentAdaptor renderPreambleForInlinedSVGOn: self .
 	brush := SVGRootTag new.
 	self brush: brush.
 	svg := self svgRendererClass 
