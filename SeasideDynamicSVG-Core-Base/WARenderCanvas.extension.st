@@ -10,25 +10,12 @@ WARenderCanvas >> renderDocumentFor: aComponent [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
-WARenderCanvas >> renderDocumentFor: aComponent on: aStream [ 
-	| innerContext docRoot session document renderer |
-	innerContext := self context copy.
-	docRoot := SVGRoot context: innerContext.
-	session := WACurrentSession value.
-	aComponent updateSVGRoot: docRoot.
-	document := session outputDocumentClass new.
-	document stream: aStream.
-	docRoot open: document.
-	innerContext document: document.
-	renderer := self svgRendererClass 
-		context: innerContext
-		callbacks: self callbacks.
-	renderer svgTagsNeedNamespace: false.
-	renderer
-		render: aComponent ;
-		flush.
-	docRoot close: document.
-	^ document
+WARenderCanvas >> renderDocumentFor: aComponent on: aStream [
+	
+	^aComponent
+		renderSVGDocumentOn: aStream
+		context: self context
+		callbacks: self callbacks
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }

@@ -48,7 +48,11 @@ SVGCanvas >> alternativeGlyphItem: aBlock [
 { #category : #tags }
 SVGCanvas >> anchor [
 	
-	^self brush: SVGAnchorTag new
+	| anchorBrush |
+	anchorBrush _ self context disableAnchors
+		ifTrue: [SVGDisabledAnchorBrush new]
+		ifFalse: [SVGAnchorTag new].
+	^self brush: anchorBrush
 ]
 
 { #category : #'tags-animation' }

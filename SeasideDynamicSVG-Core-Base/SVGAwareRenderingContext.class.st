@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'containsInlinedSVG',
 		'registeredHandlers',
-		'userAgentAdaptor'
+		'userAgentAdaptor',
+		'disableAnchors'
 	],
 	#category : #'SeasideDynamicSVG-Core-Base'
 }
@@ -21,13 +22,25 @@ SVGAwareRenderingContext >> containsInlinedSVG: aBoolean [
 	containsInlinedSVG := aBoolean
 ]
 
+{ #category : #accessing }
+SVGAwareRenderingContext >> disableAnchors [
+	
+	^disableAnchors
+]
+
+{ #category : #accessing }
+SVGAwareRenderingContext >> disableAnchors: aDisableAnchors [
+	
+	disableAnchors _ aDisableAnchors
+]
+
 { #category : #'initialize-release' }
 SVGAwareRenderingContext >> initialize [
-
+	
 	super initialize.
-	containsInlinedSVG := false.
-	registeredHandlers := Set new.
-
+	containsInlinedSVG _ false.
+	registeredHandlers _ Set new.
+	disableAnchors _ false
 ]
 
 { #category : #accessing }
