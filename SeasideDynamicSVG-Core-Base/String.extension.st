@@ -15,6 +15,12 @@ String >> toSVGString [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
+String >> toSVGText [
+
+	^ self convertToEncoding: 'utf-8'
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-Base' }
 String >> toSVGURIReference [
 	^ ('url(*' match: self)
 		ifTrue: [ self ]
