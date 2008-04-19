@@ -126,6 +126,14 @@ SVGXApplication >> renderEmbedSelectorsOn: html [
 ]
 
 { #category : #rendering }
+SVGXApplication >> renderExportOn: html [
+
+	html div class: 'ToolbarRow'; with: [
+		html anchor callback: [ self exportSVG ]; with: [ html text: 'Export'].
+	].
+]
+
+{ #category : #rendering }
 SVGXApplication >> renderFooterOn: html [ 
 
 	html div
@@ -160,7 +168,9 @@ SVGXApplication >> renderOwnContentOn: html [
 { #category : #rendering }
 SVGXApplication >> renderToolbarContentOn: html [
 
-	self renderEmbedSelectorsOn: html
+	self renderEmbedSelectorsOn: html	.
+	self renderExportOn: html.
+
 ]
 
 { #category : #rendering }
