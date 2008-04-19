@@ -8,6 +8,12 @@ WAComponent >> drawSVGOn: aRenderer [
 { #category : #'*SeasideDynamicSVG-Core-Base' }
 WAComponent >> exportSVG [
 	
+	self exportSVGAs: self application name , '.svg'
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-Base' }
+WAComponent >> exportSVGAs: filename [
+	
 	| str context callbacks |
 	str _ String new writeStream.
 	context _ SVGAwareRenderingContext new.
@@ -21,7 +27,8 @@ WAComponent >> exportSVG [
 		respond:
 			[:url | 
 			(WAResponse new)
-				beSVG;
+				contentType: 'application/octet-stream';
+				attachmentWithFileName: filename;
 				stream: str contents readStream;
 				yourself]
 ]
