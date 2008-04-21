@@ -17,6 +17,14 @@ SVGFilterTag >> extent: aPoint [
 ]
 
 { #category : #accessing }
+SVGFilterTag >> filterResolution: aString [
+	self
+		attributeAt: 'filterRes'
+		put: aString.
+
+]
+
+{ #category : #accessing }
 SVGFilterTag >> filterUnits: aString [
 	self
 		attributeAt: 'filterUnits'
@@ -40,9 +48,22 @@ SVGFilterTag >> position: aPoint [
 
 ]
 
+{ #category : #accessing }
+SVGFilterTag >> primitiveUnits: aString [
+	self
+		attributeAt: 'primitiveUnits'
+		put: aString.
+
+]
+
 { #category : #private }
 SVGFilterTag >> tag [
 	^'filter'
+]
+
+{ #category : #accessing }
+SVGFilterTag >> url: anURIOrString [
+	self attributes at: 'xlink:href' put: anURIOrString
 ]
 
 { #category : #accessing }
