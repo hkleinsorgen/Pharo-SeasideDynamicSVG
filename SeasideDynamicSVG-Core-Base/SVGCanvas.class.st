@@ -132,6 +132,11 @@ SVGCanvas >> defuseLightingFilter [
 	^self brush: SVGDefuseLightingFilterTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> defuseLightingFilter: aBlock [
+	^self defuseLightingFilter with: aBlock
+]
+
 { #category : #tags }
 SVGCanvas >> description [
 
@@ -147,6 +152,11 @@ SVGCanvas >> description: aBlock [
 { #category : #'tags-filter' }
 SVGCanvas >> displacementMapFilter [
 	^self brush: SVGDisplacementMapFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> distantLightFilter [
+	^self brush: SVGDistantLightFilterTag new
 ]
 
 { #category : #accessing }
@@ -340,7 +350,7 @@ SVGCanvas >> pattern [
 
 { #category : #'tags-filter' }
 SVGCanvas >> pointLightFilter [
-	^self brush: SVGPointLightTag new
+	^self brush: SVGPointLightFilterTag new
 ]
 
 { #category : #'tags-shapes' }
@@ -391,6 +401,11 @@ SVGCanvas >> specularLightingFilter [
 { #category : #'tags-filter' }
 SVGCanvas >> specularLightingFilter: aBlock [
 	^self specularLightingFilter with: aBlock
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> spotLightFilter [
+	^self brush: SVGSpotLightFilterTag new
 ]
 
 { #category : #accessing }

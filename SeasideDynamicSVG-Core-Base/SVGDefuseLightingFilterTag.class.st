@@ -13,6 +13,11 @@ SVGDefuseLightingFilterTag >> diffuseConstant: aNumber [
 ]
 
 { #category : #accessing }
+SVGDefuseLightingFilterTag >> isClosed [
+	^false
+]
+
+{ #category : #accessing }
 SVGDefuseLightingFilterTag >> kernelUnitLength: aNumberList [
 	self
 		attributeAt: 'kernelUnitLength'
