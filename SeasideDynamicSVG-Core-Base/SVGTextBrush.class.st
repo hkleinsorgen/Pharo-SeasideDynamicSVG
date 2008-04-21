@@ -45,6 +45,12 @@ SVGTextBrush >> lengthAdjust: aString [
 ]
 
 { #category : #accessing }
+SVGTextBrush >> rendering: aString [
+
+	self attributeAt: 'text-rendering' put: aString
+]
+
+{ #category : #accessing }
 SVGTextBrush >> textLength: aNumber [
 
 	self attributeAt: 'textLength' put: aNumber

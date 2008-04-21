@@ -28,6 +28,12 @@ SVGImageTag >> preserveAspectRatio: aString [
 	self attributes at: 'preserveAspectRatio' put: aString
 ]
 
+{ #category : #attributes }
+SVGImageTag >> rendering: aString [
+
+	self attributeAt: 'image-rendering' put: aString
+]
+
 { #category : #private }
 SVGImageTag >> tag [
 	^'image'

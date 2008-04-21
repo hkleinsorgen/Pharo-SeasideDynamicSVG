@@ -108,8 +108,8 @@ SVGFontAttributeSet >> squeakFont: aFont [
 
 	self 
 "		family: aFont familyName;  "
-		family: 'sans serif, sans';  
-		size: aFont pointSize.
+		family: 'Arial';  
+		size: aFont pointSize+1.
 ]
 
 { #category : #accessing }
