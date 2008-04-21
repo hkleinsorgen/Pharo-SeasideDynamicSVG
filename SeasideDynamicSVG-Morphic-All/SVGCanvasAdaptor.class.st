@@ -9,7 +9,7 @@ Class {
 		'currentFont',
 		'convertCoordinates'
 	],
-	#category : #'SeasideDynamicSVG-Morphic-All'
+	#category : #'SeasideDynamicSVG-Morphic'
 }
 
 { #category : #'instance creation' }
@@ -120,9 +120,10 @@ SVGCanvasAdaptor >> drawString: s from: firstIndex to: lastIndex in: boundsRect 
 			base := base - (0@fontOrNil descent).
 		].
 	textShape 
+		rendering: 'optimizeLegibility';
 		transform: [ : t | t translate: base ];
 		fill: c;
-		stroke: c;
+		"stroke: c;"
 		with: (s asString copyFrom: firstIndex to: lastIndex)
 ]
 
