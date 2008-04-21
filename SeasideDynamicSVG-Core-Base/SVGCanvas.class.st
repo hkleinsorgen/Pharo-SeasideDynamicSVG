@@ -338,6 +338,11 @@ SVGCanvas >> pattern [
 	^ self brush: SVGPatternTag new
 ]
 
+{ #category : #'tags-filter' }
+SVGCanvas >> pointLightFilter [
+	^self brush: SVGPointLightTag new
+]
+
 { #category : #'tags-shapes' }
 SVGCanvas >> polygon [
 	^self brush: SVGPolygonTag new
@@ -381,6 +386,11 @@ SVGCanvas >> setAnimationAttribute [
 { #category : #'tags-filter' }
 SVGCanvas >> specularLightingFilter [
 	^self brush: SVGSpecularLightingFilterTag new
+]
+
+{ #category : #'tags-filter' }
+SVGCanvas >> specularLightingFilter: aBlock [
+	^self specularLightingFilter with: aBlock
 ]
 
 { #category : #accessing }

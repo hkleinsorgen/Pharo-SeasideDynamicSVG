@@ -29,6 +29,11 @@ SVGComponentTransferFilterTag >> intercept: aNumber [
 ]
 
 { #category : #accessing }
+SVGComponentTransferFilterTag >> isClosed [
+	^false
+]
+
+{ #category : #accessing }
 SVGComponentTransferFilterTag >> offset: aNumber [
 	self
 		attributeAt: 'offset'

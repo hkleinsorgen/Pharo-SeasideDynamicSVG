@@ -5,6 +5,19 @@ Class {
 }
 
 { #category : #accessing }
+SVGSpecularLightingFilterTag >> isClosed [
+	^false
+]
+
+{ #category : #accessing }
+SVGSpecularLightingFilterTag >> lightingColor: aString [
+	self
+		attributeAt: 'lightingColor'
+		put: aString
+
+]
+
+{ #category : #accessing }
 SVGSpecularLightingFilterTag >> specularConstant: aNumber [
 	self
 		attributeAt: 'specularConstant'
