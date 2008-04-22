@@ -2,7 +2,6 @@ Class {
 	#name : #SVGTag,
 	#superclass : #WATagBrush,
 	#instVars : [
-		'attributeSets',
 		'transformList'
 	],
 	#category : #'SeasideDynamicSVG-Core-Base'
@@ -20,15 +19,6 @@ SVGTag >> attributeAt: aKey put: aValue [
 	^ super 
 		attributeAt: aKey
 		put: aValue toSVGString
-]
-
-{ #category : #private }
-SVGTag >> attributeSetAt: attributeSetClass [ 
-
-	" hkl: maybe this could be done with traits. however, this would have a serious impact on portability. "
-	
-	attributeSets isNil ifTrue: [ attributeSets := Dictionary new].
-	^ attributeSets at: attributeSetClass ifAbsentPut: [ attributeSetClass brush: self ]
 ]
 
 { #category : #clipping }
@@ -70,10 +60,72 @@ SVGTag >> closeTag [
 		]
 ]
 
-{ #category : #convenience }
-SVGTag >> fill: fillColor [
+{ #category : #accessing }
+SVGTag >> color: aPaint [ 
+	^ self 
+		attributeAt: 'color'
+		put: aPaint toSVGPaint
+]
 
-	self paint fill: fillColor
+{ #category : #accessing }
+SVGTag >> colorInterpolation: anObject [
+	^ self attributeAt: 'color-interpolation' put: anObject 
+]
+
+{ #category : #'convenience-rendering' }
+SVGTag >> colorOptimizeQuality [
+
+	self colorRendering: 'optimizeQuality'
+]
+
+{ #category : #'convenience-rendering' }
+SVGTag >> colorOptimizeSpeed [
+
+	self colorRendering: 'optimizeSpeed'
+]
+
+{ #category : #accessing }
+SVGTag >> colorRendering: anObject [
+	^ self attributeAt: 'color-rendering' put: anObject 
+]
+
+{ #category : #'convenience-rendering' }
+SVGTag >> dashed [
+	self strokeDasharray: '10,3'
+]
+
+{ #category : #'convenience-rendering' }
+SVGTag >> dotted [
+	self strokeDasharray: '2,2'
+]
+
+{ #category : #accessing }
+SVGTag >> fill: aPaint [ 
+	^ self 
+		attributeAt: 'fill'
+		put: aPaint toSVGPaint
+]
+
+{ #category : #accessing }
+SVGTag >> fillOpacity: anObject [
+	^ self attributeAt: 'fill-opacity' put: anObject 
+]
+
+{ #category : #accessing }
+SVGTag >> fillRule: anObject [
+	^ self attributeAt: 'fill-rule' put: anObject 
+]
+
+{ #category : #'convenience-fill rule' }
+SVGTag >> fillRuleEvenOdd [
+
+	self fillRule: 'evenodd'
+]
+
+{ #category : #'convenience-fill rule' }
+SVGTag >> fillRuleNonZero [
+
+	self fillRule: 'nonzero'
 ]
 
 { #category : #accessing }
@@ -106,15 +158,9 @@ SVGTag >> needsId [
 	^ false
 ]
 
-{ #category : #'accessing-attribute sets' }
-SVGTag >> opacity [
-	^ self attributeSetAt: SVGOpacityAttributeSet
-]
-
-{ #category : #'accessing-attribute sets' }
-SVGTag >> opacity: aValueOrBlock [
-
-	self opacity apply: aValueOrBlock
+{ #category : #accessing }
+SVGTag >> opacity: anObject [
+	^ self attributeAt: 'opacity' put: anObject 
 ]
 
 { #category : #public }
@@ -134,27 +180,53 @@ SVGTag >> openTag [
 		closed: self isClosed
 ]
 
-{ #category : #'accessing-attribute sets' }
-SVGTag >> paint [
-	^ self attributeSetAt: SVGPaintAttributeSet
+{ #category : #private }
+SVGTag >> setValue: aValue [
+
+	self color: aValue.
+	self fill: aValue.
 ]
 
-{ #category : #'accessing-attribute sets' }
-SVGTag >> paint: aValueOrBlock [
-
-	self paint apply: aValueOrBlock
+{ #category : #accessing }
+SVGTag >> stroke: aPaint [ 
+	^ self 
+		attributeAt: 'stroke'
+		put: aPaint toSVGPaint
 ]
 
-{ #category : #convenience }
-SVGTag >> stroke: strokeColor [
-
-	self paint stroke: strokeColor
+{ #category : #accessing }
+SVGTag >> strokeDasharray: anObject [
+	^ self attributeAt: 'stroke-dasharray' put: anObject 
 ]
 
-{ #category : #convenience }
-SVGTag >> strokeWidth: aLengthValue [
+{ #category : #accessing }
+SVGTag >> strokeDashoffset: anObject [
+	^ self attributeAt: 'stroke-dashoffset' put: anObject 
+]
 
-	self paint strokeWidth: aLengthValue
+{ #category : #accessing }
+SVGTag >> strokeLinecap: anObject [
+	^ self attributeAt: 'stroke-linecap' put: anObject 
+]
+
+{ #category : #accessing }
+SVGTag >> strokeLinejoin: anObject [
+	^ self attributeAt: 'stroke-linejoin' put: anObject 
+]
+
+{ #category : #accessing }
+SVGTag >> strokeMiterlimit: anObject [
+	^ self attributeAt: 'stroke-miterlimit' put: anObject 
+]
+
+{ #category : #accessing }
+SVGTag >> strokeOpacity: anObject [
+	^ self attributeAt: 'stroke-opacity' put: anObject 
+]
+
+{ #category : #accessing }
+SVGTag >> strokeWidth: anObject [
+	^ self attributeAt: 'stroke-width' put: anObject 
 ]
 
 { #category : #styles }

@@ -44,6 +44,12 @@ WARenderCanvas >> svg: aBlock [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
+WARenderCanvas >> svgEmbed [
+
+	^ self brush: WAEmbedTag new
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-Base' }
 WARenderCanvas >> svgRendererClass [
 
 	^ SVGCanvas

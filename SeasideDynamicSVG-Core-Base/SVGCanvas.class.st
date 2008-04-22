@@ -10,6 +10,11 @@ Class {
 }
 
 { #category : #'instance creation' }
+SVGCanvas class >> builder [
+	^SVGBuilder on: self
+]
+
+{ #category : #'instance creation' }
 SVGCanvas class >> context: aRenderingContext callbacks: aCallbackStore [
 	
 	^self basicNew initializeWithContext: aRenderingContext callbacks:

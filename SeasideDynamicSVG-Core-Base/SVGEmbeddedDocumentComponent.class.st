@@ -94,10 +94,9 @@ SVGEmbeddedDocumentComponent >> initialize [
 SVGEmbeddedDocumentComponent >> renderEmbedOn: canvas [
 	" embed with <embed> "
 	
-	| url embedTag |
+	| url |
 	url := canvas urlForEmbeddingSVGIn: self.
-	embedTag := canvas brush: WAEmbedTag new.
-	embedTag 
+	canvas svgEmbed
 		url: url; 
 		width: self width;
 		height: self height;

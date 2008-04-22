@@ -89,7 +89,7 @@ SVGAnimationBrush >> end: aString [
 ]
 
 { #category : #accessing }
-SVGAnimationBrush >> fill: aString [
+SVGAnimationBrush >> fillAnimation: aString [
 
 	self attributeAt: 'fill' put: aString
 ]
@@ -97,13 +97,13 @@ SVGAnimationBrush >> fill: aString [
 { #category : #convenience }
 SVGAnimationBrush >> fillFreeze [
 
-	self fill: 'freeze'
+	self fillAnimation: 'freeze'
 ]
 
 { #category : #convenience }
 SVGAnimationBrush >> fillRemove [
 
-	self fill: 'remove'
+	self fillAnimation: 'remove'
 ]
 
 { #category : #accessing }

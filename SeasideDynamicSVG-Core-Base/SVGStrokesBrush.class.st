@@ -4,14 +4,20 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Shapes'
 }
 
-{ #category : #'accessing-attribute sets' }
-SVGStrokesBrush >> marker [
+{ #category : #accessing }
+SVGStrokesBrush >> markerEnd: anURIOrTag [
 
-	^ self attributeSetAt: SVGMarkerAttributeSet
+	self attributeAt: 'marker-end' put: anURIOrTag 
 ]
 
-{ #category : #'accessing-attribute sets' }
-SVGStrokesBrush >> marker: aBlock [
+{ #category : #accessing }
+SVGStrokesBrush >> markerMid: anURIOrTag [
 
-	^ aBlock value: self marker
+	self attributeAt: 'marker-mid' put: anURIOrTag 
+]
+
+{ #category : #accessing }
+SVGStrokesBrush >> markerStart: anURIOrTag [
+
+	self attributeAt: 'marker-start' put: anURIOrTag 
 ]
