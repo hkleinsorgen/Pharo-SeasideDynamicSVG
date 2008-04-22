@@ -39,26 +39,17 @@ SVGXTextPath >> drawSVGContentOn: svg [
 					with: 900 @ 100) ].
 	svg use
 		element: pathID ;
-		paint: 
-			[ : paint | 
-			paint
-				stroke: Color red ;
-				fill: nil ].
+		stroke: Color red ;
+		fill: nil.
 	svg anchor
 		target: '_top' ;
 		callback: [ self nextMessage ] ;
 		with: 
 			[ svg textShape
-				font: 
-					[ : font | 
-					font
-						family: self fontFamily ;
-						size: 36 ] ;
-				paint: 
-					[ : paint | 
-					paint
-						fill: Color cyan ;
-						stroke: Color blue ] ;
+				family: self fontFamily ;
+				size: 36;
+				fill: Color cyan ;
+				stroke: Color blue;
 				with: 
 					[ svg textPath
 						path: pathID ;

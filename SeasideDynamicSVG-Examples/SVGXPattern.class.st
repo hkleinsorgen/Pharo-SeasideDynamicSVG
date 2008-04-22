@@ -25,21 +25,16 @@ SVGXPattern >> drawSVGContentOn: svg [
 			referenceRectangle: patternRect;
 			with: [
 				svg rectangle
-				paint: [ : paint | 
-					paint fill: radialGradient;
-					stroke: Color black
-				];
+				fill: radialGradient;
+				stroke: Color black;
 				rectangle: (patternRect insetBy: 10@10).
 			]	
 	].
 	svg group
 		with: [
 			svg rectangle
-				paint: [ : paint | 
-					paint 
-						fill: pattern;
-						stroke: Color black.
-				];
+				fill: pattern;
+				stroke: Color black;
 				rectangle: (Rectangle origin: 0@0 extent: self width@self height).
 		].
 

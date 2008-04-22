@@ -32,9 +32,25 @@ SVGXTransformTest >> drawSVGContentOn: svg [
 ]
 
 { #category : #private }
-SVGXTransformTest >> renderExampleOn: svg text: aText [
-	svg rectangle x: 0; y:0; width: 100; height:100; paint: [:p | p fill: '#6699cc'; stroke: Color red]; opacity: 0.6.
-	svg textShape font: [:font | font family: 'Verdana'; size: 14]; position: 5@20; with: aText.
-	svg line paint: [:a | a strokeWidth: 2; stroke: Color green]; from: 5@25 to: 95@25.
-			
+SVGXTransformTest >> renderExampleOn: svg text: aText [ 
+
+	svg rectangle
+		x: 0;
+		y: 0;
+		width: 100;
+		height: 100;
+		 fill: '#6699cc';
+		stroke: Color red;
+		opacity: 0.6.
+		
+	svg textShape
+		family: self fontFamily;
+		size: 14;
+		position: 5 @ 20;
+		with: aText.
+		
+	svg line
+		strokeWidth: 2;
+		stroke: Color green;
+		from: 5 @ 25 to: 95 @ 25.
 ]

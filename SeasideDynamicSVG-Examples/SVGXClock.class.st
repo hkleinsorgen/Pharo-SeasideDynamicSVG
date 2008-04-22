@@ -19,8 +19,11 @@ SVGXClock >> drawClockOn: svg [
 	].
 	svg textShape
 		id: textId;
-		font: [ : font | font family: self fontFamily; size: 48 ];
-		paint:  [ : paint | paint strokeWidth: 2; stroke: Color black; fill: gradient ];
+		family: self fontFamily; 
+		size: 48;
+		strokeWidth: 2; 
+		stroke: Color black; 
+		fill: gradient;
 		position: 5@80;
 		with: Time now printString.
 ]

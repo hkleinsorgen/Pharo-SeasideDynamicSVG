@@ -23,18 +23,25 @@ SVGXBarChartTest >> drawBarOn: svg color: barColor height: barHeight width: barW
 	p6 := Point x: p5 x + barWidth  y: p5 y.
 	p7 := Point x: p6 x y: p6 y + barHeight.
 	
-	svg polygon add: p1; add: p2; add: p4; add: p3;
-			paint: [:a | a fill: barColor; stroke: 'none'];
+	svg polygon 
+			add: p1; add: p2; add: p4; add: p3;
+			fill: barColor; 
+			stroke: nil;
 			opacity: 0.6.
-	svg polygon add: p2; add: p6; add: p7; add: p4;
-			paint: [:a | a fill: barColor; stroke: 'none'];
+	svg polygon 
+			add: p2; add: p6; add: p7; add: p4;
+			fill: barColor; 
+			stroke: nil;
 			opacity: 0.4.
-	svg polygon add: p1; add: p5; add: p6; add: p2;
-			paint: [:a | a fill: barColor; stroke: 'none'];
+	svg polygon 
+			add: p1; add: p5; add: p6; add: p2;
+			fill: barColor;
+			stroke: nil;
 			opacity: 0.8.
 	svg textShape
 			transform: [:t | t translate: p5 + (10@-2); rotate: -90];
-			font: [:font | font family: 'Verdana'; size: 10 ];
+			family: self fontFamily; 
+			size: 10;
 			with: barHeight
 			
 			
@@ -62,18 +69,24 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 	nextX := nextX + barGap.
 	self drawBarOn: svg color: 'yellow' height: 114 width: barWidth startY: 200 x: nextX.
 	svg line
-		paint: [:a | a strokeWidth: 1; stroke: '#ccc'];
+		strokeWidth: 1; 
+		stroke: '#ccc';
 		from: 0@200 to: 400@200.
 	svg group transform: [:t | t translate: 470@110];
-		with: ["svg circle radius: 96; paint: [:p | p fill: '#ccc']; setOpacity: 0.6.
+		with: [
+			"svg circle radius: 96; paint: [:p | p fill: '#ccc']; setOpacity: 0.6.
 			svg circle radius: 90; paint: [:p | p fill: '#ccc']; setOpacity: 0.4."
-			svg circle radius: 95; paint: [:p | p fill: 'black']; opacity: 0.3; useFilter: 'blur'.
+			svg circle 
+				radius: 95; 
+				fill: 'black'; 
+				opacity: 0.3; 
+				useFilter: 'blur'.
 			self drawSegmentOn: svg from: 0 to: 30 color: '#6699cc'.
 			self drawSegmentOn: svg from: 30 to: 120 color: 'red'.
 			self drawSegmentOn: svg from: 120 to: 150 color: 'green'.
 			self drawSegmentOn: svg from: 150 to: 170 color: 'pink'.
 			self drawSegmentOn: svg from: 170 to: 360 color: 'yellow'.
-			].
+		].
 		
 
 			
@@ -83,7 +96,8 @@ SVGXBarChartTest >> drawSVGContentOn: svg [
 { #category : #drawing }
 SVGXBarChartTest >> drawSegmentOn: svg from: startAngle to: endAngle color: aColor [
 	svg path
-		paint: [:p | p fill: aColor; stroke: '#444'];
-		opacity: [:a | a fillOpacity: 0.6];
+		fill: aColor; 
+		stroke: '#444';
+		fillOpacity: 0.6;
 		drawPieSegmentFrom: startAngle to: endAngle length: 100.
 ]

@@ -47,7 +47,9 @@ SVGXFilter >> drawSVGContentOn: svg [
 	svg group useFilter: 'MyFilter';
 		with: [svg group: [
 				svg path
-					paint: [:p | p fill: 'none'; stroke: '#D90000'; strokeWidth: 10];
+					fill: 'none'; 
+					stroke: '#D90000'; 
+					strokeWidth: 10;
 					defaultIsAbsolute;
 					moveTo: 50@90;
 					curveWithAll: (Array with: 0@90 with: 0@30 with: 50@30);
@@ -55,7 +57,7 @@ SVGXFilter >> drawSVGContentOn: svg [
 					curveWithAll: (Array with: 200@30 with: 200@90 with: 150@90);
 					closePath.
 				svg path
-					paint: [:p | p fill: '#D90000'];
+					fill: '#D90000';
 					defaultIsAbsolute;
 					moveTo: 60@80;
 					curveWithAll: (Array with: 30@80 with: 30@40 with: 60@40);
@@ -63,9 +65,11 @@ SVGXFilter >> drawSVGContentOn: svg [
 					curveWithAll: (Array with: 170@40 with: 170@80 with: 140@80);
 					closePath.
 				svg group
-					paint: [:p | p fill: '#FFFFFF'; stroke: 'black' ];
+					fill: '#FFFFFF'; 
+					stroke: 'black';
 					with: [svg textShape
-							font: [:f | f size: 45; family: 'Verdana'];
+							size: 45; 
+							family: 'Verdana';
 							position: 52@76;
 							with: 'SVG']]
 						].

@@ -27,12 +27,14 @@ SVGXText >> drawSVGContentOn: svg [
 		callback: [ self nextMessage ];
 		with: [ 	
 			svg textShape
-				font: [ : font | font family: self fontFamily; size: 48 ];
-				paint: [ : paint | paint fill: Color red; stroke: Color blue];
+				family: self fontFamily; 
+				size: 48;
+				fill: Color red; 
+				stroke: Color blue;
 				position: 10@70;
 					with: [ 
 						svg textSpan
-							paint: [ : paint | paint fill: Color cyan ];
+							fill: Color cyan;
 							with: [ svg text: 'Space'].
 						svg text: (self currentMessage).
 					].

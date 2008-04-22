@@ -65,19 +65,14 @@ SVGXSmiley >> drawBackgroundOn: svg [
 
 { #category : #drawing }
 SVGXSmiley >> drawFaceOn: svg [ 
+
 	svg circle
-		paint: 
-			[ : attr | 
-			attr
-				stroke: Color black ;
-				strokeWidth: 3 ;
-				fill: self fillColor ] ;
-		opacity: 
-			[ : attr | 
-			attr
-				fillOpacity: 0.8 ;
-				opacity: 0.6 ] ;
-		center: self center ;
+		stroke: Color black;
+		strokeWidth: 3 ;
+		fill: self fillColor;
+		fillOpacity: 0.8 ;
+		opacity: 0.6;
+		center: self center;
 		radius: self radius
 ]
 
@@ -110,17 +105,11 @@ SVGXSmiley >> drawHappyMouthOn: svg [
 		sweep: true.
 	path closePath.
 	path
-		paint: 
-			[ : attr | 
-			attr
-				fill: Color white ;
-				stroke: self strokeColor ;
-				strokeWidth: 2 ] ;
-		opacity: 
-			[ : attr | 
-			attr
-				fillOpacity: 0.8 ;
-				strokeOpacity: 1 ]
+		fill: Color white ;
+		stroke: self strokeColor ;
+		strokeWidth: 2;
+		fillOpacity: 0.8 ;
+		strokeOpacity: 1.
 ]
 
 { #category : #drawing }
@@ -132,12 +121,10 @@ SVGXSmiley >> drawLeftEyeOn: svg center: center distance: eyeDistance radius: ey
 			[ svg circle
 				center: center - (eyeDistance @ eyeDistance) ;
 				radius: eyeRadius ;
-				paint: 
-					[ : attr | 
-					attr
-						fill: leftEyeColor contents ;
-						stroke: self strokeColor ;
-						strokeWidth: 2 ] ]
+				fill: leftEyeColor contents ;
+				stroke: self strokeColor ;
+				strokeWidth: 2 
+			]
 ]
 
 { #category : #drawing }
@@ -160,12 +147,10 @@ SVGXSmiley >> drawRightEyeOn: svg center: center distance: eyeDistance radius: e
 			[ svg circle
 				center: center + (eyeDistance @ eyeDistance negated) ;
 				radius: eyeRadius ;
-				paint: 
-					[ : attr | 
-					attr
-						fill: rightEyeColor contents ;
-						stroke: self strokeColor ;
-						strokeWidth: 2 ] ]
+				fill: rightEyeColor contents ;
+				stroke: self strokeColor ;
+				strokeWidth: 2
+			]
 ]
 
 { #category : #drawing }
@@ -226,17 +211,11 @@ SVGXSmiley >> drawUnhappyMouthOn: svg [
 		sweep: false.
 	path closePath.
 	path
-		paint: 
-			[ : paint | 
-			paint
-				fill: Color white ;
-				stroke: self strokeColor ;
-				strokeWidth: 2 ] ;
-		opacity: 
-			[ : opacity | 
-			opacity
-				fillOpacity: 0.7 ;
-				strokeOpacity: 1 ]
+		fill: Color white ;
+		stroke: self strokeColor ;
+		strokeWidth: 2 ;
+		fillOpacity: 0.7 ;
+		strokeOpacity: 1.
 ]
 
 { #category : #accessing }

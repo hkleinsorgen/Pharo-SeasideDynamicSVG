@@ -25,12 +25,10 @@ SVGXMarker >> drawSVGContentOn: svg [
 			]
 	].
 	svg path
-		marker: [ : marker | marker markerEnd: arrowhead ];
-		paint: [ : paint | paint
-			fill: nil;
-			stroke: Color black;
-			strokeWidth: 20.
-		];
+		markerEnd: arrowhead;
+		fill: nil;
+		stroke: Color black;
+		strokeWidth: 20;
 		moveTo: 0@100;
 		lineTo: 200@100;
 		lineTo: 400@200.

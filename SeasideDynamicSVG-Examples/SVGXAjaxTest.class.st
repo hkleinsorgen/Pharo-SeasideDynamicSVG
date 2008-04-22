@@ -34,14 +34,16 @@ SVGXAjaxTest >> defaultHeight [
 SVGXAjaxTest >> drawBarOn: svg id: aId [
 
 	svg rectangle id: 'rect-', aId;
-		paint: [:paint | paint fill: self color; stroke: Color black ]; 
-		opacity: [:opacity | opacity opacity: 0.5 ];
+		fill: self color; 
+		stroke: Color black; 
+		opacity: 0.5;
 		origin: 0@0;
 		width: self rectangleWidth; 
 		height:20.
 	svg textShape
 		id: 'text-', aId;
-		font: [ : font | font family: 'Arial'; size: 14 ];
+		family: 'Arial'; 
+		size: 14;
 		position: 6@15;
 		with: self rectangleWidth
 ]
