@@ -15,19 +15,19 @@ WAComponent >> exportSVG [
 WAComponent >> exportSVGAs: filename [
 	
 	| str context callbacks |
-	str _ String new writeStream.
-	context _ SVGAwareRenderingContext new.
+	str := String new writeStream.
+	context := SVGAwareRenderingContext new.
 	context
 		userAgentAdaptor: SVGStandardsCompliantBrowserAdaptor new;
 		session: self session.
-	callbacks _ WACallbackRegistry context: context owner: self.
+	callbacks :=  WACallbackRegistry context: context owner: self.
 	self renderSVGDocumentOn: str context: context callbacks: callbacks
 		disableAnchors: true.
 	self session
 		respond:
 			[:url | 
 			(WAResponse new)
-				contentType: 'application/octet-stream';
+				beSVG;
 				attachmentWithFileName: filename;
 				stream: str contents readStream;
 				yourself]

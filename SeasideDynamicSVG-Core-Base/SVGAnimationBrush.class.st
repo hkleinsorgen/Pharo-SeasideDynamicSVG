@@ -61,7 +61,7 @@ SVGAnimationBrush >> attributeTypeCSS [
 { #category : #convenience }
 SVGAnimationBrush >> attributeTypeXML [
 
-	self attributeType: '"XML'
+	self attributeType: 'XML'
 ]
 
 { #category : #accessing }
