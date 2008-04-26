@@ -18,11 +18,12 @@ SVGXTextPath >> defaultWidth [
 ]
 
 { #category : #drawing }
-SVGXTextPath >> drawSVGContentOn: svg [ 
+SVGXTextPath >> drawDefinitionsOn: svg [ 
 	| pathID |
+	pathID := svg nextId.
 	svg definitions: 
 		[ svg path
-			id: (pathID := svg nextId) ;
+			id: pathID ;
 			defaultIsAbsolute ;
 			moveTo: 100 @ 200 ;
 			curveWithAll: (Array 
@@ -37,6 +38,14 @@ SVGXTextPath >> drawSVGContentOn: svg [
 					with: 800 @ 100
 					with: 900 @ 100
 					with: 900 @ 100) ].
+	^ pathID
+]
+
+{ #category : #drawing }
+SVGXTextPath >> drawSVGContentOn: svg [ 
+
+	| pathID |
+	pathID := self drawDefinitionsOn: svg .
 	svg use
 		element: pathID ;
 		stroke: Color red ;
