@@ -10,7 +10,7 @@ SVGTextReferenceTag >> tag [
 	^ 'tref'
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextReferenceTag >> text: aTextReference [ 
 	self attributes 
 		at: 'xlink:href'

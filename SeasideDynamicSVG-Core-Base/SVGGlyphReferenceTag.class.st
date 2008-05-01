@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGGlyphReferenceTag,
-	#superclass : #SVGGlyphBrush,
+	#superclass : #SVGGlyphReferenceBrush,
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 

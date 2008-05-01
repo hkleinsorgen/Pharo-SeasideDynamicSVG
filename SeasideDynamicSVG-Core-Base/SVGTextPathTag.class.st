@@ -16,26 +16,26 @@ SVGTextPathTag >> exact [
 	self spacing: 'exact'
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPathTag >> method: aString [
 
 	self attributeAt: 'method' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPathTag >> path: aPathReference [ 
 	self attributes 
 		at: 'xlink:href'
 		put: aPathReference toSVGIDReference
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPathTag >> spacing: aString [
 
 	self attributeAt: 'spacing' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPathTag >> startOffset: aLengthValue [
 
 	self attributeAt: 'startOffset' put: aLengthValue

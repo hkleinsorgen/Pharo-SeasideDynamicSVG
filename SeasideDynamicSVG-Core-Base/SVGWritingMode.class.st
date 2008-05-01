@@ -4,37 +4,37 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SVGWritingMode class >> leftToRight [
 
 	^ 'lr'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SVGWritingMode class >> leftToRightTopToBottom [
 
 	^ 'lr-tb'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SVGWritingMode class >> rightToLeft [
 
 	^ 'rl'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SVGWritingMode class >> rightToLeftTopToBottom [
 
 	^ 'rl-tb'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SVGWritingMode class >> topToBottom [
 
 	^ 'tb'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SVGWritingMode class >> topToBottomRightToLeft [
 
 	^ 'tb-rl'

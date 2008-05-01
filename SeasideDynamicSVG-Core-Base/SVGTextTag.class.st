@@ -16,13 +16,13 @@ SVGTextTag >> tag [
 	^ 'text'
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextTag >> whitespace: aString [
 
 	self attributeAt: 'xml:space' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextTag >> writingMode: aString [
 	" also see SVGTextContentAttributeSet, #unicodeBidirectional: and #direction:"
 	

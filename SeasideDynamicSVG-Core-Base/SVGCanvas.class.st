@@ -194,6 +194,18 @@ SVGCanvas >> floodFilter [
 	^self brush: SVGFloodFilterTag new
 ]
 
+{ #category : #'tags-text' }
+SVGCanvas >> font [
+
+	^self brush: SVGFontTag new
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> fontFace [
+
+	^self brush: SVGFontFaceTag new
+]
+
 { #category : #tags }
 SVGCanvas >> foreignTag [
 
@@ -226,6 +238,12 @@ SVGCanvas >> gaussianBlurFilter [
 ]
 
 { #category : #'tags-text' }
+SVGCanvas >> glyph [
+
+	^self brush: SVGGlyphTag new
+]
+
+{ #category : #'tags-text' }
 SVGCanvas >> glyphReference [
 
 	^self brush: SVGGlyphReferenceTag new
@@ -255,6 +273,12 @@ SVGCanvas >> group [
 SVGCanvas >> group: aBlock [
 	
 	^self group with: aBlock
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> horizontalKerning [
+
+	^self brush: SVGHorizontalKerningTag new
 ]
 
 { #category : #tags }
@@ -314,6 +338,12 @@ SVGCanvas >> mergeFilter: aBlock [
 { #category : #'tags-filter' }
 SVGCanvas >> mergeNode [
 	^self brush: SVGMergeNodeTag new
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> missingGlyph [
+
+	^self brush: SVGMissingGlyphTag new
 ]
 
 { #category : #'tags-filter' }
@@ -501,4 +531,10 @@ SVGCanvas >> turbulenceFilter [
 SVGCanvas >> use [
 	
 	^self brush: SVGUseTag new
+]
+
+{ #category : #'tags-text' }
+SVGCanvas >> verticalKerning [
+
+	^self brush: SVGVerticalKerningTag new
 ]

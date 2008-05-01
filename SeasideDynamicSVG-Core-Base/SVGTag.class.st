@@ -21,26 +21,26 @@ SVGTag >> attributeAt: aKey put: aValue [
 		put: aValue toSVGString
 ]
 
-{ #category : #clipping }
+{ #category : #'attributes-clipping' }
 SVGTag >> clipPath: aPathReference [ 
 	self 
 		attributeAt: 'clip-path'
 		put: aPathReference toSVGURIReference
 ]
 
-{ #category : #clipping }
+{ #category : #'attributes-clipping' }
 SVGTag >> clipRule: aString [
 
 	self attributeAt: 'clip-rule' put: aString
 ]
 
-{ #category : #clipping }
+{ #category : #'attributes-clipping' }
 SVGTag >> clipRuleEvenOdd [ 
 
 	self clipRule: 'evenodd'
 ]
 
-{ #category : #clipping }
+{ #category : #'attributes-clipping' }
 SVGTag >> clipRuleNonZero [
 
 	self clipRule: 'ruleNonZero'
@@ -60,14 +60,14 @@ SVGTag >> closeTag [
 		]
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> color: aPaint [ 
 	^ self 
 		attributeAt: 'color'
 		put: aPaint toSVGPaint
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> colorInterpolation: anObject [
 	^ self attributeAt: 'color-interpolation' put: anObject 
 ]
@@ -84,7 +84,7 @@ SVGTag >> colorOptimizeSpeed [
 	self colorRendering: 'optimizeSpeed'
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> colorRendering: anObject [
 	^ self attributeAt: 'color-rendering' put: anObject 
 ]
@@ -99,19 +99,19 @@ SVGTag >> dotted [
 	self strokeDasharray: '2,2'
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> fill: aPaint [ 
 	^ self 
 		attributeAt: 'fill'
 		put: aPaint toSVGPaint
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-opacity' }
 SVGTag >> fillOpacity: anObject [
 	^ self attributeAt: 'fill-opacity' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> fillRule: anObject [
 	^ self attributeAt: 'fill-rule' put: anObject 
 ]
@@ -128,7 +128,7 @@ SVGTag >> fillRuleNonZero [
 	self fillRule: 'nonzero'
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTag >> filter: filterId [
 "use predefined filters with the given id from the defs sections"
 
@@ -142,7 +142,7 @@ SVGTag >> generateURL [
 	^ self id toSVGURIReference
 ]
 
-{ #category : #clipping }
+{ #category : #'attributes-clipping' }
 SVGTag >> mask: aMaskReference [ 
 	self 
 		attributeAt: 'mask'
@@ -158,7 +158,55 @@ SVGTag >> needsId [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-events' }
+SVGTag >> onAbort: aString [
+
+	self attributes at: 'onabort' append: aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onActivate: aString [
+
+	self attributes at: 'onactivate' append: aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onBegin: aString [
+
+	self attributes at: 'onbegin' append:  aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onEnd: aString [
+
+	self attributes at: 'onend' append: aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onFocusIn: aString [
+
+	self attributes at: 'onfocusin' append: aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onFocusOut: aString [
+
+	self attributes at: 'onfocusout' append: aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onRepeat: aString [
+
+	self attributes at: 'onrepeat' append: aString separator: ';'
+]
+
+{ #category : #'attributes-events' }
+SVGTag >> onZoom: aString [
+
+	self attributes at: 'onzoom' append: aString separator: ';'
+]
+
+{ #category : #'attributes-opacity' }
 SVGTag >> opacity: anObject [
 	^ self attributeAt: 'opacity' put: anObject 
 ]
@@ -180,56 +228,49 @@ SVGTag >> openTag [
 		closed: self isClosed
 ]
 
-{ #category : #private }
-SVGTag >> setValue: aValue [
-
-	self color: aValue.
-	self fill: aValue.
-]
-
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> stroke: aPaint [ 
 	^ self 
 		attributeAt: 'stroke'
 		put: aPaint toSVGPaint
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> strokeDasharray: anObject [
 	^ self attributeAt: 'stroke-dasharray' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> strokeDashoffset: anObject [
 	^ self attributeAt: 'stroke-dashoffset' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> strokeLinecap: anObject [
 	^ self attributeAt: 'stroke-linecap' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> strokeLinejoin: anObject [
 	^ self attributeAt: 'stroke-linejoin' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> strokeMiterlimit: anObject [
 	^ self attributeAt: 'stroke-miterlimit' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-opacity' }
 SVGTag >> strokeOpacity: anObject [
 	^ self attributeAt: 'stroke-opacity' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : #'attributes-paint' }
 SVGTag >> strokeWidth: anObject [
 	^ self attributeAt: 'stroke-width' put: anObject 
 ]
 
-{ #category : #styles }
+{ #category : #attributes }
 SVGTag >> style: aString value: value [
 	
 	self attributes addStyle: aString , ':' , value displayString
@@ -253,18 +294,18 @@ SVGTag >> toSVGURIReference [
 	^ self generateURL
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTag >> transform: aBlock [
 	aBlock value: self transformList
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTag >> transformList [
 	transformList ifNil: [transformList := SVGTransformList new].
 	^transformList
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTag >> useFilter: aFilterReference [
 "use predefined filters with the given id from the defs sections"
 
@@ -278,4 +319,46 @@ SVGTag >> with: aBlock [
 					at: 'transform'
 					put: transformList toSVGString].
 	super with: aBlock
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkActuateOnLoad [
+
+	self attributes at: 'xlink:actuate' put: 'onLoad'
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkArcRole: anURI [
+
+	self attributes at: 'xlink:arcrole' put: anURI
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkHref: anURI [
+
+	self attributes at: 'xlink:href' put: anURI
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkRole: anURI [
+
+	self attributes at: 'xlink:role' put: anURI
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkShowEmbed [
+
+	self attributes at: 'xlink:show' put: 'embed'
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkTitle: aString [
+
+	self attributes at: 'xlink:title' put: aString
+]
+
+{ #category : #'attributes-xlink' }
+SVGTag >> xlinkType: aString [
+
+	self attributes at: 'xlink:type' put: aString
 ]

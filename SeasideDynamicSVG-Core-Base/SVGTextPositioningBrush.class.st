@@ -4,7 +4,7 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> glyphPositions: somePoints [
 
 	| xstr ystr |
@@ -20,27 +20,27 @@ SVGTextPositioningBrush >> glyphPositions: somePoints [
 	self y: xstr contents.
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> position: aPoint [
 
 	self x: aPoint x.
 	self y: aPoint y.
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> rotate: aString [
 
 	self attributeAt: 'rotate' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> shift: aPoint [
 
 	self shiftX: aPoint x.
 	self shiftY: aPoint y.
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> shiftGlyphsBy: somePoints [ 
 	| xstr ystr |
 	xstr := String new writeStream.
@@ -57,25 +57,25 @@ SVGTextPositioningBrush >> shiftGlyphsBy: somePoints [
 	self shiftY: xstr contents
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> shiftX: aNumberOrString [
 
 	self attributeAt: 'dx' put: aNumberOrString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> shiftY: aNumberOrString [
 
 	self attributeAt: 'dy' put: aNumberOrString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> x: aNumberOrString [
 
 	self attributeAt: 'x' put: aNumberOrString
 ]
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGTextPositioningBrush >> y: aNumberOrString [
 
 	self attributeAt: 'y' put: aNumberOrString

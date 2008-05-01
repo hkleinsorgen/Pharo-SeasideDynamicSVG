@@ -1,10 +1,10 @@
 Class {
 	#name : #SVGAlternativeGlyphTag,
-	#superclass : #SVGGlyphBrush,
+	#superclass : #SVGGlyphReferenceBrush,
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
-{ #category : #accessing }
+{ #category : #attributes }
 SVGAlternativeGlyphTag >> rotate: aString [
 
 	self attributeAt: 'rotate' put: aString

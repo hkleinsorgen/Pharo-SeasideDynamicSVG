@@ -1,107 +1,66 @@
 Class {
 	#name : #SVGGlyphBrush,
 	#superclass : #SVGTag,
+	#instVars : [
+		'path'
+	],
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 
-{ #category : #accessing }
-SVGGlyphBrush >> format: aString [
+{ #category : #attributes }
+SVGGlyphBrush >> horizontalAdvanceX: aNumber [
 
-	self attributeAt: 'format' put: aString
+	self attributeAt: 'horiz-adv-x' put: aNumber
 ]
 
-{ #category : #'convenience-glyph reference' }
-SVGGlyphBrush >> glyphID: anID [ 
-	" ID of the a referenced glyph "
+{ #category : #public }
+SVGGlyphBrush >> openTag [
 
-	self url: '#' , anID toSVGString
-]
-
-{ #category : #accessing }
-SVGGlyphBrush >> glyphPositions: somePoints [
-
-	| xstr ystr |
-	xstr := String new writeStream.
-	ystr := String new writeStream.
-	somePoints 
-		do: [  : point |
-			xstr nextPutAll: point x toSVGString.
-			ystr nextPutAll: point y toSVGString.
-		] 
-		separatedBy: [ xstr space. ystr space ].
-	self x: xstr contents.
-	self y: xstr contents.
+	| d |
+	(path notNil and: [ (self attributes includesKey: 'd') not ])
+		ifTrue: [
+			d := path pathString.
+			d notNil ifTrue: [ self attributeAt: 'd' put: d ].
+		].
+	super openTag.
 ]
 
 { #category : #accessing }
-SVGGlyphBrush >> glyphRef: aString [ 
-	" hkl: from the w3c spec 
-		'The glyph identifier, the format of which is dependent on the format of the given font.' 
-	so is it an 'identifier', a 'reference' or a 'format' ? "
-	self 
-		attributeAt: 'glyph-ref'
-		put: aString
+SVGGlyphBrush >> path [
+
+	path isNil ifTrue: [ path := SVGPath new ].
+	^ path
 ]
 
-{ #category : #accessing }
-SVGGlyphBrush >> position: aPoint [
+{ #category : #attributes }
+SVGGlyphBrush >> path: aBlockOrString [
 
-	self x: aPoint x.
-	self y: aPoint y.
+	^ aBlockOrString isString
+		ifTrue: [ self attributeAt: 'd' put: aBlockOrString ] 
+		ifFalse: [ aBlockOrString value: self path ].
 ]
 
-{ #category : #accessing }
-SVGGlyphBrush >> shift: aPoint [
+{ #category : #attributes }
+SVGGlyphBrush >> verticalAdvanceY: aNumber [
 
-	self shiftX: aPoint x.
-	self shiftY: aPoint y.
+	self attributeAt: 'vert-adv-Y' put: aNumber
 ]
 
-{ #category : #accessing }
-SVGGlyphBrush >> shiftGlyphsBy: somePoints [ 
-	| xstr ystr |
-	xstr := String new writeStream.
-	ystr := String new writeStream.
-	somePoints 
-		do: 
-			[ : point | 
-			xstr nextPutAll: point x toSVGString.
-			ystr nextPutAll: point y toSVGString ]
-		separatedBy: 
-			[ xstr space.
-			ystr space ].
-	self shiftX: xstr contents.
-	self shiftY: xstr contents
+{ #category : #convenience }
+SVGGlyphBrush >> verticalOrigin: aPoint [
+
+	self verticalOriginX: aPoint x.
+	self verticalOriginY: aPoint y.
 ]
 
-{ #category : #accessing }
-SVGGlyphBrush >> shiftX: aNumberOrString [
+{ #category : #attributes }
+SVGGlyphBrush >> verticalOriginX: aNumber [
 
-	self attributeAt: 'dx' put: aNumberOrString
+	self attributeAt: 'vert-origin-x' put: aNumber
 ]
 
-{ #category : #accessing }
-SVGGlyphBrush >> shiftY: aNumberOrString [
+{ #category : #attributes }
+SVGGlyphBrush >> verticalOriginY: aNumber [
 
-	self attributeAt: 'dy' put: aNumberOrString
-]
-
-{ #category : #accessing }
-SVGGlyphBrush >> url: aGlyphReference [ 
-	" URI of a glyph or alternative glyph definition "
-	self attributes 
-		at: 'xlink:href'
-		put: aGlyphReference toSVGURIReference
-]
-
-{ #category : #accessing }
-SVGGlyphBrush >> x: aNumberOrString [
-
-	self attributeAt: 'x' put: aNumberOrString
-]
-
-{ #category : #accessing }
-SVGGlyphBrush >> y: aNumberOrString [
-
-	self attributeAt: 'y' put: aNumberOrString
+	self attributeAt: 'vert-origin-y' put: aNumber
 ]
