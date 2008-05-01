@@ -31,16 +31,16 @@ SVGAwareRenderingContext >> disableAnchors [
 { #category : #accessing }
 SVGAwareRenderingContext >> disableAnchors: aDisableAnchors [
 	
-	disableAnchors _ aDisableAnchors
+	disableAnchors := aDisableAnchors
 ]
 
 { #category : #'initialize-release' }
 SVGAwareRenderingContext >> initialize [
 	
 	super initialize.
-	containsInlinedSVG _ false.
-	registeredHandlers _ Set new.
-	disableAnchors _ false
+	containsInlinedSVG := false.
+	registeredHandlers := Set new.
+	disableAnchors := false
 ]
 
 { #category : #accessing }

@@ -54,7 +54,7 @@ SVGCanvas >> alternativeGlyphItem: aBlock [
 SVGCanvas >> anchor [
 	
 	| anchorBrush |
-	anchorBrush _ self context disableAnchors
+	anchorBrush := self context disableAnchors
 		ifTrue: [SVGDisabledAnchorBrush new]
 		ifFalse: [SVGAnchorTag new].
 	^self brush: anchorBrush
