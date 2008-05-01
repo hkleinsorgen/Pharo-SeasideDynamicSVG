@@ -27,8 +27,8 @@ SVGXText >> drawSVGContentOn: svg [
 		callback: [ self nextMessage ];
 		with: [ 	
 			svg textShape
-				family: self fontFamily; 
-				size: 48;
+				fontFamily: self fontFamily; 
+				fontSize: 48;
 				fill: Color red; 
 				stroke: Color blue;
 				position: 10@70;

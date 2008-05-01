@@ -68,8 +68,8 @@ SVGXFilter >> drawSVGContentOn: svg [
 					fill: '#FFFFFF'; 
 					stroke: 'black';
 					with: [svg textShape
-							size: 45; 
-							family: 'Verdana';
+							fontSize: 45; 
+							fontFamily: self fontFamily;
 							position: 52@76;
 							with: 'SVG']]
 						].

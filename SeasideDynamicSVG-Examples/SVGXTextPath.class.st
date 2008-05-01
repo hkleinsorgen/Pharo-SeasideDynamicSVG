@@ -55,8 +55,8 @@ SVGXTextPath >> drawSVGContentOn: svg [
 		callback: [ self nextMessage ] ;
 		with: 
 			[ svg textShape
-				family: self fontFamily ;
-				size: 36;
+				fontFamily: self fontFamily ;
+				fontSize: 36;
 				fill: Color cyan ;
 				stroke: Color blue;
 				with: 

@@ -42,8 +42,8 @@ SVGXAjaxTest >> drawBarOn: svg id: aId [
 		height:20.
 	svg textShape
 		id: 'text-', aId;
-		family: 'Arial'; 
-		size: 14;
+		fontFamily: 'Arial'; 
+		fontSize: 14;
 		position: 6@15;
 		with: self rectangleWidth
 ]

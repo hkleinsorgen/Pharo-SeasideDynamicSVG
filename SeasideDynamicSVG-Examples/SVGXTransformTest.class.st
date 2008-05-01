@@ -44,8 +44,8 @@ SVGXTransformTest >> renderExampleOn: svg text: aText [
 		opacity: 0.6.
 		
 	svg textShape
-		family: self fontFamily;
-		size: 14;
+		fontFamily: self fontFamily;
+		fontSize: 14;
 		position: 5 @ 20;
 		with: aText.
 		

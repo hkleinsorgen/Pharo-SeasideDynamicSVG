@@ -40,8 +40,8 @@ SVGXBarChartTest >> drawBarOn: svg color: barColor height: barHeight width: barW
 			opacity: 0.8.
 	svg textShape
 			transform: [:t | t translate: p5 + (10@-2); rotate: -90];
-			family: self fontFamily; 
-			size: 10;
+			fontFamily: self fontFamily; 
+			fontSize: 10;
 			with: barHeight
 			
 			

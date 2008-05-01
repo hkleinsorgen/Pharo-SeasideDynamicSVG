@@ -41,8 +41,8 @@ SVGXTextScroller >> drawSVGContentOn: svg [
 				opacity: 0.6;
 				fill: nil.
 			 svg textShape
-				family: self fontFamily ;
-				size: 48;
+				fontFamily: self fontFamily ;
+				fontSize: 48;
 				fill: Color cyan ;
 				stroke: Color blue;
 				shiftY: -10;
@@ -62,8 +62,8 @@ SVGXTextScroller >> drawSVGContentOn: svg [
 							] 
 					].
 			 svg textShape
-				family: self fontFamily ;
-				size: 48;
+				fontFamily: self fontFamily ;
+				fontSize: 48;
 				fill: Color orange ;
 				stroke: Color red;
 				shiftY: -10;
