@@ -3249,8 +3249,9 @@ Graphic.SVGRenderer = Class.create();
 //
 Object.extend(Graphic.SVGRenderer, {
   xmlns: {
-    svg:   "http://www.w3.org/2000/svg",
-    xlink: "http://www.w3.org/1999/xlink"
+	svg:   "http://www.w3.org/2000/svg",
+	xlink: "http://www.w3.org/1999/xlink",
+	html: "http://www.w3.org/1999/xhtml"
   },
   
   createNode:  function(nodeName) {
@@ -3267,10 +3268,14 @@ Object.extend(Graphic.SVGRenderer.prototype, {
   initialize: function(element) {
     this._parentInitialize(element);
     this.element = Graphic.SVGRenderer.createNode("svg");  
-    
+	this.element.setAttribute("xmlns","http://www.w3.org/2000/svg");
+	this.element.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
+    this.element.setAttribute("xmlns:html","http://www.w3.org/1999/xhtml");
     this.element.setAttribute("width", this.bounds.w);
     this.element.setAttribute("height", this.bounds.h);      
-    this.element.setAttribute("preserveAspectRatio", "none");      
+    this.element.setAttribute("preserveAspectRatio", "none");    
+	
+  
     
     this._setViewing();
     
