@@ -11,7 +11,7 @@ SVGDrawingExample class >> canBeRoot [
 
 { #category : #rendering }
 SVGDrawingExample >> renderContentOn: html [
-html script: 'var ToolManager = null;
+html script: 'var ToolManager;
 	var renderer;
 	var ToolManager2'.
 self session addLoadScript: '
@@ -46,7 +46,7 @@ self session addLoadScript: '
 	var rect = new Graphic.Rectangle(renderer);
 	rect.setFill({r: 0, g: 255, b: 0});
 	rect.setStroke({r: 0, g: 0, b: 0, a: 128, w: 1});
-	rect.setBounds(8, 10, 20, 20);
+	rect.setBounds(8, 10, 120, 120);
 	group.add(rect);
 	group.add(shape);
 	renderer.add(group);
@@ -57,7 +57,17 @@ self session addLoadScript: '
   //  shape.setFill({r: 255, g: 0, b: 0, a: 128});
     shape.setStroke({r:0,g:0,b:0,a:128,w:2});
     shape.setBounds(0, 0, 80 , 80);
-    renderer.add(shape);'.
+    renderer.add(shape);
+	
+	var fObj = Graphic.SVGRenderer.createNode("foreignObject");
+	fObj.setAttribute("x",10);
+	fObj.setAttribute("style","font-size:10px");
+	fObj.setAttribute("y",10);
+	fObj.setAttribute("width",120);
+	fObj.setAttribute("height",20);
+	fObj.appendChild(document.createTextNode("Test"));
+	group.element.appendChild(fObj);
+	 '.
 
 html heading: 'SVG Drawing Test'.
 html anchor onClick: ' ToolManager2 = new Graphic.ToolManager(renderer);
