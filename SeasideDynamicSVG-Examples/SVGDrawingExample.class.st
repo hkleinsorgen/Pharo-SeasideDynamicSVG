@@ -31,42 +31,60 @@ self session addLoadScript: '
 	var rect = new Graphic.Rectangle(renderer);
 	rect.setFill({r: 255, g: 0, b: 0, a: 128});
 	rect.setStroke({r: 255, g: 255, b: 0, a: 128, w: 5});
-	rect.setBounds(10, 20, 200, 300);
+	rect.setBounds(210, 20, 200, 300);
 	rect.setRoundCorner(10, 10);
 	renderer.add(rect);
 	
 	var group = new Graphic.Group(renderer); 
 	var shape = new Graphic.Text(renderer); 
-	shape.setTextValue("Hello World!");
-	shape.setFont(10,"arial");
-	shape.setStroke({r:0,g:0,b:0,w:0});
+	shape.setTextValue("Hello World! Verdana Super");
+	shape.setFont(10,"Verdana");
+	shape.setStroke({r:0,g:0,b:0,w:0.1,a:1});
 	shape.setFill({r:0,g:0,b:0});
 	shape.setLocation(10, 40);
-
+	group.add(shape);
+	var shape = new Graphic.Text(renderer); 
+	shape.setTextValue("Hello World! ARIAL Super");
+	shape.setFont(10,"Arial");
+	shape.setStroke({r:0,g:0,b:0,w:0.1,a:1});
+	shape.setFill({r:0,g:0,b:0});
+	shape.setLocation(10, 60);
+	group.add(shape);
+	var shape = new Graphic.Text(renderer); 
+	shape.setTextValue("Hello World! San serif Child");
+	shape.setFont(10,"san serif");
+	shape.setStroke({r:0,g:0,b:0,w:0.1,a:1});
+	shape.setFill({r:0,g:0,b:0});
+	shape.setLocation(10, 80);
+	group.add(shape);
+	
+	var polyline = new Graphic.Polyline(renderer);
+    // Draw an arrow
+    polyline.addPoints([[0, 50],[100, 50],[100, 0],[150, 75], [100, 150], [100, 100],[0, 100]]);
+  //  polyline.setFill({r: 255, g: 0, b: 0, a: 128});
+    polyline.setStroke({r:0,g:0,b:0,a:128,w:2});
+    polyline.setBounds(100, 200, 80 , 80);
+    renderer.add(polyline);
+	
 	var rect = new Graphic.Rectangle(renderer);
 	rect.setFill({r: 0, g: 255, b: 0});
 	rect.setStroke({r: 0, g: 0, b: 0, a: 128, w: 1});
-	rect.setBounds(8, 10, 120, 120);
+	rect.setBounds(180, 10, 40, 60);
+	
+	rect.addChild(shape);
+	rect.addChild(polyline);
+	
 	group.add(rect);
-	group.add(shape);
+	
 	renderer.add(group);
 	
-	var shape = new Graphic.Polyline(renderer);
-    // Draw an arrow
-    shape.addPoints([[0, 50],[100, 50],[100, 0],[150, 75], [100, 150], [100, 100],[0, 100]]);
-  //  shape.setFill({r: 255, g: 0, b: 0, a: 128});
-    shape.setStroke({r:0,g:0,b:0,a:128,w:2});
-    shape.setBounds(0, 0, 80 , 80);
-    renderer.add(shape);
+
 	
-	var fObj = Graphic.SVGRenderer.createNode("foreignObject");
-	fObj.setAttribute("x",10);
-	fObj.setAttribute("style","font-size:10px");
-	fObj.setAttribute("y",10);
-	fObj.setAttribute("width",120);
-	fObj.setAttribute("height",20);
-	fObj.appendChild(document.createTextNode("Test"));
-	group.element.appendChild(fObj);
+//	var shape = new Graphic.NativeText(renderer);
+//	shape.setBounds(50, 200, 180,20);
+//	shape.setTextValue("Hello World my Native Text");
+//	shape.setTextStyle("font-familiy:verdana;font-size:10px;cursor:default");
+//	renderer.add(shape);
 	 '.
 
 html heading: 'SVG Drawing Test'.
