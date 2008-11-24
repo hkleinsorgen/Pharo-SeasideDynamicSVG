@@ -301,7 +301,7 @@ Graphic.HighlightTool.highlightColor = {r: 204, g: 227, b: 255, a: 0}; // #CCE5F
 
 { #category : #accessing }
 SVGLibrary >> pgfJs [
-	^'// Emulate console.log for browser that does not have a console object (IE for example!)
+^'// Emulate console.log for browser that does not have a console object (IE for example!)
 function debug(msg) {
 	var debugArea = $(''debug-area'')
 	if(debugArea == null) {
@@ -432,31 +432,10 @@ function pickPoly(points, x, y) {
   return c;
 }      
 
-
-  // C pick function
-  // int pnpoly(int npol, float *xp, float *yp, float x, float y)
-  // {
-  //   int i, j, c = 0;
-  //   for (i = 0, j = npol-1; i < npol; j = i++) {
-  //     if ((((yp[i] <= y) && (y < yp[j])) ||
-  //          ((yp[j] <= y) && (y < yp[i]))) &&
-  //         (x < (xp[j] - xp[i]) * (y - yp[i]) / (yp[j] - yp[i]) + xp[i]))
-  //       c = !c;
-  //   }
-  //   return c;
-  // }
-
-
 /*
 Class: Graphic
 	Used for namespace and for generic function about rendering and browser
-	
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-*/
+  */
 Graphic = Class.create();
 
 // Group: Class Methods       
@@ -470,11 +449,9 @@ Object.extend(Graphic, {
      Function:  rendererSupported
        Checks if a renderer is supported by the browser and by the framework
 
-     Parameters:
-       name - renderer name (VML, SVG or Canvas)
+     Parameters: name - renderer name (VML, SVG or Canvas)
        
-     Returns:
-       true/false
+     Returns:  true/false
   */
   rendererSupported: function(name) {  
     switch(name) {
@@ -503,27 +480,15 @@ Object.extend(Graphic, {
 /*
 Class: Matrix
 	2D Matrix operation used for geometric transform of any shape.
-	
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
 */
 Matrix = Class.create();  
 
 // Group: Class Methods
 Object.extend(Matrix, {
   /*
-    Function: multiply
-      Multiply 2 matrix
-      
-    Parameters:
-      left -  Left matrix
-      right -  Right matrix
-      
-    Returns:
-      A new matrix result of left multiply by right
+    Function: multiply ...     Multiply 2 matrix
+    Parameters: left -  Left matrix,  right -  Right matrix
+    Returns: A new matrix result of left multiply by right
   */
   multiply: function(left, right) { 
     var matrices;
@@ -548,79 +513,58 @@ Object.extend(Matrix, {
   },                
   
   /*
-    Function: translate
-      Create a translation matrix
-      
+    Function: translate  Create a translation matrix
     Parameters:
       x -  X translation value
       y -  Y translation value
-      
-    Returns:
-      A new matrix 
+    Returns: A new matrix 
   */
   translate: function(x, y) {
     return new Matrix({dx: x, dy: y});
   },
 
   /*
-    Function: rotate
-      Create a rotate matrix
-      
-    Parameters:
-      a -  angle in degree
-      
-    Returns:
-      A new matrix 
+    Function: rotate    Create a rotate matrix
+    Parameters:  a -  angle in degree
+    Returns: A new matrix 
   */
   rotate: function(angle) {
     var c = Math.cos(degToRad(angle));
   	var s = Math.sin(degToRad(angle));
     return new Matrix({xx:c, xy:s, yx:-s, yy:c});    
   },
-
   /*
-    Function: scale
-      Create a scale matrix
-      
+    Function: scale .. Create a scale matrix
     Parameters:
       sx -  x scale factor
       sy -  y scale factor (default sy = sx)
-      
-    Returns:
-      A new matrix 
+    Returns: A new matrix 
   */
   scale: function(sx, sy) {
     sy = sy || sx;
     return new Matrix({xx:sx, yy:sy});    
   },
-     
-  
   skewX:function (angle) {
   	return new Matrix({xy:Math.tan(degToRad(angle))});
 	},
-	
   skewY:function (angle) {
   	return new Matrix({yx:Math.tan(-degToRad(angle))});
 	},
 	
   /*
-    Function: rotateAt
-      Create a rotate matrix at a specific rotation center
-      
+    Function: rotateAt .... Create a rotate matrix at a specific rotation center
     Parameters:
       a -  angle in degree
       x - X coordinate of rotation center
       y - Y coordinate of rotation center
-    Returns:
-      A new matrix 
+    Returns: A new matrix 
   */
   rotateAt: function(angle, x, y) {
     return Matrix.multiply([Matrix.translate(x, y), Matrix.rotate(angle), Matrix.translate(-x, -y)])
   },
   
   /*
-    Function: scaleAt
-      Create a scale matrix at a specific center
+    Function: scaleAt ... Create a scale matrix at a specific center
       
     Parameters:
       sx - x scale factor
@@ -638,11 +582,9 @@ Object.extend(Matrix, {
     Function: invert
       Inverts a matrix
       
-    Parameters:
-      matrix -  matrix to invert
+    Parameters:  matrix -  matrix to invert
 
-    Returns:
-      A new matrix 
+    Returns: A new matrix 
   */
   invert: function(matrix) {
     var m = matrix;
@@ -671,14 +613,9 @@ Object.extend(Matrix.prototype, {
   
 	
   /*
-    Function: mutliplyRight
-      Multiply this matrix by another one to the right (this * matrix)
-      
-    Parameters:
-      matrix -  Right matrix
-      
-    Returns:
-      this 
+    Function: mutliplyRight ... Multiply this matrix by another one to the right (this * matrix)
+    Parameters: matrix -  Right matrix
+    Returns: this 
   */
   multiplyRight: function(matrix) {
     var matrix = Matrix.multiply(this, matrix);
@@ -687,14 +624,9 @@ Object.extend(Matrix.prototype, {
   },
   
   /*
-    Function: mutliplyLeft
-      Multiply this matrix by another one to the left (matrix * this)
-      
-    Parameters:
-      matrix -  Left matrix
-      
-    Returns:
-      this 
+    Function: mutliplyLeft ... Multiply this matrix by another one to the left (matrix * this)
+    Parameters: matrix -  Left matrix
+    Returns: this 
   */
   multiplyLeft: function(matrix) {
     var matrix = Matrix.multiply(matrix, this);
@@ -703,16 +635,11 @@ Object.extend(Matrix.prototype, {
   },
     
   /*
-    Function: multiplyPoint
-      Multiply a point 
-      
+    Function: multiplyPoint ... Multiply a point 
     Parameters:
       x -  x coordinate
       y -  y coordinate
-      
-    Returns:
-      {x:, y:}  
-      
+    Returns:  {x:, y:}  
     TODO: unit test
   */
   multiplyPoint: function(x, y) {
@@ -720,14 +647,9 @@ Object.extend(Matrix.prototype, {
   },
 	
   /*
-    Function: multiplyBounds
-      Multiply a bound area (x, y, w, h) 
-      
-    Parameters:
-      bounds - has table {x:, y:, w:, h:}
-      
-    Returns:
-      {x:, y:, w:, h:} 
+    Function: multiplyBounds ... Multiply a bound area (x, y, w, h) 
+    Parameters: bounds - has table {x:, y:, w:, h:}
+    Returns:  {x:, y:, w:, h:} 
       
     TODO: unit test
   */
@@ -746,25 +668,17 @@ Object.extend(Matrix.prototype, {
 	},
 	
   /*
-    Function: values
-      Gets matrix values (xx, yx, xy, yy, dx, dy)
-      
-    Returns:
-      An array of 6 float values: xx, yx, xy, yy, dx, dy
+    Function: values ... Gets matrix values (xx, yx, xy, yy, dx, dy)
+    Returns: An array of 6 float values: xx, yx, xy, yy, dx, dy
   */
   values: function() {
     return $A([this.xx, this.yx, this.xy, this.yy, this.dx, this.dy]);
   },
    
   /*
-    Function: setValues
-      Sets matrix values (xx, yx, xy, yy, dx, dy) with an array
-      
-    Parameters:
-      array- An array of 6 float values: xx, yx, xy, yy, dx, dy
-      
-    Returns:
-      this
+    Function: setValues ... Sets matrix values (xx, yx, xy, yy, dx, dy) with an array
+    Parameters: array- An array of 6 float values: xx, yx, xy, yy, dx, dy
+    Returns: this
   */
   setValues: function(array) {
     this.xx = parseFloat(array[0]);
@@ -818,9 +732,7 @@ Graphic.AbstractRender.prototype = {
   /*
     Function: initialize
       Constructor. 
-      
-    Returns:
-      A new renderer
+    Returns: A new renderer
   */
   initialize: function(element) {        
     var dimension = $(element).getDimensions();
@@ -830,18 +742,12 @@ Graphic.AbstractRender.prototype = {
     this.bounds  = {x: 0, y:0, w: dimension.width, h: dimension.height};                        
     return this;
   },
-     
-  
   /*
-    Function: pan
-      Pans current viewing. 
-      
+    Function: pan ...Pans current viewing. 
     Parameters:
       x - x shift value
       y - y shift value
-      
-    Returns:
-      this
+    Returns: this
   */
   pan: function(x, y) {
     this.viewing.tx = x;
@@ -852,17 +758,13 @@ Graphic.AbstractRender.prototype = {
   },
   
   /*
-    Function: zoom
-      Zooms current viewing. 
-      
+    Function: zoom ... Zooms current viewing. 
     Parameters:
       sx - x scale value
       sy - y scale value
       cx - x center (default renderer center)
       cy - y center (default renderer center)   
-      
-    Returns:
-      this
+    Returns: this
   */
   zoom: function(sx, sy, cx, cy) {
     this.viewing.sx = sx;
@@ -875,53 +777,33 @@ Graphic.AbstractRender.prototype = {
   },
 
   /*
-    Function: getViewing
-      Gets current viewing. 
-      
-    Returns:
-      An hash {tx:, ty:, sx:, sy:, cx:, cy:}
+    Function: getViewing ... Gets current viewing. 
+    Returns:  An hash {tx:, ty:, sx:, sy:, cx:, cy:}
   */
   getViewing: function() {
     return this.viewing;
   },
-    
   /*
-    Function: setViewing
-      Sets current viewing. 
-      
-    Parameters:
-      An hash {tx:, ty:, sx:, sy:, cx:, cy:}
-      
-    Returns:
-      this
+    Function: setViewing ... Sets current viewing. 
+    Parameters: An hash {tx:, ty:, sx:, sy:, cx:, cy:}
+    Returns:  this
   */
   setViewing: function(viewing) {
     this.viewing = Object.extend(this.viewing, viewing);
     this._setViewMatrix();
     this._setViewing();  
-    
     return this;
   },
-    
   _setViewMatrix: function() {
     this.viewingMatrix = Matrix.translate(this.viewing.tx, this.viewing.ty).multiplyLeft(Matrix.scaleAt(1/this.viewing.sx, 1/this.viewing.sy, this.viewing.cx, this.viewing.cy));     
   },
-      
-  /*
-    Function: setSize
-      Sets current renderer size
-      
-    Parameters:
-      width  - renderer width
-      height - renderer height
-      
-    Returns:
-      this
+  /* Function: setSize ...Sets current renderer size
+    Parameters: width  - renderer width , height - renderer height
+    Returns: this
   */
   setSize: function(width, height) {
     this.bounds.w = width;
     this.bounds.h = height;          
-    
     return this;
   },
   
@@ -938,81 +820,58 @@ Graphic.AbstractRender.prototype = {
   
   /*
     Function: destroy
-      Destructor. Should clean DOM and memory
+    Destructor. Should clean DOM and memory
   */
   destroy: function()                {console.log("Graphic.AbstractRender:destroy")},
   
   /*
-    Function: createShape
-      Creates a new shape. 
-      
-    Parameters:
-      type - Shape type (like rect, ellipse...)
-      
-    Returns:
-      A new object handling renderer information for drawing the shape
+    Function: createShape ... Creates a new shape. 
+    Parameters: type - Shape type (like rect, ellipse...)
+    Returns: A new object handling renderer information for drawing the shape
   */
   createShape: function(type)        {console.log("Graphic.AbstractRender:createShape")},
   
   /*
-    Function: add
-      Adds a new shape to be displayed. 
+    Function: add ... Adds a new shape to be displayed. 
     Parameters:
       shape -  Shape object to be added
       parent - Parent Shape object for the added shape, used for grouping shapes.
                if null (default value) the shape is added as child of the renderer
       
-     See Also:
-      <Shape>
+     See Also: <Shape>
   */   
   add: function(shape, parent)       {console.log("Graphic.AbstractRender:add")},
 
   /*
-    Function: remove
-      Removes a shape from rendering
-      
+    Function: remove ... Removes a shape from rendering
     Parameters:
       shape - Prototype Grpahic Shape object to be removed
       parent - Parent Shape object for the removed shape, used when grouping shapes.
                if null (default value) the shape is removed as child of the renderer
       
-     See Also:
-      <Shape>
+     See Also: <Shape>
   */   
   remove:function(shape, parent)     {console.log("Graphic.AbstractRender:remove")},
   
   /*
     Function: get
       Gets a shape from an ID
-      
-    Parameters:
-      id - shape id
-      
-    Returns:
-      A shape or null
-      
-    See Also:
-      <Shape>
+    Parameters: id - shape id
+    Returns: A shape or null
+    See Also: <Shape>
   */   
   get:function(id)                   {console.log("Graphic.AbstractRender:get")},
   
   /*
-    Function: shapes
-      Gets all shapes of the renderer
-      
+    Function: shapes ... Gets all shapes of the renderer
     Parameters:
-      
-    Returns:
-      A array of shapes or null
-      
-    See Also:
-      <Shape>
+    Returns: A array of shapes or null
+    See Also: <Shape>
   */   
   shapes:function(id)                {console.log("Graphic.AbstractRender:shapes")},
   
   /*
-    Function: clear
-      Clears all shapes from rendering
+    Function: clear ... Clears all shapes from rendering
   */   
   clear:function()                   {console.log("Graphic.AbstractRender:clear")},
   
@@ -1020,12 +879,8 @@ Graphic.AbstractRender.prototype = {
     Function: updateAttributes
       Updates shape attributes. Called when a shape has been modified like fill color or 
       specific attributes like roundrect value 
-      
-    Parameters:
-      shape - Prototype Grpahic Shape object 
-      
-     See Also:
-      <Shape>
+    Parameters: shape - Prototype Grpahic Shape object 
+     See Also: <Shape>
   */   
   updateAttributes:function(shape, attributes)  {console.log("Graphic.AbstractRender:update")},
 
@@ -1033,71 +888,43 @@ Graphic.AbstractRender.prototype = {
     Function: updateTransform
       Updates shape transformation. Called when a shape transformation has been modified like rotation, translation...
       
-    Parameters:
-      shape - Prototype Grpahic Shape object 
-      
-     See Also:
-      <Shape>
+    Parameters:  shape - Prototype Grpahic Shape object 
+     See Also: <Shape>
   */   
   updateTransform:function(shape)    {console.log("Graphic.AbstractRender:updateTransform")},
-  
-  /*
+/*
     Function: nbShapes
       Gets nb shapes displayed in the renderer
-      
-    Returns:
-      int value
-      
-     See Also:
-      <Shape>
-  */   
+    Returns: int value
+     See Also: <Shape>
+ */   
   nbShapes: function()               {console.log("Graphic.AbstractRender:nbShapes")},
-  
-  /*
-    Function: show
-      Shows a shape. The shape should have been added to the renderer before
-      
-    Parameters:
-      shape - Prototype Grpahic Shape object 
-      
-     See Also:
-      <Shape>
+/*
+    Function: show ... shows a shape. The shape should have been added to the renderer before
+    Parameters: shape - Prototype Grpahic Shape object 
+     See Also: <Shape>
   */   
   show:function(shape)               {console.log("Graphic.AbstractRender:show")},    
-  
-  /*
+ /*
     Function: hide
       Hides a shape. The shape should have been added to the renderer before
-      
-    Parameters:
-      shape - Prototype Grpahic Shape object 
-      
-     See Also:
-      <Shape>
+    Parameters: shape - Prototype Grpahic Shape object 
+     See Also: <Shape>
   */   
   hide:function(shape)               {console.log("Graphic.AbstractRender:hide")},
   
   /*
     Function: moveToFront
       Changes shape z-index order to be display above all other shapes
-      
-    Parameters:
-      shape - Prototype Grpahic Shape object 
-      
-     See Also:
-      <Shape>
+    Parameters: shape - Prototype Grpahic Shape object 
+     See Also: <Shape>
   */   
   moveToFront: function(shape)       {console.log("Graphic.AbstractRender:moveToFront")},
   
   /*
-    Function: moveToBack
-      Changes shape z-index order to be display under all other shapes
-      
-    Parameters:
-      shape - Prototype Grpahic Shape object 
-      
-     See Also:
-      <Shape>
+    Function: moveToBack ... Changes shape z-index order to be display under all other shapes
+    Parameters: shape - Prototype Grpahic Shape object 
+     See Also: <Shape>
   */   
   moveToBack: function(shape)       {console.log("Graphic.AbstractRender:moveToBack")},
   
@@ -1139,29 +966,18 @@ Graphic.AbstractRender.prototype = {
 }/*
 Class: Graphic.Shape
 	Abstract class for vectorial shapes. Must be used for new shape definition.
-	
 	Any shape must be used by a renderer.
-	
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
 */
 Graphic.Shape = Class.create();
 Object.extend(Graphic.Shape.prototype, {
   // Group: Implemented Functions
-
   /*
     Function: initialize
       Constructor. Creates a new shape.
-      
-    Parameters:
-      renderer - Renderer used to display this shape 
-      nodeName - Node name (not linked to any renderer), like rect, ellipse ...
-      
-    Returns:
-      A new shape object 
+    Parameters: 
+	renderer - Renderer used to display this shape
+	nodeName - Node name (not linked to any renderer), like rect, ellipse ...
+    Returns: New shape object 
   */
   initialize: function(renderer, nodeName) {
     this.attributes = {};
@@ -1169,7 +985,9 @@ Object.extend(Graphic.Shape.prototype, {
     this.nodeName = nodeName;
 	// obi
 	this.children = new Array();
+	this.dependents = new Array();
 	this.parent = null;
+	//obi
     this.element = renderer.createShape(this);     
     if (this.element) 
       this.element.shape = this;
@@ -1189,6 +1007,7 @@ Object.extend(Graphic.Shape.prototype, {
   */
   destroy: function() {
     this.renderer.remove(this);
+	this.children.each(function(e) {e.destroy()});
   },
   
   /*
@@ -1207,6 +1026,25 @@ Object.extend(Graphic.Shape.prototype, {
 	aShape.parent = this;
     return this;
   },  
+ removeChild: function(aShape) {
+	this.children.pop(aShape);
+	aShape.parent = null;
+    return this;
+  }, 
+ 
+  addDependent: function(aShape) {
+	this.dependents.push(aShape);
+    return this;
+  }, 
+  removeDependent: function(aShape) {
+	this.dependents.pop(aShape);
+    return this;
+  }, 
+  releaseDependents: function() {
+	this.dependents.each(function(e) {e.destroy()});
+	this.dependents = new Array();
+    return this;
+  }, 
 
  /*
     Function: setID
@@ -1224,25 +1062,17 @@ Object.extend(Graphic.Shape.prototype, {
   },
 
   /*
-    Function: getID
-      Gets node ID
-      
-    Returns:
-      ID string
+    Function: getID ... Gets node ID
+    Returns: ID string
   */
   getID: function() {
      return this.attributes.id;
   },
-  
   /*
     Function: setClassName
       Sets shape class name
-
-    Parameters:
-      className - Shape class name value
-      
-    Returns:
-      this
+    Parameters:  className - Shape class name value
+    Returns: this
   */
   setClassName: function(className) {
     this._setAttribute("class", className, true);  
@@ -1250,52 +1080,41 @@ Object.extend(Graphic.Shape.prototype, {
   },
 
   /*
-    Function: getClassName
-      Gets shape class name
-      
-    Returns:
-      Shape class name string
+    Function: getClassName ... Gets shape class name
+    Returns: Shape class name string
   */
   getClassName: function() {
      return this.attributes["class"];
   },
   
   /*
-    Function: show
-      Sets shape visible
-
-    Returns:
-      this
+    Function: show ...Sets shape visible
+    Returns: this
   */
   show: function() {
     this.renderer.show(this);
+	this.children.each(function(e) {e.show()});
+
     return this;
   },
   
   /*
-    Function: hide
-      Sets shape invisible
-
-    Returns:
-      this
+    Function: hide ... Sets shape invisible
+    Returns: this
   */
   hide: function() {
     this.renderer.hide(this);
+	this.children.each(function(e) {e.hide()});
     return this;
   },
   
   /*
-    Function: setFill
-      Sets fill attributes. Currently it could be
+    Function: setFill ... Sets fill attributes. Currently it could be
       - null or  attributes.fill == "none" for no filling
       - an hash of 4 keys {r:, g:, b:, a:}
       - a string : rgb(r,g,b,a) 
-   
-    Parameters:
-      attributes: fill attributes (see above for details)
-      
-    Returns:
-      this
+    Parameters:  attributes: fill attributes (see above for details)
+    Returns: this
   */
   setFill: function(attributes) {
     // No fill
@@ -1312,22 +1131,16 @@ Object.extend(Graphic.Shape.prototype, {
   },
   
   /*
-    Function: getFill
-      Gets fill attributes
-
-    Returns:
-      a string : rgb(r,g,b) or none
+    Function: getFill ... Gets fill attributes
+    Returns: a string : rgb(r,g,b) or none
   */
   getFill: function() {
     return this.attributes.fill;
   },
 
   /*
-    Function: getFillOpacity
-      Gets fill opacity attribute
-
-    Returns:
-      a float [0..1]
+    Function: getFillOpacity ... Gets fill opacity attribute
+    Returns: Float [0..1]
   */
   getFillOpacity: function() {
      return this.attributes["fill-opacity"];
@@ -1340,11 +1153,8 @@ Object.extend(Graphic.Shape.prototype, {
       - an hash of 4 keys {r:, g:, b:, a:, w:} w is stroke width
       - a string : rgb(r,g,b,a, w) 
    
-    Parameters:
-      attributes: stroke attributes (see above for details)  
-      
-    Returns:
-      this
+    Parameters: attributes: stroke attributes (see above for details)  
+    Returns: this
   */
   setStroke: function(attributes) {
 		// No stroke
@@ -1361,7 +1171,9 @@ Object.extend(Graphic.Shape.prototype, {
 		}
 		return this;
 	},
-  
+	setOpacity : function(a) 
+		{this._setAttribute("opacity", a);  
+		return this},
   /*
     Function: setStrokeWidth
       Sets stroke width attribute
@@ -1393,16 +1205,12 @@ Object.extend(Graphic.Shape.prototype, {
 	},
 	
   /*
-    Function: setStrokeColor
-      Sets stroke color attributes
-      
+    Function: setStrokeColor ... Sets stroke color attributes
     Parameters:
       r: red   [0..255]
       g: green [0..255]
       b: blue  [0..255]
-      
-    Returns:
-      this
+    Returns: this
   */
 	setStrokeColor : function(r,g,b){
     this._setAttribute("stroke", "rgb(" + parseInt(r) + "," + parseInt(g) + "," + parseInt(b) + ")");
@@ -1410,47 +1218,32 @@ Object.extend(Graphic.Shape.prototype, {
 	},
 	
 	/*
-    Function: getStroke
-      Gets stroke attributes
-
-    Returns:
-      a string : rgb(r,g,b) or none
+    Function: getStroke ... Gets stroke attributes
+    Returns: a string : rgb(r,g,b) or none
   */
   getStroke: function() {
     return this.attributes.stroke;
   },
   
   /*
-    Function: getStrokeOpacity
-      Gets stroke opacity attribute
-
-    Returns:
-      a float [0..1]
+    Function: getStrokeOpacity ... Gets stroke opacity attribute
+    Returns: a float [0..1]
   */
   getStrokeOpacity: function() {
      return this.attributes["stroke-opacity"];
   },
-  
   /*
-    Function: getStrokeWidth
-      Gets stroke width attribute
-
-    Returns:
-      a float 
+    Function: getStrokeWidth ... Gets stroke width attribute
+    Returns: a float 
   */
   getStrokeWidth: function() {
      return this.attributes["stroke-width"];
   },
   
   /*
-    Function: setAntialiasing
-      Sets antialiasing on or off
-      
-    Parameters:
-     on - boolean, true for activating antialiasing
-
-    Returns:
-      this
+    Function: setAntialiasing ... Sets antialiasing on or off
+    Parameters: on - boolean, true for activating antialiasing
+    Returns: this
   */
   setAntialiasing: function(on) {
     if (on)
@@ -1462,72 +1255,62 @@ Object.extend(Graphic.Shape.prototype, {
   },
       
   /*
-    Function: getAntialiasing
-      Gets antialiasing value
-      
-     Returns:
-      true/false
+    Function: getAntialiasing ... Gets antialiasing value
+     Returns: true/false
   */
   getAntialiasing: function() {
     return this.attributes["shape-rendering"] == "auto";
   },
       
   /*
-    Function: setBounds
-      Sets shape bounds (it calls setSize and setLocation)
-      
+    Function: setBounds ... Sets shape bounds (it calls setSize and setLocation)
     Parameters:
       x - shape X corner
       y - shape Y corner
       w - shape width 
       h - shape height
-
-    Returns:
-      this
+    Returns: this
   */
   setBounds: function(x, y, w, h) {
     this.setLocation(x, y);
     this.setSize(w, h);
-    
     return this;
   },
   
   /*
-    Function: getBounds
-      Gets object bounds 
-      
-    Returns:
-      An hash table {x:, y:, w:, h:}
+    Function: getBounds ... Gets object bounds 
+    Returns: An hash table {x:, y:, w:, h:}
   */
   getBounds: function() {
     return Object.extend(this.getSize(), this.getLocation());    
   },
 
   /*
-    Function: moveToFront
-      Moves this shape above all others
-
-    Returns:
-      this
+    Function: moveToFront ... Moves this shape above all others
+    Returns: this
   */
   moveToFront: function() {
     if (this.renderer) 
       this.renderer.moveToFront(this);
-    
-    return this;
+     return this;
   }, 
-    
+ //obi   
+	getCenter: function() {
+		var bounds = this.getBounds();
+	    return {x: bounds.x + (bounds.w / 2), y: bounds.y + (bounds.h / 2)};
+  },
+	moveBy: function(x,y) {
+		var aPoint = this.getLocation();
+		this.setLocation(aPoint.x + x, aPoint.y + y);
+	    return this;
+  },
   /*
-    Function: rotate
-      Rotates shape (by default rotation center = shape center)
-      
+    Function: rotate ... Rotates shape (by default rotation center = shape center)
     Parameters:
       angle - Angle in degree
       rx - rotation center X value (default shape center)
       ry - rotation center Y value (default shape center)
-
-    Returns:
-      this
+    Returns: this
   */
   rotate: function(angle, rx, ry) {
     var bounds = this.getBounds();
@@ -1545,32 +1328,23 @@ Object.extend(Graphic.Shape.prototype, {
   },
   
   /*
-    Function: translate
-      Translates shape 
-      
+    Function: translate ... Translates shape 
     Parameters:
       tx - X value 
       ty - Y value
-
-    Returns:
-      this
+    Returns: this
   */
   translate: function(tx, ty) { 
     return this.postTransform(Matrix.translate(tx, ty));
   },
-
-
   /*
-    Function: scale
-      Scales shape 
-      
+    Function: scale ... Scales shape 
     Parameters:
       sx - sx scale factor 
       sy - sy scale factor 
       cy - scale center X value (default current CTM center)
       cy - scale center Y value (default current CTM center)
-    Returns:
-      this
+    Returns: this
   */
   scale: function(sx, sy, cx, cy) { 
     if (cx)
@@ -1582,49 +1356,32 @@ Object.extend(Graphic.Shape.prototype, {
   },
 
   /*
-    Function: postTransform
-      Add a transformation "after" the current CTM
-      
-    Parameters:
-      matrix - matrix to post transform 
-
-    Returns:
-      this
+    Function: postTransform ... Add a transformation "after" the current CTM
+    Parameters: matrix - matrix to post transform 
+    Returns: this
   */
   postTransform: function(matrix) {
     this.matrix.multiplyRight(matrix)
     this.inverseMatrix.multiplyLeft(Matrix.invert(matrix));
     this._updateTransform();
-
     return this;
   },
-
   /*
-    Function: preTransform
-      Add a transformation "before" the current CTM
-      
-    Parameters:
-      matrix - matrix to pre transform 
-
-    Returns:
-      this
+    Function: preTransform ... Add a transformation "before" the current CTM
+    Parameters: matrix - matrix to pre transform 
+    Returns: this
   */
   preTransform: function(matrix) {    
     this.matrix.multiplyLeft(matrix)
     this.inverseMatrix.multiplyRight(Matrix.invert(matrix));
     this._updateTransform();
-
     return this;
   },
   
   /*
-    Function: setMatrix
-      Sets CTM (current transformation matrix)
-      
-    Parameters:
-      matrix - new shape CTM
-    Returns:
-      this      
+    Function: setMatrix ... Sets CTM (current transformation matrix)
+    Parameters:  matrix - new shape CTM
+    Returns: this      
   */
   setMatrix: function(matrix, inverse) {  
     this.matrix = new Matrix(matrix);
@@ -1635,63 +1392,44 @@ Object.extend(Graphic.Shape.prototype, {
   },  
 
   /*
-    Function: getMatrix
-      Gets CTM (current transformation matrix)
-      
-    Returns:
-      An matrix object  
+    Function: getMatrix ... Gets CTM (current transformation matrix)
+    Returns: An matrix object  
   */
   getMatrix: function() {
     return this.matrix;
   },   
    
   /*
-    Function: getInverseMatrix
-      Gets inverse CTM (current transformation matrix)
-      
-    Returns:
-      An matrix object  
+    Function: getInverseMatrix ... Gets inverse CTM (current transformation matrix)
+    Returns: An matrix object  
   */
   getInverseMatrix: function() {
     return this.inverseMatrix;
   },    
 
   /*
-    Function: getRendererObject
-      Gets renderer object link to this shape
-      
-    Returns:
-      An object 
+    Function: getRendererObject ... Gets renderer object link to this shape
+    Returns: An object 
   */
   getRendererObject: function() { 
     return this.element;
   },
-  
-     
   // Group: Abstract Functions
   // Those functions have to be overriden by any shapes. 
   /*
-    Function: getSize
-      Gets object size
-
-    Returns:
-      An hash table {w:, h:}
+    Function: getSize ... Gets object size
+    Returns: An hash table {w:, h:}
   */
   getSize: function() {   
     console.log("getSize")
     throw Graphic.functionMustBeOverriden;    
   },
-
   /*
-    Function: setSize
-      Sets object size
-
+    Function: setSize ... Sets object size
     Parameters:
       width: shape width
       height: shape height
-      
-    Returns:
-      this
+    Returns: this
   */
   setSize: function(width, height) {
     console.log("setSize")
@@ -1699,11 +1437,8 @@ Object.extend(Graphic.Shape.prototype, {
   },
   
   /*
-    Function: getLocation
-      Gets object location
-
-      Returns:
-        An hash table {x:, y:}
+    Function: getLocation ... Gets object location
+      Returns: An hash table {x:, y:}
   */
   getLocation: function() {
     console.log("getLocation")
@@ -1711,15 +1446,9 @@ Object.extend(Graphic.Shape.prototype, {
   },
 
   /*
-    Function: setLocation
-      Sets object location
-
-    Parameters:
-      x: shape x value
-      y: shape y value
-      
-    Returns:
-      this
+    Function: setLocation ... Sets object location
+    Parameters: x: shape x value, y: shape y value
+    Returns: this
   */
   setLocation: function(x, y) {
     console.log("setLocation") 
@@ -1751,14 +1480,7 @@ Object.extend(Graphic.Shape.prototype, {
   }
 })
 /*
-Class: Graphic.Rectangle
-	Shape implementation of a rectangle. A Rectangle can have rounded corners
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
+Class: Graphic.Rectangle ... Shape implementation of a rectangle. A Rectangle can have rounded corners
 */
 Graphic.Rectangle = Class.create();
 Object.extend(Graphic.Rectangle.prototype, Graphic.Shape.prototype);
@@ -1796,15 +1518,9 @@ Object.extend(Graphic.Rectangle.prototype, {
   
   // Group: Specific Rectangle Functions
   /*
-    Function: setRoundCorner
-      Sets round corners values in pixel
-      
-    Parameters:
-      rx - round X value
-      ry - round Y value
-      
-    Returns:
-      this
+    Function: setRoundCorner ... Sets round corners values in pixel
+    Parameters: rx - round X value, ry - round Y value
+    Returns: this
   */
   setRoundCorner: function(rx, ry) {
     rx = Math.max(0, rx);
@@ -1816,28 +1532,15 @@ Object.extend(Graphic.Rectangle.prototype, {
   },
   
   /*
-    Function: getRoundCorner
-      Gets round corners values in pixel
-      
-    Returns:
-      An hash table {rx:, ry:}
+    Function: getRoundCorner ... Gets round corners values in pixel
+    Returns: An hash table {rx:, ry:}
   */
   getRoundCorner: function(rx, ry) {
     return  {rx: this.attributes.rx, ry: this.attributes.ry}
   }
 })
 /*
-Class: Graphic.Ellipse
-	Shape implementation of an ellipse.
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-
-  See Also:
-    <Shape>
+Class: Graphic.Ellipse ... Shape implementation of an ellipse.
 */
 Graphic.Ellipse = Class.create();
 Object.extend(Graphic.Ellipse.prototype, Graphic.Shape.prototype);
@@ -1872,17 +1575,7 @@ Object.extend(Graphic.Ellipse.prototype, {
   }
 })
 /*
-Class: Graphic.Circle
-	Shape implementation of a circle.
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-
-  See Also:
-    <Shape>
+Class: Graphic.Circle ... Shape implementation of a circle.
 */
 Graphic.Circle = Class.create();
 Object.extend(Graphic.Circle.prototype, Graphic.Shape.prototype);
@@ -1936,17 +1629,7 @@ Object.extend(Graphic.Circle.prototype, {
   
 })
 /*
-Class: Graphic.Polyline
-	Shape implementation of a Polyline.
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-
-  See Also:
-    <Shape>
+Class: Graphic.Polyline ... Shape implementation of a Polyline.
 */
 Graphic.Polyline = Class.create();
 Object.extend(Graphic.Polyline.prototype, Graphic.Shape.prototype);
@@ -2074,17 +1757,7 @@ Object.extend(Graphic.Polyline.prototype, {
   }
 })
 /*
-Class: Graphic.Polygon
-	Shape implementation of a polygon.
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-
-  See Also:
-    <Shape>
+Class: Graphic.Polygon ... Shape implementation of a polygon.
 */
 Graphic.Polygon = Class.create();
 Object.extend(Graphic.Polygon.prototype, Graphic.Polyline.prototype);
@@ -2098,17 +1771,7 @@ Object.extend(Graphic.Polygon.prototype, {
   }
 })
 /*
-Class: Graphic.Line
-	Shape implementation of a line.
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-
-  See Also:
-    <Shape>
+Class: Graphic.Line ... Shape implementation of a line.
 */
 Graphic.Line = Class.create();
 Object.extend(Graphic.Line.prototype, Graphic.Shape.prototype);
@@ -2152,17 +1815,7 @@ Object.extend(Graphic.Line.prototype, {
   }
 })
 /*
-Class: Graphic.Group
-	Shape implementation of a group.
-
-  Author:
-  	Sébastien Gruhier, <http://www.xilinus.com>
-
-  License:
-  	MIT-style license.
-
-  See Also:
-    <Shape>
+Class: Graphic.Group ... Shape implementation of a group.
 */
 Graphic.Group = Class.create();
 Object.extend(Graphic.Group.prototype, Graphic.Shape.prototype);
@@ -2300,8 +1953,11 @@ Object.extend(Graphic.Text.prototype, {
     Object.extend(this.attributes, {x: 0, y: 0, ''font-size'': ''10'', ''font-family'': ''Verdana'', ''font-weight'': ''normal''});
     return this;
   },
+  getSize: function()
+	{return{w:this.element.getComputedTextLength(), h:-this.attributes[''font-size'']}
+	},
 
-  getSize: function() {
+  getFontSize: function() {
     return {fontSize: this.attributes[''font-size''], fontWeight: this.attributes[''font-weight'']};
   },
   
@@ -2856,9 +2512,8 @@ Graphic.ToolManager.prototype = {
       y = this.dimension.height;   
     return y;
   }
-}
+}'
 
-'
 ]
 
 { #category : #accessing }
@@ -6446,6 +6101,124 @@ Object.extend(Graphic.SelectTool.prototype, {
       this.shape = null;
       
     if (this.shape) {
+	this.shape.moveToFront();
+
+	var bounds = this.shape.getBounds();
+	var center = this.shape.getCenter();
+	
+	var rect = new Graphic.Rectangle(renderer);
+	rect.setFill({r: 0, g: 0, b: 0, a:64});
+	rect.setStroke({r: 0, g: 0, b: 0, w: 0.5});
+	rect.setBounds(center.x - 4, center.y - 4, 8, 8);
+	rect.setMatrix(this.shape.getMatrix());
+	this.shape.addDependent(rect);
+	this.renderer.add(rect)
+		
+	var rect = new Graphic.Rectangle(renderer);
+	rect.setFill({r: 0, g: 0, b: 0, a:64});
+	rect.setStroke({r: 0, g: 0, b: 0, w: 0.5});
+	rect.setBounds(bounds.x - 4, bounds.y - 4, 8, 8);
+	rect.setMatrix(this.shape.getMatrix());
+	this.shape.addDependent(rect);
+	this.renderer.add(rect)
+
+	var rect = new Graphic.Rectangle(renderer);
+	rect.setFill({r: 0, g: 0, b: 0, a:64});
+	rect.setStroke({r: 0, g: 0, b: 0, w: 0.5});
+	rect.setBounds((bounds.x + bounds.w) - 4, bounds.y - 4, 8, 8);
+	rect.setMatrix(this.shape.getMatrix());
+	this.shape.addDependent(rect);
+	this.renderer.add(rect)	
+		
+	var rect = new Graphic.Rectangle(renderer);
+	rect.setFill({r: 0, g: 0, b: 0, a:64});
+	rect.setStroke({r: 0, g: 0, b: 0, w: 0.5});
+	rect.setBounds(bounds.x - 4, (bounds.y + bounds.h) - 4, 8, 8);
+	rect.setMatrix(this.shape.getMatrix());
+	this.shape.addDependent(rect);
+	this.renderer.add(rect)
+	
+	var rect = new Graphic.Rectangle(renderer);
+	rect.setFill({r: 0, g: 0, b: 0, a:64});
+	rect.setStroke({r: 0, g: 0, b: 0, w: 0.5});
+	rect.setBounds((bounds.x + bounds.w) - 4, (bounds.y + bounds.h) - 4, 8, 8);
+	rect.setMatrix(this.shape.getMatrix());
+	this.shape.addDependent(rect);
+	this.renderer.add(rect)
+	
+	this.shape.setOpacity(0.5);
+	this.x = x;
+	this.y = y;
+     // this.renderer.draw()
+	}
+  },
+  
+  drag: function(x, y, dx, dy, ddx, ddy, event) {    
+    if (this.shape) {           
+      this.shape.preTransform(Matrix.translate(ddx, ddy));
+	// obi
+	this.shape.children.each(function(i) {i.preTransform(Matrix.translate(ddx, ddy))})
+	this.shape.dependents.each(function(i) {i.preTransform(Matrix.translate(ddx, ddy))})
+     this.renderer.draw();
+    }
+  },
+  
+  endDrag: function(x, y, event) {
+    if (this.shape) {
+	this.shape.setOpacity(1);
+	//console.log(x + " " + y + " delta.x=" + (x- this.x) + "delta.y=" + (y-this.y));
+	//this.shape.moveBy(x - this.x,y - this.y);
+	this.shape.releaseDependents();
+      EventNotifier.send(this, "shapeHasBeenMoved", {shape: this.shape, dx: x - this.x, dy: y - this.y});
+      this.shape = null;
+    }
+  },
+  
+  mouseMove: function(x, y, event) {}
+});
+'
+]
+
+{ #category : #accessing }
+SVGLibrary >> selectJsOri [
+	^'/*
+Class: Graphic.SelectTool
+	Select/Move tool.
+	
+	Register this tool to be able to move any shapes. 
+	After a move, an event  shapeHasBeenMoved is sent with the moved shape as option.
+  
+  Author:
+  	SÃ©bastien Gruhier, <http://www.xilinus.com>
+
+  License:
+  	MIT-style license.
+
+  See Also:
+    <Tool>, <EventNotifier>
+*/
+Graphic.SelectTool = Class.create();
+Object.extend(Graphic.SelectTool.prototype, Graphic.Tool.prototype);
+Object.extend(Graphic.SelectTool.prototype, {
+  initialize: function() {  
+    this.renderer = null;
+    this.shape    = null;
+  },
+  
+  activate: function(manager) {
+    this.renderer = manager.renderer;
+  },
+  
+  unactivate: function(manager) {
+    this.renderer = null;
+  }, 
+  
+  initDrag: function(x, y, event) {
+    this.shape = this.renderer.pick(event);    
+    if (this.shape && this.shape.notSelectable)
+      this.shape = null;
+      
+    if (this.shape) {
       this.shape.moveToFront();
       this.x = x;
       this.y = y;
@@ -6457,13 +6230,8 @@ Object.extend(Graphic.SelectTool.prototype, {
     if (this.shape) {           
       this.shape.preTransform(Matrix.translate(ddx, ddy));
 	// obi
-	for (var i = 0; i < this.shape.children.length; ++i) {
-		this.shape.children[i].preTransform(Matrix.translate(ddx, ddy)) 
-		}
-
-//	if (this.shape.children.length > 0)
-	//	{}
-      this.renderer.draw();
+	this.shape.children.each(function(i) {i.preTransform(Matrix.translate(ddx, ddy))})
+     this.renderer.draw();
     }
   },
   
