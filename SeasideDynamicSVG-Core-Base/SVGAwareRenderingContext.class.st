@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGAwareRenderingContext,
-	#superclass : #WARenderingContext,
+	#superclass : #WARenderContext,
 	#instVars : [
 		'containsInlinedSVG',
 		'registeredHandlers',

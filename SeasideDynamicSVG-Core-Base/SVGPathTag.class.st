@@ -15,8 +15,8 @@ SVGPathTag >> addPointToPath: aPoint [
 
 { #category : #accessing }
 SVGPathTag >> addToPath: aString [
-	
-	self path addPointToPath: aString
+	self path addToPath: aString.
+	"self path addPointToPath: aString"
 ]
 
 { #category : #'accessing-path primitives' }

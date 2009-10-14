@@ -1,6 +1,6 @@
 Extension { #name : #WARequest }
 
-{ #category : #'*SeasideDynamicSVG-Core-Base' }
+{ #category : #'*SeasideDynamicSVG-Core' }
 WARequest >> svgRequiresIEWorkarounds [
 	" unfortunately, Microsoft doesn''t support SVG, and the Adobe SVG plugin requires some special tweaks "
 	"copied from Seaside 2.9 <=  isInternetExplorer in WAFormTag"
@@ -9,5 +9,4 @@ WARequest >> svgRequiresIEWorkarounds [
 	userAgent := self userAgent.
 	^userAgent notNil
 		and: [ (userAgent includesSubString: 'MSIE') and: [ (userAgent includesSubString: 'Opera') not ] ].
-
 ]

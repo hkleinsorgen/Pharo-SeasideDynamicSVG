@@ -1,6 +1,6 @@
 Class {
 	#name : #SVGWritingMode,
-	#superclass : #SVGEnumeration,
+	#superclass : #ProtoObject,
 	#category : #'SeasideDynamicSVG-Core-Text'
 }
 

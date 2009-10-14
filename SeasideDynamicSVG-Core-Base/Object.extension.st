@@ -1,6 +1,11 @@
 Extension { #name : #Object }
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
+Object >> drawSVGOn: aRenderer [
+	aRenderer text: self.
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-Base' }
 Object >> toSVGPaint [
 	^ self toSVGString
 ]

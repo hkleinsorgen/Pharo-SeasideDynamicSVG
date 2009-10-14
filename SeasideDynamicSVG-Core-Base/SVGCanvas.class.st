@@ -2,7 +2,6 @@ Class {
 	#name : #SVGCanvas,
 	#superclass : #WACanvas,
 	#instVars : [
-		'context',
 		'callbacks',
 		'tagsNeedNamespace'
 	],
@@ -12,6 +11,12 @@ Class {
 { #category : #'instance creation' }
 SVGCanvas class >> builder [
 	^SVGBuilder on: self
+]
+
+{ #category : #'instance creation' }
+SVGCanvas class >> context: aRenderingContext [
+	
+	^self basicNew initializeWithContext: aRenderingContext
 ]
 
 { #category : #'instance creation' }
@@ -290,6 +295,13 @@ SVGCanvas >> image [
 { #category : #'tags-filter' }
 SVGCanvas >> imageFilter [
 	^self brush: SVGImageFilterTag new
+]
+
+{ #category : #'initialize-release' }
+SVGCanvas >> initializeWithContext: aRenderingContext [
+	
+	context := aRenderingContext.
+	tagsNeedNamespace := true.
 ]
 
 { #category : #'initialize-release' }

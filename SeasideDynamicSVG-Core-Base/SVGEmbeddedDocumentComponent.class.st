@@ -122,7 +122,7 @@ SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
 	svgTag := canvas svg.
 	self width notNil ifTrue: [ svgTag width: self width ].
 	self height notNil ifTrue: [ svgTag height: self height ].
-	self setAttributesOfRootTag: svgTag.
+	self setAttributesOfRootTag: svgTag. 
 	svgTag drawWith: [ : svg | svg render: self ]
 ]
 

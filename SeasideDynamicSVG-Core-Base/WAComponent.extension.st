@@ -1,64 +1,22 @@
 Extension { #name : #WAComponent }
 
-{ #category : #'*SeasideDynamicSVG-Core-Base' }
-WAComponent >> drawSVGOn: aRenderer [ 
-	self decorationChainDo: [ : each | each drawSVGWithContext: aRenderer context ]
+{ #category : #'*SeasideDynamicSVG-Core' }
+WAComponent >> renderInlinedOn: canvas width: width height: height [ 
+	" inline as <svg> tag "
+
+	| svgTag |
+	svgTag := canvas svg.
+	svgTag width: width.
+	svgTag height: height. 
+	svgTag drawWith: [ : svg | svg render: self ]
 ]
 
-{ #category : #'*SeasideDynamicSVG-Core-Base' }
-WAComponent >> exportSVG [
-	
-	self exportSVGAs: self application name , '.svg'
+{ #category : #'*SeasideDynamicSVG-Core' }
+WAComponent >> svgaccept: aVisitor [
+	aVisitor svgvisitComponent: self
 ]
 
-{ #category : #'*SeasideDynamicSVG-Core-Base' }
-WAComponent >> exportSVGAs: filename [
-	
-	| str context callbacks |
-	str := String new writeStream.
-	context := SVGAwareRenderingContext new.
-	context
-		userAgentAdaptor: SVGStandardsCompliantBrowserAdaptor new;
-		session: self session.
-	callbacks :=  WACallbackRegistry context: context owner: self.
-	self renderSVGDocumentOn: str context: context callbacks: callbacks
-		disableAnchors: true.
-	self session
-		respond:
-			[:url | 
-			(WAResponse new)
-				beSVG;
-				attachmentWithFileName: filename;
-				stream: str contents readStream;
-				yourself]
-]
-
-{ #category : #'*SeasideDynamicSVG-Core-Base' }
-WAComponent >> renderSVGDocumentOn: aStream context: context callbacks: callbacks [
-	
-	^self renderSVGDocumentOn: aStream context: context callbacks: callbacks
-		disableAnchors: false
-]
-
-{ #category : #'*SeasideDynamicSVG-Core-Base' }
-WAComponent >> renderSVGDocumentOn: aStream context: context callbacks: callbacks disableAnchors: disableAnchors [
-	
-	| innerContext docRoot session document renderer |
-	innerContext _ context copy.
-	innerContext disableAnchors: disableAnchors.
-	docRoot _ SVGRoot context: innerContext.
-	session _ WACurrentSession value.
-	self updateSVGRoot: docRoot.
-	document _ session outputDocumentClass new.
-	document stream: aStream.
-	docRoot open: document.
-	innerContext document: document.
-	renderer _ self svgRendererClass context: innerContext callbacks:
-			callbacks.
-	renderer svgTagsNeedNamespace: false.
-	renderer
-		render: self;
-		flush.
-	docRoot close: document.
-	^document
+{ #category : #'*SeasideDynamicSVG-Core' }
+WAComponent >> svgacceptDecorated: aVisitor [
+	aVisitor svgvisitDecorationsOfComponent: self
 ]

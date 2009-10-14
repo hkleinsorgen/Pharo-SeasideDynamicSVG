@@ -2,7 +2,6 @@ Class {
 	#name : #SVGRoot,
 	#superclass : #WARoot,
 	#instVars : [
-		'context',
 		'docType',
 		'svgAttributes',
 		'svgTag'
