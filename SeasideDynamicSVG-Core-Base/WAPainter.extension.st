@@ -8,7 +8,7 @@ WAPainter >> drawSVGOn: aDrawer [
 	DO NOT call this method directly. Instead, pass this Painter as a parameter to the
 	#render: method of aRenderer."
 	
-	self drawSVGWithContext: aDrawer context
+	^self drawSVGWithContext: aDrawer context
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
@@ -19,7 +19,7 @@ WAPainter >> drawSVGWithContext: aDrawingContext [
 	You DO NOT normally need to call this method directly. Usually you have an instance
 	of a Renderer (e.g. a WARenderCanvas) and can call the #render: method."
 	
-	aDrawingContext visitor svgvisit: self
+	^aDrawingContext visitor svgvisit: self
 	"aDrawingContext visitor visit: self."
 ]
 

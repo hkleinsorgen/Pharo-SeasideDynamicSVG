@@ -424,7 +424,7 @@ SVGCanvas >> rectangle [
 { #category : #public }
 SVGCanvas >> render: anObject [
 	self flush.
-	anObject drawSVGOn: self
+	^anObject drawSVGOn: self
 ]
 
 { #category : #tags }

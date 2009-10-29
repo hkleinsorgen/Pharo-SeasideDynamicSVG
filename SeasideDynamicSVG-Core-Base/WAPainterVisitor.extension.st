@@ -2,7 +2,7 @@ Extension { #name : #WAPainterVisitor }
 
 { #category : #'*SeasideDynamicSVG-Core' }
 WAPainterVisitor >> svgvisitComponent: aComponent [
-	self svgvisitPresenter: aComponent
+	^self svgvisitPresenter: aComponent
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
@@ -26,7 +26,7 @@ WAPainterVisitor >> svgvisitPainter: aPainter [
 
 { #category : #'*SeasideDynamicSVG-Core' }
 WAPainterVisitor >> svgvisitPresenter: aPresenter [
-	self svgvisitPainter: aPresenter
+	^self svgvisitPainter: aPresenter
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }

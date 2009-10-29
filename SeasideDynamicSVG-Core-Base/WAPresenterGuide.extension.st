@@ -2,5 +2,5 @@ Extension { #name : #WAPresenterGuide }
 
 { #category : #'*SeasideDynamicSVG-Core' }
 WAPresenterGuide >> svgvisitPainter: aPainter [
-	self client svgvisit: aPainter
+	^self client svgvisit: aPainter
 ]
