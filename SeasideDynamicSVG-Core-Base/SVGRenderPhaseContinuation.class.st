@@ -45,7 +45,7 @@ SVGRenderPhaseContinuation >> processRendering: aResponse [
 		resourceUrl: self application resourceBaseUrl.
 	actionContinuation renderContext: renderContext.
 	htmlRoot := self createHtmlRootWithContext: renderContext.
-	self updateHtmlRoot: htmlRoot.
+	self updateRoot: htmlRoot.
 	"svg : update root for svg"
 	renderContext userAgentAdaptor updateHTMLRoot: htmlRoot.
 	self toPresenterSendRoot: htmlRoot.
