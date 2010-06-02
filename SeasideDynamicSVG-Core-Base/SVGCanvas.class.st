@@ -376,7 +376,7 @@ SVGCanvas >> motionPath [
 
 { #category : #accessing }
 SVGCanvas >> nextId [
-	^ 'id' , context advanceKey
+	^ 'id' , callbacks advanceKey
 ]
 
 { #category : #'tags-filter' }

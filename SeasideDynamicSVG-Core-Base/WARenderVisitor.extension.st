@@ -3,7 +3,7 @@ Extension { #name : #WARenderVisitor }
 { #category : #'*SeasideDynamicSVG-Core' }
 WARenderVisitor >> svgvisitPainter: aPainter [ 
 	| callbacks svg result |
-	callbacks := self renderContext callbacksFor: self.
+	callbacks := self renderContext callbacks.
 	svg := aPainter svgRendererClass 
 		context: self renderContext
 		callbacks: callbacks.
