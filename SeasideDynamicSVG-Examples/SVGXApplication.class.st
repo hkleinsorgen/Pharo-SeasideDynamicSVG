@@ -26,21 +26,16 @@ SVGXApplication class >> register [
 	^ self path notNil
 		ifTrue: [
 			app := self registerAsApplication: self path.
-			app preferenceAt: #renderContinuationClass put: SVGAwareRenderContinuation.
-			app preferenceAt: #sessionClass put: SVGSession.
+			app preferenceAt: #renderPhaseContinuationClass put: SVGRenderPhaseContinuation.
 			app
 		]
-		ifFalse: [ nil ]
+		ifFalse: [ nil ] 
 ]
 
 { #category : #'class initialization' }
 SVGXApplication class >> registerAll [
 	"self registerAll"	
 
-	| dispatcher old |
-	dispatcher := WADispatcher default.
-	old := dispatcher entryPoints at: 'SVG' ifAbsent: [ nil ].
-	old notNil ifTrue: [ dispatcher unregister: old ].
 	self allSubclasses do: [ : sc | sc register ]
 ]
 
@@ -79,7 +74,7 @@ SVGXApplication >> initialize [
 
 	super initialize.
 	self initializeChildren.
-	self embedSelector: #renderEmbedOn:.
+	self embedSelector: #renderInlinedOn:.
 ]
 
 { #category : #initialization }
@@ -114,13 +109,13 @@ SVGXApplication >> renderEmbedSelectorsOn: html [
 
 	html div class: 'ToolbarRow'; with: [
 		html text: 'Embed/inline method: '.
-		self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: html .
+		self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: html .
 		html space.
 		self renderEmbedSelector: #renderObjectOn: text: '<object>' on: html .
 		html space.
 		self renderEmbedSelector: #renderIFrameOn: text: '<iframe>' on: html .
 		html space.
-		self renderEmbedSelector: #renderInlinedOn: text: 'inlined' on: html .
+		self renderEmbedSelector: #renderEmbedOn: text: '<embed>' on: html .
 	].
 
 ]

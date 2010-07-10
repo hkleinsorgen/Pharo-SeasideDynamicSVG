@@ -11,7 +11,7 @@ Class {
 { #category : #accessing }
 SVGXMultiSVGApplication class >> description [ 
 	
-	^ 'Two SVG components on a single page' 
+	^ 'Multiple SVG components on a single page' 
 ]
 
 { #category : #'class initialization' }
