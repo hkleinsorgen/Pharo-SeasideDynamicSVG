@@ -48,7 +48,7 @@ SVGUtilitiesTest >> testNumberToString [
 SVGUtilitiesTest >> testTransformationList [
 	| list|
 	list := SVGTransformList new.
-	list add: (SVGTranslationType with: 1@-3.5); add: (SVGScaleType with: (1@2)); add: (SVGRotationType with: 90).
+	list add: (SVGTranslationType with: 1 @ -3.5); add: (SVGScaleType with: (1@2)); add: (SVGRotationType with: 90).
 	self assert: list toSVGString = 'translate(1,-3.5) scale(1,2) rotate(90)'
 ]
 
