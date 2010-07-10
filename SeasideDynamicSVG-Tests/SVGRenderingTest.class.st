@@ -28,10 +28,14 @@ SVGRenderingTest >> assertRender: aBlock matches: anExpectedString [
 ]
 
 { #category : #private }
-SVGRenderingTest >> performTest [
-	WACurrentSession
-		use: (session := self sessionClass new)
-		during: [super performTest ]
+SVGRenderingTest >> createRequestContextForURL: url [
+
+	| requestContext request response codec |
+	request := WARequest method: 'GET' uri: url.
+	codec := GRCodec forEncoding: 'UTF-8'.
+	response := WABufferedResponse on: (codec  encoderFor:  (WriteStream on: String new)).
+	requestContext := WARequestContext request: request response: response codec: codec.
+	^ requestContext 
 ]
 
 { #category : #private }
@@ -58,6 +62,34 @@ SVGRenderingTest >> session [
 { #category : #accessing }
 SVGRenderingTest >> sessionClass [
 	^WASession
+]
+
+{ #category : #private }
+SVGRenderingTest >> setApplicationContextWhile: aBlock [
+
+	| requestContext request response |
+	requestContext := self createRequestContextForURL: 'http://localhost/SVGTests'.
+	requestContext push: WAApplication new while: [
+		WACurrentRequestContext use: requestContext during: aBlock
+			]
+]
+
+{ #category : #testing }
+SVGRenderingTest >> testDocumentHandler [
+
+	self setApplicationContextWhile: [
+		| canvas url component handler documentContext svg |
+		canvas := WARenderCanvas context: WARenderContext new.
+		component := SVGXLineTest new.
+		url := canvas urlForEmbeddingSVGIn: component.
+		self assert: url notNil.
+		documentContext := self createRequestContextForURL: url.
+		handler := WACurrentRequestContext value handler.
+		[ handler handle: documentContext ] on: WAResponseNotification do: [ : ex | ].
+		svg := documentContext response contents.
+		self assert: (svg beginsWith: '<svg')
+	].
+
 ]
 
 { #category : #testing }
