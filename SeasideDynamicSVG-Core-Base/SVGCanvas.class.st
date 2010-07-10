@@ -2,7 +2,6 @@ Class {
 	#name : #SVGCanvas,
 	#superclass : #WACanvas,
 	#instVars : [
-		'callbacks',
 		'tagsNeedNamespace'
 	],
 	#category : #'SeasideDynamicSVG-Core-Base'
@@ -10,20 +9,16 @@ Class {
 
 { #category : #'instance creation' }
 SVGCanvas class >> builder [
-	^SVGBuilder on: self
+	^ super builder
+			rootClass: SVGRoot;
+			documentClass: WAHtmlDocument;
+			yourself
 ]
 
 { #category : #'instance creation' }
 SVGCanvas class >> context: aRenderingContext [
 	
 	^self basicNew initializeWithContext: aRenderingContext
-]
-
-{ #category : #'instance creation' }
-SVGCanvas class >> context: aRenderingContext callbacks: aCallbackStore [
-	
-	^self basicNew initializeWithContext: aRenderingContext callbacks:
-			aCallbackStore
 ]
 
 { #category : #'tags-text' }
@@ -58,11 +53,7 @@ SVGCanvas >> alternativeGlyphItem: aBlock [
 { #category : #tags }
 SVGCanvas >> anchor [
 	
-	| anchorBrush |
-	anchorBrush := self context disableAnchors
-		ifTrue: [SVGDisabledAnchorBrush new]
-		ifFalse: [SVGAnchorTag new].
-	^self brush: anchorBrush
+	^self brush: SVGAnchorTag new
 ]
 
 { #category : #'tags-animation' }
@@ -73,13 +64,6 @@ SVGCanvas >> animation [
 { #category : #'tags-filter' }
 SVGCanvas >> blendFilter [
 	^self brush: SVGBlendFilterTag new
-]
-
-{ #category : #accessing }
-SVGCanvas >> callbacks [
-	"Answer the callback registry."
-	
-	^callbacks
 ]
 
 { #category : #'tags-shapes' }
@@ -297,21 +281,6 @@ SVGCanvas >> imageFilter [
 	^self brush: SVGImageFilterTag new
 ]
 
-{ #category : #'initialize-release' }
-SVGCanvas >> initializeWithContext: aRenderingContext [
-	
-	context := aRenderingContext.
-	tagsNeedNamespace := true.
-]
-
-{ #category : #'initialize-release' }
-SVGCanvas >> initializeWithContext: aRenderingContext callbacks: aCallbackStore [
-	
-	context := aRenderingContext.
-	callbacks := aCallbackStore.
-	tagsNeedNamespace := true.
-]
-
 { #category : #'tags-shapes' }
 SVGCanvas >> line [
 	
@@ -372,11 +341,6 @@ SVGCanvas >> motion [
 SVGCanvas >> motionPath [
 
 	^ self brush: SVGMotionPathTag new
-]
-
-{ #category : #accessing }
-SVGCanvas >> nextId [
-	^ 'id' , callbacks advanceKey
 ]
 
 { #category : #'tags-filter' }

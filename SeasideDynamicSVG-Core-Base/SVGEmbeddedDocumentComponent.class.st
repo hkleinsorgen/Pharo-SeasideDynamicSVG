@@ -94,47 +94,32 @@ SVGEmbeddedDocumentComponent >> initialize [
 SVGEmbeddedDocumentComponent >> renderEmbedOn: canvas [
 	" embed with <embed> "
 	
-	| url |
-	url := canvas urlForEmbeddingSVGIn: self.
-	canvas svgEmbed
-		url: url; 
-		width: self width;
-		height: self height;
-		type: SVGRoot defaultContentType.
-
+	(canvas brush: WAEmbedTag new)
+		svgEmbedComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 	" embed as <iframe> "
 
-	(canvas iframe)
-		url: (canvas urlForEmbeddingSVGIn: self);
-		width: self width;
-		height: self height
+	canvas iframe
+		svgEmbedComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [ 
 	" inline as <svg> tag "
 
-	| svgTag |
-	svgTag := canvas svg.
-	self width notNil ifTrue: [ svgTag width: self width ].
-	self height notNil ifTrue: [ svgTag height: self height ].
-	self setAttributesOfRootTag: svgTag. 
-	svgTag drawWith: [ : svg | svg render: self ]
+	canvas svg
+		svgEmbedComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }
 SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 	" embed as <object> "
 
-	(canvas object)
-		url: (canvas urlForEmbeddingSVGIn: self);
-		width: self width;
-		height: self height;
-		type: SVGRoot defaultContentType.
+	canvas object
+		svgEmbedComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }

@@ -276,6 +276,17 @@ SVGTag >> style: aString value: value [
 	self attributes addStyle: aString , ':' , value displayString
 ]
 
+{ #category : #accessing }
+SVGTag >> svgEmbedComponent: aComponent width: svgWidth height: svgHeight [
+	" inline component "
+	
+	canvas context containsInlinedSVG: true.
+	svgWidth notNil ifTrue: [ self width: svgWidth ].
+	svgHeight notNil ifTrue: [ self height: svgHeight ].
+	aComponent setAttributesOfRootTag: self. 
+	self drawWith: [ : svg | svg render: aComponent ]
+]
+
 { #category : #'convenience-referencing' }
 SVGTag >> toSVGIDReference [
 	" convenience method for referencing this tag "

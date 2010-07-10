@@ -62,7 +62,7 @@ SVGEnumeration class >> compileText: aByteArrayOrString selector: aSymbol [
 			each = $' ifTrue: [ stream nextPut: $' ].
 			stream nextPut: each ].
 		stream nextPutAll: '''' ].
-	SeasidePlatformSupport compile: code into: self class classified: self methodCategory
+	GRPlatform current compile: code into: self class classified: self methodCategory
 ]
 
 { #category : #developers }

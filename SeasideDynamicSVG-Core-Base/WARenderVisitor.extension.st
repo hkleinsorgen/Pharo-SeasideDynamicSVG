@@ -5,8 +5,7 @@ WARenderVisitor >> svgvisitPainter: aPainter [
 	| callbacks svg result |
 	callbacks := self renderContext callbacks.
 	svg := aPainter svgRendererClass 
-		context: self renderContext
-		callbacks: callbacks.
+		context: self renderContext.
 	svg svgTagsNeedNamespace: false.
 
 	result:= aPainter drawSVGContentOn: svg.

@@ -24,8 +24,3 @@ SVGUserAgentAdaptor >> renderPreambleForInlinedSVGOn: canvas [
 { #category : #'browser specific' }
 SVGUserAgentAdaptor >> updateHTMLRoot: aHtmlRoot [
 ]
-
-{ #category : #'browser specific' }
-SVGUserAgentAdaptor >> writeFooterOn: aDocument [ 
-	
-]

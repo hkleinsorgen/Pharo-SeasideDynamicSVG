@@ -4,28 +4,24 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SVGRenderPhaseContinuation >> createRenderContext [
 	| renderContext adaptor |
 	adaptor := self request svgRequiresIEWorkarounds 
 		ifTrue: [ SVGAdobeIEPluginAdaptor new ]
 		ifFalse: [ SVGStandardsCompliantBrowserAdaptor new ].
 		
-	renderContext := SVGAwareRenderingContext new.
+	renderContext := super createRenderContext.
 	renderContext userAgentAdaptor: adaptor.
-	
-	"Wrap the default visitor with a rendering guide"
-	renderContext visitor: (WARenderingGuide client: renderContext visitor).
 	
 	^ renderContext
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 SVGRenderPhaseContinuation >> processRendering: aResponse [ 
 	| document actionContinuation renderContext actionUrl actionBaseUrl htmlRoot |
 	"Prepare the response"
 	aResponse contentType: self application contentType.
-	"aResponse contentType: 'application/xhtml+xml'."
 	
 	"Create objects we need"
 	document := self requestContext newDocument.
@@ -58,12 +54,8 @@ SVGRenderPhaseContinuation >> processRendering: aResponse [
 	renderContext containsInlinedSVG 
 		ifTrue: [ renderContext userAgentAdaptor prepareResponseForInlinedSVG: aResponse ].
 
-	"SVG : render footer"
-	renderContext userAgentAdaptor writeFooterOn: document.
-
 	"close document"
 	document close.
-	
 	
 	"clean up"
 	renderContext destroy.

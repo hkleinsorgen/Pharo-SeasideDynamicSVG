@@ -17,6 +17,7 @@ SVGRoot class >> context: aRenderingContext [
 
 { #category : #accessing }
 SVGRoot class >> defaultContentType [
+
 	^'image/svg+xml'
 ]
 

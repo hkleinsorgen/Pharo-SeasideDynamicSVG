@@ -31,11 +31,6 @@ SVGDisplay class >> inline [
 ]
 
 { #category : #accessing }
-SVGDisplay class >> inlineTable [
-	^ 'inline-table'
-]
-
-{ #category : #accessing }
 SVGDisplay class >> listItem [
 	^ 'list-item'
 ]
