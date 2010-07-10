@@ -20,8 +20,8 @@ SVGXTextScroller >> drawDefinitionsOn: svg [
 			id: pathID ;
 			defaultIsAbsolute ;
 			moveTo: 0 @ -150 ;
-			arcTo: 0@150 radius: 150@150 rotation: Float pi large: false sweep: true;
-			arcTo: 0@-150 radius: 150@150 rotation: Float pi  large: false sweep: true.
+			arcTo: 0 @ 150 radius: 150 @ 150 rotation: Float pi large: false sweep: true;
+			arcTo: 0 @ -150 radius: 150 @ 150 rotation: Float pi  large: false sweep: true.
 		].
 	^ pathID
 ]

@@ -41,9 +41,9 @@ SVGXAnimation >> drawSVGContentOn: svg [
 		
 	svg path
 		defaultIsAbsolute;
-		moveTo: -25@-12.5;
-		lineTo: 25@-12.5;
-		lineTo: 0@-87.5;
+		moveTo: -25 @ -12.5;
+		lineTo: 25 @ -12.5;
+		lineTo: 0 @ -87.5;
 		closePath;
 		fill: Color yellow;
 		stroke: Color red;
