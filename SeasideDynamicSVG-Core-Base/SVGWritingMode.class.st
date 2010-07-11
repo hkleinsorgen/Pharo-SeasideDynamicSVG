@@ -1,7 +1,7 @@
 Class {
 	#name : #SVGWritingMode,
-	#superclass : #ProtoObject,
-	#category : #'SeasideDynamicSVG-Core-Text'
+	#superclass : #SVGEnumeration,
+	#category : #'SeasideDynamicSVG-Core-Enumerations'
 }
 
 { #category : #accessing }
