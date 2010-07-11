@@ -17,7 +17,7 @@ String >> toSVGString [
 { #category : #'*SeasideDynamicSVG-Core-Base' }
 String >> toSVGText [
 
-	^ self convertToEncoding: 'utf-8'
+	^ (GRCodec forEncoding: 'UTF-8') encode: self
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }

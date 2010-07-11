@@ -166,14 +166,6 @@ SVGTextBrush >> sizeAdjust: aNumberOrString [
 		put: aNumberOrString 
 ]
 
-{ #category : #convenience }
-SVGTextBrush >> squeakFont: aFont [
-
-	self 
-		fontFamily: aFont familyName;  
-		fontSize: aFont pointSize+1.
-]
-
 { #category : #deprecated }
 SVGTextBrush >> stretch: aString [ 
 
