@@ -8,8 +8,7 @@ WARenderCanvas >> svg [
 	self context userAgentAdaptor renderPreambleForInlinedSVGOn: self .
 	brush := SVGRootTag new.
 	self brush: brush.
-	svg := self svgRendererClass 
-		context: self context.
+	svg := self svgRendererClass context: self context.
 	brush svgCanvas: svg.
 	svg svgTagsNeedNamespace: false.
 	self context containsInlinedSVG: true.

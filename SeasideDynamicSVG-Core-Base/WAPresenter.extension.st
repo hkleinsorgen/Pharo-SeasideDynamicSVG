@@ -1,15 +1,9 @@
 Extension { #name : #WAPresenter }
 
 { #category : #'*SeasideDynamicSVG-Core' }
-WAPresenter >> drawSVGContentOn: svg [
-	
-]
+WAPresenter >> drawSVGContentOn: aRenderer [ 
 
-{ #category : #'*SeasideDynamicSVG-Core' }
-WAPresenter >> drawSVGUndecoratedWithContext: aRenderContext [
-	"Render ourselves directly on aRenderer without allowing our Decorations to be visited."
-	
-	self svgaccept: aRenderContext visitor
+	self childrenDo: [ : each | aRenderer render: each ]
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
@@ -20,6 +14,6 @@ WAPresenter >> svgRendererClass [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
-WAPresenter >> svgaccept: aVisitor [
-	aVisitor svgvisitPresenter: self
+WAPresenter >> updateSVGRoot: aSVGRoot [
+	"This method allows you customize the <svg> section of an SVG document. "
 ]

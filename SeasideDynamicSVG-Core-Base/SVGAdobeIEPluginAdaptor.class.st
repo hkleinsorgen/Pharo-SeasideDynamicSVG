@@ -23,7 +23,7 @@ SVGAdobeIEPluginAdaptor >> renderPreambleForInlinedSVGOn: canvas [
 ]
 
 { #category : #'browser specific' }
-SVGAdobeIEPluginAdaptor >> updateHTMLRoot: aHtmlRoot [
+SVGAdobeIEPluginAdaptor >> updateRoot: aHtmlRoot [
 	" IE won't display inlined SVG when propert XHTML doctypes are used.
 	It is HIGHLY recommended to use embedded SVGs instead of this awful workaround "
 

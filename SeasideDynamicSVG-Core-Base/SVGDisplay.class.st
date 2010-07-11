@@ -14,17 +14,6 @@ SVGDisplay class >> compact [
 	^ 'compact'
 ]
 
-{ #category : #developers }
-SVGDisplay class >> enumString [
-
-	"self compileSelectors"
-	^ ' 	inline | block | list-item |
-run-in | compact | marker |
-table | inline-table | table-row-group | table-header-group |
-table-footer-group | table-row | table-column-group | table-column |
-table-cell | table-caption | none | inherit'
-]
-
 { #category : #accessing }
 SVGDisplay class >> inline [
 	^ 'inline'

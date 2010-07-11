@@ -84,7 +84,7 @@ SVGTextBrush >> dominantBaseline: aString [
 { #category : #deprecated }
 SVGTextBrush >> family: aString [ 
 
-	self deprecatedApi.
+	self greaseDeprecatedApi: 'SVGTextBrush>>#family:' details: 'Use #fontSFamily:.'.
 	self fontFamily: aString
 ]
 
@@ -155,7 +155,7 @@ SVGTextBrush >> rightToLeft [
 { #category : #deprecated }
 SVGTextBrush >> size: aNumberOrString [
 
-	self deprecatedApi.
+	self greaseDeprecatedApi: 'SVGTextBrush>>#size:' details: 'Use #fontSize:.'.
 	self fontSize: aNumberOrString
 ]
 
@@ -177,7 +177,7 @@ SVGTextBrush >> squeakFont: aFont [
 { #category : #deprecated }
 SVGTextBrush >> stretch: aString [ 
 
-	self deprecatedApi.
+	self greaseDeprecatedApi: 'SVGTextBrush>>#stretch:' details: 'Use #fontStretch:.'.
 	self fontStretch: aString
 ]
 
@@ -226,14 +226,14 @@ SVGTextBrush >> unicodeBidirectional: aString [
 { #category : #deprecated }
 SVGTextBrush >> variant: aString [ 
 
-	self deprecatedApi.
+	self greaseDeprecatedApi: 'SVGTextBrush>>#variant:' details: 'Use #fontVariant:.'.
 	self fontVariant: aString 
 ]
 
 { #category : #deprecated }
 SVGTextBrush >> weight: aString [ 
 
-	self deprecatedApi.
+	self greaseDeprecatedApi: 'SVGTextBrush>>#weight:' details: 'Use #fontWeight:.'.
 	self fontWeight: aString 
 ]
 

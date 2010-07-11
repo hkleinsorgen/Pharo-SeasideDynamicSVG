@@ -33,11 +33,12 @@ SVGRootTag >> contentStyleType: aString [
 
 { #category : #public }
 SVGRootTag >> drawWith: aBlock [ 
+	" switches to a SVG renderer and visitor "
 
 	self openTag.
 	canvas nest: [
 		self before.
-		aBlock value: self svgCanvas.
+		self svgCanvas visitWith: aBlock.
 		self after
 	].
 	self closeTag.
@@ -82,6 +83,17 @@ SVGRootTag >> svgCanvas: aSVGCanvas [
 	" sets the SVG Canvas (not that 'canvas' is the HTML canvas) "
 
 	svgCanvas := aSVGCanvas
+]
+
+{ #category : #public }
+SVGRootTag >> svgEmbedComponent: aComponent width: svgWidth height: svgHeight [
+	" inline component "
+	
+	canvas context containsInlinedSVG: true.
+	svgWidth notNil ifTrue: [ self width: svgWidth ].
+	svgHeight notNil ifTrue: [ self height: svgHeight ].
+	aComponent setAttributesOfRootTag: self. 
+	self drawWith: [ : svg | svg render: aComponent ]
 ]
 
 { #category : #accessing }

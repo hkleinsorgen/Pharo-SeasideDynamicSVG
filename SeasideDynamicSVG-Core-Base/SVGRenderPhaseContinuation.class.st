@@ -43,7 +43,7 @@ SVGRenderPhaseContinuation >> processRendering: aResponse [
 	htmlRoot := self createHtmlRootWithContext: renderContext.
 	self updateRoot: htmlRoot.
 	"svg : update root for svg"
-	renderContext userAgentAdaptor updateHTMLRoot: htmlRoot.
+	renderContext userAgentAdaptor updateRoot: htmlRoot.
 	self toPresenterSendRoot: htmlRoot.
 
 	"Render"

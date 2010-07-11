@@ -385,12 +385,6 @@ SVGCanvas >> rectangle [
 	^ self brush: SVGRectangleTag new
 ]
 
-{ #category : #public }
-SVGCanvas >> render: anObject [
-	self flush.
-	^anObject drawSVGOn: self
-]
-
 { #category : #tags }
 SVGCanvas >> script [
 	"Defines a script."
@@ -421,7 +415,7 @@ SVGCanvas >> spotLightFilter [
 
 { #category : #accessing }
 SVGCanvas >> svgTagsNeedNamespace [
-	^ tagsNeedNamespace
+	^ tagsNeedNamespace ifNil: [ true ]
 ]
 
 { #category : #accessing }
@@ -513,4 +507,19 @@ SVGCanvas >> use [
 SVGCanvas >> verticalKerning [
 
 	^self brush: SVGVerticalKerningTag new
+]
+
+{ #category : #private }
+SVGCanvas >> visitWith: aBlock [
+
+	| visitor oldVisitor |
+	self initialize.
+	oldVisitor := context visitor.
+	visitor := SVGRenderVisitor context: context.
+	^ [ 
+		context visitor: visitor.
+		aBlock value: self
+	] ensure: [
+		context visitor: oldVisitor
+	]
 ]

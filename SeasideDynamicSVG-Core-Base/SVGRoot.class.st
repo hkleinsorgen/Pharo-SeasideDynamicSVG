@@ -3,7 +3,6 @@ Class {
 	#superclass : #WARoot,
 	#instVars : [
 		'docType',
-		'svgAttributes',
 		'svgTag'
 	],
 	#category : #'SeasideDynamicSVG-Core-Base'

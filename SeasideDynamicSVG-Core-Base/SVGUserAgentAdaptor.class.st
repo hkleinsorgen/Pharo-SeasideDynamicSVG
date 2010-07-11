@@ -22,5 +22,5 @@ SVGUserAgentAdaptor >> renderPreambleForInlinedSVGOn: canvas [
 ]
 
 { #category : #'browser specific' }
-SVGUserAgentAdaptor >> updateHTMLRoot: aHtmlRoot [
+SVGUserAgentAdaptor >> updateRoot: aHtmlRoot [
 ]
