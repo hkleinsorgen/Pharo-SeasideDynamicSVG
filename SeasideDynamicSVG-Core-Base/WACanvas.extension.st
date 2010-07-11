@@ -63,9 +63,10 @@ WACanvas >> urlForEmbeddingSVGComponent: aComponent filename: aFilename binary: 
 	binary 
 		ifTrue: [
 			codec := GRCodec forEncoding: 'UTF-8'.
-			stream := codec encoderFor: (WriteStream on: (String new: documentContents size)).
+			" workaround for bug in Grease for VisualWorks - encoderFor: does not work correctly "
+			stream := WriteStream on: (String new: documentContents size).
 			stream nextPutAll: '<?xml version="1.0" encoding="utf-8"?>';crlf.
-			stream nextPutAll:  documentContents.
+			stream nextPutAll: (codec encode: documentContents).
 			documentContents := stream contents asByteArray.
 		].
 	mimeType := (SVGMimeType fromString: SVGRoot defaultContentType) isBinary: binary.
