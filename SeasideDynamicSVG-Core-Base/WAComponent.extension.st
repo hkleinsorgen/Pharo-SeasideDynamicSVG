@@ -34,8 +34,8 @@ WAComponent >> renderInlinedSVGOn: canvas width: aWidth height: aHeight [
 	| svgTag result |
 	result := nil.
 	svgTag := canvas svg.
-	aWidth notNil ifTrue: [ self width: aWidth ].
-	aHeight notNil ifTrue: [ self height: aHeight ].
+	aWidth notNil ifTrue: [ svgTag width: aWidth ].
+	aHeight notNil ifTrue: [ svgTag height: aHeight ].
 	svgTag drawWith: [ : svg | result := svg render: self ].
 	^result.
 ]
