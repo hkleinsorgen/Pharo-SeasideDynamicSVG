@@ -1,6 +1,22 @@
 Extension { #name : #WAComponent }
 
 { #category : #'*SeasideDynamicSVG-Core' }
+WAComponent >> exportSVG [
+	
+	self exportSVGAs: self application name , '.svg'
+]
+
+{ #category : #'*SeasideDynamicSVG-Core' }
+WAComponent >> exportSVGAs: filename [
+	
+	| canvas document context url |
+	context := WARenderContext new.
+	canvas := SVGCanvas context: context.
+	url := canvas urlForEmbeddingSVGComponent: self filename: filename binary: true.
+	self session redirectTo: url.
+]
+
+{ #category : #'*SeasideDynamicSVG-Core' }
 WAComponent >> renderInlinedOn: canvas width: width height: height [ 
 
 	" selector is bit too generic "
@@ -12,14 +28,14 @@ WAComponent >> renderInlinedOn: canvas width: width height: height [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core' }
-WAComponent >> renderInlinedSVGOn: canvas width: width height: height [ 
-	" inline as <svg> tag "
+WAComponent >> renderInlinedSVGOn: canvas width: aWidth height: aHeight [ 
+	" inline within <svg> "
 
 	| svgTag result |
 	result := nil.
 	svgTag := canvas svg.
-	svgTag width: width.
-	svgTag height: height. 
+	aWidth notNil ifTrue: [ self width: aWidth ].
+	aHeight notNil ifTrue: [ self height: aHeight ].
 	svgTag drawWith: [ : svg | result := svg render: self ].
 	^result.
 ]

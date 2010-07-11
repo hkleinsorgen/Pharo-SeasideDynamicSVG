@@ -95,7 +95,7 @@ SVGEmbeddedDocumentComponent >> renderEmbedOn: canvas [
 	" embed with <embed> "
 	
 	(canvas brush: WAEmbedTag new)
-		svgEmbedComponent: self width: self width height: self height
+		embedSVGComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }
@@ -103,7 +103,7 @@ SVGEmbeddedDocumentComponent >> renderIFrameOn: canvas [
 	" embed as <iframe> "
 
 	canvas iframe
-		svgEmbedComponent: self width: self width height: self height
+		embedSVGComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }
@@ -111,7 +111,7 @@ SVGEmbeddedDocumentComponent >> renderInlinedOn: canvas [
 	" inline as <svg> tag "
 
 	canvas svg
-		svgEmbedComponent: self width: self width height: self height
+		embedSVGComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }
@@ -119,7 +119,7 @@ SVGEmbeddedDocumentComponent >> renderObjectOn: canvas [
 	" embed as <object> "
 
 	canvas object
-		svgEmbedComponent: self width: self width height: self height
+		embedSVGComponent: self width: self width height: self height
 ]
 
 { #category : #rendering }

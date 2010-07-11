@@ -45,6 +45,17 @@ SVGRootTag >> drawWith: aBlock [
 	closed := true
 ]
 
+{ #category : #public }
+SVGRootTag >> embedSVGComponent: aComponent width: aWidth height: aHeight [
+	" inline component "
+	
+	aWidth notNil ifTrue: [ self width: aWidth ].
+	aHeight notNil ifTrue: [ self height: aHeight ].
+	aComponent setAttributesOfRootTag: self. 
+	self drawWith: [ : svg | svg render: aComponent ].
+
+]
+
 { #category : #accessing }
 SVGRootTag >> height: aHeight [
 
@@ -83,17 +94,6 @@ SVGRootTag >> svgCanvas: aSVGCanvas [
 	" sets the SVG Canvas (not that 'canvas' is the HTML canvas) "
 
 	svgCanvas := aSVGCanvas
-]
-
-{ #category : #public }
-SVGRootTag >> svgEmbedComponent: aComponent width: svgWidth height: svgHeight [
-	" inline component "
-	
-	canvas context containsInlinedSVG: true.
-	svgWidth notNil ifTrue: [ self width: svgWidth ].
-	svgHeight notNil ifTrue: [ self height: svgHeight ].
-	aComponent setAttributesOfRootTag: self. 
-	self drawWith: [ : svg | svg render: aComponent ]
 ]
 
 { #category : #accessing }

@@ -1,10 +1,10 @@
 Extension { #name : #WAIframeTag }
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
-WAIframeTag >> svgEmbedComponent: aComponent width: svgWidth height: svgHeight [
+WAIframeTag >> embedSVGComponent: aComponent width: svgWidth height: svgHeight [
 
 	| url embedTag |
-	url := canvas urlForEmbeddingSVGIn: aComponent.
+	url := canvas urlForEmbeddingSVGComponent: aComponent.
 	self url: url.
 	svgWidth notNil ifTrue: [ self width: svgWidth ]. 
 	svgHeight notNil ifTrue: [ self height: svgHeight ].

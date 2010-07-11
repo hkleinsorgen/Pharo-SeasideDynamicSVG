@@ -13,6 +13,18 @@ WARenderContext >> containsInlinedSVG: aBoolean [
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
+WARenderContext >> disableSVGAnchors [
+
+	^ self properties at: #disableSVGAnchors ifAbsent: [ false ]
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-Base' }
+WARenderContext >> disableSVGAnchors: aBoolean [
+
+	self properties at: #disableSVGAnchors put: aBoolean 
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-Base' }
 WARenderContext >> userAgentAdaptor [
 
 	^ self properties at: #svgUserAgentAdaptor ifAbsentPut: [ SVGStandardsCompliantBrowserAdaptor new]
