@@ -256,7 +256,6 @@ SVGXSmiley >> initialize [
 	rightEyeColor := WAValueHolder new.
 	message := WAValueHolder new.
 	happiness := WAValueHolder with: 1.0.
-	embedSelector := #renderEmbedOn:.
 	self beYellow
 ]
 

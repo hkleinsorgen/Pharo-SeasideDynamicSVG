@@ -54,6 +54,18 @@ SVGXChooserApplication >> containerStyle [
 
 ]
 
+{ #category : #actions }
+SVGXChooserApplication >> exportSVG [
+
+	svgComponent exportSVG
+]
+
+{ #category : #actions }
+SVGXChooserApplication >> exportSVGAs: filename [
+
+	svgComponent exportSVGAs: filename
+]
+
 { #category : #initialization }
 SVGXChooserApplication >> initializeChildren [
 	svgComponent := self availableExamples first new

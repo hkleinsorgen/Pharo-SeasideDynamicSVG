@@ -59,7 +59,8 @@ SVGXApplication >> description [
 { #category : #accessing }
 SVGXApplication >> embedSelector [
 
-	^ embedSelector
+	embedSelector isNil ifTrue: [ embedSelector := #renderInlinedOn: ].
+	^ embedSelector 
 ]
 
 { #category : #accessing }
@@ -74,7 +75,7 @@ SVGXApplication >> initialize [
 
 	super initialize.
 	self initializeChildren.
-	self embedSelector: #renderInlinedOn:.
+
 ]
 
 { #category : #initialization }

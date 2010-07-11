@@ -34,7 +34,7 @@ SVGXExample >> embedSVGIn: canvas [
 { #category : #accessing }
 SVGXExample >> embedSelector [
 
-	embedSelector isNil ifTrue: [ embedSelector := #renderEmbedOn: ].
+	embedSelector isNil ifTrue: [ embedSelector := #renderInlinedOn: ].
 	^ embedSelector 
 ]
 
@@ -48,13 +48,6 @@ SVGXExample >> embedSelector: aSymbol [
 SVGXExample >> fontFamily [
 
 	^ 'Verdana, sans-serif'
-]
-
-{ #category : #'initialize-release' }
-SVGXExample >> initialize [
-	
-	super initialize.
-	embedSelector := #renderEmbedOn:
 ]
 
 { #category : #rendering }
