@@ -40,6 +40,8 @@ SVGRenderingTest >> createRequestContextForURL: url [
 
 { #category : #private }
 SVGRenderingTest >> renderComponent: aComponent [
+
+	aComponent embedSelector: #renderInlinedOn:.
 	self renderer render: aComponent.
 
 ]
@@ -81,7 +83,7 @@ SVGRenderingTest >> testDocumentHandler [
 		| canvas url component handler documentContext svg |
 		canvas := WARenderCanvas context: WARenderContext new.
 		component := SVGXLineTest new.
-		url := canvas urlForEmbeddingSVGIn: component.
+		url := canvas urlForEmbeddingSVGComponent: component.
 		self assert: url notNil.
 		documentContext := self createRequestContextForURL: url.
 		handler := WACurrentRequestContext value handler.

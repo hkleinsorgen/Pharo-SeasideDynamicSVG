@@ -44,7 +44,7 @@ SVGUtilitiesTest >> testNumberToString [
 	self assert: '1.25' toSVGString = '1.25'
 ]
 
-{ #category : #'testing-transformations' }
+{ #category : #'testing - transformations' }
 SVGUtilitiesTest >> testTransformationList [
 	| list|
 	list := SVGTransformList new.
@@ -52,7 +52,7 @@ SVGUtilitiesTest >> testTransformationList [
 	self assert: list toSVGString = 'translate(1,-3.5) scale(1,2) rotate(90)'
 ]
 
-{ #category : #'testing-transformations' }
+{ #category : #'testing - transformations' }
 SVGUtilitiesTest >> testTransformationTypes [
 	self assert: (SVGScaleType with: (1@2)) toSVGString = 'scale(1,2)'.
 	self assert: (SVGScaleType with: (2)) toSVGString = 'scale(2)'.
