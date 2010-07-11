@@ -54,7 +54,7 @@ SVGXSmiley >> defaultWidth [
 SVGXSmiley >> drawBackgroundOn: svg [ 
 
 	 svg rectangle
-		opacity: [:attr | attr opacity: 0.6];
+		opacity: 0.6;
 		fill: (self fillColor alphaMixed: 0.5 with: (Color r: 0.8 g: 1.0 b: 1.0)) ; 
 		stroke: Color black; 
 		strokeWidth: 3;
