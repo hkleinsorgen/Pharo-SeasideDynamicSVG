@@ -8,6 +8,5 @@ WAIframeTag >> embedSVGComponent: aComponent width: svgWidth height: svgHeight [
 	self url: url.
 	svgWidth notNil ifTrue: [ self width: svgWidth ]. 
 	svgHeight notNil ifTrue: [ self height: svgHeight ].
-	^ self
 	
 ]

@@ -11,6 +11,9 @@ WAComponent >> exportSVGAs: filename [
 	
 	| canvas document context url |
 	context := WARenderContext new.
+	context visitor: (SVGRenderVisitor context: context).
+	context actionUrl: WAUrl new; resourceUrl: WAUrl new.
+	context disableSVGAnchors: true.
 	canvas := SVGCanvas context: context.
 	url := canvas urlForEmbeddingSVGComponent: self filename: filename binary: true.
 	self session redirectTo: url.

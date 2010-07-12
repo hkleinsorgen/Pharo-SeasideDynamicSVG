@@ -3,9 +3,17 @@ Extension { #name : #WACanvas }
 { #category : #'*SeasideDynamicSVG-Core-private' }
 WACanvas >> renderSVGDocumentFor: aComponent [ 
 
-	^ self class builder render: [ : renderer |
-			renderer svg drawWith: [ : svgCanvas |svgCanvas render: aComponent 
-		]]
+	| svgContext document renderer stream |
+	stream := (String new: 256) writeStream.
+	document := WAXmlDocument on: stream codec: GRNullCodec new.
+	svgContext := context copy.
+	svgContext document: document.
+	renderer := aComponent svgRendererClass context: svgContext.
+		
+	aComponent renderInlinedSVGOn: renderer width: nil height: nil.
+	renderer flush. 
+	^ stream contents
+		
 ]
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
