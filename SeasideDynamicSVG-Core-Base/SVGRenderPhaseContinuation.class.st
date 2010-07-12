@@ -6,12 +6,10 @@ Class {
 
 { #category : #private }
 SVGRenderPhaseContinuation >> createRenderContext [
-	| renderContext adaptor |
-	adaptor := self request svgRequiresIEWorkarounds 
-		ifTrue: [ SVGAdobeIEPluginAdaptor new ]
-		ifFalse: [ SVGStandardsCompliantBrowserAdaptor new ].
-		
+
+	| renderContext adaptor |		
 	renderContext := super createRenderContext.
+	adaptor := SVGUserAgentAdaptor adaptorForAgent: self request userAgent.
 	renderContext userAgentAdaptor: adaptor.
 	
 	^ renderContext

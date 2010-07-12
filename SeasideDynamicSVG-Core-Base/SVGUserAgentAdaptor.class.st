@@ -4,6 +4,22 @@ Class {
 	#category : #'SeasideDynamicSVG-Core-Base'
 }
 
+{ #category : #accessing }
+SVGUserAgentAdaptor class >> adaptorForAgent: userAgentOrNil [
+
+	| adaptorClass |
+	adaptorClass := self allSubclasses detect: [ : subclass | subclass matchesSpecialAgent: userAgentOrNil ] ifNone: [ nil].
+	^ adaptorClass notNil
+		ifTrue: [ adaptorClass new ]
+		ifFalse: [ SVGStandardsCompliantBrowserAdaptor new ]
+]
+
+{ #category : #accessing }
+SVGUserAgentAdaptor class >> matchesSpecialAgent: userAgent [
+
+	^ false
+]
+
 { #category : #'browser specific' }
 SVGUserAgentAdaptor >> fullTagForInlinedSVGTag: tag [
 
