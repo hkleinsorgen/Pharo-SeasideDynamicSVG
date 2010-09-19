@@ -285,6 +285,12 @@ SVGCanvas >> imageFilter [
 	^self brush: SVGImageFilterTag new
 ]
 
+{ #category : #'*SeasideDynamicSVG-Core-private' }
+SVGCanvas >> isSVGCanvas [
+
+	^ true
+]
+
 { #category : #'tags-shapes' }
 SVGCanvas >> line [
 	

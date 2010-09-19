@@ -5,9 +5,13 @@ Class {
 }
 
 { #category : #visiting }
-SVGRenderVisitor >> visitPainter: aPainter [ 
+SVGRenderVisitor >> visitPainter: aPainter [
 	| renderer |
 	renderer := aPainter svgRendererClass context: self renderContext.
 	aPainter drawSVGContentOn: renderer.
-	renderer flush
+	renderer flush.
+	self renderContext containsInlinedSVG
+		ifTrue: [ 
+			self requestContext response
+				ifNotNil: [ :response | self renderContext userAgentAdaptor prepareResponseForInlinedSVG: response ] ]
 ]

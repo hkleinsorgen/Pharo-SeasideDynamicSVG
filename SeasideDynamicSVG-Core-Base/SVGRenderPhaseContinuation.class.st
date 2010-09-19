@@ -5,19 +5,11 @@ Class {
 }
 
 { #category : #private }
-SVGRenderPhaseContinuation >> createRenderContext [
-
-	| renderContext adaptor |		
-	renderContext := super createRenderContext.
-	adaptor := SVGUserAgentAdaptor adaptorForAgent: self request userAgent.
-	renderContext userAgentAdaptor: adaptor.
-	
-	^ renderContext
-]
-
-{ #category : #private }
 SVGRenderPhaseContinuation >> processRendering: aResponse [ 
 	| document actionContinuation renderContext actionUrl actionBaseUrl htmlRoot |
+	
+	self greaseDeprecatedApi: 'SVGRenderPhaseContinuation>>#processRendering:' details: 'Add SVGUserAgentLibrary to the application and replace SVGRenderPhaseContinuation with WARenderPhaseContinuation in your application preferences'.
+
 	"Prepare the response"
 	aResponse contentType: self application contentType.
 	
@@ -47,10 +39,6 @@ SVGRenderPhaseContinuation >> processRendering: aResponse [
 	"Render"
 	document open: htmlRoot.
 	self presenter renderWithContext: renderContext.
-
-	"SVG : finish rendering"
-	renderContext containsInlinedSVG 
-		ifTrue: [ renderContext userAgentAdaptor prepareResponseForInlinedSVG: aResponse ].
 
 	"close document"
 	document close.

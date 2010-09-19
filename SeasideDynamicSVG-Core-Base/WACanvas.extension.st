@@ -1,6 +1,12 @@
 Extension { #name : #WACanvas }
 
 { #category : #'*SeasideDynamicSVG-Core-private' }
+WACanvas >> isSVGCanvas [
+
+	^ false
+]
+
+{ #category : #'*SeasideDynamicSVG-Core-private' }
 WACanvas >> renderSVGDocumentFor: aComponent [ 
 
 	| svgContext document renderer stream |
