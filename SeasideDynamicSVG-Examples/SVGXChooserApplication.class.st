@@ -14,6 +14,12 @@ SVGXChooserApplication class >> description [
 ]
 
 { #category : #'class initialization' }
+SVGXChooserApplication class >> initialize [
+	
+	self register
+]
+
+{ #category : #'class initialization' }
 SVGXChooserApplication class >> path [
 	
 	^'SVG/chooser'

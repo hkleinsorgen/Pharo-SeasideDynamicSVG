@@ -15,6 +15,12 @@ SVGXMultiSVGApplication class >> description [
 ]
 
 { #category : #'class initialization' }
+SVGXMultiSVGApplication class >> initialize [
+	
+	self register
+]
+
+{ #category : #'class initialization' }
 SVGXMultiSVGApplication class >> path [
 
 	^ 'SVG/multi'

@@ -8,12 +8,6 @@ Class {
 }
 
 { #category : #'class initialization' }
-SVGXApplication class >> initialize [
-	
-	self register
-]
-
-{ #category : #'class initialization' }
 SVGXApplication class >> path [
 
 	^ nil
@@ -26,7 +20,7 @@ SVGXApplication class >> register [
 	^ self path notNil
 		ifTrue: [
 			app := self registerAsApplication: self path.
-			app preferenceAt: #renderPhaseContinuationClass put: SVGRenderPhaseContinuation.
+			app addLibrary: SVGUserAgentLibrary.
 			app
 		]
 		ifFalse: [ nil ] 
