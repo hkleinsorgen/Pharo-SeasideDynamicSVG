@@ -41,9 +41,10 @@ SVGRenderingTest >> createRequestContextForURL: url [
 { #category : #private }
 SVGRenderingTest >> renderComponent: aComponent [
 
-	aComponent embedSelector: #renderInlinedOn:.
-	self renderer render: aComponent.
-
+	self
+		setRequestContextWhile: [ 
+			aComponent embedSelector: #renderInlinedOn:.
+			self renderer render: aComponent ]
 ]
 
 { #category : #accessing }
@@ -67,29 +68,28 @@ SVGRenderingTest >> sessionClass [
 ]
 
 { #category : #private }
-SVGRenderingTest >> setApplicationContextWhile: aBlock [
+SVGRenderingTest >> setRequestContextWhile: aBlock [
 
 	| requestContext request response |
 	requestContext := self createRequestContextForURL: 'http://localhost/SVGTests'.
-	requestContext push: WAApplication new while: [
-		WACurrentRequestContext use: requestContext during: aBlock
-			]
+	requestContext push: WAApplication new while: [ WACurrentRequestContext use: requestContext during: aBlock ]
 ]
 
 { #category : #testing }
 SVGRenderingTest >> testDocumentHandler [
 
-	self setApplicationContextWhile: [
-		| canvas url component handler documentContext svg |
-		canvas := WARenderCanvas context: WARenderContext new.
-		component := SVGXLineTest new.
-		url := canvas urlForEmbeddingSVGComponent: component.
-		self assert: url notNil.
-		documentContext := self createRequestContextForURL: url.
-		handler := WACurrentRequestContext value handler.
-		[ handler handle: documentContext ] on: WAResponseNotification do: [ : ex | ].
-		svg := documentContext response contents.
-		self assert: (svg beginsWith: '<svg')
+	self setRequestContextWhile: [
+		WARenderCanvas builder render: [ : html | 
+			| canvas url component handler documentContext svg |
+			component := SVGXLineTest new.
+			url := html urlForEmbeddingSVGComponent: component.
+			self assert: url notNil.
+			documentContext := self createRequestContextForURL: url.
+			handler := WACurrentRequestContext value handler.
+			[ handler handle: documentContext ] on: WAResponseNotification do: [ : ex | ].
+			svg := documentContext response contents.
+			self assert: (svg beginsWith: '<svg')
+		].
 	].
 
 ]
