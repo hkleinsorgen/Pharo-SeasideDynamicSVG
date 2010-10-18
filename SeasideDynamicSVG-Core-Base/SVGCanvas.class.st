@@ -424,6 +424,17 @@ SVGCanvas >> spotLightFilter [
 ]
 
 { #category : #accessing }
+SVGCanvas >> svg [
+	" Already SVG "
+	
+	| brush svg |
+	brush := SVGRootTag new.
+	self brush: brush.
+	brush svgCanvas: self.
+	^ brush
+]
+
+{ #category : #accessing }
 SVGCanvas >> svgTagsNeedNamespace [
 	^ tagsNeedNamespace ifNil: [ true ]
 ]
