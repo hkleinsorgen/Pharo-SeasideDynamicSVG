@@ -31,8 +31,14 @@ JQSVGLoad >> method [
 
 { #category : #options }
 JQSVGLoad >> onComplete: anObject [
-	"Function to execute after loading the svg content"
+	"Function to execute when an error occurs duing loading the svg content "
 	self optionAt: 'onLoad' put: anObject asFunction
+]
+
+{ #category : #options }
+JQSVGLoad >> onError: anObject [
+	"Function to execute after loading the svg content"
+	self optionAt: 'onError' put: anObject asFunction
 ]
 
 { #category : #private }
@@ -45,11 +51,10 @@ JQSVGLoad >> render: aRenderable on: aStream [
 	"Render aRenderable on aStream."
 	
 	| document html |
+
 	document := WAHtmlDocument on: aStream codec: self requestContext codec.
 	self renderContext document: document during: [
 		html := WARenderCanvas context: self renderContext.
-		html html: '<?xml version="1.0"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-         "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'.
 		html svg drawWith: [ : svg | svg render: aRenderable. svg flush. ].
 		html flush.
 	].
@@ -62,16 +67,15 @@ JQSVGLoad >> svg: aRenderable [
 	
 	aRenderable fixCallbackTemps.
 	callback := [self requestContext respond: [ :response |
-							response
-								doNotCache;
-								contentType: 'application/xhtml+xml'.
-								self render: aRenderable on: response stream ]]
+							self requestContext svgUserAgentAdaptor prepareResponseForInlinedSVG: response.
+							response doNotCache.
+							self render: aRenderable on: response stream ]]
 ]
 
 { #category : #accessing }
 JQSVGLoad >> url [
 	^ self renderContext actionUrl copy
-			addParameter: (self renderContext callbacks
+			addField: (self renderContext callbacks
 								store: (JSAjaxCallback on: [ self processCallback ]));
 			yourself
 ]
