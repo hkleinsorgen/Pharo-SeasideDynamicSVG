@@ -8,6 +8,6 @@ WAResponse >> beSVG [
 
 { #category : #'*SeasideDynamicSVG-Core-Base' }
 WAResponse >> beSVGXHTML [
-	
+
 	self contentType: 'application/xhtml+xml'
 ]

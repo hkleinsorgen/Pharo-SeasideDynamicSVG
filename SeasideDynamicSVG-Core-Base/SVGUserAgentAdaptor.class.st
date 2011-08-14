@@ -7,11 +7,11 @@ Class {
 { #category : #accessing }
 SVGUserAgentAdaptor class >> adaptorForAgent: userAgentOrNil [
 
-	| adaptorClass |
+	| adaptorClass | 
 	adaptorClass := self allSubclasses detect: [ : subclass | subclass matchesSpecialAgent: userAgentOrNil ] ifNone: [ nil].
 	^ adaptorClass notNil
 		ifTrue: [ adaptorClass new ]
-		ifFalse: [ SVGStandardsCompliantBrowserAdaptor new ]
+		ifFalse: [ SVGXHTMLBrowserAdaptor new ]
 ]
 
 { #category : #accessing }
